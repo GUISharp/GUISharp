@@ -12,8 +12,7 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<TargetFramework>net5.0</TargetFramework>
 		<PackageId>GUIVoid</PackageId>
-		<Version Condition="'$(OS)' == 'unix'">1.0.8-linux</Version>
-		<Version Condition="'$(OS)' == 'Windows_NT'">1.0.8-win</Version>
+		<Version>1.0.9</Version>
 		<Authors>ALiwoto</Authors>
 		<!--
 			It's not possible

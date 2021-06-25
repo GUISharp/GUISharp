@@ -13,9 +13,7 @@ using WotoProvider.EventHandlers;
 using GUIVoid.Controls;
 using GUIVoid.Security;
 using GUIVoid.Constants;
-#if __WINDOWS__
 using GUIVoid.Controls.Workers;
-#endif
 using XPoint = Microsoft.Xna.Framework.Point;
 using XRectangle = Microsoft.Xna.Framework.Rectangle;
 
@@ -35,10 +33,8 @@ namespace GUIVoid.Client
 		public const string UnknownCommandError = "ERR: Unknown Command Entered: ";
 		public const string Config_File_Name = 
 			"UNIVERSE_CONFIG" + ThereIsGConstants.Path.FilesEnd_Name;
-#if __WINDOWS__
 		public const string Config_Filter = 
 			"*" + ThereIsGConstants.Path.FilesEnd_Name;
-#endif
 		public const string DEFAULT_CONFIG_TEXT = "-- GUIVoid UNIVERSE -- V1.0.0";
 		public const string CONFIG_UP_COMMAND = "universe_request(up)";
 		public const string CONFIG_CLOSE_COMMAND1 = "close";
@@ -51,9 +47,10 @@ namespace GUIVoid.Client
 		public const int DEFAULT_Z_BASE		   = 0b0;
 		public const int DEFAULT_A_BASE		   = 0b1;
 		public const int DEFAULT_B_BASE		   = 0b10;
-#if __LINUX__
-		public const int WORKER_INTERVAL = 0b111110100;
-#endif
+		/// <summary>
+		/// The internal of worker which is for linux only.
+		/// </summary>
+		internal const int WORKER_INTERVAL = 0b111110100;
 		#endregion
 		//-------------------------------------------------
 		#region Properties Region
@@ -67,11 +64,8 @@ namespace GUIVoid.Client
 		/// </summary>
 		public GameWindow WotoPlanet { get; }
 		internal GClient Client { get; }
-#if __LINUX__
-		public Trigger WatcherWorker { get; private set; }
-#elif __WINDOWS__
-		public Worker WatcherWorker { get; private set; }
-#endif
+		public Trigger WatcherWorkerLinux { get; private set; }
+		public Worker WatcherWorkerWindows { get; private set; }
 		public FileSystemWatcher Watcher { get; private set; }
 		public StrongString ConfigPath { get; private set; }
 		public StrongString ConfigDir { get; private set; }
@@ -140,9 +134,11 @@ namespace GUIVoid.Client
 		#region field's Region
 		private bool _left_pressed;
 		private bool _right_pressed;
-#if __LINUX__
+		/// <summary>
+		/// the mmf value which is linux-only.
+		/// do NOT delete.
+		/// </summary>
 		private readonly string __mmf__;
-#endif
 		#endregion
 		//-------------------------------------------------
 		#region Events Region
@@ -174,10 +170,11 @@ namespace GUIVoid.Client
 			var h = Client.GraphicsDM.PreferredBackBufferHeight;
 			XRectangle = new XRectangle(X, Y, w, h);
 			WotoPlanet.Position = Point.Zero;
-#if __LINUX__
-			__mmf__ = ThereIsGConstants.Path.Here + 
+			if (IsUnix)
+			{
+				__mmf__ = ThereIsGConstants.Path.Here + 
 						  GClient.MMF_NAME;  
-#endif
+			}
 			Completed = true;
 		}
 		#endregion
@@ -208,24 +205,24 @@ namespace GUIVoid.Client
 				_f.Dispose();
 			}
 			File.WriteAllText(ConfigPath.GetValue(), DEFAULT_CONFIG_TEXT);
-#if __LINUX__
-			WatcherWorker ??= new Trigger();
-			WatcherWorker.Tick += Watcher_Worker;
-			WatcherWorker.SetInterval(WORKER_INTERVAL);
-			WatcherWorker.Start();
-#elif __WINDOWS__
-			// create a new worker and start it up.
-			// ReSharper disable once RedundantArgumentDefaultValue
-			WatcherWorker = new Worker(Watcher_Worker, DEFAULT_Z_BASE);
-			WatcherWorker.Start();
-#endif
+			if (IsUnix)
+			{
+				WatcherWorkerLinux ??= new Trigger();
+				WatcherWorkerLinux.Tick += LinuxWatcher_Worker;
+				WatcherWorkerLinux.SetInterval(WORKER_INTERVAL);
+				WatcherWorkerLinux.Start();
+			}
+			else if (IsWindows)
+			{
+				WatcherWorkerWindows ??= new Worker(WindowsWatcher_Worker, DEFAULT_Z_BASE);
+				WatcherWorkerWindows.Start();
+			}
 		}
 		#endregion
 		//-------------------------------------------------
 		#region Worker Method's Region
-#if __LINUX__
 
-		private void Watcher_Worker(Trigger sender, TickHandlerEventArgs<Trigger> handler)
+		private void LinuxWatcher_Worker(Trigger sender, TickHandlerEventArgs<Trigger> handler)
 		{
 			if (_checkFile)
 			{
@@ -233,18 +230,17 @@ namespace GUIVoid.Client
 			}
 			else
 			{
-				if (sender != this.WatcherWorker)
+				if (sender != this.WatcherWorkerLinux)
 				{
 					sender?.Stop();
 					sender?.Dispose();
 				}
-				this.WatcherWorker?.Stop();
-				this.WatcherWorker?.Dispose();
+				this.WatcherWorkerLinux?.Stop();
+				this.WatcherWorkerLinux?.Dispose();
 			}
 		}
 
-#elif __WINDOWS__
-		private void Watcher_Worker(Trigger sender, TickHandlerEventArgs<Trigger> handler)
+		private void WindowsWatcher_Worker(Trigger sender, TickHandlerEventArgs<Trigger> handler)
 		{
 			Watcher ??= new FileSystemWatcher(ConfigDir.GetValue(), Config_Filter)
 			{
@@ -253,8 +249,6 @@ namespace GUIVoid.Client
 			Watcher.Changed -= Watcher_Changed;
 			Watcher.Changed += Watcher_Changed;
 		}
-#endif
-
 		private void Watcher_Changed(object sender, FileSystemEventArgs e)
 		{
 			if (e.ChangeType == WatcherChangeTypes.Changed)
@@ -402,7 +396,6 @@ namespace GUIVoid.Client
 			}
 			
 		}
-#if __LINUX__
 		/// <summary>
 		/// check the <see cref="__mmf__"/> file.
 		/// do NOT make this method public.
@@ -417,7 +410,6 @@ namespace GUIVoid.Client
 				Client.Exit();
 			}
 		}
-#endif		
 		#endregion
 		//-------------------------------------------------
 		#region static Method's Region

@@ -33,9 +33,20 @@ namespace GUIVoid.Constants
 			/// <returns>
 			/// true if the current proccess is the single-one, otherwise false.
 			/// </returns>
-			public static bool IsSingleOne()
+			internal static bool IsSingleOne()
 			{
-#if __LINUX__
+				if (Universe.IsUnix)
+				{
+					return IsSingleOneLinux();
+				}
+				else if (Universe.IsWindows)
+				{
+					return IsSingleOneWindows();
+				}
+				return false; // not supported for now.
+			}
+			internal static bool IsSingleOneLinux()
+			{
 				var _p = Path.Here + GClient.MMF_NAME;
 				if (File.Exists(_p))
 				{
@@ -59,7 +70,9 @@ namespace GUIVoid.Constants
 				{
 					return true;
 				}
-#elif __WINDOWS__
+			}
+			internal static bool IsSingleOneWindows()
+			{
 				try
 				{
 #pragma warning disable CA1416
@@ -70,7 +83,7 @@ namespace GUIVoid.Constants
 							return true;
 						}
 					}
-#pragma warning enable CA1416
+#pragma warning restore CA1416
 					return false;
 				}
 				catch (FileNotFoundException)
@@ -82,19 +95,28 @@ namespace GUIVoid.Constants
 					Console.WriteLine(e);
 					return false;
 				}
-#else
-#error Not Supported Platform.
-#endif
 			}
+
 			/// <summary>
 			/// create a single-one provider.
 			/// </summary>
 			/// <returns>
 			/// true if success, otherwise false.
 			/// </returns>
-			public static bool CreateSingleOne()
+			internal static bool CreateSingleOne()
 			{
-#if __LINUX__
+				if (Universe.IsUnix)
+				{
+					return CreateSingleOneLinux();
+				}
+				else if (Universe.IsWindows)
+				{
+					return CreateSingleOneWindows();
+				}
+				return false;
+			}
+			internal static bool CreateSingleOneLinux()
+			{
 				var _p = Path.Here + GClient.MMF_NAME;
 				try
 				{
@@ -111,7 +133,9 @@ namespace GUIVoid.Constants
 					Console.WriteLine(_e.Message);
 					return false;
 				}
-#elif __WINDOWS__
+			}
+			internal static bool CreateSingleOneWindows()
+			{
 				try
 				{
 					AppSettings.Memory = MemoryMappedFile.CreateNew(GClient.MMF_NAME, 10000);
@@ -127,11 +151,7 @@ namespace GUIVoid.Constants
 				{
 					return false;
 				}
-#else
-#error Unsupported Platform.
-#endif
 			}
-
 			internal static IDateProvider<DateTime, Trigger, StrongString> ToDateTime(StrongString strongString)
 			{
 				throw new NotImplementedException();
@@ -153,23 +173,34 @@ namespace GUIVoid.Constants
 			/// like: <see cref="ProfileInfo"/>
 			/// </summary>
 			public const string NotSet = "notSet";
-#if __LINUX__
+
 			/// <summary>
 			/// The Double Slash that you should use before the names in paths.
 			/// if and only if the os is Unix.
 			/// </summary>
-			public const string DoubleSlash = "/";
-#elif __WINDOWS__
+			public const string DoubleSlashLinux = "/";
 			/// <summary>
 			/// The Double Slash that you should use before the names in paths.
 			/// if and only if the os is windows.
 			/// </summary>
-			public const string DoubleSlash = @"\";
-#else
-#error Unsupported Platform.
-#endif
+			public const string DoubleSlashWin = @"\";
 			public const string Content = "GUIContent";
 			//---------------------------------------------
+			public static string DoubleSlash
+			{
+				get
+				{
+					if (Universe.IsWindows)
+					{
+						return DoubleSlashWin;
+					}
+					else if (Universe.IsUnix)
+					{
+						return DoubleSlashWin;
+					}
+					return null;
+				}
+			}
 			public static string Here
 			{
 				//get => Directory.GetCurrentDirectory();

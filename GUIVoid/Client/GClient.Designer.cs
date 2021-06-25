@@ -296,14 +296,17 @@ namespace GUIVoid.Client
 				// set the game window position to zero.
 				Window.Position = Point.Zero;
 			}
-#if __LINUX__
-			// check if game universe have to check the 
-			// __mmf__ assist file or not.
-			if (!this.GameUniverse._checkFile)
+
+			if (Universe.IsUnix)
 			{
-				this.GameUniverse._checkFile = true;
+				// check if game universe have to check the 
+				// __mmf__ assist file or not.
+				if (!this.GameUniverse._checkFile)
+				{
+					this.GameUniverse._checkFile = true;
+				}
 			}
-#endif
+			
 			// game should always be in the fullscreen mode.
 			this.GraphicsDM.ToggleFullScreen();
 		}
