@@ -12,7 +12,7 @@
                         "type": "process",
                         "args": [
                                 "build",
-                                "${workspaceFolder}/LTW.sln",
+                                "${workspaceFolder}/GUIVoid.sln",
                                 "/property:GenerateFullPaths=true",
                                 "/consoleloggerparameters:NoSummary"
                         ],
@@ -24,7 +24,7 @@
                         "type": "process",
                         "args": [
                                 "debug",
-                                "${workspaceFolder}/LTW.sln",
+                                "${workspaceFolder}/GUIVoid.sln",
                                 "/property:GenerateFullPaths=true",
                                 "/consoleloggerparameters:NoSummary"
                         ],
@@ -37,7 +37,7 @@
                         "args": [
                                 "watch",
                                 "run",
-                                "${workspaceFolder}/LTW.sln",
+                                "${workspaceFolder}/GUIVoid.sln",
                                 "/property:GenerateFullPaths=true",
                                 "/consoleloggerparameters:NoSummary"
                         ],

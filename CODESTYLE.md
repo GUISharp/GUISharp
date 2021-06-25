@@ -188,76 +188,76 @@ In addition, the goal is to have clean, readable source. Code legibility should 
 * Directory names should follow the namespace for the class after `LTW`. For example, one would expect to find the public class `LTW.Constants.WotoTools` in **LTW\Constants\WotoTools.cs**.
 * Class members should be grouped logically, and encapsulated into regions:
 ```csharp
-//-------------------------------------------------
-#region Constant's Region
+	//-------------------------------------------------
+	#region Constant's Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region static Properties Region
+	#endregion
+	//-------------------------------------------------
+	#region static Properties Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region Properties Region
+	#endregion
+	//-------------------------------------------------
+	#region Properties Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region static field's Region
+	#endregion
+	//-------------------------------------------------
+	#region static field's Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region field's Region
+	#endregion
+	//-------------------------------------------------
+	#region field's Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region static event field's Region
+	#endregion
+	//-------------------------------------------------
+	#region static event field's Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region event field's Region
+	#endregion
+	//-------------------------------------------------
+	#region event field's Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region Constructor's Region
+	#endregion
+	//-------------------------------------------------
+	#region Constructor's Region
 	// some members here
-#endregion
-//-------------------------------------------------
-#region Destructor's Region
+	#endregion
+	//-------------------------------------------------
+	#region Destructor's Region
 	// some members here
-#endregion
-//-------------------------------------------------
+	#endregion
+	//-------------------------------------------------
 ```
 
 and as for methods:
 ```csharp
-//-------------------------------------------------
-#region Initialize Method's Region
+	//-------------------------------------------------
+	#region Initialize Method's Region
 	// some methods here
-#endregion
-//-------------------------------------------------
-#region Graphical Method's Region
+	#endregion
+	//-------------------------------------------------
+	#region Graphical Method's Region
 	// some methods here
-#endregion
-//-------------------------------------------------
-#region event Method's Region
+	#endregion
+	//-------------------------------------------------
+	#region event Method's Region
 	// some methods here
-#endregion
-//-------------------------------------------------
-#region overrided Method's Region
+	#endregion
+	//-------------------------------------------------
+	#region overrided Method's Region
 	// some methods here
-#endregion
-//-------------------------------------------------
-#region ordinary Method's Region
+	#endregion
+	//-------------------------------------------------
+	#region ordinary Method's Region
 	// some methods here
-#endregion
-//-------------------------------------------------
-#region Get Method's Region
+	#endregion
+	//-------------------------------------------------
+	#region Get Method's Region
 	// some methods here
-#endregion
-//-------------------------------------------------
-#region Set Method's Region
+	#endregion
+	//-------------------------------------------------
+	#region Set Method's Region
 	// some methods here
-#endregion
-//-------------------------------------------------
+	#endregion
+	//-------------------------------------------------
 ```
 
 * lines should be used between regions, until the 60th character of that line.
