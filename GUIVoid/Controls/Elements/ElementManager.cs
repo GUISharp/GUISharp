@@ -6,7 +6,7 @@
 using GUIVoid.Client;
 using GUIVoid.SandBox;
 using GUIVoid.Constants;
-using GUIVoid.GameObjects.WMath;
+using GUIVoid.GUIObjects.WMath;
 using GUIVoid.SandBox.ErrorSandBoxes;
 
 namespace GUIVoid.Controls.Elements

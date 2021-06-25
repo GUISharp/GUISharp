@@ -13,6 +13,7 @@ using WotoProvider.Enums;
 using WotoProvider.EventHandlers;
 using GUIVoid.Security;
 using GUIVoid.Controls.Moving;
+using GUIVoid.GUIObjects.Graphics;
 using TheMouseInput = Microsoft.Xna.Framework.Input;
 
 namespace GUIVoid.Controls.Elements
@@ -66,7 +67,7 @@ namespace GUIVoid.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Graphical Method's Region
-		public override void Draw(in GameTime gameTime, in SpriteBatch spriteBatch)
+		public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
 		{
 			// check if the batch is null or disposed or not
 			if (spriteBatch == null || spriteBatch.IsDisposed)
@@ -86,9 +87,9 @@ namespace GUIVoid.Controls.Elements
 			{
 				if (_showLiner)
 				{
-					spriteBatch.Begin();
+					spriteBatch.Start();
 					spriteBatch.Draw(_linerTexture, _linerRect, Color.White);
-					spriteBatch.End();
+					spriteBatch.Finish();
 				}
 			}
 		}
@@ -372,9 +373,9 @@ namespace GUIVoid.Controls.Elements
 				return;
 			}
 			float w = this.Width != BASE_INDEX ? this.Width :
-			DEFAULT_WIDTH;
+				DEFAULT_WIDTH;
 			float h = this.Height != BASE_INDEX ? this.Height :
-			DEFAULT_HEIGHT;
+				DEFAULT_HEIGHT;
 			this.ChangeSize(multiple * w, multiple * h);
 			// do NOT update the liner size here again,
 			// we have already done that in another overloaded method,

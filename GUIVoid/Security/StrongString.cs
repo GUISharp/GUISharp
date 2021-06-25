@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework;
 using FontStashSharp;
 using WotoProvider.Interfaces;
 using GUIVoid.Constants;
-using GUIVoid.GameObjects.WMath;
-using GUIVoid.GameObjects.UGW;
+using GUIVoid.GUIObjects.WMath;
+using GUIVoid.GUIObjects.Texts;
 using static GUIVoid.Client.Universe;
 
 namespace GUIVoid.Security

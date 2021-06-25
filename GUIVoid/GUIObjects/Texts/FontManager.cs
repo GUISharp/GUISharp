@@ -10,9 +10,9 @@ using FontStashSharp;
 using GUIVoid.Client;
 using GUIVoid.Controls;
 using GUIVoid.Constants;
-using GUIVoid.GameObjects.Resources;
+using GUIVoid.GUIObjects.Resources;
 
-namespace GUIVoid.GameObjects.UGW
+namespace GUIVoid.GUIObjects.Texts
 {
 	public sealed partial class FontManager : IRes, IDisposable
 	{

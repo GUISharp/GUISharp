@@ -6,7 +6,7 @@
 using System;
 using WotoProvider.Enums;
 
-namespace GUIVoid.GameObjects.WMath
+namespace GUIVoid.GUIObjects.WMath
 {
     public class Randomic : IRandomable
     {

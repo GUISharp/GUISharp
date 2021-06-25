@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace GUIVoid.GameObjects.WMath
+namespace GUIVoid.GUIObjects.WMath
 {
     public class ListW<T> : List<T>
     {

@@ -4,12 +4,11 @@
 // file 'LICENSE', which is part of the source code.
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using WotoProvider.Enums;
 using GUIVoid.Controls;
-using GUIVoid.Constants;
-using GUIVoid.GameObjects.UGW;
+using GUIVoid.GUIObjects.Texts;
 using GUIVoid.Controls.Elements;
+using GUIVoid.GUIObjects.Graphics;
 
 namespace GUIVoid.SandBox.ErrorSandBoxes
 {
@@ -111,7 +110,7 @@ namespace GUIVoid.SandBox.ErrorSandBoxes
         #endregion
         //-------------------------------------------------
         #region Graphical Method's Region
-        public override void Draw(in GameTime gameTime, in SpriteBatch spriteBatch)
+        public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
         {
             // check if the batch is null or disposed or not
             if (spriteBatch == null || spriteBatch.IsDisposed)
@@ -127,7 +126,7 @@ namespace GUIVoid.SandBox.ErrorSandBoxes
             }
             // draw the surface of the sandbox.
             this._flat?.Draw(gameTime, spriteBatch);
-            spriteBatch.Begin();
+            spriteBatch.Start();
             if (this.LeftTexture != null && !this.LeftTexture.IsDisposed)
             {
                 spriteBatch.Draw(this.LeftTexture, this.LeftTextureRectangle, this.Tint);
@@ -140,7 +139,7 @@ namespace GUIVoid.SandBox.ErrorSandBoxes
             {
                 spriteBatch.Draw(this.RightTexture, this.RightTextureRectangle, this.Tint);
             }
-            spriteBatch.End();
+            spriteBatch.Finish();
             // draw the manager
             this.Manager?.Draw(gameTime, spriteBatch);
         }

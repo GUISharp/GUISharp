@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GUIVoid.Security;
 using GUIVoid.Constants;
 
-namespace GUIVoid.GameObjects.Resources
+namespace GUIVoid.GUIObjects.Resources
 {
     public sealed class WotoRes : ComponentResourceManager
     {

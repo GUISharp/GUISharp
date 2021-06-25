@@ -4,9 +4,9 @@
 // file 'LICENSE', which is part of the source code.
 
 using FontStashSharp;
-using GUIVoid.GameObjects.Resources;
+using GUIVoid.GUIObjects.Resources;
 
-namespace GUIVoid.GameObjects.UGW
+namespace GUIVoid.GUIObjects.Texts
 {
 	partial class FontManager
 	{

@@ -10,7 +10,7 @@ using GUIVoid.Security;
 using GUIVoid.Constants;
 using static GUIVoid.Client.Universe;
 
-namespace GUIVoid.GameObjects.UGW
+namespace GUIVoid.GUIObjects.Texts
 {
 	/// <summary>
 	/// Provides methods for graphic 2D drawing.

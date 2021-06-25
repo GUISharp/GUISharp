@@ -13,6 +13,7 @@ using GUIVoid.SandBox;
 using GUIVoid.Security;
 using GUIVoid.Constants;
 using GUIVoid.Controls.Moving;
+using GUIVoid.GUIObjects.Graphics;
 using M_Manager = GUIVoid.Controls.Moving.MoveManager;
 using XColor = Microsoft.Xna.Framework.Color;
 using XPoint = Microsoft.Xna.Framework.Point;
@@ -1335,10 +1336,10 @@ namespace GUIVoid.Controls.Elements
 		/// the <see cref="GameTime"/> of the GUIVoid.
 		/// </param>
 		/// <param name="spriteBatch">
-		/// the <see cref="SpriteBatch"/> tool 
+		/// the <see cref="SpriteWoto"/> tool 
 		/// which is necessary for drawing the graphic surface.
 		/// </param>
-		public abstract void Draw(in GameTime gameTime, in SpriteBatch spriteBatch);
+		public abstract void Draw(in GameTime gameTime, in SpriteWoto spriteBatch);
 		#endregion
 		//-------------------------------------------------
 	}

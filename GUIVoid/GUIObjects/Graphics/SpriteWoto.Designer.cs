@@ -1,43 +1,50 @@
-// Last Testament of Wanderers 
-// Copyright (C) 2019 - 2021 ALiwoto
-// This file is subject to the terms and conditions defined in
-// file 'LICENSE', which is part of the source code.
 
-namespace GUIVoid.GameObjects.WMath
+namespace GUIVoid.GUIObjects.Graphics
 {
-	public class Path
+	partial class SpriteWoto
 	{
 		//-------------------------------------------------
-		#region Constants Region
-		
+		#region Initialize Method's Region
+		// some methods here
 		#endregion
 		//-------------------------------------------------
-		#region field's Region
-		
+		#region Graphical Method's Region
+		// some methods here
 		#endregion
 		//-------------------------------------------------
-		#region Properties Region
-		
+		#region event Method's Region
+		// some methods here
 		#endregion
 		//-------------------------------------------------
-		#region Constructor's Region
-		
-		#endregion
-		//-------------------------------------------------
-		#region Destructor's Region
-		
+		#region overrided Method's Region
+		// some methods here
 		#endregion
 		//-------------------------------------------------
 		#region ordinary Method's Region
-		
+		public void Start()
+		{
+			if (!this.IsStarted)
+			{
+				this.Begin();
+				this.IsStarted = true;
+			}
+		}
+		public void Finish()
+		{
+			if (this.IsStarted)
+			{
+				this.End();
+				this.IsStarted = false;
+			}
+		}
 		#endregion
 		//-------------------------------------------------
 		#region Get Method's Region
-		
+		// some methods here
 		#endregion
 		//-------------------------------------------------
 		#region Set Method's Region
-		
+		// some methods here
 		#endregion
 		//-------------------------------------------------
 	}

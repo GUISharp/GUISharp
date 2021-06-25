@@ -3,12 +3,9 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-namespace GUIVoid.GameObjects.WMath
+namespace GUIVoid.GUIObjects.WMath
 {
-	/// <summary>
-	/// Represents a Circle.
-	/// </summary>
-	public class Circle
+	public class Path
 	{
 		//-------------------------------------------------
 		#region Constants Region

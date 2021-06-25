@@ -4,8 +4,8 @@
 // file 'LICENSE', which is part of the source code.
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GUIVoid.GameObjects.WMath;
+using GUIVoid.GUIObjects.WMath;
+using GUIVoid.GUIObjects.Graphics;
 
 namespace GUIVoid.Controls.Elements
 {
@@ -142,7 +142,7 @@ namespace GUIVoid.Controls.Elements
         #endregion
         //-------------------------------------------------
         #region Graphics Method's Region 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteWoto spriteBatch)
         {
             for (int i = 0; i < Length; i++)
             {

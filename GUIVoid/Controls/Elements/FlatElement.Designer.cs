@@ -9,6 +9,7 @@ using FontStashSharp;
 using WotoProvider.Enums;
 using GUIVoid.Security;
 using GUIVoid.Controls.Moving;
+using GUIVoid.GUIObjects.Graphics;
 
 namespace GUIVoid.Controls.Elements
 {
@@ -38,7 +39,7 @@ namespace GUIVoid.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Graphical Method's Region
-		public override void Draw(in GameTime gameTime, in SpriteBatch spriteBatch)
+		public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
 		{
 			// check if the batch is null or disposed or not
 			if (spriteBatch == null || spriteBatch.IsDisposed)
@@ -61,7 +62,7 @@ namespace GUIVoid.Controls.Elements
 				return;
 			}
 			// begin the spriteBatch tool to drawing the graphic surface.
-			spriteBatch.Begin();
+			spriteBatch.Start();
 			// check if the background image is null or disposed or not.
 			if (this.BackGroundImage != null && !this.BackGroundImage.IsDisposed)
 			{
@@ -97,7 +98,7 @@ namespace GUIVoid.Controls.Elements
 				}
 			}
 			// Call the End method of spriteBatch tool.
-			spriteBatch.End();
+			spriteBatch.Finish();
 			// call the Draw Method of the manager (it it's not null), 
 			// so the children can draw their surface (if any exists).
 			this.Manager?.Draw(gameTime, spriteBatch);

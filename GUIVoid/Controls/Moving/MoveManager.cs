@@ -6,7 +6,7 @@
 using System.Collections;
 using Microsoft.Xna.Framework;
 using GUIVoid.Constants;
-using GUIVoid.GameObjects.WMath;
+using GUIVoid.GUIObjects.WMath;
 
 namespace GUIVoid.Controls.Moving
 {

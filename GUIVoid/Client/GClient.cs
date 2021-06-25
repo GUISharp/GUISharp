@@ -10,9 +10,10 @@ using Microsoft.Xna.Framework.Graphics;
 using GUIVoid.Controls;
 using GUIVoid.Security;
 using GUIVoid.Constants;
-using GUIVoid.GameObjects.UGW;
+using GUIVoid.GUIObjects.Texts;
 using GUIVoid.Controls.Elements;
-using GUIVoid.GameObjects.Resources;
+using GUIVoid.GUIObjects.Graphics;
+using GUIVoid.GUIObjects.Resources;
 
 namespace GUIVoid.Client
 {
@@ -50,7 +51,7 @@ namespace GUIVoid.Client
 		/// <summary>
 		/// Sprite Batch of the GUIVoid GClient.
 		/// </summary>
-		public SpriteBatch SpriteBatch { get; private set; }
+		public SpriteWoto MySprite { get; private set; }
 		/// <summary>
 		/// The Universe of the GUIVoid Game.
 		/// </summary>

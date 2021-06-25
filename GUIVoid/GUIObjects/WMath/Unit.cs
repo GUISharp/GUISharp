@@ -7,7 +7,7 @@ using System;
 using GUIVoid.Client;
 using GUIVoid.Security;
 
-namespace GUIVoid.GameObjects.WMath
+namespace GUIVoid.GUIObjects.WMath
 {
 #pragma warning disable IDE0047
 #pragma warning disable IDE0017

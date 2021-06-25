@@ -5,7 +5,7 @@
 
 using System;
 using System.Collections;
-using GUIVoid.GameObjects.WMath;
+using GUIVoid.GUIObjects.WMath;
 using GUIVoid.Controls.Elements;
 
 namespace GUIVoid.Controls.Moving

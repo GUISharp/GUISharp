@@ -6,16 +6,17 @@
 using System;
 using System.IO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using WotoProvider.EventHandlers;
 using WotoProvider.Enums;
 using GUIVoid.SandBox;
 using GUIVoid.Controls;
 using GUIVoid.Constants;
-using GUIVoid.GameObjects.UGW;
+using GUIVoid.GUIObjects.Texts;
 using GUIVoid.Controls.Elements;
-using GUIVoid.GameObjects.Resources;
-using Microsoft.Xna.Framework.Input;
+using GUIVoid.GUIObjects.Graphics;
+using GUIVoid.GUIObjects.Resources;
 using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 
 namespace GUIVoid.Client
@@ -318,7 +319,7 @@ namespace GUIVoid.Client
 		{
 			//---------------------------------------------
 			//news:
-			this.SpriteBatch = new SpriteBatch(GraphicsDevice);
+			this.MySprite = new SpriteWoto(GraphicsDevice);
 			//---------------------------------------------
 		}
 		/// <summary>
@@ -359,8 +360,10 @@ namespace GUIVoid.Client
 		protected override void Draw(GameTime gameTime)
 		{
 			this.GraphicsDevice.Clear(Color.Black);
+			this.MySprite.Start();
 			this.DrawBackGround();
-			this.ElementManager?.Draw(gameTime, this.SpriteBatch);
+			this.ElementManager?.Draw(gameTime, this.MySprite);
+			this.MySprite.Finish();
 			base.Draw(gameTime);
 		}
 		#endregion
@@ -375,11 +378,11 @@ namespace GUIVoid.Client
 			{
 				return;
 			}
-			this.SpriteBatch.Begin();
-			this.SpriteBatch.Draw(this.BackGroundTexture, this.GameUniverse.XRectangle, 
+			//this.MySprite.Begin();
+			this.MySprite.Draw(this.BackGroundTexture, this.GameUniverse.XRectangle, 
 				this.BackGroundTexture.Bounds, 
 				Color.White);
-			this.SpriteBatch.End();
+			//this.MySprite.End();
 		}
 		#endregion
 		//-------------------------------------------------

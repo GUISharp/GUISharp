@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GUIVoid.Controls;
 using GUIVoid.Controls.Elements;
-using GUIVoid.GameObjects.Resources;
+using GUIVoid.GUIObjects.Resources;
 
 namespace GUIVoid.SandBox
 {

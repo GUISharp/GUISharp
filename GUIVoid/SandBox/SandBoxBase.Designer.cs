@@ -9,6 +9,7 @@ using FontStashSharp;
 using GUIVoid.Security;
 using GUIVoid.Controls.Moving;
 using GUIVoid.Controls.Elements;
+using GUIVoid.GUIObjects.Graphics;
 
 namespace GUIVoid.SandBox
 {
@@ -51,7 +52,7 @@ namespace GUIVoid.SandBox
         #endregion
         //-------------------------------------------------
         #region Graphical Method's Region
-        public override void Draw(in GameTime gameTime, in SpriteBatch spriteBatch)
+        public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
         {
             // check if the batch is null or disposed or not
             if (spriteBatch == null || spriteBatch.IsDisposed)

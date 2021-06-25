@@ -15,8 +15,8 @@ using GUIVoid.Client;
 using GUIVoid.Security;
 using GUIVoid.Constants;
 using GUIVoid.Controls.Moving;
-using GUIVoid.GameObjects.UGW;
-using GUIVoid.GameObjects.Resources;
+using GUIVoid.GUIObjects.Texts;
+using GUIVoid.GUIObjects.Resources;
 using XRectangle = Microsoft.Xna.Framework.Rectangle;
 using XPoint	 = Microsoft.Xna.Framework.Point;
 

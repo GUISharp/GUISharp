@@ -3,7 +3,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-namespace GUIVoid.GameObjects.WMath
+namespace GUIVoid.GUIObjects.WMath
 {
 	/// <summary>
 	/// The status of a <see cref="Line2D"/>

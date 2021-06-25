@@ -11,6 +11,7 @@ using FontStashSharp;
 using WotoProvider.Enums;
 using GUIVoid.Security;
 using GUIVoid.Controls.Moving;
+using GUIVoid.GUIObjects.Graphics;
 
 namespace GUIVoid.Controls.Elements
 {
@@ -52,7 +53,7 @@ namespace GUIVoid.Controls.Elements
         #endregion
         //-------------------------------------------------
         #region Graphical Method's Region
-        public override void Draw(in GameTime gameTime, in SpriteBatch spriteBatch)
+        public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
         {
             // check if the batch is null or disposed or not
             if (spriteBatch == null || spriteBatch.IsDisposed)
