@@ -3,7 +3,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-namespace WotoProvider.Interfaces.Security
+namespace GUIVoid.WotoProvider.Interfaces.Security
 {
     public interface ISessionChecker
     {

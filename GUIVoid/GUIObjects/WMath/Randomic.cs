@@ -4,7 +4,7 @@
 // file 'LICENSE', which is part of the source code.
 
 using System;
-using WotoProvider.Enums;
+using GUIVoid.WotoProvider.Enums;
 
 namespace GUIVoid.GUIObjects.WMath
 {

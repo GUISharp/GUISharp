@@ -5,7 +5,7 @@
 
 using System.Text;
 
-namespace WotoProvider.Interfaces
+namespace GUIVoid.WotoProvider.Interfaces
 {
     public interface IDECoderProvider<T1, T2>
     {

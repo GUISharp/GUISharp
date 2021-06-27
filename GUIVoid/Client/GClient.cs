@@ -53,7 +53,7 @@ namespace GUIVoid.Client
 		/// </summary>
 		public SpriteWoto MySprite { get; private set; }
 		/// <summary>
-		/// The Universe of the GUIVoid Game.
+		/// The Universe of the GUIVoid client.
 		/// </summary>
 		public Universe GameUniverse { get; }
 		/// <summary>
@@ -76,6 +76,7 @@ namespace GUIVoid.Client
 		internal Point? PreviousLeftDownPoint { get; private set; }
 		internal Point? RightDownPoint { get; private set; }
 		internal Point? PreviousRightDownPoint { get; private set; }
+		public GUIClient GUIClient { get; }
 	#nullable disable
 		//public SoundPlayer SoundPlayer { get; set; }
 		public int Width
@@ -126,18 +127,21 @@ namespace GUIVoid.Client
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region
-		public GClient(bool verify)
+		public GClient(bool verify, GUIClient gUIClient)
 		{
 			if (!verify)
 			{
 				return;
 			}
+			GUIClient = gUIClient;
 			try
 			{
+				var w = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+				var h = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 				GraphicsDM = new GraphicsDeviceManager(this)
 				{
-					PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
-					PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+					PreferredBackBufferWidth = w / 2,
+					PreferredBackBufferHeight = h / 2,
 				};
 				IsMouseVisible = true;
 				GameUniverse = new Universe(Window.Handle, this);

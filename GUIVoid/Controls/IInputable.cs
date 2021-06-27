@@ -4,7 +4,7 @@
 // file 'LICENSE', which is part of the source code.
 
 using Microsoft.Xna.Framework;
-using WotoProvider.Enums;
+using GUIVoid.WotoProvider.Enums;
 
 namespace GUIVoid.Controls
 {

@@ -8,13 +8,13 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using WotoProvider.Enums;
-using WotoProvider.EventHandlers;
+using Microsoft.Xna.Framework.Graphics;
+using GUIVoid.WotoProvider.Enums;
+using GUIVoid.WotoProvider.EventHandlers;
 using GUIVoid.Controls;
 using GUIVoid.Security;
 using GUIVoid.Constants;
 using GUIVoid.Controls.Workers;
-using XPoint = Microsoft.Xna.Framework.Point;
 using XRectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace GUIVoid.Client
@@ -71,6 +71,9 @@ namespace GUIVoid.Client
 		public StrongString ConfigDir { get; private set; }
 		public StrongString LastCommand { get; private set; }
 		public XRectangle XRectangle { get; }
+		public Point DefaultPoint { get; set; }
+		public int DefaultWidth { get; set; }
+		public int DefaultHeight { get; set; }
 		public int Width
 		{
 			get
@@ -149,7 +152,7 @@ namespace GUIVoid.Client
 		#region Constructor's Region
 		/// <summary>
 		/// create a new instance of <see cref="Universe"/> 
-		/// for GUIVoid Game.
+		/// for GUIVoid library.
 		/// <!--BY: ALi.w-->
 		/// </summary>
 		/// <param name="_handle_">
@@ -163,13 +166,8 @@ namespace GUIVoid.Client
 			Handle = _handle_;
 			Client = _client_;
 			WotoPlanet = _client_.Window;
-			SetBorder();
 			SetLocation();
 			SetWatcher();
-			var w = Client.GraphicsDM.PreferredBackBufferWidth;
-			var h = Client.GraphicsDM.PreferredBackBufferHeight;
-			XRectangle = new XRectangle(X, Y, w, h);
-			WotoPlanet.Position = Point.Zero;
 			if (IsUnix)
 			{
 				__mmf__ = ThereIsGConstants.Path.Here + 
@@ -184,14 +182,25 @@ namespace GUIVoid.Client
 		#endregion
 		//-------------------------------------------------
 		#region Set Method's Region
-		private void SetBorder()
-		{
-			WotoPlanet.IsBorderless = true;
-		}
 		private void SetLocation()
 		{
-			WotoPlanet.Position = new XPoint(0, 0);
+			var w = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+			var h = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+			var ww = Client.GraphicsDM.PreferredBackBufferWidth;
+			var wh = Client.GraphicsDM.PreferredBackBufferHeight;
+			DefaultWidth = ww;
+			DefaultHeight = wh;
+			DefaultPoint = new((w / 2) - (ww / 2), (h / 2) - (wh / 2));
+			WotoPlanet.Position = DefaultPoint;
 		}
+		/// <summary>
+		/// Set the watcher so they will start watching.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
+		/// </summary>
 		private void SetWatcher()
 		{
 			if (ConfigPath == null)
@@ -221,7 +230,14 @@ namespace GUIVoid.Client
 		#endregion
 		//-------------------------------------------------
 		#region Worker Method's Region
-
+		/// <summary>
+		/// Worker event method for linux watcher.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
+		/// </summary>
 		private void LinuxWatcher_Worker(Trigger sender, TickHandlerEventArgs<Trigger> handler)
 		{
 			if (_checkFile)
@@ -239,7 +255,14 @@ namespace GUIVoid.Client
 				this.WatcherWorkerLinux?.Dispose();
 			}
 		}
-
+		/// <summary>
+		/// Worker event method for windows watcher.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
+		/// </summary>
 		private void WindowsWatcher_Worker(Trigger sender, TickHandlerEventArgs<Trigger> handler)
 		{
 			Watcher ??= new FileSystemWatcher(ConfigDir.GetValue(), Config_Filter)
@@ -249,6 +272,15 @@ namespace GUIVoid.Client
 			Watcher.Changed -= Watcher_Changed;
 			Watcher.Changed += Watcher_Changed;
 		}
+		/// <summary>
+		/// Event for watcher.
+		/// Only for windows.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
+		/// </summary>
 		private void Watcher_Changed(object sender, FileSystemEventArgs e)
 		{
 			if (e.ChangeType == WatcherChangeTypes.Changed)
@@ -316,6 +348,17 @@ namespace GUIVoid.Client
 				Client.Universe_Request = true;
 			}
 		}
+		/// <summary>
+		/// Close the application and terminate the client.
+		/// This will completely close the loop, so be careful when using it.
+		/// Tho it won't exit it right now, it will exit it after the end of
+		/// this tick.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
+		/// </summary>
 		public void Close()
 		{
 			if (!this.Completed)
@@ -327,31 +370,41 @@ namespace GUIVoid.Client
 		}
 		/// <summary>
 		/// Call this method in <see cref="GClient.Update(GameTime)"/>.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
 		/// </summary>
 		internal void UpdateUniverse()
 		{
-			var _state = Mouse.GetState();
-			checkMouseButtons(MouseButtons.Left, _state);
-			checkMouseButtons(MouseButtons.Right, _state);
+			var state = Mouse.GetState();
+			checkMouseButtons(MouseButtons.Left, state);
+			checkMouseButtons(MouseButtons.Right, state);
 		}
 		/// <summary>
 		/// check the MouseButton states.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
 		/// </summary>
-		/// <param name="_b"></param>
-		/// <param name="_state"></param>
-		private void checkMouseButtons(MouseButtons _b, MouseState _state)
+		/// <param name="b">the button</param>
+		/// <param name="state">the state of the button.</param>
+		private void checkMouseButtons(MouseButtons b, MouseState state)
 		{
-			switch (_b)
+			switch (b)
 			{
 				case MouseButtons.Left:
-					if (_state.LeftButton == ButtonState.Pressed)
+					if (state.LeftButton == ButtonState.Pressed)
 					{
 						if (!_left_pressed)
 						{
 							_left_pressed	  = true;
 							var _cr = ThereIsGConstants.AppSettings.WotoCreation;
-							var _arg		   = new MouseEventArgs(_cr, _b);
-							MouseDown?.Invoke(this, _arg);
+							//var _arg		   = new MouseEventArgs(_cr, b);
+							MouseDown?.Invoke(this, null);
 						}
 					}
 					else
@@ -360,20 +413,20 @@ namespace GUIVoid.Client
 						{
 							_left_pressed	  = false;
 							var _cr = ThereIsGConstants.AppSettings.WotoCreation;
-							var _arg		   = new MouseEventArgs(_cr, _b);
-							MouseUp?.Invoke(this, _arg);
+							//var _arg		   = new MouseEventArgs(_cr, b);
+							MouseUp?.Invoke(this, null);
 						}
 					}
 					break;
 				case MouseButtons.Right:
-					if (_state.RightButton == ButtonState.Pressed)
+					if (state.RightButton == ButtonState.Pressed)
 					{
 						if (!_right_pressed)
 						{
 							_right_pressed	 = true;
 							var _cr = ThereIsGConstants.AppSettings.WotoCreation;
-							var _arg		   = new MouseEventArgs(_cr, _b);
-							MouseDown?.Invoke(this, _arg);
+							//var _arg		   = new MouseEventArgs(_cr, b);
+							MouseDown?.Invoke(this, null);
 						}
 					}
 					else
@@ -382,8 +435,8 @@ namespace GUIVoid.Client
 						{
 							_right_pressed	  = false;
 							var _cr  = ThereIsGConstants.AppSettings.WotoCreation;
-							var _arg			= new MouseEventArgs(_cr, _b);
-							MouseUp?.Invoke(this, _arg);
+							//var _arg			= new MouseEventArgs(_cr, b);
+							MouseUp?.Invoke(this, null);
 						}
 					}
 					break;
@@ -399,6 +452,11 @@ namespace GUIVoid.Client
 		/// <summary>
 		/// check the <see cref="__mmf__"/> file.
 		/// do NOT make this method public.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
 		/// </summary>
 		private void __checkFiles__()
 		{
@@ -416,6 +474,11 @@ namespace GUIVoid.Client
 		/// <summary>
 		/// send a request to another existing universe for 
 		/// activating their woto planet.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
 		/// </summary>
 		public static void Universe_Request()
 		{
@@ -423,13 +486,18 @@ namespace GUIVoid.Client
 			File.WriteAllText(path, CONFIG_UP_COMMAND);
 		}
 		/// <summary>
-		/// pre-setup the universe of the game. 
+		/// pre-setup the universe of the game.
+		/// <!--
+		/// Since: GUIVoid 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 26 05:57
+		/// -->
 		/// </summary>
 		internal static void SetUpUniverse()
 		{
-			var _p	= Environment.OSVersion.Platform;
-			IsWindows =	_p	== PlatformID.Win32NT;
-			IsUnix =	_p	== PlatformID.Unix;
+			var p	= Environment.OSVersion.Platform;
+			IsWindows	=	p	== PlatformID.Win32NT;
+			IsUnix		=	p	== PlatformID.Unix;
 		}
 		#endregion
 		//-------------------------------------------------

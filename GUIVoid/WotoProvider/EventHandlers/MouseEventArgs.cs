@@ -3,9 +3,9 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-using WotoProvider.Enums;
+using GUIVoid.WotoProvider.Enums;
 
-namespace WotoProvider.EventHandlers
+namespace GUIVoid.WotoProvider.EventHandlers
 {
 	// ReSharper disable once ClassNeverInstantiated.Global
 	public class MouseEventArgs : WotoEventArgs

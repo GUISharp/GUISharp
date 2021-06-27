@@ -9,12 +9,12 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO.MemoryMappedFiles;
 using System.Globalization;
-using WotoProvider;
-using WotoProvider.Interfaces;
+using GUIVoid.WotoProvider;
+using GUIVoid.WotoProvider.Interfaces;
 using GUIVoid.Client;
 using GUIVoid.Controls;
 using GUIVoid.Security;
-using DEType =  WotoProvider.Interfaces.IDECoderProvider
+using DEType =  GUIVoid.WotoProvider.Interfaces.IDECoderProvider
 	<GUIVoid.Security.StrongString, GUIVoid.Security.QString>;
 
 namespace GUIVoid.Constants

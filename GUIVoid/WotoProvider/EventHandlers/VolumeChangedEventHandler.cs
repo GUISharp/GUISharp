@@ -3,7 +3,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-namespace WotoProvider.EventHandlers
+namespace GUIVoid.WotoProvider.EventHandlers
 {
     public delegate void VolumeChangedEventHandler(object sender, VolumeChangedEventArgs e);
 }

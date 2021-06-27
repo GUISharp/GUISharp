@@ -3,7 +3,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-using WotoProvider.EventHandlers;
+using GUIVoid.WotoProvider.EventHandlers;
 
 namespace GUIVoid.Controls.Workers
 {

@@ -8,8 +8,8 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-using WotoProvider.EventHandlers;
-using WotoProvider.Enums;
+using GUIVoid.WotoProvider.Enums;
+using GUIVoid.WotoProvider.EventHandlers;
 using GUIVoid.SandBox;
 using GUIVoid.Controls;
 using GUIVoid.Constants;
@@ -203,6 +203,38 @@ namespace GUIVoid.Client
 		}
 
 		
+		private void InitializeComponents()
+		{
+			//---------------------------------------------
+			//news:
+			this.MyRes = new WotoRes(typeof(GClient));
+			//this.LoadMFBackGround();
+			//---------------------------------------------
+			//names:
+			//status:
+			//fontAndTextAligns:
+			//priorities:
+			//sizes:
+			//ownering:
+			//locations:
+			//movements:
+			//colors:
+			//enableds:
+			//testInput.Focus(true);
+			//texts:
+			//images:
+			//applyAndShow:
+			//test.Apply();
+			//test.Show();
+			//events:
+			//---------------------------------------------
+			//addRanges:
+			//---------------------------------------------
+			//finalBlow:
+			//---------------------------------------------
+		}
+
+		
 		/// <summary>
 		/// add the main events.
 		/// </summary>
@@ -288,16 +320,21 @@ namespace GUIVoid.Client
 			ThereIsGConstants.Forming.GClient = this;
 			this.FontManager = FontManager.GenerateManager(this);
 			this.ElementManager = new ElementManager();
-			this.MF_InitializeComponents();
+			this.InitializeComponents();
+			
+			GraphicsDM.PreferredBackBufferWidth = GameUniverse.DefaultWidth;
+			GraphicsDM.PreferredBackBufferHeight = GameUniverse.DefaultHeight;
 			base.Initialize();
 			// check if the game window position is zero or not.
-			if (Window.Position != Point.Zero)
+			if (Window.Position != GameUniverse.DefaultPoint)
 			{
-				// set the game window position to zero.
-				Window.Position = Point.Zero;
+				// set the game window position to the default
+				// value that we set before starting.
+				Window.Position = GameUniverse.DefaultPoint;
 			}
+			GraphicsDM.ApplyChanges();
 
-			if (Universe.IsUnix)
+			if (Universe.IsUnix && this.GUIClient.RunSingleInstance)
 			{
 				// check if game universe have to check the 
 				// __mmf__ assist file or not.
@@ -307,8 +344,7 @@ namespace GUIVoid.Client
 				}
 			}
 			
-			// game should always be in the fullscreen mode.
-			this.GraphicsDM.ToggleFullScreen();
+			
 		}
 
 

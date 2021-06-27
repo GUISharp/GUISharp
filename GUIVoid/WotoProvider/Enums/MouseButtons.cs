@@ -5,7 +5,7 @@
 
 // ReSharper disable ArrangeTrailingCommaInMultilineLists
 // ReSharper disable ArrangeRedundantParentheses
-namespace WotoProvider.Enums
+namespace GUIVoid.WotoProvider.Enums
 {
 	public enum MouseButtons
 	{

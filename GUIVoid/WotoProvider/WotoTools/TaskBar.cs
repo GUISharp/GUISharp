@@ -6,7 +6,7 @@
 #if __WINDOWS__
 using System.Runtime.InteropServices;
 
-namespace WotoProvider.WotoTools
+namespace GUIVoid.WotoProvider.WotoTools
 {
 	public class Taskbar
 	{

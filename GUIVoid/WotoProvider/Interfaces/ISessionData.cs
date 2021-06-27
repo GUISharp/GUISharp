@@ -3,7 +3,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-namespace WotoProvider.Interfaces
+namespace GUIVoid.WotoProvider.Interfaces
 {
     public interface ISessionData
     {

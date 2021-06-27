@@ -6,7 +6,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using FontStashSharp;
-using WotoProvider.Interfaces;
+using GUIVoid.WotoProvider.Interfaces;
 using GUIVoid.Constants;
 using GUIVoid.GUIObjects.WMath;
 using GUIVoid.GUIObjects.Texts;

@@ -4,8 +4,8 @@
 // file 'LICENSE', which is part of the source code.
 
 using System.Text;
-using WotoProvider.Interfaces;
-using WotoProvider.Interfaces.Security;
+using GUIVoid.WotoProvider.Interfaces;
+using GUIVoid.WotoProvider.Interfaces.Security;
 
 namespace GUIVoid.Security
 {

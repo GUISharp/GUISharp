@@ -5,7 +5,7 @@
 
 using System;
 
-namespace WotoProvider.EventHandlers
+namespace GUIVoid.WotoProvider.EventHandlers
 {
     public class WotoEventArgs : EventArgs
     {

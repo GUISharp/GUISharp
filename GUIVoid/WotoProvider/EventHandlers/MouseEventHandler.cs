@@ -4,7 +4,7 @@
 // file 'LICENSE', which is part of the source code.
 
 
-namespace WotoProvider.EventHandlers
+namespace GUIVoid.WotoProvider.EventHandlers
 {
 	public delegate void MouseEventHandler(object sender, MouseEventArgs e);
 }

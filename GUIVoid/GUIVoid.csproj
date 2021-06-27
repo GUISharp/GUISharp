@@ -14,10 +14,14 @@
 		<PackageId>GUIVoid</PackageId>
 		<Version>1.0.9</Version>
 		<Authors>ALiwoto</Authors>
-		<!--
-			It's not possible
-			<Company>Intellivoid</Company>
-		-->
+    	<PackageProjectUrl>https://github.com/ALiwoto/GUIVoid</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ALiwoto/GUIVoid</RepositoryUrl>
+		<PackageLicenseExpression>GPL-2.0</PackageLicenseExpression>
+		<PackageIconUrl>https://f.cloud.github.com/assets/19977/1510987/64af2b26-4a9d-11e3-89fc-96a185171c75.png</PackageIconUrl>
+		<PackageIcon>Icon.png</PackageIcon>
+		<RepositoryType>git</RepositoryType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 	<!--===================================================-->
@@ -39,8 +43,7 @@
 	</PropertyGroup>
 	<!--===================================================-->
 	<ItemGroup>
-		<None Remove="Icon.ico" />
-		<None Remove="Icon.bmp" />
+    	<None Include="Icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	<!--===================================================-->
 	<ItemGroup>
@@ -54,45 +57,12 @@
 	<!--===================================================-->
 	<ItemGroup>
 		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
-		<PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
 		<PackageReference Include="FontStashSharp.MonoGame" Version="0.9.3" />
 		<PackageReference Include="TextCopy" Version="4.3.1" />
 	</ItemGroup>
 	<!--===================================================-->
 	
-	<!--
-		<ItemGroup>
-		<!======================>
-		<Reference Include="FontStashSharp">
-			<HintPath>references\FontStashSharp.MonoGame\FontStashSharp.MonoGame.dll</HintPath>
-		</Reference>
-		<!=====================->
-		<Reference Include="Cyotek.Drawing.BitmapFont">
-			<HintPath>references\Cyotek.Drawing.BitmapFont\Cyotek.Drawing.BitmapFont.dll</HintPath>
-		</Reference>
-		<!======================>
-		<Reference Include="StbImageSharp">
-			<HintPath>references\StbImageSharp\StbImageSharp.dll</HintPath>
-		</Reference>
-		<!======================>
-		<Reference Include="StbTrueTypeSharp">
-			<HintPath>references\StbTrueTypeSharp\StbTrueTypeSharp.dll</HintPath>
-		</Reference>
-		<-======================>
-		</ItemGroup>
-
-	-->
-		
-	
 	<!--===================================================-->
-	<!--
-
-		<ItemGroup>
-		<Content Include="GUIContent\obj\DesktopGL\Content\.mgstats">
-			<Link>GUIContent\obj\DesktopGL\Content\.mgstats</Link>
-		</Content>
-	</ItemGroup>
-	-->
 	
 	<!--===================================================-->
 	<ItemGroup>
@@ -102,10 +72,10 @@
 			<Folder Include="GUIContent\bin\DesktopGL\Content">
 			<Link>GUIContent\bin\DesktopGL\Content</Link>
 		</Folder>
-		-->
-		
 		<Folder Include="Controls\Animation\AnimationCompanies" />
 		<Folder Include="Controls\GameGraphics\XDrawing" />
+		-->
+		
 	</ItemGroup>
 	<!--===================================================-->
 	<!--

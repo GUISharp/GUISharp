@@ -6,7 +6,7 @@
 using Microsoft.Xna.Framework;
 using GUIVoid.Security;
 using System;
-using WotoProvider.Enums;
+using GUIVoid.WotoProvider.Enums;
 
 namespace GUIVoid.Controls.Elements
 {

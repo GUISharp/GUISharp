@@ -1,5 +1,5 @@
 ﻿
-namespace WotoProvider
+namespace GUIVoid.WotoProvider
 {
     public class WotoCreation
     {

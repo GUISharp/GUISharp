@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FontStashSharp;
-using WotoProvider.Enums;
+using GUIVoid.WotoProvider.Enums;
 using GUIVoid.SandBox;
 using GUIVoid.Security;
 using GUIVoid.Constants;

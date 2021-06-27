@@ -5,8 +5,8 @@
 
 using System;
 using System.Globalization;
-using WotoProvider.Interfaces;
-using WotoProvider.EventHandlers;
+using GUIVoid.WotoProvider.Interfaces;
+using GUIVoid.WotoProvider.EventHandlers;
 using GUIVoid.Controls;
 using GUIVoid.Constants;
 

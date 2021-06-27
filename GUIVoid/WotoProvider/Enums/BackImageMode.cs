@@ -3,7 +3,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
-namespace WotoProvider.Enums
+namespace GUIVoid.WotoProvider.Enums
 {
     /// <summary>
     /// the image size mode of the images drawing in the

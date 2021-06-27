@@ -6,7 +6,7 @@
 using System;
 using System.Timers;
 using System.ComponentModel;
-using WotoProvider.EventHandlers;
+using GUIVoid.WotoProvider.EventHandlers;
 using GUIVoid.Constants;
 
 namespace GUIVoid.Controls

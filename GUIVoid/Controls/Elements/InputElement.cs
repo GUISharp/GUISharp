@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using FontStashSharp;
 using GUIVoid.Security;
 using System;
-using WotoProvider.Enums;
+using GUIVoid.WotoProvider.Enums;
 
 namespace GUIVoid.Controls.Elements
 {
