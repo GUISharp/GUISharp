@@ -52,7 +52,7 @@ namespace GUISharp.SandBox
         #endregion
         //-------------------------------------------------
         #region Graphical Method's Region
-        public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteWoto spriteBatch)
         {
             // check if the batch is null or disposed or not
             if (spriteBatch == null || spriteBatch.IsDisposed || !spriteBatch.IsStarted)
@@ -83,7 +83,7 @@ namespace GUISharp.SandBox
             // by ALi.w
             // in : 08 / 03 / 2021
         }
-        public override void SetLabelName(in StrongString constParam)
+        public override void SetLabelName(StrongString constParam)
         {
             this._flat?.SetLabelName(constParam);
         }
@@ -91,7 +91,7 @@ namespace GUISharp.SandBox
         {
             this._flat?.SetLabelText();
         }
-        public override void SetLabelText(in StrongString customValue)
+        public override void SetLabelText(StrongString customValue)
         {
             this._flat?.SetLabelText(customValue);
         }
@@ -104,7 +104,7 @@ namespace GUISharp.SandBox
         /// <param name="h">
         /// the height.
         /// </param>
-        public override void ChangeSize(in float w, in float h)
+        public override void ChangeSize(float w, float h)
         {
             this._flat?.ChangeSize(w, h);
         }
@@ -117,7 +117,7 @@ namespace GUISharp.SandBox
         /// <param name="h">
         /// the height.
         /// </param>
-        public override void ChangeSize(in int w, in int h)
+        public override void ChangeSize(int w, int h)
         {
             this._flat?.ChangeSize(w, h);
         }
@@ -130,7 +130,7 @@ namespace GUISharp.SandBox
         /// <param name="y">
         /// the y-coordinate of the sandbox's new location.
         /// </param>
-        public override void ChangeLocation(in float x, in float y)
+        public override void ChangeLocation(float x, float y)
         {
             this._flat?.ChangeLocation(x, y);
         }
@@ -143,7 +143,7 @@ namespace GUISharp.SandBox
         /// <param name="y">
         /// the y-coordinate of the sandbox's new location.
         /// </param>
-        public override void ChangeLocation(in int x, in int y)
+        public override void ChangeLocation(int x, int y)
         {
             this._flat?.ChangeLocation(x, y);
         }
@@ -153,7 +153,7 @@ namespace GUISharp.SandBox
         /// <param name="location">
         /// the vector2 which represent the new location of this sandbox.
         /// </param>
-        public override void ChangeLocation(in Vector2 location)
+        public override void ChangeLocation(Vector2 location)
         {
             this._flat?.ChangeLocation(location);
         }
@@ -164,7 +164,7 @@ namespace GUISharp.SandBox
         /// the <see cref="SpriteFont"/> value which will be
         /// the default font of this sandbox.
         /// </param>
-        public override void ChangeFont(in SpriteFontBase font)
+        public override void ChangeFont(SpriteFontBase font)
         {
             this._flat?.ChangeFont(font);
         }
@@ -175,7 +175,7 @@ namespace GUISharp.SandBox
         /// the <see cref="Color"/> value which will be the
         /// default fore color of this sandbox.
         /// </param>
-        public override void ChangeForeColor(in Color color)
+        public override void ChangeForeColor(Color color)
         {
             this._flat?.ChangeForeColor(color);
         }
@@ -189,11 +189,11 @@ namespace GUISharp.SandBox
         /// the <see cref="StrongString"/> value which will be the
         /// default text of this fucking bullshit sandbox.
         /// </param>
-        public override void ChangeText(in StrongString text)
+        public override void ChangeText(StrongString text)
         {
             this._flat?.ChangeText(text);
         }
-        public override void ChangeMovements(in ElementMovements movements)
+        public override void ChangeMovements(ElementMovements movements)
         {
             if (this.MoveManager != null)
             {
@@ -204,7 +204,7 @@ namespace GUISharp.SandBox
                 base.ChangeMovements(movements, new MoveManager(this));
             }
         }
-        public override void ChangeMovements(ElementMovements movements, in IMoveManager manager)
+        public override void ChangeMovements(ElementMovements movements, IMoveManager manager)
         {
             base.ChangeMovements(movements, manager);
         }

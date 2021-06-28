@@ -159,7 +159,7 @@ namespace GUISharp.Controls
 		#endregion
         //-------------------------------------------------
 		#region Set Method's Region
-		public void SetInterval(in int _interval)
+		public void SetInterval(int _interval)
 		{
 			if (!IsDisposed)
 			{

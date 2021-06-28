@@ -67,7 +67,7 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Graphical Method's Region
-		public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
+		public override void Draw(GameTime gameTime, SpriteWoto spriteBatch)
 		{
 			// check if the batch is null or disposed or not
 			if (spriteBatch == null || spriteBatch.IsDisposed || !spriteBatch.IsStarted)
@@ -192,72 +192,72 @@ namespace GUISharp.Controls.Elements
 			// by ALi.w
 			// in : 08 / 03 / 2021
 		}
-		public override void SetLabelName(in StrongString constParam)
+		public override void SetLabelName(StrongString constParam)
 		{
-			this._flat?.SetLabelName(in constParam);
+			this._flat?.SetLabelName(constParam);
 		}
 		public override void SetLabelText()
 		{
 			this._flat?.SetLabelText();
 			this.ChangeLinerPos();
 		}
-		public override void SetLabelText(in StrongString customValue)
+		public override void SetLabelText(StrongString customValue)
 		{
-			this._flat?.SetLabelText(in customValue);
+			this._flat?.SetLabelText(customValue);
 			this.ChangeLinerPos();
 		}
-		public override void ChangeSize(in float w, in float h)
+		public override void ChangeSize(float w, float h)
 		{
-			this._flat?.ChangeSize(in w, in h);
+			this._flat?.ChangeSize(w, h);
 			this.ChangeLinerSize();
 		}
-		public override void ChangeSize(in int w, in int h)
+		public override void ChangeSize(int w, int h)
 		{
-			this._flat?.ChangeSize(in w, in h);
+			this._flat?.ChangeSize(w, h);
 			this.ChangeLinerSize();
 		}
 
-		public override void ChangeLocation(in float x, in float y)
+		public override void ChangeLocation(float x, float y)
 		{
 			this.RealPosition = new(x, y);
 			if (this.HasOwner && this.Owner != null)
 			{
 				var r_x = this.Owner.Rectangle.Location.X + x;
 				var r_y = this.Owner.Rectangle.Location.Y + y;
-				this._flat?.ChangeLocation(in r_x, in r_y);
+				this._flat?.ChangeLocation(r_x, r_y);
 			}
 			else
 			{
-				this._flat?.ChangeLocation(in x, in y);
+				this._flat?.ChangeLocation(x, y);
 			}
 			this.ChangeLinerPos();
 		}
-		public override void ChangeLocation(in int x, in int y)
+		public override void ChangeLocation(int x, int y)
 		{
 			this.RealPosition = new(x, y);
 			if (this.HasOwner && this.Owner != null)
 			{
 				var r_x = this.Owner.Rectangle.Location.X + x;
 				var r_y = this.Owner.Rectangle.Location.Y + y;
-				this._flat?.ChangeLocation(in r_x, in r_y);
+				this._flat?.ChangeLocation(r_x, r_y);
 			}
 			else
 			{
-				this._flat?.ChangeLocation(in x, in y);
+				this._flat?.ChangeLocation(x, y);
 			}
 			this.ChangeLinerPos();
 		}
-		public override void ChangeLocation(in Vector2 location)
+		public override void ChangeLocation(Vector2 location)
 		{
 			this.RealPosition = location;
 			if (this.HasOwner && this.Owner != null)
 			{
 				var loc = this.Owner.Rectangle.Location.ToVector2() + location;
-				this._flat?.ChangeLocation(in loc);
+				this._flat?.ChangeLocation(loc);
 			}
 			else
 			{
-				this._flat?.ChangeLocation(in location);
+				this._flat?.ChangeLocation(location);
 			}
 			this.ChangeLinerPos();
 		}
@@ -265,17 +265,17 @@ namespace GUISharp.Controls.Elements
 		{
 			this.ChangeLocation(this.RealPosition);
 		}
-		public override void ChangeFont(in SpriteFontBase font)
+		public override void ChangeFont(SpriteFontBase font)
 		{
-			this._flat?.ChangeFont(in font);
+			this._flat?.ChangeFont(font);
 		}
-		public override void ChangeForeColor(in Color color)
+		public override void ChangeForeColor(Color color)
 		{
-			this._flat.ChangeForeColor(in color);
+			this._flat.ChangeForeColor(color);
 		}
-		public override void ChangeText(in StrongString text)
+		public override void ChangeText(StrongString text)
 		{
-			this._flat?.ChangeText(in text);
+			this._flat?.ChangeText(text);
 			this.ChangeLinerPos();
 		}
 		/// <summary>
@@ -287,7 +287,7 @@ namespace GUISharp.Controls.Elements
 		/// no matter what is this value, the movements of a
 		/// input element will never change!
 		/// </param>
-		public override void ChangeMovements(in ElementMovements movements)
+		public override void ChangeMovements(ElementMovements movements)
 		{
 			// do nothing here!
 			// you shall not move the input elements!
@@ -302,7 +302,7 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		/// <param name="movements"></param>
 		/// <param name="manager"></param>
-		public override void ChangeMovements(ElementMovements movements, in IMoveManager manager)
+		public override void ChangeMovements(ElementMovements movements, IMoveManager manager)
 		{
 			// do nothing here!
 			// you shall not move the input elements!
@@ -393,7 +393,7 @@ namespace GUISharp.Controls.Elements
 			{
 				return;
 			}
-			this._flat.ChangeImageContent(GetContentBorderName());
+			this._flat.ChangeImage(DefaultRes, GetContentBorderName());
 			switch (this.BorderColor)
 			{
 				case InputBorders.NoBorder:

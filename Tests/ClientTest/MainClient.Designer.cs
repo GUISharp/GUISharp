@@ -6,19 +6,24 @@ namespace Tests
 	{
 		protected override void InitializeComponents()
 		{
-			this.ChangeSize(300, 300);
+			this.ChangeSize(700, 700);
 			this.ChangeLocation(10, 10);
 
 			FlatElement test = new FlatElement(this);
-			test.ChangeSize(220, 120);
-			test.ChangeLocation(0, 0);
-			test.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.noto_sans_JP, 20));
+			test.ChangeSize(240, 140);
+			test.ChangeLocation(10, 10);
+			test.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 0x40));
 			test.ChangeText("hello!");
-			test.ChangeForeColor(Microsoft.Xna.Framework.Color.Aqua);
-			test.ChangeBackColor(Microsoft.Xna.Framework.Color.Blue);
+			test.ChangeForeColor(Microsoft.Xna.Framework.Color.Red);
+			test.ChangeBackColor(Microsoft.Xna.Framework.Color.LightGoldenrodYellow);
+			test.ChangeAlignmation(GUISharp.Controls.StringAlignmation.TopRight);
+			test.ChangePriority(ElementPriority.VeryLow);
+			test.ChangeMovements(ElementMovements.VerticalHorizontalMovements);
+			//test.EnableOwnerMover();
 			test.Enable();
 			test.Apply();
 			test.Show();
+			
 			this.ElementManager.Add(test);
 		}
 	}

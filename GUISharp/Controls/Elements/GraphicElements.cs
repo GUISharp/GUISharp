@@ -53,13 +53,6 @@ namespace GUISharp.Controls.Elements
 		//-------------------------------------------------
 		#region static Properties Region
 		/// <summary>
-		/// The Big Father of the <see cref="GraphicElement"/>!
-		/// </summary>
-		internal static GClient BigFather
-		{
-			get => ThereIsGConstants.Forming.GClient;
-		}
-		/// <summary>
 		/// The Content Manager of the GUISharp Game!
 		/// </summary>
 		public static ContentManager Content
@@ -91,6 +84,28 @@ namespace GUISharp.Controls.Elements
 				if (BigFather != null)
 				{
 					return BigFather.FontManager;
+				}
+				return null;
+			}
+		}
+		/// <summary>
+		/// The Big Father of the <see cref="GraphicElement"/>!
+		/// </summary>
+		internal static GClient BigFather
+		{
+			get => ThereIsGConstants.Forming.GClient;
+		}
+		/// <summary>
+		/// The internal Default resources manager for all of 
+		/// the graphic elements.
+		/// </summary>
+		internal static WotoRes DefaultRes
+		{
+			get
+			{
+				if (BigFather != null)
+				{
+					return BigFather.MyRes;
 				}
 				return null;
 			}
@@ -143,32 +158,43 @@ namespace GUISharp.Controls.Elements
 		public virtual ElementMovements Movements { get; protected set; }
 		public virtual ElementPriority Priority { get; protected set; }
 		public virtual ImageSizeMode ImageSizeMode { get; protected set; }
-		public float X
+		public virtual float X
 		{
 			get
 			{
 				return Position.X;
 			}
 		}
-		public float Y
+		public virtual float Y
 		{
 			get
 			{
 				return Position.Y;
 			}
 		}
-		public float Width
+		public virtual float Width
 		{
 			get
 			{
 				return Rectangle.Width;
 			}
 		}
-		public float Height
+		public virtual float Height
 		{
 			get
 			{
 				return Rectangle.Height;
+			}
+		}
+		public virtual char Language
+		{
+			get
+			{
+				return ThereIsGConstants.AppSettings.Language;
+			}
+			set
+			{
+				ThereIsGConstants.AppSettings.Language = value;
 			}
 		}
 		public virtual uint CurrentStatus { get; set; }

@@ -287,20 +287,20 @@ namespace GUISharp.Security
 		/// startIndex in this instance, or System.String.Empty if startIndex is equal to
 		/// the length of this instance and length is zero.
 		/// </returns>
-		public StrongString Substring(in int startIndex, in int length)
+		public StrongString Substring(int startIndex, int length)
 		{
 			return GetValue().Substring(startIndex, length);
 		}
-		public StrongString Substring(in int startIndex)
+		public StrongString Substring(int startIndex)
 		{
 			return Substring(startIndex , 
 								Length - startIndex - DEFAULT_A_BASE);
 		}
-		public StrongString Remove(in char value)
+		public StrongString Remove(char value)
 		{
 			return GetValue().Replace(value.ToString(), string.Empty);
 		}
-		public StrongString Remove(in int startIndex, in int count)
+		public StrongString Remove(int startIndex, int count)
 		{
 			return GetValue().Remove(startIndex, count);
 		}
@@ -341,23 +341,23 @@ namespace GUISharp.Security
 		/// <param name="value"> 
 		/// the character which should be appended.
 		/// </param>
-		public StrongString Append(in char value)
+		public StrongString Append(char value)
 		{
 			return this + value;
 		}
-		public StrongString Append(in char value, in bool _check)
+		public StrongString Append(char value, bool _check)
 		{
 			if (_check)
 			{
-				if (!_isVerified(in value))
+				if (!_isVerified(value))
 				{
 					return this;
 				}
 			}
-			return Append(in value);
+			return Append(value);
 		}
 		
-		public StrongString Append(in string value)
+		public StrongString Append(string value)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -366,7 +366,7 @@ namespace GUISharp.Security
 			return GetValue() + value;
 		}
 		
-		public StrongString Append(in string value, in bool _check)
+		public StrongString Append(string value, bool _check)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -381,10 +381,10 @@ namespace GUISharp.Security
 				}
 				return this + _s;
 			}
-			return Append(in value);
+			return Append(value);
 		}
 
-		public StrongString Append(in string value, in int count)
+		public StrongString Append(string value, int count)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -398,7 +398,7 @@ namespace GUISharp.Security
 			return GetValue() + myString;
 		}
 
-		public StrongString Append(in string value, in int count, in bool _check)
+		public StrongString Append(string value, int count, bool _check)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -417,7 +417,7 @@ namespace GUISharp.Security
 					myString += _s;
 				}
 			}
-			return Append(in value, in count);
+			return Append(value, count);
 		}
 
 		public StrongString Append(params string[] values)
@@ -433,7 +433,7 @@ namespace GUISharp.Security
 			return GetValue() + myString;
 		}
 
-		public StrongString Append(in bool _check, params string[] values)
+		public StrongString Append(bool _check, params string[] values)
 		{
 
 			if (_check)
@@ -458,18 +458,18 @@ namespace GUISharp.Security
 			return Append(values);
 		}
 		
-		public StrongString Append(in StrongString value)
+		public StrongString Append(StrongString value)
 		{
-			if (IsNullOrEmpty(in value))
+			if (IsNullOrEmpty(value))
 			{
 				return this;
 			}
 			return this + value;
 		}
 		
-		public StrongString Append(in StrongString value, in bool _check)
+		public StrongString Append(StrongString value, bool _check)
 		{
-			if (IsNullOrEmpty(in value))
+			if (IsNullOrEmpty(value))
 			{
 				return this;
 			}
@@ -478,7 +478,7 @@ namespace GUISharp.Security
 				if (value.HasSpecial())
 				{
 					var _s = value.RemoveSpecial();
-					if (IsNullOrEmpty(in _s))
+					if (IsNullOrEmpty(_s))
 					{
 						return this;
 					}
@@ -488,9 +488,9 @@ namespace GUISharp.Security
 			return this + value;
 		}
 
-		public StrongString Append(in StrongString value, in int count)
+		public StrongString Append(StrongString value, int count)
 		{
-			if (IsNullOrEmpty(in value))
+			if (IsNullOrEmpty(value))
 			{
 				return this;
 			}
@@ -502,10 +502,10 @@ namespace GUISharp.Security
 			return GetValue() + myString;
 		}
 		
-		public StrongString Append(in StrongString value, in int count, 
-									in bool _check)
+		public StrongString Append(StrongString value, int count, 
+									bool _check)
 		{
-			if (IsNullOrEmpty(in value))
+			if (IsNullOrEmpty(value))
 			{
 				return this;
 			}
@@ -525,7 +525,7 @@ namespace GUISharp.Security
 					}
 				}
 			}
-			return Append(in value, in count);
+			return Append(value, count);
 		}
 
 		public StrongString Append(params StrongString[] values)
@@ -542,7 +542,7 @@ namespace GUISharp.Security
 			return GetValue() + myString;
 		}
 		
-		public StrongString Append(in bool _check, params StrongString[] values)
+		public StrongString Append(bool _check, params StrongString[] values)
 		{
 			if (_check)
 			{
@@ -550,7 +550,7 @@ namespace GUISharp.Security
 				StrongString _str;
 				foreach (var _s in values)
 				{
-					if (IsNullOrEmpty(in _s))
+					if (IsNullOrEmpty(_s))
 					{
 						continue;
 					}
@@ -567,14 +567,14 @@ namespace GUISharp.Security
 			return Append(values);
 		}
 
-		public StrongString Append(in char value, in int count)
+		public StrongString Append(char value, int count)
 		{
 			return Append(value.ToString(), count);
 		}
 		
-		public StrongString Append(in char value, in int count, in bool _check)
+		public StrongString Append(char value, int count, bool _check)
 		{
-			return Append(value.ToString(), in count, in _check);
+			return Append(value.ToString(), count, _check);
 		}
 
 		public StrongString ToLower()
@@ -781,7 +781,7 @@ namespace GUISharp.Security
 				}
 				return myString;
 			}
-			bool confirmed(in StrongString s)
+			bool confirmed(StrongString s)
 			{
 				return f.MeasureString(s.GetValue()).X < maxWidth;
 			}
@@ -893,7 +893,7 @@ namespace GUISharp.Security
 			}
 			return false;
 		}
-		public bool IsSignedChar(in int _index)
+		public bool IsSignedChar(int _index)
 		{
 			if (!IsHealthy())
 			{
@@ -909,7 +909,7 @@ namespace GUISharp.Security
 			}
 			return f.MeasureString(this.GetValue());
 		}
-		private bool _isVerified(in char c)
+		private bool _isVerified(char c)
 		{
 			if (Manager == null)
 			{
@@ -919,12 +919,12 @@ namespace GUISharp.Security
 			{
 				return true;
 			}
-			return Manager.Contains(c) || IsSignedChar(in c, true);
+			return Manager.Contains(c) || IsSignedChar(c, true);
 		}
 		#endregion
 		//-------------------------------------------------
 		#region static Methods Region
-		public static bool IsSignedChar(in char _c, in bool _u = false)
+		public static bool IsSignedChar(char _c, bool _u = false)
 		{
 			switch (_c)
 			{
@@ -939,7 +939,7 @@ namespace GUISharp.Security
 					return false;
 			}
 		}
-		public static bool IsNullOrEmpty(in StrongString _s)
+		public static bool IsNullOrEmpty(StrongString _s)
 		{
 			if (_s is null)
 			{

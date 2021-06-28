@@ -208,6 +208,7 @@ namespace GUISharp.Client
 			//---------------------------------------------
 			//news:
 			this.MyRes = new WotoRes(typeof(GClient));
+			this.InitializeMainEvents();
 			//this.LoadMFBackGround();
 			//---------------------------------------------
 			//names:
@@ -523,7 +524,6 @@ namespace GUISharp.Client
 
 		private void WotoPlanet_MouseDown(object sender, MouseEventArgs e)
 		{
-			
 			if (e.Button == MouseButtons.Left)
 			{
 				if (!this.IsLeftDown)

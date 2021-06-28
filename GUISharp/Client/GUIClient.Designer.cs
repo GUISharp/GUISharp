@@ -107,7 +107,7 @@ namespace GUISharp.Client
 		/// <summary>
 		/// Start the application and enter a loop.
 		/// Please notice that after calling this method, 
-		/// you won't be able to run anything else (in your Main() method).
+		/// you won't be able to run anything else (your Main() method).
 		/// You have to use events and such methods to interact with 
 		/// your users.
 		/// When overriding this method, please make sure to
@@ -132,7 +132,7 @@ namespace GUISharp.Client
 		/// Basically, it will just close the new application instance.
 		/// In windows, it will work even if the application is started
 		/// in another directory, but in linux, it won't work.
-		/// If user open it up in another directory (in linux), the
+		/// If user open it up in another directory (linux), the
 		/// client will start itself in usual mode.
 		/// <!--
 		/// Since: GUISharp 1.0.9;

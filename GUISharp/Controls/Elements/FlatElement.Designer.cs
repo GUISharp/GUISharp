@@ -39,7 +39,7 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Graphical Method's Region
-		public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
+		public override void Draw(GameTime gameTime, SpriteWoto spriteBatch)
 		{
 			// check if the batch is null or disposed or not
 			if (spriteBatch == null || spriteBatch.IsDisposed || !spriteBatch.IsStarted)
@@ -107,51 +107,76 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region overrided Method's Region
+		/// <summary>
+		/// Let this flat element update itself.
+		/// This method has no usage (right now).
+		/// But it will be used in the future.
+		/// for now, please override <see cref="Draw(GameTime, SpriteWoto)"/>
+		/// instead of overriding this method.
+		/// <!--
+		/// Since: GUISharp 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
-
+			;
 		}
+		/// <summary>
+		/// Set the label text of this flat element automatically.
+		/// please notice that you have to set 
+		/// <!--
+		/// Since: GUISharp 1.0.10;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void SetLabelText()
 		{
 			base.SetLabelText();
 			this.ChangeTextLocation();
 		}
-		public override void SetLabelText(in StrongString customValue)
+		public override void SetLabelText(StrongString customValue)
 		{
-			base.SetLabelText(in customValue);
+			base.SetLabelText(customValue);
 			this.ChangeTextLocation();
 		}
-		public override void ChangeSize(in float w, in float h)
+		public override void ChangeSize(float w, float h)
 		{
-			base.ChangeSize(in w, in h);
-			this.ChangeTextLocation();
-			if (this.Image != null)
-			{
-				this.ImageSizeModeRender();
-			}
-		}
-		public override void ChangeSize(in int w, in int h)
-		{
-			base.ChangeSize(in w, in h);
+			base.ChangeSize(w, h);
 			this.ChangeTextLocation();
 			if (this.Image != null)
 			{
 				this.ImageSizeModeRender();
 			}
 		}
-		public override void ChangeLocation(in float x, in float y)
+		public override void ChangeSize(int w, int h)
 		{
-			base.ChangeLocation(in x, in y);
+			base.ChangeSize(w, h);
+			this.ChangeTextLocation();
+			if (this.Image != null)
+			{
+				this.ImageSizeModeRender();
+			}
+		}
+		public override void ChangeLocation(float x, float y)
+		{
+			base.ChangeLocation(x, y);
 			this.ChangeTextLocation();
 		}
-		public override void ChangeLocation(in int x, in int y)
+		public override void ChangeLocation(int x, int y)
 		{
-			base.ChangeLocation(in x, in y);
+			base.ChangeLocation(x, y);
 			this.ChangeTextLocation();
 		}
-		public override void ChangeLocation(in Vector2 location)
+		public override void ChangeLocation(Vector2 location)
 		{
-			base.ChangeLocation(in location);
+			base.ChangeLocation(location);
 			this.ChangeTextLocation();
 		}
 		public override void OwnerLocationUpdate()
@@ -159,7 +184,7 @@ namespace GUISharp.Controls.Elements
 			base.OwnerLocationUpdate();
 			this.ChangeTextLocation();
 		}
-		public override void ChangeFont(in SpriteFontBase font)
+		public override void ChangeFont(SpriteFontBase font)
 		{
 			if (font == null || this.Font == font)
 			{
@@ -167,11 +192,19 @@ namespace GUISharp.Controls.Elements
 			}
 			this.Font = font;
 		}
-		public override void ChangeForeColor(in Color color)
+		public override void ChangeForeColor(Color color)
 		{
-			this.ChangeForeColor(in color, DEFAULT_PEN_W);
+			this.ChangeForeColor(color, DEFAULT_PEN_W);
 		}
-		public override void ChangeText(in StrongString text)
+		/// <summary>
+		/// Change the background color of this flat element to
+		/// the specified <see cref="Color"/> value.
+		/// </summary>
+		public override void ChangeBackColor(Color color)
+		{
+			base.ChangeBackColor(color);
+		}
+		public override void ChangeText(StrongString text)
 		{
 			if (this.Text == text)
 			{
@@ -255,7 +288,7 @@ namespace GUISharp.Controls.Elements
 				this.ChangeTextLocation();
 			}
 		}
-		public virtual void ChangeForeColor(in Color color, in float w)
+		public virtual void ChangeForeColor(Color color, float w)
 		{
 			base.ChangeForeColor(color);
 		}
@@ -270,26 +303,66 @@ namespace GUISharp.Controls.Elements
 			switch (this.Alignmation)
 			{
 				case StringAlignmation.TopLeft:
-					//break;
+				{
+					this.TextLocation = this.Position;
+					break;
+				}
 				case StringAlignmation.TopCenter:
-					//break;
+				{
+					var w = this.Position.X + (this.Width / 2) - (s.X / 2);
+					var h = this.Position.Y;
+					this.TextLocation = new Vector2(w, h);
+					break;
+				}
 				case StringAlignmation.TopRight:
-					//break;
+				{
+					var w = this.Position.X + this.Width - s.X;
+					var h = this.Position.Y;
+					this.TextLocation = new Vector2(w, h);
+					break;
+				}
 				case StringAlignmation.MiddleLeft:
-					//break;
+				{
+					var w = this.Position.X;
+					var h = this.Position.Y + (this.Height / 2) - (s.Y / 2);
+					this.TextLocation = new Vector2(w, h);
+					break;
+				}
 				case StringAlignmation.MiddleCenter:
-					//break;
-				case StringAlignmation.MiddleRight:
-					//break;
-				case StringAlignmation.BottomLeft:
-					//break;
-				case StringAlignmation.BottomCenter:
-					//break;
-				case StringAlignmation.BottomRight:
+				{
 					var w = this.Position.X + (this.Width / 2) - (s.X / 2);
 					var h = this.Position.Y + (this.Height / 2) - (s.Y / 2);
 					this.TextLocation = new Vector2(w, h);
 					break;
+				}
+				case StringAlignmation.MiddleRight:
+				{
+					var w = this.Position.X + this.Width - s.X;
+					var h = this.Position.Y + (this.Height / 2) - (s.Y / 2);
+					this.TextLocation = new Vector2(w, h);
+					break;
+				}
+				case StringAlignmation.BottomLeft:
+				{
+					var w = this.Position.X;
+					var h = this.Position.Y + this.Height - s.Y;
+					this.TextLocation = new Vector2(w, h);
+					break;
+				}
+				case StringAlignmation.BottomCenter:
+				{
+					var w = this.Position.X + (this.Width / 2) - (s.X / 2);
+					var h = this.Position.Y + this.Height - s.Y;
+					this.TextLocation = new Vector2(w, h);
+					break;
+				}
+				case StringAlignmation.BottomRight:
+				{
+					var w = this.Position.X + this.Width - s.X;
+					var h = this.Position.Y + this.Height - s.Y;
+					this.TextLocation = new Vector2(w, h);
+					break;
+				}
 				default:
 					break;
 			}

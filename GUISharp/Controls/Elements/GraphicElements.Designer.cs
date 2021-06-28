@@ -3,21 +3,21 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FontStashSharp;
 using GUISharp.WotoProvider.Enums;
+using GUISharp.Logging;
 using GUISharp.SandBox;
 using GUISharp.Security;
 using GUISharp.Constants;
 using GUISharp.Controls.Moving;
 using GUISharp.GUIObjects.Graphics;
+using GUISharp.GUIObjects.Resources;
 using M_Manager = GUISharp.Controls.Moving.MoveManager;
-using XColor = Microsoft.Xna.Framework.Color;
-using XPoint = Microsoft.Xna.Framework.Point;
-using XRectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace GUISharp.Controls.Elements
 {
@@ -380,7 +380,7 @@ namespace GUISharp.Controls.Elements
 		/// <param name="divergeY">
 		/// y diverge of the element.
 		/// </param>
-		public virtual void MoveMe(in float divergeX, in float divergeY)
+		public virtual void MoveMe(float divergeX, float divergeY)
 		{
 			if (this.Movements != ElementMovements.NoMovements)
 			{
@@ -414,7 +414,7 @@ namespace GUISharp.Controls.Elements
 		}
 		/// <summary>
 		/// Move the element and call 
-		/// the <see cref="MoveMe(in float, in float)"/> method
+		/// the <see cref="MoveMe(float, float)"/> method
 		/// with the automatic value.
 		/// </summary>
 		public virtual void MoveMe()
@@ -897,7 +897,7 @@ namespace GUISharp.Controls.Elements
 			}
 			return this.IsMouseIn || this.MouseIn();
 		}
-		public virtual bool ContainsChild(in IMoveable moveable)
+		public virtual bool ContainsChild(IMoveable moveable)
 		{
 			if (moveable == this)
 			{
@@ -937,7 +937,7 @@ namespace GUISharp.Controls.Elements
 		/// the status of the element.
 		/// this value is unsigned.
 		/// </param>
-		public virtual void SetStatus(in uint _status)
+		public virtual void SetStatus(uint _status)
 		{
 			if (this.CurrentStatus != _status)
 			{
@@ -953,7 +953,7 @@ namespace GUISharp.Controls.Elements
 		/// and in
 		/// MainForm.MyRes.
 		/// </param>
-		public virtual void SetLabelName(in StrongString constParam)
+		public virtual void SetLabelName(StrongString constParam)
 		{
 			this.RealName = constParam;
 			this.Name = this.RealName +
@@ -965,23 +965,71 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		public virtual void SetLabelText()
 		{
-			this.ChangeText(this.MyRes.GetString(
-				this.MyRes.GetString(this.Name.GetValue()) +
-				ThereIsGConstants.ResourcesName.Separate_Character +
-				ThereIsGConstants.AppSettings.Language.ToString() +
-				this.CurrentStatus.ToString()));
+			this.SetLabelText(this.MyRes == null ? DefaultRes : this.MyRes);
+		}
+		/// <summary>
+		/// This Method will set the Label.Text Property with the algorithm
+		/// from MainForm.MyRes.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The resources manager that you want to set the text from it.
+		/// This method will try to extract the text from this resources
+		/// manager. If <see cref="Name"/> is Empty or null, this method
+		/// won't do anything.
+		/// </param>
+		public virtual void SetLabelText(WotoRes myRes)
+		{
+			if (myRes == null || StrongString.IsNullOrEmpty(this.Name))
+			{
+				return;
+			}
+			try
+			{
+				this.ChangeText(myRes.GetString(
+					myRes.GetString(this.Name.GetValue()) +
+					ThereIsGConstants.ResourcesName.Separate_Character +
+					Language.ToString() + this.CurrentStatus.ToString()));
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+			}
 		}
 		/// <summary>
 		/// Setting the Text property to customValue.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="customValue">
 		/// the custom Text.
 		/// </param>
-		public virtual void SetLabelText(in StrongString customValue)
+		public virtual void SetLabelText(StrongString customValue)
 		{
-			ChangeText(customValue);
+			this.ChangeText(customValue);
 		}
-		public virtual void SetOwner(in GraphicElement owner, in bool dont_add = false)
+		/// <summary>
+		/// Set the owner of this Graphic element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void SetOwner(GraphicElement owner, bool dont_add = false)
 		{
 			if (owner == null || owner.IsDisposed)
 			{
@@ -1020,16 +1068,24 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
-		public virtual void ChangeSize(in int w, in int h)
+		public virtual void ChangeSize(Point size)
 		{
-			var _size = new Point(w, h);
-			this.Rectangle = new Rectangle(this.Rectangle.Location, _size);
+			this.Rectangle = new Rectangle(this.Rectangle.Location, size);
 		}
-		public virtual void ChangeSize(in float w, in float h)
+
+		public virtual void ChangeSize(Vector2 size)
 		{
-			ChangeSize((int)w, (int)h);
+			this.ChangeSize(size.ToPoint());
 		}
-		public virtual void ChangeLocation(in Vector2 location)
+		public virtual void ChangeSize(int w, int h)
+		{
+			this.ChangeSize(new Point(w, h));
+		}
+		public virtual void ChangeSize(float w, float h)
+		{
+			this.ChangeSize((int)w, (int)h);
+		}
+		public virtual void ChangeLocation(Vector2 location)
 		{
 			if (this.HasOwner)
 			{
@@ -1043,12 +1099,29 @@ namespace GUISharp.Controls.Elements
 			this.ChangeRectangle();
 			this.Manager?.UpdateLocations();
 		}
-		public virtual void ChangeLocation(in float x, in float y)
+		public virtual void ChangeLocation(Point location)
+		{
+			this.ChangeLocation(location.ToVector2());
+		}
+		/// <summary>
+		/// Change the location of this graphic element
+		/// to the specified float coordinates.
+		/// This method is currently safe to use and has no problem
+		/// at all.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ChangeLocation(float x, float y)
 		{
 			if (this.HasOwner)
 			{
 				this.RealPosition = new(x, y);
-				this.Position = this.Owner.Position + this.RealPosition;
+				this.Position = this.RealPosition + this.Owner.Position;
 			}
 			else
 			{
@@ -1056,26 +1129,27 @@ namespace GUISharp.Controls.Elements
 			}
 			this.ChangeRectangle();
 			this.Manager?.UpdateLocations();
+			// I don't know why the fuck this is happening here,
+			// maybe it's C#'s bug? Or maybe I've done something
+			// wrong for it...
+			// but it will bug out!
+			// please do NOT change the code here and do NOT
+			// call another method here.
+			// if you conver x and y to a Vector2 and then
+			// call another ChangeLocation method here, it will bug out.
+			// Still I don't know why or how!
+			// it's really weird, that's why I'm writing this 
+			// note here to redo the debuging again and find out
+			// why the fuck this is happening here.
+			// for now, the code below works, so don't change it
+			// and let it be like this.
+			// BY: ALiwoto;
+			// In: 28 Jun 2021; 16:35 UTC;
+			//this.ChangeLocation(new Vector2(X, y));
 		}
-		public virtual void ChangeLocation(in int x, in int y)
+		public virtual void ChangeLocation(int x, int y)
 		{
-			if (this.HasOwner)
-			{
-				if (this.Position.X != x || this.Position.Y != y)
-				{
-					this.RealPosition = new(x, y);
-					this.Position = this.Owner.Position + this.RealPosition;
-				}
-			}
-			else
-			{
-				if (this.Position.X != x || this.Position.Y != y)
-				{
-					this.Position = new(x, y);
-				}
-			}
-			this.ChangeRectangle();
-			this.Manager?.UpdateLocations();
+			this.ChangeLocation(new Vector2(x, y));
 		}
 		public virtual void OwnerLocationUpdate()
 		{
@@ -1094,6 +1168,13 @@ namespace GUISharp.Controls.Elements
 		/// and then it will change it's priority,
 		/// after that, it will add itself to the manager 
 		/// (if the add boolean is set to <c>true</c>).
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="priority">
 		/// the new priority of this element.
@@ -1106,7 +1187,7 @@ namespace GUISharp.Controls.Elements
 		/// set this arg to false. the default value of this arg (as you can see) is
 		/// <c>false</c>.
 		/// </param>
-		public virtual void ChangePriority(in ElementPriority priority, 
+		public virtual void ChangePriority(ElementPriority priority, 
 											in bool add = false)
 		{
 			if (this.Priority != priority)
@@ -1143,6 +1224,13 @@ namespace GUISharp.Controls.Elements
 		/// <see cref="GraphicElement"/>.
 		/// this method will set the <see cref="Movements"/> property of this
 		/// element and will add this element to the passed-by second arg.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="movements">
 		/// the movement of this element.
@@ -1152,7 +1240,8 @@ namespace GUISharp.Controls.Elements
 		/// and is the <see cref="MoveManager"/> of this element is not null,
 		/// we will remove the element from the manager.
 		/// </param>
-		public virtual void ChangeMovements(ElementMovements movements, in IMoveManager manager)
+		public virtual void ChangeMovements(ElementMovements movements,
+			IMoveManager manager)
 		{
 			if (manager == null)
 			{
@@ -1187,11 +1276,19 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// change the fucking movements of this very fucking 
 		/// <see cref="GraphicElement"/>, so it can be moved easily
-		/// (very very fucking easily) by the player.
-		/// <!--NOTICE: if -->
+		/// (very very fucking easily) by the user.
+		/// You don't need to do anything else in order to change
+		/// the movements of this elemenet.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="movements"></param>
-		public virtual void ChangeMovements(in ElementMovements movements)
+		public virtual void ChangeMovements(ElementMovements movements)
 		{
 			if (movements == ElementMovements.NoMovements)
 			{
@@ -1203,37 +1300,170 @@ namespace GUISharp.Controls.Elements
 			}
 			this.ChangeMovements(movements, this.MoveManager);
 		}
-		public abstract void ChangeFont(in SpriteFontBase font);
-		public virtual void ChangeForeColor(in XColor color)
+		public abstract void ChangeFont(SpriteFontBase font);
+		public virtual void ChangeForeColor(Color color)
 		{
 			if (this.ForeColor != color)
 			{
 				this.ForeColor = color;
 			}
 		}
-		public virtual void ChangeBackColor(in XColor color)
+		public virtual void ChangeBackColor(Color color)
 		{
 			if (this.BackGroundColor != color)
 			{
 				this.BackGroundColor = color;
 			}
-			var _t = this.GetBackGroundTexture(color);
-
-			this.BackGroundImage = _t;
+			this.BackGroundImage = this.GetBackGroundTexture(color);
 		}
 		public virtual void ChangeImage()
 		{
-			this.ChangeImageContent(this.MyRes.GetString(
-				this.MyRes.GetString(this.Name) + PIC_RES));
+			this.ChangeImage(this.MyRes == null ? DefaultRes : this.MyRes);
 		}
 		/// <summary>
-		/// change the image of this element.
+		/// Change the image of this graphic element, with using 
+		/// the <see cref="Name"/> property of this graphic element,
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the <see cref="Name"/> 
+		/// property of this graphic element, it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		public virtual void ChangeImage(WotoRes myRes)
+		{
+			this.ChangeImage(myRes, this.Name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the specified name in it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it.
+		/// </param>
+		public virtual void ChangeImage(WotoRes myRes, StrongString name)
+		{
+			if (myRes == null || StrongString.IsNullOrEmpty(name))
+			{
+				return;
+			}
+			try
+			{
+				this.ChangeImage(myRes.GetAsTexture2D(myRes.GetString(
+					myRes.GetString(name) + PIC_RES)));
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+			}
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="MyRes"/> property of this
+		/// graphic element.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		public virtual void ChangeImage(StrongString name)
+		{
+			this.ChangeImage(this.MyRes == null ? DefaultRes :
+				this.MyRes, name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="DefaultRes"/> property of this
+		/// graphic element.
+		/// This method is supposed to be internal and it should remains
+		/// internal, because users may have no idea what's going on here and
+		/// so we have to keep it internal.
+		/// The only problem that remains is that how the fuck am I
+		/// supposed to accomplish some tasks in LTW-client.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		internal virtual void ChangeImageDefault(StrongString name)
+		{
+			this.ChangeImage(DefaultRes, name);
+		}
+		/// <summary>
+		/// Change the image of this element using a texture.
+		/// You can pass a null image to this method, but please 
+		/// take note that this graphic element will show nothing as
+		/// it's image after that.
+		/// You can NOT pass a disposed image to this method, if you
+		/// do so, this method will ignore it and won't do anything.
+		/// So please check the <see cref="Texture2D"/> is disposed 
+		/// or not.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="texture">
 		/// the image texture. this value can be passed as a null value.
 		/// that way, the element won't show any image.
 		/// </param>
-		public virtual void ChangeImage(in Texture2D texture)
+		public virtual void ChangeImage(Texture2D texture)
 		{
 			// just check if the texture is not disposed,
 			// you don't have to check if the texture is null or not!
@@ -1256,18 +1486,10 @@ namespace GUISharp.Controls.Elements
 			}
 		}
 		/// <summary>
-		/// change the image of this element with the 
-		/// <see cref="BigFather"/>'s content.
+		/// Change the image size mode of this graphic element.
+		///
 		/// </summary>
-		/// <param name="content_name"></param>
-		public virtual void ChangeImageContent(in StrongString content_name)
-		{
-			if (Content != null)
-			{
-				this.ChangeImage(BigRes.GetAsTexture2D(content_name));
-			}
-		}
-		public virtual void ChangeImageSizeMode(in ImageSizeMode mode)
+		public virtual void ChangeImageSizeMode(ImageSizeMode mode)
 		{
 			if (this.ImageSizeMode != mode)
 			{
@@ -1275,14 +1497,14 @@ namespace GUISharp.Controls.Elements
 				this.ImageSizeModeRender();
 			}
 		}
-		public virtual void ChangeRectangle(in XRectangle rect)
+		public virtual void ChangeRectangle(Rectangle rect)
 		{
 			this.ChangeLocation(rect.Location.ToVector2());
 			this.ChangeSize(rect.Size.X, rect.Size.Y);
 		}
 		protected virtual void ChangeRectangle()
 		{
-			var location = new XPoint((int)this.Position.X, (int)this.Position.Y);
+			var location = new Point((int)this.Position.X, (int)this.Position.Y);
 			var size = this.Rectangle.Size;
 			this.Rectangle = new(location, size);
 			if (this.Image != null)
@@ -1295,11 +1517,25 @@ namespace GUISharp.Controls.Elements
 		#region abstract Method's region
 		/// <summary>
 		/// Update this Graphic Element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="gameTime"></param>
 		public abstract void Update(GameTime gameTime);
 		/// <summary>
 		/// Change the text of this graphic element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="text">
 		/// the new text of this graphic element.
@@ -1307,23 +1543,37 @@ namespace GUISharp.Controls.Elements
 		/// the text will be considered as an empty text and
 		/// nothing will be displayed on the element.
 		/// </param>
-		public abstract void ChangeText(in StrongString text);
+		public abstract void ChangeText(StrongString text);
 		
 		/// <summary>
 		/// Get a Background <see cref="Texture2D"/> by 
 		/// specified <see cref="Color"/> for this 
 		/// graphic element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="color">
 		/// the <see cref="Color"/> parameter.
 		/// </param>
 		/// <returns>
-		/// a <see cref="Texture2D"/> with 
+		/// A <see cref="Texture2D"/> with 
 		/// the equal bound of this element.
 		/// </returns>
-		protected abstract Texture2D GetBackGroundTexture(XColor color);
+		protected abstract Texture2D GetBackGroundTexture(Color color);
 		/// <summary>
 		/// Updating the graphic parameters of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.7;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		protected abstract void UpdateGraphics();
 		#endregion
@@ -1331,6 +1581,13 @@ namespace GUISharp.Controls.Elements
 		#region Graphical Method's Elements
 		/// <summary>
 		/// draw the surface of this graphic element.
+		/// <!--
+		/// Since: GUISharp 1.0.7;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="gameTime">
 		/// the <see cref="GameTime"/> of the GUISharp.
@@ -1339,7 +1596,7 @@ namespace GUISharp.Controls.Elements
 		/// the <see cref="SpriteWoto"/> tool 
 		/// which is necessary for drawing the graphic surface.
 		/// </param>
-		public abstract void Draw(in GameTime gameTime, in SpriteWoto spriteBatch);
+		public abstract void Draw(GameTime gameTime, SpriteWoto spriteBatch);
 		#endregion
 		//-------------------------------------------------
 	}

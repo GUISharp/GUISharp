@@ -91,7 +91,7 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             this.BackButton.SetLabelText();
             //images:
             this._flat.ChangeImageSizeMode(ImageSizeMode.Center);
-            this._flat.ChangeImageContent(this.MyRes.GetString(SandBoxBackGNameInRes));
+            this._flat.ChangeImageDefault(this.MyRes.GetString(SandBoxBackGNameInRes));
             //applyAndShow:
             this.TitleElement.Apply();
             this.TitleElement.Show();
@@ -110,7 +110,7 @@ namespace GUISharp.SandBox.ErrorSandBoxes
         #endregion
         //-------------------------------------------------
         #region Graphical Method's Region
-        public override void Draw(in GameTime gameTime, in SpriteWoto spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteWoto spriteBatch)
         {
             // check if the batch is null or disposed or not
             if (spriteBatch == null || spriteBatch.IsDisposed || !spriteBatch.IsStarted)
@@ -146,19 +146,19 @@ namespace GUISharp.SandBox.ErrorSandBoxes
         #endregion
         //-------------------------------------------------
         #region overrided Method's Region
-        public override void ChangeLocation(in float x, in float y)
+        public override void ChangeLocation(float x, float y)
         {
             base.ChangeLocation(x, y);
             this.CalculateTexturesRect(false);
             this.Manager?.UpdateLocations();
         }
-        public override void ChangeLocation(in int x, in int y)
+        public override void ChangeLocation(int x, int y)
         {
             base.ChangeLocation(x, y);
             this.CalculateTexturesRect(false);
             this.Manager?.UpdateLocations();
         }
-        public override void ChangeLocation(in Vector2 location)
+        public override void ChangeLocation(Vector2 location)
         {
             base.ChangeLocation(location);
             this.CalculateTexturesRect(false);

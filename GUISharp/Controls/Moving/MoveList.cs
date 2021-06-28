@@ -19,7 +19,7 @@ namespace GUISharp.Controls.Moving
         #endregion
         //-------------------------------------------------
         #region Constructor's Region
-        internal MoveList(in MoveManager _manager_)
+        internal MoveList(MoveManager _manager_)
         {
             MoveManager = _manager_;
         }

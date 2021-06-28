@@ -18,7 +18,7 @@ namespace GUISharp.Controls.Elements
         #endregion
         //-------------------------------------------------
         #region Constructor's Region
-        internal ElementList(in ElementManager _manager_)
+        internal ElementList(ElementManager _manager_)
         {
             Manager = _manager_;
         }

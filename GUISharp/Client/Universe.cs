@@ -402,9 +402,9 @@ namespace GUISharp.Client
 						if (!_left_pressed)
 						{
 							_left_pressed	  = true;
-							var _cr = ThereIsGConstants.AppSettings.WotoCreation;
-							//var _arg		   = new MouseEventArgs(_cr, b);
-							MouseDown?.Invoke(this, null);
+							var cr = ThereIsGConstants.AppSettings.WotoCreation;
+							var arg		   = new MouseEventArgs(cr, b);
+							MouseDown?.Invoke(this, arg);
 						}
 					}
 					else
@@ -412,9 +412,9 @@ namespace GUISharp.Client
 						if (_left_pressed)
 						{
 							_left_pressed	  = false;
-							var _cr = ThereIsGConstants.AppSettings.WotoCreation;
-							//var _arg		   = new MouseEventArgs(_cr, b);
-							MouseUp?.Invoke(this, null);
+							var cr = ThereIsGConstants.AppSettings.WotoCreation;
+							var arg		   = new MouseEventArgs(cr, b);
+							MouseUp?.Invoke(this, arg);
 						}
 					}
 					break;
@@ -424,9 +424,9 @@ namespace GUISharp.Client
 						if (!_right_pressed)
 						{
 							_right_pressed	 = true;
-							var _cr = ThereIsGConstants.AppSettings.WotoCreation;
-							//var _arg		   = new MouseEventArgs(_cr, b);
-							MouseDown?.Invoke(this, null);
+							var cr = ThereIsGConstants.AppSettings.WotoCreation;
+							var arg		   = new MouseEventArgs(cr, b);
+							MouseDown?.Invoke(this, arg);
 						}
 					}
 					else
@@ -434,9 +434,9 @@ namespace GUISharp.Client
 						if (_right_pressed)
 						{
 							_right_pressed	  = false;
-							var _cr  = ThereIsGConstants.AppSettings.WotoCreation;
-							//var _arg			= new MouseEventArgs(_cr, b);
-							MouseUp?.Invoke(this, null);
+							var cr  = ThereIsGConstants.AppSettings.WotoCreation;
+							var arg			= new MouseEventArgs(cr, b);
+							MouseUp?.Invoke(this, arg);
 						}
 					}
 					break;

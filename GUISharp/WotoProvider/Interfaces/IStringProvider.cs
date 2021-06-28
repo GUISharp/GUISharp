@@ -87,23 +87,23 @@ namespace GUISharp.WotoProvider.Interfaces
 		/// 
 		/// 
 		/// </summary>
-        T Substring(in int startIndex, in int length);
+        T Substring(int startIndex, int length);
 		
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Substring(in int startIndex);
+        T Substring(int startIndex);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Remove(in char value);
+        T Remove(char value);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Remove(in int startIndex, in int count);
+        T Remove(int startIndex, int count);
 		T RemoveSpecial();
 		/// <summary>
 		/// simply appends a character to the end of the 
@@ -112,32 +112,32 @@ namespace GUISharp.WotoProvider.Interfaces
 		/// <param name="value"> 
 		/// the character which to append.
 		/// </param>
-        T Append(in char value);
+        T Append(char value);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in char value, in bool _check);
+        T Append(char value, bool _check);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in string value);
+        T Append(string value);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in string value, in bool _check);
+        T Append(string value, bool _check);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in string value, in int count);
+        T Append(string value, int count);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in string value, in int count, in bool _check);
+        T Append(string value, int count, bool _check);
 		/// <summary>
 		/// 
 		/// 
@@ -147,27 +147,27 @@ namespace GUISharp.WotoProvider.Interfaces
 		/// 
 		/// 
 		/// </summary>
-        T Append(in bool _check, params string[] values);
+        T Append(bool _check, params string[] values);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in T value);
+        T Append(T value);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in T value, in bool _check);
+        T Append(T value, bool _check);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in T value, in int count);
+        T Append(T value, int count);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in T value, in int count, in bool _check);
+        T Append(T value, int count, bool _check);
 		/// <summary>
 		/// 
 		/// 
@@ -177,23 +177,23 @@ namespace GUISharp.WotoProvider.Interfaces
 		/// 
 		/// 
 		/// </summary>
-        T Append(in bool _check, params T[] value);
+        T Append(bool _check, params T[] value);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in char value, in int count);
+        T Append(char value, int count);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
-        T Append(in char value, in int count, in bool _check);
+        T Append(char value, int count, bool _check);
 		/// <summary>
 		/// 
 		/// 
 		/// </summary>
 		bool HasSpecial();
-		bool IsSignedChar(in int _index);
+		bool IsSignedChar(int _index);
         #endregion
         //-------------------------------------------------
     }

@@ -28,11 +28,11 @@ namespace GUISharp.Controls.Moving
         void Shocker();
         void Discharge();
         void MoveMe();
-        void MoveMe(in float divergeX, in float divergeY);
-        void ChangeLocation(in Vector2 location);
-        void ChangeLocation(in float x, in float y);
-        void ChangeLocation(in int x, in int y);
-        bool ContainsChild(in IMoveable moveable);
+        void MoveMe(float divergeX, float divergeY);
+        void ChangeLocation(Vector2 location);
+        void ChangeLocation(float x, float y);
+        void ChangeLocation(int x, int y);
+        bool ContainsChild(IMoveable moveable);
         #endregion
         //-------------------------------------------------
     }

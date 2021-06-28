@@ -35,7 +35,7 @@ namespace GUISharp.GUIObjects.Texts
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region
-		private Illusion(in Texture2D _t)
+		private Illusion(Texture2D _t)
 		{
 			_texture = _t;
 		}
@@ -69,11 +69,11 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_texture"> 
 		/// the texture component.
 		/// </param>
-		public static Illusion GetIllusion(in Texture2D _texture)
+		public static Illusion GetIllusion(Texture2D _texture)
 		{
 			if (_texture != null && !_texture.IsDisposed)
 			{
-				return new(in _texture);
+				return new(_texture);
 			}
 			return null;
 		}
@@ -91,8 +91,8 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(in Texture2D _texture, 
-											in int _w, in int _h)
+		public static Illusion GetIllusion(Texture2D _texture, 
+											int _w, int _h)
 		{
 			if (_texture != null && _texture.IsDisposed)
 			{
@@ -100,7 +100,7 @@ namespace GUISharp.GUIObjects.Texts
 					new Rectangle(DEFAULT_Z_BASE, DEFAULT_Z_BASE, _w, _h);
 				if (_texture.Bounds.Contains(_rect))
 				{
-					return GetIllusion(in _texture, in _rect);
+					return GetIllusion(_texture, _rect);
 				}	
 			}
 			return null;
@@ -116,7 +116,7 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(in Texture2D _texture, 
+		public static Illusion GetIllusion(Texture2D _texture, 
 											in Rectangle _rect)
 		{
 			if (_texture != null && !_texture.IsDisposed)
@@ -133,7 +133,7 @@ namespace GUISharp.GUIObjects.Texts
 					var _data = new Color[_rect.Width * _rect.Height];
 					_texture.GetData(_data, DEFAULT_Z_BASE, _data.Length);
 					_t.SetData(_data, DEFAULT_Z_BASE, _data.Length);
-					return GetIllusion(in _t);
+					return GetIllusion(_t);
 				}
 			}
 			return null;
@@ -146,7 +146,7 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_full_path"> 
 		/// the texture full path in the local storage.
 		/// </param>
-		public static Illusion GetIllusion(in StrongString _full_path)
+		public static Illusion GetIllusion(StrongString _full_path)
 		{
 			if (_full_path == null)
 			{
@@ -165,7 +165,7 @@ namespace GUISharp.GUIObjects.Texts
 				if (g != null && !g.IsDisposed)
 				{
 					var _t = Texture2D.FromFile(g, _full_path.GetValue());
-					return GetIllusion(in _t);
+					return GetIllusion(_t);
 				}
 			}
 			return null;
@@ -178,14 +178,14 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_full_path"> 
 		/// the texture full path in the local storage.
 		/// </param>
-		/// <param name="_w"> 
+		/// <param name="w"> 
 		/// the with.
 		/// </param>
-		/// <param name="_h"> 
+		/// <param name="h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(in StrongString _full_path, 
-											in int _w, in int _h)
+		public static Illusion GetIllusion(StrongString _full_path, 
+											int w, int h)
 		{
 			if (_full_path == null)
 			{
@@ -203,8 +203,8 @@ namespace GUISharp.GUIObjects.Texts
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					var _t1 = Texture2D.FromFile(g, _full_path.GetValue());
-					return GetIllusion(in _t1, in _w, in _h);
+					var t1 = Texture2D.FromFile(g, _full_path.GetValue());
+					return GetIllusion(t1, w, h);
 				}
 			}
 			return null;
@@ -220,7 +220,7 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(in StrongString _full_path, 
+		public static Illusion GetIllusion(StrongString _full_path, 
 											in Rectangle _rect)
 		{
 			if (_full_path == null)
@@ -240,7 +240,7 @@ namespace GUISharp.GUIObjects.Texts
 				if (g != null && !g.IsDisposed)
 				{
 					var _t = Texture2D.FromFile(g, _full_path.GetValue());
-					return GetIllusion(in _t, in _rect);
+					return GetIllusion(_t, _rect);
 				}
 			}
 			return null;
@@ -253,7 +253,7 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_stream"> 
 		/// the stream which contains the data for the texture component.
 		/// </param>
-		public static Illusion GetIllusion(in Stream _stream)
+		public static Illusion GetIllusion(Stream _stream)
 		{
 			if (_stream == null || !_stream.CanRead)
 			{
@@ -266,7 +266,7 @@ namespace GUISharp.GUIObjects.Texts
 				if (g != null && !g.IsDisposed)
 				{
 					var _t = Texture2D.FromStream(g, _stream);
-					return GetIllusion(in _t);
+					return GetIllusion(_t);
 				}
 			}
 			return null;
@@ -280,14 +280,14 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_stream"> 
 		/// the stream which contains the data for the texture component.
 		/// </param>
-		/// <param name="_w"> 
+		/// <param name="w"> 
 		/// the width.
 		/// </param>
-		/// <param name="_h"> 
+		/// <param name="h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(in Stream _stream, 
-											in int _w, in int _h)
+		public static Illusion GetIllusion(Stream _stream, 
+											int w, int h)
 		{
 			var client = ThereIsGConstants.Forming.GClient;
 			if (client != null && client.Verified)
@@ -296,7 +296,7 @@ namespace GUISharp.GUIObjects.Texts
 				if (g != null && !g.IsDisposed)
 				{
 					var _t = Texture2D.FromStream(g, _stream);
-					return GetIllusion(in _t, in _w, in _h);
+					return GetIllusion(_t, w, h);
 				}
 			}
 			return null;
@@ -312,7 +312,7 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(in Stream _stream, 
+		public static Illusion GetIllusion(Stream _stream, 
 											in Rectangle _rect)
 		{
 			var client = ThereIsGConstants.Forming.GClient;
@@ -322,7 +322,7 @@ namespace GUISharp.GUIObjects.Texts
 				if (g != null && !g.IsDisposed)
 				{
 					var _t = Texture2D.FromStream(g, _stream);
-					return GetIllusion(in _t, in _rect);
+					return GetIllusion(_t, _rect);
 				}
 			}
 			return null;
@@ -336,12 +336,12 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_file_data"> 
 		/// the byte data.
 		/// </param>
-		public static Illusion GetIllusion(in byte[] _file_data)
+		public static Illusion GetIllusion(byte[] _file_data)
 		{
 			Stream m = new MemoryStream(_file_data);
 			if (_file_data != null && m.CanRead)
 			{
-				return GetIllusion(in m);
+				return GetIllusion(m);
 			}
 			return null;
 		}
@@ -361,13 +361,13 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(in byte[] _file_data, 
-											in int _w, in int _h)
+		public static Illusion GetIllusion(byte[] _file_data, 
+											int _w, int _h)
 		{
 			var m = new MemoryStream(_file_data);
 			if (m != null && m.CanRead)
 			{
-				return GetIllusion(m, in _w, in _h);
+				return GetIllusion(m, _w, _h);
 			}
 			return null;
 		}
@@ -383,13 +383,13 @@ namespace GUISharp.GUIObjects.Texts
 		/// <param name="_rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(in byte[] _file_data, 
+		public static Illusion GetIllusion(byte[] _file_data, 
 											in Rectangle _rect)
 		{
 			var m = new MemoryStream(_file_data);
 			if (m != null && m.CanRead)
 			{
-				return GetIllusion(m, in _rect);
+				return GetIllusion(m, _rect);
 			}
 			return null;
 		}

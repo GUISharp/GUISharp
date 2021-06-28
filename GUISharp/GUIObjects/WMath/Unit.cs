@@ -196,7 +196,7 @@ namespace GUISharp.GUIObjects.WMath
 		/// Setting the Unit by a string value.
 		/// </summary>
 		/// <param name="TheString"></param>
-		public void SetTheUnit(in StrongString TheString)
+		public void SetTheUnit(StrongString TheString)
 		{
 			var myString	= TheString.Split(CharSeparater);
 			var _base		= myString[BASE_INT];

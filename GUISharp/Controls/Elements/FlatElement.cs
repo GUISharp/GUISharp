@@ -15,6 +15,19 @@ namespace GUISharp.Controls.Elements
     /// which is why you can use it anywhere.
     /// also you can use this for graphical effects such as 
     /// outline of the texts.
+	/// Please before adding an object of this element to your
+	/// element manager, set some of the properties using these
+	/// methods:
+	/// <see cref="FlatElement.ChangeSize(float, float)"/>
+	/// <see cref="FlatElement.ChangeLocation(int, int)"/>
+	/// <see cref="FlatElement.ChangeFont(FontStashSharp.SpriteFontBase)"/>
+	/// <see cref="FlatElement.ChangeText(StrongString)"/>
+	/// <see cref="FlatElement.ChangeForeColor(Color)"/>
+	/// <see cref="FlatElement.ChangeBackColor(Color)"/>
+	/// and then use 
+	///	test.Enable();
+	///	test.Apply();
+	///	test.Show();
     /// </summary>
     public partial class FlatElement : GraphicElement
     {
@@ -26,7 +39,7 @@ namespace GUISharp.Controls.Elements
         #region Properties Region
         public StrongString FixedText { get; protected set; }
         public Vector2 TextLocation { get; protected set; }
-        public StringAlignmation Alignmation { get; protected set; }
+        public StringAlignmation Alignmation { get; protected set; } = StringAlignmation.TopLeft;
 		public GraphicElement Representor { get; protected set; }
         #endregion
         //-------------------------------------------------
