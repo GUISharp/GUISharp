@@ -196,7 +196,7 @@ namespace GUISharp.Controls.Elements
 		#endregion
         //-------------------------------------------------
         #region event field's Region
-        internal override event EventHandler LeftClick
+        public override event EventHandler LeftClick
         {
             add
             {
@@ -213,7 +213,7 @@ namespace GUISharp.Controls.Elements
                 }
             }
         }
-        internal override event EventHandler LeftUp
+        public override event EventHandler LeftUp
         {
             add
             {
@@ -230,7 +230,7 @@ namespace GUISharp.Controls.Elements
                 }
             }
         }
-        internal override event EventHandler RightDown
+        public override event EventHandler RightDown
         {
             add
             {
@@ -247,7 +247,7 @@ namespace GUISharp.Controls.Elements
                 }
             }
         }
-        internal override event EventHandler RightUp
+        public override event EventHandler RightUp
         {
             add
             {
@@ -264,7 +264,7 @@ namespace GUISharp.Controls.Elements
                 }
             }
         }
-		internal override event EventHandler MouseEnter 
+		public override event EventHandler MouseEnter 
 		{
 			add
 			{
@@ -281,7 +281,7 @@ namespace GUISharp.Controls.Elements
                 }
 			}
 		}
-		internal override event EventHandler MouseLeave
+		public override event EventHandler MouseLeave
 		{
 			add
 			{

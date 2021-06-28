@@ -62,7 +62,12 @@ namespace GUISharp.Controls.Elements
         {
             Movements = movements;
             InitializeComponent();
-        } 
+        }
+		internal FlatElement(IRes myRes, GraphicElement representor) : base(myRes, true)
+		{
+			SetRepresentor(representor);
+			InitializeComponent();
+		}
         #endregion
         //-------------------------------------------------
     }

@@ -26,7 +26,7 @@ namespace GUISharp.Controls.Elements
         {
             //---------------------------------------------
             //news:
-            this._flat = new FlatElement(this, true);
+            this._flat = new FlatElement(this, this);
             if (this.Manager != null)
             {
                 this.Manager?.DisposeAll();
@@ -334,7 +334,7 @@ namespace GUISharp.Controls.Elements
             {
                 return;
             }
-            this._flat.ChangeImage(DefaultRes, GetContentBorderName());
+            this._flat.ChangeImage(DefaultRes, GetContentBorderName(), false);
             switch (this.BorderColor)
             {
                 case ButtonColors.WhiteSmoke:
@@ -372,7 +372,7 @@ namespace GUISharp.Controls.Elements
         #endregion
         //-------------------------------------------------
         #region ordinary Method's Region
-        internal void EnableMouseEnterEffect()
+        public void EnableMouseEnterEffect()
         {
             this.UseMouseEnterEffect = true;
         }

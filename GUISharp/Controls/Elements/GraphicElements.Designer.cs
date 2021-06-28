@@ -539,12 +539,25 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnLeftClick()
 		{
-			Task.Run(() =>
+			var sender = GetSender();
+			this.LeftClick?.Invoke(sender, null);
+			this.Click?.Invoke(sender, null);
+			if (this.LeftClickAsync != null)
 			{
-				// raise the event in another thread.
-				this.LeftClick?.Invoke(this, null);
-				this.Click?.Invoke(this, null);
-			});
+				Task.Run(() =>
+				{
+					// raise the event in another thread.
+					this.LeftClickAsync.Invoke(sender, null);
+				});
+			}
+			if (this.ClickAsync != null)
+			{
+				Task.Run(() =>
+				{
+					// raise the event in another thread.
+					this.ClickAsync.Invoke(sender, null);
+				});
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="RightClick"/> event.
@@ -558,12 +571,25 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnRightClick()
 		{
-			Task.Run((() =>
+			var sender = GetSender();
+			this.RightClick?.Invoke(sender, null);
+			this.Click?.Invoke(sender, null);
+			if (this.RightClickAsync != null)
 			{
-				// raise the event in another thread.
-				this.RightClick?.Invoke(this, null);
-				this.Click?.Invoke(this, null);
-			}));
+				Task.Run(() =>
+				{
+					// raise the event in another thread.
+					this.RightClickAsync.Invoke(sender, null);
+				});
+			}
+			if (this.ClickAsync != null)
+			{
+				Task.Run(() =>
+				{
+					// raise the event in another thread.
+					this.ClickAsync.Invoke(sender, null);
+				});
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="MouseEnter"/> event.
@@ -577,11 +603,16 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnMouseEnter()
 		{
-			Task.Run((() =>
+			var sender = GetSender();
+			this.MouseEnter?.Invoke(sender, null);
+			if (this.MouseEnterAsync != null)
 			{
-				// raise the event in another thread.
-				this.MouseEnter?.Invoke(this, null);
-			}));
+				Task.Run((() =>
+				{
+					// raise the event in another thread.
+					this.MouseEnterAsync.Invoke(sender, null);
+				}));
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="MouseLeave"/> event.
@@ -595,11 +626,16 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnMouseLeave()
 		{
-			Task.Run((() =>
+			var sender = GetSender();
+			this.MouseLeave?.Invoke(sender, null);
+			if (this.MouseLeaveAsync != null)
 			{
-				// raise the event in another thread.
-				this.MouseLeave?.Invoke(this, null);
-			}));
+				Task.Run((() =>
+				{
+					// raise the event in another thread.
+					this.MouseLeaveAsync.Invoke(sender, null);
+				}));
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="LeftDown"/> event.
@@ -626,17 +662,24 @@ namespace GUISharp.Controls.Elements
 					}
 				}
 			}
-			Task.Run((() =>
+			// lock the mouse, so even if user changes
+			// its mouse location with speed of light,
+			// we change the location of this element.
+			this.LockMouse();
+			// Do NOT Shock the element in another thread.
+			// the shocking operation should be done in the current
+			// thread.
+			this.Shocker();
+			var sender = GetSender();
+			this.LeftDown?.Invoke(sender, null);
+			if (this.LeftDownAsync != null)
 			{
-				// lock the mouse, so even if user changes
-				// its mouse location with speed of light,
-				// we change the location of this element.
-				this.LockMouse();
-				// Shock the element in another thread.
-				this.Shocker();
-				// raise the event in another thread.
-				this.LeftDown?.Invoke(this, null);
-			}));
+				Task.Run((() =>
+				{
+					// raise the event in another thread.
+					this.LeftDownAsync.Invoke(sender, null);
+				}));
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="LeftUp"/> event.
@@ -650,19 +693,24 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnLeftUp()
 		{
-			Task.Run(() =>
+			// please unlock the mouse when user release
+			// it's mouse, thanks; but if you don't 
+			// unlock it, another graphic elements won't
+			// trigger their own events like MouseEnter,
+			// MouseDown, etc...
+			this.UnLockMouse();
+			// discharge the element in another thread.
+			this.Discharge();
+			var sender = GetSender();
+			this.LeftUp?.Invoke(sender, null);
+			if (this.LeftUpAsync != null)
 			{
-				// please unlock the mouse when user release
-				// it's mouse, thanks; but if you don't 
-				// unlock it, another graphic elements won't
-				// trigger their own events like MouseEnter,
-				// MouseDown, etc...
-				this.UnLockMouse();
-				// discharge the element in another thread.
-				this.Discharge();
-				// raise the event in another thread.
-				this.LeftUp?.Invoke(this, null);
-			});
+				Task.Run((() =>
+				{
+					// raise the event in another thread.
+					this.LeftUpAsync.Invoke(sender, null);
+				}));
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="RightDown"/> event.
@@ -689,11 +737,16 @@ namespace GUISharp.Controls.Elements
 					}
 				}
 			}
-			Task.Run((() =>
+			var sender = GetSender();
+			this.RightDown?.Invoke(sender, null);
+			if (this.RightDownAsync != null)
 			{
-				// raise the event in another thread.
-				this.RightDown?.Invoke(this, null);
-			}));
+				Task.Run((() =>
+				{
+					// raise the event in another thread.
+					this.RightDownAsync.Invoke(sender, null);
+				}));
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="RightUp"/> event.
@@ -707,11 +760,27 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnRightUp()
 		{
-			Task.Run((() =>
+			var sender = GetSender();
+			this.RightUp?.Invoke(sender, null);
+			if (this.RightUpAsync != null)
 			{
-				// raise the event in another thread.
-				this.RightUp?.Invoke(this, null);
-			}));
+				Task.Run((() =>
+				{
+					// raise the event in another thread.
+					this.RightUpAsync.Invoke(sender, null);
+				}));
+			}
+		}
+		private GraphicElement GetSender()
+		{
+			if (this is FlatElement f)
+			{
+				if (f.Representor != null)
+				{
+					return f.Representor;
+				}
+			}
+			return this;
 		}
 		/// <summary>
 		/// check for mouse move.
@@ -722,11 +791,16 @@ namespace GUISharp.Controls.Elements
 			var p2 = BigFather.LastMouseState.Position;
 			if (p1 != p2)
 			{
-				Task.Run(() =>
+				var sender = GetSender();
+				this.MouseMove?.Invoke(sender, null);
+				if (this.MouseMoveAsync != null)
 				{
-					// raise the event in another thread.
-					this.MouseMove?.Invoke(this, null);
-				});
+					Task.Run(() =>
+					{
+						// raise the event in another thread.
+						this.MouseMoveAsync?.Invoke(sender, null);
+					});
+				}
 			}
 		}
 		/// <summary>
@@ -1370,7 +1444,12 @@ namespace GUISharp.Controls.Elements
 		/// The name of the Image which should have <see cref="PIC_RES"/>
 		/// suffix to it.
 		/// </param>
-		public virtual void ChangeImage(WotoRes myRes, StrongString name)
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="PIC_RES"/> suffix to the name.
+		/// </param>
+		public virtual void ChangeImage(WotoRes myRes, StrongString name,
+			bool parse = true)
 		{
 			if (myRes == null || StrongString.IsNullOrEmpty(name))
 			{
@@ -1378,14 +1457,22 @@ namespace GUISharp.Controls.Elements
 			}
 			try
 			{
-				this.ChangeImage(myRes.GetAsTexture2D(myRes.GetString(
-					myRes.GetString(name) + PIC_RES)));
+				if (parse)
+				{
+					this.ChangeImage(myRes.GetAsTexture2D(myRes.GetString(
+						myRes.GetString(name) + PIC_RES)));
+				}
+				else
+				{
+					this.ChangeImage(myRes.GetAsTexture2D(name));
+				}
 			}
 			catch (Exception ex)
 			{
 				AppLogger.Log(ex);
 			}
 		}
+		
 		/// <summary>
 		/// Change the image of this graphic element, with using a name
 		/// which already exists in the <see cref="MyRes"/> property of this
@@ -1440,7 +1527,7 @@ namespace GUISharp.Controls.Elements
 		/// </param>
 		internal virtual void ChangeImageDefault(StrongString name)
 		{
-			this.ChangeImage(DefaultRes, name);
+			this.ChangeImage(DefaultRes, name, false);
 		}
 		/// <summary>
 		/// Change the image of this element using a texture.
