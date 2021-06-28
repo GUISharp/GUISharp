@@ -31,6 +31,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Running
-      run: LTW\bin\Debug\net5.0\win-x64\LTW.exe
+      run: Tests\ClientTest\bin\Debug\net5.0\win-x64\ClientTest.exe
     - name: Test
       run: dotnet test --no-build --verbosity normal

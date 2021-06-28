@@ -1,4 +1,6 @@
+using System;
 using Microsoft.Xna.Framework;
+using GUISharp.Logging;
 using static GUISharp.Constants.ThereIsGConstants;
 
 namespace GUISharp.Client
@@ -55,11 +57,10 @@ namespace GUISharp.Client
 					// make your ass up and active your planet :/
 					Universe.Universe_Request();
 				}
-				catch
+				catch (Exception ex)
 				{
-					;
+					AppLogger.Log(ex);
 				}
-
 				return;
 			}
 			//---------------------------------------------
@@ -115,7 +116,14 @@ namespace GUISharp.Client
 		public virtual void Start()
 		{
 			this.IsStarted = true;
-			this._g?.Run();
+			try
+			{
+				this._g?.Run();
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+			}
 		}
 		/// <summary>
 		/// Make this application a single runner so if the user
@@ -154,7 +162,14 @@ namespace GUISharp.Client
 		/// </summary>
 		internal void ApplyGraphicsChange()
 		{
-			this._g?.GraphicsDM?.ApplyChanges();
+			try
+			{
+				this._g?.GraphicsDM?.ApplyChanges();
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+			}
 		}
 		#endregion
 		//-------------------------------------------------

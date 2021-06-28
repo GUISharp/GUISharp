@@ -1,7 +1,7 @@
-> #### NOTE: This code style standard for LTW is a work in progress and much of the code does not currently conform to these rules.  This is something that will be addressed by the core team.
+> #### NOTE: This code style standard for GUISharp is a work in progress and much of the code does not currently conform to these rules.  This is something that will be addressed by the core team.
 
 # Introduction
-As the LTW project gains more traction and becomes more widely used, we aim to provide a more professional and consistent look to the large amount of source now in the project.  It was a broadly supported decision by the core development team to follow the Microsoft coding guidelines (the default provided in Visual Studio's C# editor).  These coding guidelines listed below are based on a [MSDN blog post](http://blogs.msdn.com/b/brada/archive/2005/01/26/361363.aspx) from 2005 by Brad Abrams describing the internal coding guidelines at Microsoft, with some changes to suit our project.
+As the GUISharp project gains more traction and becomes more widely used, we aim to provide a more professional and consistent look to the large amount of source now in the project.  It was a broadly supported decision by the core development team to follow the Microsoft coding guidelines (the default provided in Visual Studio's C# editor).  These coding guidelines listed below are based on a [MSDN blog post](http://blogs.msdn.com/b/brada/archive/2005/01/26/361363.aspx) from 2005 by Brad Abrams describing the internal coding guidelines at Microsoft, with some changes to suit our project.
 # Coding Guidelines
 ## Tabs & Indenting
 Tab characters (\0x09) **should** be used in code. All indentation should be done with Tab Size of 4.
@@ -185,7 +185,7 @@ In addition, the goal is to have clean, readable source. Code legibility should 
 ## File Organization
 * Source files should contain only one public type, although multiple internal types are permitted if required.
 * Source files should be given the name of the public type in the file.
-* Directory names should follow the namespace for the class after `LTW`. For example, one would expect to find the public class `LTW.Constants.WotoTools` in **LTW\Constants\WotoTools.cs**.
+* Directory names should follow the namespace for the class after `GUISharp`. For example, one would expect to find the public class `GUISharp.Constants.WotoTools` in **GUISharp\Constants\WotoTools.cs**.
 * Class members should be grouped logically, and encapsulated into regions:
 ```csharp
 	//-------------------------------------------------

@@ -31,6 +31,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Running
-      run: LTW/bin/Debug/net5.0/linux-x64/LTW
+      run: Tests/ClientTest/bin/Debug/net5.0/linux-x64/ClientTest
     - name: Test
       run: dotnet test --no-build --verbosity normal
