@@ -85,7 +85,7 @@ Comments must provide added value or explanation to the code. Simply describing 
 ### Copyright/License notice
 Each file **should** start with a copyright notice. This is a short statement declaring the project name and copyright notice, and directing the reader to the license document elsewhere in the project. To avoid errors in doc comment builds, avoid using triple-slash doc comments.
 ```csharp
-// Last Testament of Wanderers 
+// GUISharp Project
 // Copyright (C) 2019 - 2021 ALiwoto
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.

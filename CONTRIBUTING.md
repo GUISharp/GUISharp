@@ -73,7 +73,7 @@ We accept contributions in "good faith" that it isn't bound to a conflicting lic
 
 To this end, when submitting new files, include the following in the header if appropriate:
 ```csharp
-// Last Testament of Wanderers 
+// GUISharp Project
 // Copyright (C) 2019 - 2021 ALiwoto
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.

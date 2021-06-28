@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<version>$version$</version>
+		<authors>ALiwoto</authors>
+		<owners>ALiwoto</owners>
+		<id>GUISharp</id>
+		<title>GUISharp</title>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>A GUI library for windows and linux</description>
+		<language>en-US</language>
+		<icon>Icon.png</icon>
+		<license type="file">LICENSE</license>
+		<projectUrl>https://github.com/ALiwoto/GUISharp</projectUrl>
+	</metadata>
+	<files>
+		<file src="Icon.png" target="" />
+		<file src="..\LICENSE" target="" />
+	</files>
+</package>
+
+<!--
+	Examples:
+
+	<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+	<id>Serilog.Sinks.Glimpse</id>
+	<version>$version$</version>
+	<authors>Robert Wagner, Serilog Contributors</authors>
+	<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+	<projectUrl>http://serilog.net</projectUrl>
+	<iconUrl>http://serilog.net/images/serilog-sink-nuget.png</iconUrl>
+	<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<description>Serilog event sink that writes to a Glimpse tab.</description>
+	<tags>serilog logging glimpse</tags>
+	<dependencies>
+	  <dependency id="Serilog" version="[1.4.204,2)" />
+	  <dependency id="Glimpse" version="1.8.0" />
+	</dependencies>
+  </metadata>
+</package>
+
+-->

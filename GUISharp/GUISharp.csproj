@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- GUISharp Project
+	Copyright (C) 2019 - 2021 ALiwoto
+	This file is subject to the terms and conditions defined in
+	file 'LICENSE', which is part of the source code.-->
+	<!--===================================================-->
+	<PropertyGroup>
+		<RuntimeIdentifier Condition="'$(OS)' == 'unix'">linux-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="'$(OS)' == 'Windows_NT'">win-x64</RuntimeIdentifier>
+		<AssemblyName>GUISharp</AssemblyName>
+		<RootNamespace>GUISharp</RootNamespace>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<TargetFramework>net5.0</TargetFramework>
+		<PackageId>GUISharp</PackageId>
+		<Version>1.0.10</Version>
+		<Authors>ALiwoto</Authors>
+    	<PackageProjectUrl>https://github.com/GUISharp/GUISharp</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/GUISharp/GUISharp</RepositoryUrl>
+		<PackageIconUrl>https://github.com/GUISharp/GUISharp/raw/master/GUISharp/Icon.ico</PackageIconUrl>
+		<PackageIcon>Icon.png</PackageIcon>
+		<RepositoryType>git</RepositoryType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+	<!--===================================================-->
+	<PropertyGroup>
+		<NoWarn>1591;1701;1702;1705</NoWarn>
+	</PropertyGroup>
+	<!--===================================================-->
+	<PropertyGroup>
+		<!--
+			define the __LINUX__ and __WINDOWS__ constants in order to use it in the
+			code as: 
+			#if __LINUX__
+				....
+			#elif __WINDOWS__
+				...
+			#endif
+			===================================================================
+			please don't undefine this constant.
+		-->
+		<DefineConstants Condition="'$(OS)' == 'unix'">__LINUX__</DefineConstants>
+		<DefineConstants Condition="'$(OS)' == 'Windows_NT'">__WINDOWS__</DefineConstants>
+	</PropertyGroup>
+	<!--===================================================-->
+	<ItemGroup>
+    	<None Include="Icon.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<EmbeddedResource Include="Icon.ico" />
+		<EmbeddedResource Include="Icon.bmp" />
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+		<PackageReference Include="FontStashSharp.MonoGame" Version="0.9.3" />
+		<PackageReference Include="TextCopy" Version="4.3.1" />
+	</ItemGroup>
+	<!--===================================================-->
+	
+	<!--===================================================-->
+	
+	<!--===================================================-->
+	<ItemGroup>
+		<!--Include the project folders here.-->
+		<!--
+
+			<Folder Include="GUIContent\bin\DesktopGL\Content">
+			<Link>GUIContent\bin\DesktopGL\Content</Link>
+		</Folder>
+		<Folder Include="Controls\Animation\AnimationCompanies" />
+		<Folder Include="Controls\GameGraphics\XDrawing" />
+		-->
+		
+	</ItemGroup>
+	<!--===================================================-->
+	<!--
+
+		<ItemGroup>
+		<!Include another project .csproj file here.>
+		<!If you include them here, they will be built as well.>
+		<ProjectReference Include="..\WotoProvider\WotoProvider.csproj" />
+	</ItemGroup>
+	-->
+	
+	<!--===================================================-->
+</Project>
+
+<!--End of the GUISharp Project File.-->
+<!--2019 - 2021 (C) wotoTeam-->
+
