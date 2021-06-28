@@ -53,9 +53,6 @@
 		<EmbeddedResource Include="Icon.bmp" />
 	</ItemGroup>
 	<!--===================================================-->
-	<ItemGroup>
-		<TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
-	</ItemGroup>
 	<!--===================================================-->
 	<ItemGroup>
 		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
