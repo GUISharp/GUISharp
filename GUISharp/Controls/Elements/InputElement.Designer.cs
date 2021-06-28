@@ -29,7 +29,7 @@ namespace GUISharp.Controls.Elements
 		{
 			//---------------------------------------------
 			//news:
-			this._flat = new FlatElement(this, true);
+			this._flat = new FlatElement(this, this);
 			if (this.Manager != null)
 			{
 				this.Manager?.DisposeAll();
@@ -393,7 +393,7 @@ namespace GUISharp.Controls.Elements
 			{
 				return;
 			}
-			this._flat.ChangeImage(DefaultRes, GetContentBorderName());
+			this._flat.ChangeImage(DefaultRes, GetContentBorderName(), false);
 			switch (this.BorderColor)
 			{
 				case InputBorders.NoBorder:

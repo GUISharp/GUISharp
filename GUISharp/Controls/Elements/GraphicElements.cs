@@ -230,48 +230,104 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// Occurs when the mouse pointer enters the control.
 		/// </summary>
-		internal virtual event EventHandler MouseEnter;
+		public virtual event EventHandler MouseEnter;
 		/// <summary>
 		/// Occurs when the mouse pointer leaves the control.
 		/// </summary>
-		internal virtual event EventHandler MouseLeave;
+		public virtual event EventHandler MouseLeave;
 		/// <summary>
 		/// Occurs when the mouse pointer is moved over the control.
 		/// </summary>
-		public event EventHandler MouseMove;
+		public virtual event EventHandler MouseMove;
 		/// <summary>
 		/// Occurs when the mouse pointer is over the control and
 		/// left mouse button is pressed.
 		/// </summary>
-		internal virtual event EventHandler LeftDown;
+		public virtual event EventHandler LeftDown;
 		/// <summary>
 		/// Occurs when the mouse pointer is over the control and
 		/// left mouse button is released.
 		/// </summary>
-		internal virtual event EventHandler LeftUp;
+		public virtual event EventHandler LeftUp;
 		/// <summary>
 		/// Occurs when the mouse pointer is over the control and
 		/// right mouse button is pressed.
 		/// </summary>
-		internal virtual event EventHandler RightDown;
+		public virtual event EventHandler RightDown;
 		/// <summary>
 		/// Occurs when the mouse pointer is over the control and
 		/// right mouse button is released.
 		/// </summary>
-		internal virtual event EventHandler RightUp;
+		public virtual event EventHandler RightUp;
 		/// <summary>
 		/// Occurs when the control is clicked with the left button of mouse.
 		/// </summary>
-		internal virtual event EventHandler LeftClick;
+		public virtual event EventHandler LeftClick;
 		/// <summary>
 		/// Occurs when the control is clicked with the right button of mouse.
 		/// </summary>
-		internal virtual event EventHandler RightClick;
+		public virtual event EventHandler RightClick;
 		/// <summary>
-		/// Occurs when the control is clicked with nor left button nor right.
-		/// for example by a <see cref="GamePad"/>.
+		/// Occurs when the control is clicked with left mouse button
+		/// or right.
 		/// </summary>
-		internal virtual event EventHandler Click;
+		public virtual event EventHandler Click;
+		/// <summary>
+		/// Occurs when the mouse pointer enters the control.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler MouseEnterAsync;
+		/// <summary>
+		/// Occurs when the mouse pointer leaves the control.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler MouseLeaveAsync;
+		/// <summary>
+		/// Occurs when the mouse pointer is moved over the control.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler MouseMoveAsync;
+		/// <summary>
+		/// Occurs when the mouse pointer is over the control and
+		/// left mouse button is pressed.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler LeftDownAsync;
+		/// <summary>
+		/// Occurs when the mouse pointer is over the control and
+		/// left mouse button is released.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler LeftUpAsync;
+		/// <summary>
+		/// Occurs when the mouse pointer is over the control and
+		/// right mouse button is pressed.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler RightDownAsync;
+		/// <summary>
+		/// Occurs when the mouse pointer is over the control and
+		/// right mouse button is released.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler RightUpAsync;
+		/// <summary>
+		/// Occurs when the control is clicked with the left button of mouse.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler LeftClickAsync;
+		/// <summary>
+		/// Occurs when the control is clicked with the right 
+		/// button of mouse.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler RightClickAsync;
+		/// <summary>
+		/// Occurs when the control is clicked with left mouse button
+		/// or right.
+		/// This event handler will be called in a separate thread.
+		/// </summary>
+		public virtual event EventHandler ClickAsync;
 		#endregion
 		//-------------------------------------------------
 		#region Constructor Region
