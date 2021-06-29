@@ -46,7 +46,7 @@ namespace GUISharp.Controls.Elements
         //-------------------------------------------------
         #region Properties Region
         /// <summary>
-        /// WARNING: The InputElement does NOT have ant childrens!
+        /// WARNING: The InputElement does NOT have any childrens!
         /// you should not add any graphic elements to an input element!
         /// if you try to get the value of this property, you will get null,
         /// so be carefull about it!

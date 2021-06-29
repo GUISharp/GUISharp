@@ -225,7 +225,6 @@ namespace GUISharp.Controls.Elements
 				return;
 			}
 			this.Text = text;
-			this.FixedText = this.Text.FixMe(this.Font, this.Rectangle.Width);
 			this.ChangeTextLocation();
 		}
 		protected override Texture2D GetBackGroundTexture(Color color)
@@ -309,7 +308,12 @@ namespace GUISharp.Controls.Elements
 
 		private void ChangeTextLocation()
 		{
-			if (this.Font == null || this.FixedText == null)
+			if (this.Font == null || this.Text == null)
+			{
+				return;
+			}
+			this.FixedText = this.Text.FixMe(this.Font, this.Rectangle.Width);
+			if (this.FixedText == null)
 			{
 				return;
 			}

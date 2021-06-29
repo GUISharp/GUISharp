@@ -17,16 +17,18 @@ namespace Tests
 			test.ChangeLocation(10, 10);
 			b.ChangeLocation(270, 270);
 			test.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 0x40));
-			b.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 30));
+			b.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.noto_sans_JP, 45));
 			test.ChangeText("hello!");
 			b.ChangeText("test button!");
-			b.ChangeBorder(GUISharp.WotoProvider.Enums.ButtonColors.DarkGreen);
+			b.ChangeSize(2);
+			b.ChangeBorder(GUISharp.WotoProvider.Enums.ButtonColors.NormalGrayWhiteSmoke);
+			b.ChangeForeColor(Microsoft.Xna.Framework.Color.IndianRed);
 			test.ChangeForeColor(Microsoft.Xna.Framework.Color.Red);
 			test.ChangeBackColor(Microsoft.Xna.Framework.Color.LightGoldenrodYellow);
 			test.ChangeAlignmation(GUISharp.Controls.StringAlignmation.TopRight);
 			b.ChangeAlignmation(GUISharp.Controls.StringAlignmation.MiddleCenter);
 			test.ChangePriority(ElementPriority.VeryLow);
-			b.ChangePriority(ElementPriority.VeryHigh);
+			b.ChangePriority(ElementPriority.VeryLow);
 			test.ChangeMovements(ElementMovements.VerticalHorizontalMovements);
 			//test.EnableOwnerMover();
 			b.EnableMouseEnterEffect();
@@ -49,7 +51,7 @@ namespace Tests
 			{
 				Console.WriteLine("LeftClick");
 			};
-			this.ElementManager.AddRange(test, b);
+			this.ElementManager.AddRange(b, test);
 			b.ClickAsync += (object sender, EventArgs e) =>
 			{
 				;

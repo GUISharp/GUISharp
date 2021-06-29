@@ -101,8 +101,8 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             //colors:
             this.TitleElement.ChangeForeColor(Color.White);
             this.BodyElement.ChangeForeColor(Color.White);
-            this.ExitButton.ChangeBorder(ButtonColors.Red);
-            this.RetryButton.ChangeBorder(ButtonColors.GreenYellow);
+            this.ExitButton.ChangeBorder(ButtonColors.SpecialRed);
+            this.RetryButton.ChangeBorder(ButtonColors.SpecialGreenYellow);
             //enableds:
             this.TitleElement.EnableOwnerMover();
             this.BodyElement.EnableOwnerMover();

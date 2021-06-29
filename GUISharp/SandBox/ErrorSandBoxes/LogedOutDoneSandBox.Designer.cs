@@ -90,7 +90,7 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             //colors:
             this.TitleElement.ChangeForeColor(Color.White);
             this.BodyElement.ChangeForeColor(Color.White);
-            this.BackButton.ChangeBorder(ButtonColors.DarkGreen);
+            this.BackButton.ChangeBorder(ButtonColors.SpecialDarkGreen);
             //enableds:
             this.TitleElement.EnableOwnerMover();
             this.BodyElement.EnableOwnerMover();

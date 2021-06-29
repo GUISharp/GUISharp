@@ -31,19 +31,47 @@ namespace GUISharp.Controls.Elements
 	{
 		//-------------------------------------------------
 		#region Constant's Region
-		public const string WhiteSmoke_Border_FileName  = "f_010320212340";
-		public const string Red_Border_FileName			= "f_010320212341";
-		public const string GreenYellow_Border_FileName = "f_010320212342";
-		public const string DarkGreen_Border_FileName   = "f_010320212343";
-		public const float ME_EFFECT_OFFSET				= 1.06f;
-		public const float ME_EFFECT_OFFSHORT			= 0.04f;
-		public const int DEFAULT_WIDTH					= 150;
-		public const int DEFAULT_HEIGHT					= 46;
+		internal const string WhiteSmoke_Border_FileName  = "f_010320212340";
+		internal const string Red_Border_FileName			= "f_010320212341";
+		internal const string GreenYellow_Border_FileName = "f_010320212342";
+		internal const string DarkGreen_Border_FileName   = "f_010320212343";
+		internal const string NormalTransparentGreen_Border_FileName   = "f_290620210264";
+		internal const string NormalGreenGreen_Border_FileName   = "f_290620210265";
+		internal const string NormalBlackWhiteSmoke_Border_FileName   = "f_290620210266";
+		internal const string NormalTransparentWhiteSmoke_Border_FileName   = "f_290620210267";
+		internal const string NormalWhiteWhiteSmoke_Border_FileName   = "f_290620210268";
+		internal const string NormalGrayWhiteSmoke_Border_FileName   = "f_290620210269";
+		internal const string NormalGrayLightSlateGray_Border_FileName   = "f_290620210270";
+		internal const string NormalLightGrayBlack_Border_FileName   = "f_290620210271";
+		internal const string NormalGrayBlack_Border_FileName   = "f_290620210272";
+		internal const string NormalRedBlack_Border_FileName   = "f_290620210273";
+		internal const string NormalWhiteBlack_Border_FileName   = "f_290620210274";
+		internal const string NormalWheatBlack_Border_FileName   = "f_290620210275";
+		internal const string NormalWhiteRed_Border_FileName   = "f_290620210276";
+		internal const string NormalLightGrayRed_Border_FileName   = "f_290620210277";
+		internal const string NormalGrayRed_Border_FileName   = "f_290620210278";
+		internal const string NormalDarkGrayRed_Border_FileName   = "f_290620210279";
+		internal const string NormalWhiteOrange_Border_FileName   = "f_290620210280";
+		internal const string NormalLightGrayOrange_Border_FileName   = "f_290620210281";
+		internal const string NormalGrayOrange_Border_FileName   = "f_290620210282";
+		internal const string NormalDarkGrayOrange_Border_FileName   = "f_290620210283";
+		internal const string NormalWhiteOrangered_Border_FileName   = "f_290620210284";
+		internal const string NormalLightGrayOrangered_Border_FileName   = "f_290620210285";
+		internal const string NormalGrayOrangered_Border_FileName   = "f_290620210286";
+		internal const string NormalDarkGrayOrangered_Border_FileName   = "f_290620210287";
+		internal const string NormalWhiteGreen_Border_FileName   = "f_290620210288";
+		internal const string NormalLightGrayGreen_Border_FileName   = "f_290620210289";
+		internal const string NormalGrayGreen_Border_FileName   = "f_290620210290";
+		internal const string NormalDarkGrayGreen_Border_FileName   = "f_290620210291";
+		internal const float ME_EFFECT_OFFSET				= 1.06f;
+		internal const float ME_EFFECT_OFFSHORT				= 0.04f;
+		internal const int DEFAULT_WIDTH					= 150;
+		internal const int DEFAULT_HEIGHT					= 46;
 		#endregion
 		//-------------------------------------------------
 		#region Properties Region
 		/// <summary>
-		/// WARNING: The Button Elements does NOT have ant childrens!
+		/// WARNING: The Button Elements does NOT have any childrens!
 		/// you should not add any graphic elements to a button element!
 		/// if you try to get the value of this property, you will get null,
 		/// so be carefull about it!
