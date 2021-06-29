@@ -1,18 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<!-- GUISharp Project
-	Copyright (C) 2019 - 2021 ALiwoto
-	This file is subject to the terms and conditions defined in
-	file 'LICENSE', which is part of the source code.-->
+	<!-- 
+	This file is part of GUISharp Project (https://github.com/GUISharp/GUISharp).
+	Copyright (c) 2021 GUISharp Authors.
+
+	This library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, version 3.
+
+	This library is distributed in the hope that it will be useful, but
+	WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+	General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this source code of library. 
+	If not, see <http://www.gnu.org/licenses/>.
+	-->
 	<!--===================================================-->
 	<PropertyGroup>
 		<RuntimeIdentifier Condition="'$(OS)' == 'unix'">linux-x64</RuntimeIdentifier>
 		<RuntimeIdentifier Condition="'$(OS)' == 'Windows_NT'">win-x64</RuntimeIdentifier>
 		<AssemblyName>GUISharp</AssemblyName>
 		<RootNamespace>GUISharp</RootNamespace>
+		<description>A GUI library for windows and linux</description>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<TargetFramework>net5.0</TargetFramework>
 		<PackageId>GUISharp</PackageId>
-		<Version>1.0.10</Version>
+		<Version>1.0.11</Version>
 		<Authors>ALiwoto</Authors>
     	<PackageProjectUrl>https://github.com/GUISharp/GUISharp</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GUISharp/GUISharp</RepositoryUrl>
@@ -22,6 +36,7 @@
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<license>LICENSE</license>
 	</PropertyGroup>
 	<!--===================================================-->
 	<PropertyGroup>
@@ -46,13 +61,13 @@
 	<!--===================================================-->
 	<ItemGroup>
     	<None Include="Icon.png" Pack="true" PackagePath="\" />
+		<None Include="..\LICENSE" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 	<!--===================================================-->
 	<ItemGroup>
 		<EmbeddedResource Include="Icon.ico" />
 		<EmbeddedResource Include="Icon.bmp" />
 	</ItemGroup>
-	<!--===================================================-->
 	<!--===================================================-->
 	<ItemGroup>
 		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
