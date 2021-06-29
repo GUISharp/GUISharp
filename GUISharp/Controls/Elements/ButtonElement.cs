@@ -1,11 +1,24 @@
-﻿// GUISharp Project
-// Copyright (C) 2019 - 2021 ALiwoto
-// This file is subject to the terms and conditions defined in
-// file 'LICENSE', which is part of the source code.
+﻿/*
+ * This file is part of GUISharp Project (https://github.com/GUISharp/GUISharp).
+ * Copyright (c) 2021 GUISharp Authors.
+ *
+ * This library is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3.
+ *
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this source code of library. 
+ * If not, see <http://www.gnu.org/licenses/>.
+ */
 
+using System;
 using Microsoft.Xna.Framework;
 using GUISharp.Security;
-using System;
 using GUISharp.WotoProvider.Enums;
 
 namespace GUISharp.Controls.Elements
@@ -19,13 +32,13 @@ namespace GUISharp.Controls.Elements
 		//-------------------------------------------------
 		#region Constant's Region
 		public const string WhiteSmoke_Border_FileName  = "f_010320212340";
-		public const string Red_Border_FileName		 = "f_010320212341";
+		public const string Red_Border_FileName			= "f_010320212341";
 		public const string GreenYellow_Border_FileName = "f_010320212342";
 		public const string DarkGreen_Border_FileName   = "f_010320212343";
-		public const float ME_EFFECT_OFFSET			 = 1.06f;
-		public const float ME_EFFECT_OFFSHORT		   = 0.04f;
-		public const int DEFAULT_WIDTH				  = 150;
-		public const int DEFAULT_HEIGHT				 = 46;
+		public const float ME_EFFECT_OFFSET				= 1.06f;
+		public const float ME_EFFECT_OFFSHORT			= 0.04f;
+		public const int DEFAULT_WIDTH					= 150;
+		public const int DEFAULT_HEIGHT					= 46;
 		#endregion
 		//-------------------------------------------------
 		#region Properties Region
