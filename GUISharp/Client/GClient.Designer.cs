@@ -25,6 +25,9 @@ using GUISharp.WotoProvider.Enums;
 using GUISharp.WotoProvider.EventHandlers;
 using GUISharp.SandBox;
 using GUISharp.Controls;
+#if __WINDOWS__
+using GUISharp.Controls.Music;
+#endif //__WINDOWS__
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
 using GUISharp.GUIObjects.Graphics;
