@@ -21,6 +21,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using GUISharp.WotoProvider.Enums;
 using GUISharp.WotoProvider.EventHandlers;
 using GUISharp.SandBox;
@@ -324,6 +325,18 @@ namespace GUISharp.Client
 		//-------------------------------------------------
 		#region overrided Method's Region
 		/// <summary>
+		/// Returns a string that represents the current GClient 
+		/// of GUISharp library.
+		/// </summary>
+		/// <returns>
+		/// A string that represents the current 
+		///  GClient of GUISharp library.
+		/// </returns>
+		public override string ToString()
+		{
+			return ToStringValue;
+		}
+		/// <summary>
 		/// Allows the game to perform any initialization it needs to before starting to run.
 		/// This is where it can query for any required services and load any non-graphic
 		/// related content.  Calling base.Initialize will enumerate through any components
@@ -358,9 +371,6 @@ namespace GUISharp.Client
 			this.GUIClient.InitializeComponents();
 		}
 
-
-		//private FontSystem Fonts;
-		//private SpriteFont test;
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
 		/// all of your content.
@@ -379,6 +389,7 @@ namespace GUISharp.Client
 		protected override void UnloadContent()
 		{
 			//---------------------------------------------
+			this.Unloading?.Invoke();
 			//---------------------------------------------
 		}
 
@@ -394,6 +405,7 @@ namespace GUISharp.Client
 			{
 				this.Exit();
 			}
+			
 			// update the game universe, so it can handle its own events.
 			this.GameUniverse?.UpdateUniverse();
 			// check the requests came from outside of the envinment of the Game. 

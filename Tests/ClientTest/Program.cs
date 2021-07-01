@@ -8,6 +8,7 @@ namespace Tests
 		[STAThread]
 		public static void Main()
 		{
+			
 			MainClient test = new MainClient();
 			test.Start();
 		}

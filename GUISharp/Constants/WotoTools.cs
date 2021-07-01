@@ -17,9 +17,72 @@
  */
 
 
+/*
+
+
+it might be possible with the help of
+https://github.com/StbSharp/StbImageSharp
+and
+https://github.com/StbSharp/StbImageWriteSharp
+The code will be like
+
+static unsafe void Main(string[] args)
+{
+    using (var input = File.OpenRead(@"C:\Pictures\somersault.gif"))
+    {
+        var context = new StbImage.stbi__context(input);
+
+        if (StbImage.stbi__gif_test(context) == 0)
+        {
+            throw new Exception("Input stream is not GIF file.");
+        }
+
+        var g = new StbImage.stbi__gif();
+
+        byte[] data = null;
+        var frameCount = 1;
+
+        do
+        {
+            // Read next frame
+            int ccomp;
+            byte two_back;
+            var result = StbImage.stbi__gif_load_next(context, g, &ccomp, (int)StbImageSharp.ColorComponents.RedGreenBlueAlpha, &two_back);
+            if (result == null)
+            {
+                break;
+            }
+
+            // Convert result to byte[]
+            if (data == null)
+            {
+                data = new byte[g.w * g.h * 4];
+            }
+            Marshal.Copy(new IntPtr(result), data, 0, data.Length);
+
+            // Save the frame to image
+            using (Stream output = File.OpenWrite(@"c:\Pictures\output\frame" + frameCount + ".png"))
+            {
+                ImageWriter writer = new ImageWriter();
+                writer.WritePng(data, g.w, g.h, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, output);
+            }
+
+            ++frameCount;
+        } while (true);
+
+        Marshal.FreeHGlobal(new IntPtr(g._out_));
+    }
+}
+
+*/
+
 using System;
+using System.IO;
+using System.Drawing.Imaging;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Security;
+using Image = System.Drawing.Image;
 
 namespace GUISharp.Constants
 {
@@ -81,6 +144,62 @@ namespace GUISharp.Constants
 				return new(i1, i2);
 			}
 			return v;
+		}
+		/// <summary>
+		/// Converts the specified <see cref="Image"/> object
+		/// to a <see cref="Texture2D"/> value using the specified
+		/// <see cref="GraphicsDevice"/>.
+		/// <!--
+		/// Since: GUISharp 1.0.12;
+		/// By: ALiwoto;
+		/// Last edit: Jun 30 11:30;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static Texture2D ToTexture2D(this Image i, GraphicsDevice d)
+		{
+			using (var m = new MemoryStream())
+			{
+				i.Save(m, ImageFormat.Png);
+				return Texture2D.FromStream(d, m);
+			}
+		}
+		/// <summary>
+		/// Converts the specified <see cref="Texture2D"/> object
+		/// to a <see cref="Image"/> value using the specified
+		/// the original image width and height.
+		/// <!--
+		/// Since: GUISharp 1.0.12;
+		/// By: ALiwoto;
+		/// Last edit: 30 Jun 11:30;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static Image ToImage(this Texture2D texture)
+		{
+			return texture.ToImage(texture.Width, texture.Height);
+		}
+		/// <summary>
+		/// Converts the specified <see cref="Texture2D"/> object
+		/// to a <see cref="Image"/> value using the specified
+		/// the specified width and height.
+		/// <!--
+		/// Since: GUISharp 1.0.12;
+		/// By: ALiwoto;
+		/// Last edit: 30 Jun 11:30;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static Image ToImage(this Texture2D texture, int w, int h)
+		{
+			using (var m = new MemoryStream())
+			{
+				texture.SaveAsPng(m, w, h);
+				return Image.FromStream(m);
+			}
 		}
 	}
 

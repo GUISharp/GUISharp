@@ -45,6 +45,7 @@ namespace GUISharp.Controls.Elements
 				this.Manager?.DisposeAll();
 				this.Manager = null;
 			}
+			
 			//---------------------------------------------
 			//Border:
 			this.ChangeBorderF(ButtonColors.NormalWhiteWhiteSmoke);

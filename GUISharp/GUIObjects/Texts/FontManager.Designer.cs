@@ -34,6 +34,7 @@ namespace GUISharp.GUIObjects.Texts
 			//---------------------------------------------
 			//news:
 			this.MyRes 						= new WotoRes(typeof(FontManager));
+			this._settings 					= _getSettings();
 			this._ranges 					= _getRanges();
 			this._old_story_bold 			= _generate();
 			this._old_story_bold_italic 	= _generate();
@@ -45,6 +46,7 @@ namespace GUISharp.GUIObjects.Texts
 			byte[] _GUISharp_bold_ 			= _fromRes(GUISharpTTBoldFileInRes);
 			byte[] _GUISharp_regular_ 		= _fromRes(GUISharpTTRFileInRes);
 			byte[] _noto_sans_regular_ 		= _fromRes(NSRFileInRes);
+
 			//---------------------------------------------
 			//add colection fonts:
 			this._old_story_bold?.AddFont(_old_story_bold_);
@@ -61,10 +63,17 @@ namespace GUISharp.GUIObjects.Texts
 			//localFunctions:
 			FontSystem _generate()
 			{
-				return FontSystemFactory.CreateStroked(this.Client.GraphicsDevice, 
-					STROKE_AMOUNT, 
-					this.GraphicsLevel * FontBitmapWidth,
-					this.GraphicsLevel * FontBitmapHeight);;
+				return new(this._settings);
+			}
+			FontSystemSettings _getSettings()
+			{
+				return new()
+				{
+					TextureWidth = this.GraphicsLevel * FontBitmapWidth,
+					TextureHeight = this.GraphicsLevel * FontBitmapHeight,
+					Effect = FontSystemEffect.Stroked,
+					EffectAmount = STROKE_AMOUNT,
+				};
 			}
 			//---------------------------------------------
 		}

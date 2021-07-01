@@ -22,58 +22,88 @@ using System.IO;
 using System.Globalization;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
+using GUISharp.Logging;
 using GUISharp.Security;
 using GUISharp.Constants;
+using GUISharp.Controls.Music;
 
 namespace GUISharp.GUIObjects.Resources
 {
-    public sealed class WotoRes : ComponentResourceManager
-    {
-        //-------------------------------------------------
-        #region Constants Region
-        public const string WotoResStringName = "WotoRes from :";
-        #endregion
-        //-------------------------------------------------
-        #region Properties Region
-        public string Name { get; private set; }
-        #endregion
-        //-------------------------------------------------
-        #region Costructor Region
-        public WotoRes(Type t) : base(t)
-        {
-            ;
-        }
-        #endregion
-        //-------------------------------------------------
-        #region Ordinary Methods Region
+	public sealed class WotoRes : ComponentResourceManager
+	{
+		//-------------------------------------------------
+		#region Constants Region
+		public const string WotoResStringName = "WotoRes from: ";
+		#endregion
+		//-------------------------------------------------
+		#region Properties Region
+		public string Name { get; private set; }
+		#endregion
+		//-------------------------------------------------
+		#region Costructor Region
+		public WotoRes(Type t) : base(t)
+		{
+			;
+		}
+		#endregion
+		//-------------------------------------------------
+		#region Ordinary Methods Region
 
-        #endregion
-        //-------------------------------------------------
-        #region Get Method's Region
-        public bool StringExists(string name)
-        {
-			if (name == null)
+		#endregion
+		//-------------------------------------------------
+		#region Get Method's Region
+		public bool StringExists(string name)
+		{
+			if (string.IsNullOrWhiteSpace(name))
 			{
 				return false;
 			}
-            return !(GetString(name) is null);
-        }
-        public bool ObjectExists(string name)
-        {
-			if (name == null)
+			try
+			{
+				return !(GetString(name) is null);	
+			}
+			catch
 			{
 				return false;
 			}
-            return !(GetObject(name) is null);
-        }
-        public StrongString GetString(StrongString name)
-        {
+			
+		}
+		public bool ObjectExists(string name)
+		{
+			if (string.IsNullOrWhiteSpace(name))
+			{
+				return false;
+			}
+			try
+			{
+				return !(GetObject(name) is null);	
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		public StrongString GetString(StrongString name)
+		{
 			if (name == null)
 			{
 				return null;
 			}
-            return base.GetString(name.GetValue());
-        }
+			var v = name.GetValue();
+			if (string.IsNullOrWhiteSpace(v))
+			{
+				return null;
+			}
+			try
+			{
+				return base.GetString(v);	
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+				return null;
+			}
+		}
 		public Texture2D GetAsTexture2D(GraphicsDevice device, string name)
 		{
 			if (name == null || device == null || device.IsDisposed)
@@ -86,7 +116,7 @@ namespace GUISharp.GUIObjects.Resources
 				return null;
 			}
 
-			using (var m = new MemoryStream(b))
+			using (var m = AllocateMemoryStream(name))
 			{
 				if (m == null)
 				{
@@ -109,6 +139,19 @@ namespace GUISharp.GUIObjects.Resources
 		{
 			return GetAsTexture2D(nameStrong.GetValue());
 		}
+		public MemoryStream AllocateMemoryStream(string nameStr)
+		{
+			if (string.IsNullOrWhiteSpace(nameStr))
+			{
+				return null;
+			}
+			var b = GetBytes(nameStr);
+			if (b == null || b.Length == default)
+			{
+				return null;
+			}
+			return new(b);
+		}
 		public byte[] GetBytes(StrongString name)
 		{
 			return GetBytes(name.GetValue());
@@ -122,30 +165,31 @@ namespace GUISharp.GUIObjects.Resources
 			}
 			return null;
 		}
-        public object GetObject(StrongString name)
-        {
-            return base.GetObject(name.GetValue());
-        }
-        #endregion
-        //-------------------------------------------------
-        #region Overrided Methods Region
-        public override string GetString(string strName)
-        {
-            return base.GetString(strName);
-        }
-        public override object GetObject(string name)
-        {
-            return base.GetObject(name);
-        }
-        public override void ApplyResources(object value, string objectName, CultureInfo culture)
-        {
-            base.ApplyResources(value, objectName, culture);
-        }
-        public override string ToString()
-        {
-            return WotoResStringName + BaseName;
-        }
-        #endregion
-        //-------------------------------------------------
-    }
+		public object GetObject(StrongString name)
+		{
+			return base.GetObject(name.GetValue());
+		}
+		
+		#endregion
+		//-------------------------------------------------
+		#region Overrided Methods Region
+		public override string GetString(string strName)
+		{
+			return base.GetString(strName);
+		}
+		public override object GetObject(string name)
+		{
+			return base.GetObject(name);
+		}
+		public override void ApplyResources(object value, string objectName, CultureInfo culture)
+		{
+			base.ApplyResources(value, objectName, culture);
+		}
+		public override string ToString()
+		{
+			return WotoResStringName + BaseName;
+		}
+		#endregion
+		//-------------------------------------------------
+	}
 }

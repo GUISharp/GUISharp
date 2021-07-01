@@ -31,17 +31,17 @@ namespace GUISharp.Controls.Elements
     /// outline of the texts.
 	/// Please before adding an object of this element to your
 	/// element manager, set some of the properties using these
-	/// methods:
-	/// <see cref="FlatElement.ChangeSize(float, float)"/>
-	/// <see cref="FlatElement.ChangeLocation(int, int)"/>
+	/// methods: <code/>
+	/// <see cref="FlatElement.ChangeSize(float, float)"/> <code/>
+	/// <see cref="FlatElement.ChangeLocation(int, int)"/> <code/>
 	/// <see cref="FlatElement.ChangeFont(FontStashSharp.SpriteFontBase)"/>
-	/// <see cref="FlatElement.ChangeText(StrongString)"/>
-	/// <see cref="FlatElement.ChangeForeColor(Color)"/>
-	/// <see cref="FlatElement.ChangeBackColor(Color)"/>
+	/// <code/> <see cref="FlatElement.ChangeText(StrongString)"/> <code/>
+	/// <see cref="FlatElement.ChangeForeColor(Color)"/> <code/>
+	/// <see cref="FlatElement.ChangeBackColor(Color)"/> <code/>
 	/// and then use 
-	///	test.Enable();
-	///	test.Apply();
-	///	test.Show();
+	///	<code/> test.Enable(); <code/>
+	///	test.Apply(); <code/>
+	///	test.Show(); <code/>
     /// </summary>
     public partial class FlatElement : GraphicElement
     {

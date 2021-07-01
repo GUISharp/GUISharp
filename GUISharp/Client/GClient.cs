@@ -20,13 +20,16 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using GUISharp.Logging;
 using GUISharp.Controls;
 using GUISharp.Security;
 using GUISharp.Constants;
+using GUISharp.Controls.Music;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
 using GUISharp.GUIObjects.Graphics;
 using GUISharp.GUIObjects.Resources;
+using GUISharp.WotoProvider.EventHandlers;
 
 namespace GUISharp.Client
 {
@@ -37,7 +40,7 @@ namespace GUISharp.Client
 	{
 		//-------------------------------------------------
 		#region Constant's Region
-		public const string ToStringValue = "-- GUISharp GAME CLIENT --";
+		public const string ToStringValue = "-- GUISharp CLIENT --";
 		public const string FirstLabelNameInRes = "Label1";
 
 		/// <summary>
@@ -78,6 +81,7 @@ namespace GUISharp.Client
 		/// </summary>
 		public FlatElement FirstFlatElement { get; private set; }
 		public Texture2D BackGroundTexture { get; private set; }
+		internal MusicManager MusicManager { get; private set; }
 		internal RequestType Request { get; set; }
 		internal MouseState LastMouseState { get; private set; }
 		internal IInputable InputElement { get; private set; }
@@ -112,29 +116,32 @@ namespace GUISharp.Client
 				return Universe.DEFAULT_Z_BASE;
 			}
 		}
-		internal bool IsLeftDown { get; private set; }
-		internal bool IsRightDown { get; private set; }
 		public bool Verified { get; set; }
-		//public bool IsConnecting { get; set; }
-		//public bool IsShowingSandBox { get; set; }
-		//public bool IsCheckingForUpdate { get; set; }
-		//public bool IsCheckingForUpdateEnded { get; set; }
-		//public bool IsTheLastVer { get; set; }
-		//public bool IsServerOnBreak { get; set; }
-		//public bool IsServerUpdating { get; set; }
-		//public bool IsServerOnline { get; set; }
-		//public bool IsTheFirstTime { get; set; }
 		public bool IsCtrlDown { get; private set; }
-		/// <summary>
-		/// NOTE: this value is just a bool for the DateTimeWorker
-		/// </summary>
-		public bool MainMenuLoaded { get; set; }
+		public bool IsDisposed
+		{
+			get
+			{
+				if (this.GraphicsDevice != null)
+				{
+					return this.GraphicsDevice.IsDisposed || _disposed;
+				}
+				
+				return Verified;
+			}
+		}
+		public bool IsLeftDown { get; private set; }
+		public bool IsRightDown { get; private set; }
 		public bool Universe_Request { get; set; }
 		public StrongString ReleasingDate { get; set; } = null;
 		#endregion
 		//-------------------------------------------------
+		#region events Region
+		public event SimpleEventHandler Unloading;
+		#endregion
+		//-------------------------------------------------
 		#region field's Region
-
+		private bool _disposed = false;
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region
@@ -147,6 +154,7 @@ namespace GUISharp.Client
 			GUIClient = gUIClient;
 			try
 			{
+				
 				var w = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 				var h = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 				GraphicsDM = new GraphicsDeviceManager(this)
@@ -161,13 +169,13 @@ namespace GUISharp.Client
 			catch (NoSuitableGraphicsDeviceException ex)
 			{
 				Verified = false;
-				Console.WriteLine(ex.Message);
+				AppLogger.Fatal("It seems you can't run this application", ex);
 				return;
 			}
 			catch (Exception ex)
 			{
 				Verified = false;
-				Console.WriteLine("Another exception:\n " + ex.Message);
+				AppLogger.Log(ex);
 				return;
 			}
 			//---------------------------------------------

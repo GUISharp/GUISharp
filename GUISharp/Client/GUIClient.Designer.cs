@@ -18,6 +18,7 @@
 
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Logging;
 using static GUISharp.Constants.ThereIsGConstants;
 
@@ -29,7 +30,7 @@ namespace GUISharp.Client
 		#region Initialize Method's Region
 		/// <summary>
 		/// The initialize component method which should be present
-		/// in all of `.designer.cs` files.
+		/// in all of <c>.designer.cs</c> files.
 		/// This method should remains private, please do NOT
 		/// make it public or internal.
 		/// <!--
@@ -143,6 +144,14 @@ namespace GUISharp.Client
 				AppLogger.Log(ex);
 			}
 		}
+		public virtual GraphicsDevice GetDevice()
+		{
+			if (this._g != null)
+			{
+				return this._g.GraphicsDevice;
+			}
+			return null;
+		}
 		/// <summary>
 		/// Make this application a single runner so if the user
 		/// open up this application twice, it won't start the client
@@ -180,6 +189,7 @@ namespace GUISharp.Client
 		/// </summary>
 		internal void ApplyGraphicsChange()
 		{
+			
 			try
 			{
 				this._g?.GraphicsDM?.ApplyChanges();

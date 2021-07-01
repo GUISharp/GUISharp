@@ -359,15 +359,15 @@ namespace GUISharp.Controls.Elements
 			}
 			return false;
 		}
-		public GraphicElement[] GetArray(ElementPriority _p)
+		public GraphicElement[] GetArray(ElementPriority p)
 		{
 			// get the array of the list.
-			return GetList(_p).GetArray();
+			return GetList(p).GetArray();
 		}
-		public ElementList<GraphicElement> GetList(ElementPriority _p)
+		public ElementList<GraphicElement> GetList(ElementPriority p)
 		{
 			// switch on the priority to get the right element list.
-			return _p switch
+			return p switch
 			{
 				ElementPriority.VeryLow => VeryLowElements,
 				ElementPriority.Low => LowElements,
@@ -380,10 +380,10 @@ namespace GUISharp.Controls.Elements
 				_ => null,
 			};
 		}
-		public ElementList<SandBoxElement> GetList(SandBoxPriority _p)
+		public ElementList<SandBoxElement> GetList(SandBoxPriority p)
 		{
 			// switch on the sandbox priority to get the right element list.
-			return _p switch
+			return p switch
 			{
 				SandBoxPriority.LowSandBox => LowSandBoxes,
 				SandBoxPriority.TopMostSandBox => TopMostSandBoxes,
@@ -393,7 +393,7 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Ordinary Method's Region
-		public void MouseChange()
+		internal void MouseChange()
 		{
 			if (this.TopMostErrorSandBox != null)
 			{

@@ -32,29 +32,24 @@ namespace GUISharp.GUIObjects.WMath
         {
 
         }
-        public ListW(IEnumerable<T> _e) : base(_e)
+        public ListW(IEnumerable<T> e) : base(e)
         {
 
         }
-        public ListW(int _cap) : base(_cap)
+        public ListW(int cap) : base(cap)
         {
 
         }
         #endregion
         //-------------------------------------------------
         #region Get Method's Region
-        public virtual bool Exists(T _item)
+        public virtual bool Exists(T item)
         {
-            return Contains(_item);
+            return Contains(item);
         }
         public virtual T[] GetArray()
         {
-            T[] _t = new T[Length];
-            for (int i = 0; i < Length; i++)
-            {
-                _t[i] = this[i];
-            }
-            return _t;
+            return ToArray();
         }
         #endregion
         //-------------------------------------------------

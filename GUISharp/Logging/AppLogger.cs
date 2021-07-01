@@ -17,6 +17,7 @@
  */
 
 using System;
+using GUISharp.Constants;
 
 namespace GUISharp.Logging
 {
@@ -34,7 +35,6 @@ namespace GUISharp.Logging
 			{
 				return;
 			}
-			var d = DateTime.Now;
 			foreach (var obj in objs)
 			{
 				switch (obj)
@@ -46,6 +46,7 @@ namespace GUISharp.Logging
 					}
 					default:
 					{
+						var d = DateTime.Now;
 						Console.Write(d.ToString() + ": ");
 						Console.WriteLine(obj);
 						break;
@@ -62,6 +63,11 @@ namespace GUISharp.Logging
 			Console.WriteLine(ex.Source);
 			Console.WriteLine("With Message: ");
 			Console.WriteLine(ex.Message);
+		}
+		public static void Fatal(params object[] objs)
+		{
+			Log(objs);
+			ThereIsGConstants.Forming.GClient?.Exit();
 		}
 		#endregion
 		//-------------------------------------------------

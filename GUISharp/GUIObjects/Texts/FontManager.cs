@@ -76,6 +76,7 @@ namespace GUISharp.GUIObjects.Texts
 		private FontSystem _GUISharp_bold;
 		private FontSystem _GUISharp_regular;
 		private FontSystem _noto_sans_regular;
+		private FontSystemSettings _settings;
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region
