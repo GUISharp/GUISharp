@@ -1,3 +1,6 @@
+
+#if __WINDOWS__
+
 using System.IO;
 
 namespace GUISharp.Controls.Music
@@ -63,3 +66,5 @@ namespace GUISharp.Controls.Music
 		//-------------------------------------------------
 	}
 }
+
+#endif //__WINDOWS__

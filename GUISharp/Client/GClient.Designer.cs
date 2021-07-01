@@ -21,12 +21,10 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 using GUISharp.WotoProvider.Enums;
 using GUISharp.WotoProvider.EventHandlers;
 using GUISharp.SandBox;
 using GUISharp.Controls;
-using GUISharp.Constants;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
 using GUISharp.GUIObjects.Graphics;
@@ -222,6 +220,9 @@ namespace GUISharp.Client
 			//---------------------------------------------
 			//news:
 			this.MyRes = new WotoRes(typeof(GClient));
+			#if __WINDOWS__
+			this.MusicManager = MusicManager.GetMusicManager();
+			#endif //__WINDOWS__
 			this.InitializeMainEvents();
 			//this.LoadMFBackGround();
 			//---------------------------------------------

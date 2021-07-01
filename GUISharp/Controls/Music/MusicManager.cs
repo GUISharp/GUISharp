@@ -1,4 +1,7 @@
 
+
+
+
 using GUISharp.GUIObjects.Resources;
 
 namespace GUISharp.Controls.Music
@@ -7,8 +10,15 @@ namespace GUISharp.Controls.Music
 	/// Music manager of GUISharp library.
 	/// It's for internal usages only.
 	/// </summary>
-	internal sealed partial class MusicManager : IRes
+	internal sealed partial class MusicManager
+#if __WINDOWS
+	
+	
+	: IRes
+#endif
 	{
+		
+#if __WINDOWS__
 		//-------------------------------------------------
 		#region Constant's Region
 		public const string ClickNoise_FileNameInRes = "m__1u_2__1";
@@ -57,6 +67,7 @@ namespace GUISharp.Controls.Music
 		}
 		#endregion
 		//-------------------------------------------------
-
+#endif
 	}
 }
+

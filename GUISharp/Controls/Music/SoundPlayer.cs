@@ -2,12 +2,12 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
+#if __WINDOWS__
+
 #define SAO_SOUND_PLAYER
 
 using System;
 using System.IO;
-using System.ComponentModel;
-using System.Threading.Tasks;
 using GUISharp.Client;
 using GUISharp.Logging;
 using GUISharp.Constants;
@@ -258,3 +258,5 @@ namespace GUISharp.Controls.Music
 		//-------------------------------------------------
 	}
 }
+
+#endif //__WINDOWS__

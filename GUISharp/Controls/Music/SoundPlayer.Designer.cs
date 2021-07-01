@@ -2,6 +2,8 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
+#if __WINDOWS__
+
 using System;
 using System.Threading.Tasks;
 
@@ -516,3 +518,5 @@ namespace GUISharp.Controls.Music
 		//---------------------------------------------
 	}
 }
+
+#endif //__WINDOWS__

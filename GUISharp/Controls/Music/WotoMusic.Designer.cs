@@ -2,6 +2,8 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
+#if __WINDOWS__
+
 using GUISharp.GUIObjects.Resources;
 
 namespace GUISharp.Controls.Music
@@ -22,3 +24,5 @@ namespace GUISharp.Controls.Music
         //-------------------------------------------------
     }
 }
+
+#endif //__WINDOWS__

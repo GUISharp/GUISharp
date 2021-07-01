@@ -25,7 +25,6 @@ using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Logging;
 using GUISharp.Security;
 using GUISharp.Constants;
-using GUISharp.Controls.Music;
 
 namespace GUISharp.GUIObjects.Resources
 {

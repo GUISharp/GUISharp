@@ -24,7 +24,9 @@ using GUISharp.Logging;
 using GUISharp.Controls;
 using GUISharp.Security;
 using GUISharp.Constants;
+#if __WINDOWS__
 using GUISharp.Controls.Music;
+#endif //__WINDOWS__
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
 using GUISharp.GUIObjects.Graphics;
@@ -81,7 +83,9 @@ namespace GUISharp.Client
 		/// </summary>
 		public FlatElement FirstFlatElement { get; private set; }
 		public Texture2D BackGroundTexture { get; private set; }
+		#if __WINDOWS__
 		internal MusicManager MusicManager { get; private set; }
+		#endif //__WINDOWS__
 		internal RequestType Request { get; set; }
 		internal MouseState LastMouseState { get; private set; }
 		internal IInputable InputElement { get; private set; }

@@ -2,6 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE', which is part of the source code.
 
+#if __WINDOWS__
 
 namespace GUISharp.Controls.Music
 {
@@ -18,3 +19,5 @@ namespace GUISharp.Controls.Music
         ClickNoise  = 1,
     }
 }
+
+#endif //__WINDOWS__

@@ -16,7 +16,7 @@
 	along with this source code of library. 
 	If not, see <http://www.gnu.org/licenses/>.
 -->
-<root>
+<root Condition="'$(OS)' == 'Windows_NT'">
 	<!-- 
 		Microsoft ResX Schema 
 		
