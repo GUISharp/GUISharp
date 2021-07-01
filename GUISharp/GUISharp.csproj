@@ -26,7 +26,7 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<TargetFramework>net5.0</TargetFramework>
 		<PackageId>GUISharp</PackageId>
-		<Version>1.0.12</Version>
+		<Version>1.0.13</Version>
 		<Authors>ALiwoto</Authors>
     	<PackageProjectUrl>https://github.com/GUISharp/GUISharp</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GUISharp/GUISharp</RepositoryUrl>
@@ -87,7 +87,25 @@
 		<None Remove="Controls\Music\MusicManager.resx"/>
 	</ItemGroup>
 	<!--===================================================-->
-	
+	<ItemGroup>
+		<Content Include="..\natives\libgdiplus.so">
+			<Link>libgdiplus.so</Link>
+			<PackagePath>runtimes\linux-x64\native</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    	</Content>
+		
+		<Content Include="..\natives\libgdiplus.so.0">
+			<Link>libgdiplus.so.0</Link>
+			<PackagePath>runtimes\linux-x64\native</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    	</Content>
+		
+		<Content Include="..\natives\libgdiplus.so.0.0.0">
+			<Link>libgdiplus.so.0.0.0</Link>
+			<PackagePath>runtimes\linux-x64\native</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    	</Content>
+	</ItemGroup>
 	<!--===================================================-->
 	<ItemGroup>
 		<!--Include the project folders here.-->

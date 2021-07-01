@@ -17,6 +17,7 @@
  */
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using GUISharp.Controls;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
@@ -126,6 +127,20 @@ namespace GUISharp.Client
 			set
 			{
 				;
+			}
+		}
+		/// <summary>
+		/// Get the content manager (if it exists)
+		/// </summary>
+		public virtual ContentManager ContentManager 
+		{
+			get
+			{
+				if (_g != null)
+				{
+					return _g.Content;
+				}
+				return null;
 			}
 		}
 		/// <summary>

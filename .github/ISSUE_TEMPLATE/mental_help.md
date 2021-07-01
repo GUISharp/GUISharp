@@ -1,9 +1,9 @@
 ---
 name: Mental Help
 about: If you need a mental help, please contact us
-title: ''
+title: 'Mental Help issue!'
 labels: ''
-assignees: ''
+assignees: 'ALiwoto'
 
 ---
 

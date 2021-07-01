@@ -18,6 +18,8 @@
 
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Logging;
 using static GUISharp.Constants.ThereIsGConstants;
@@ -402,6 +404,38 @@ namespace GUISharp.Client
 						return;
 					}
 				}
+			}
+		}
+		public virtual void PlaySong(Song song)
+		{
+			MediaPlayer.Play(song);
+		}
+		public virtual void PlaySong(string name, string file)
+		{
+			try
+			{
+				MediaPlayer.Play(Song.FromUri(name, new(file)));
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+				return;
+			}
+		}
+		public virtual void PlaySong(string contentName)
+		{
+			if (this.ContentManager == null)
+			{
+				return;
+			}
+			try
+			{
+				MediaPlayer.Play(this.ContentManager.Load<Song>(contentName));
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+				return;
 			}
 		}
 		#endregion

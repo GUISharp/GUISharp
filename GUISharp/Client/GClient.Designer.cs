@@ -218,13 +218,7 @@ namespace GUISharp.Client
 		private void InitializeComponents()
 		{
 			//---------------------------------------------
-			//news:
-			this.MyRes = new WotoRes(typeof(GClient));
-			#if __WINDOWS__
-			this.MusicManager = MusicManager.GetMusicManager();
-			#endif //__WINDOWS__
-			this.InitializeMainEvents();
-			//this.LoadMFBackGround();
+			
 			//---------------------------------------------
 			//names:
 			//status:
@@ -345,8 +339,16 @@ namespace GUISharp.Client
 		/// </summary>
 		protected override void Initialize()
 		{
+			//---------------------------------------------
+			//news:
 			this.FontManager ??= FontManager.GenerateManager(this);
 			this.ElementManager ??= new ElementManager();
+			this.MyRes ??= new WotoRes(typeof(GClient));
+#if __WINDOWS__
+			this.MusicManager = MusicManager.GetMusicManager();
+#endif //__WINDOWS__
+			this.InitializeMainEvents();
+			
 			GraphicsDM.PreferredBackBufferWidth = GameUniverse.DefaultWidth;
 			GraphicsDM.PreferredBackBufferHeight = GameUniverse.DefaultHeight;
 			base.Initialize();
