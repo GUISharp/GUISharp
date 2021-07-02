@@ -76,7 +76,6 @@ namespace GUISharp.Constants
 						{
 							return false;
 						}
-						AppLogger.Log("e3245: ", e);
 						throw;
 					}
 				}
@@ -102,11 +101,15 @@ namespace GUISharp.Constants
 				}
 				catch (FileNotFoundException)
 				{
-					AppLogger.Log("GUISharp-inner: okay");
 					return true;
 				}
 				catch(Exception e)
 				{
+					// something weird is here?
+					// we expected that we should get a FileNotFoundException,
+					// but the exception type didn't match it.
+					// we will log the exception, but still we will 
+					// return false.
 					AppLogger.Log(e);
 					return false;
 				}
@@ -144,7 +147,6 @@ namespace GUISharp.Constants
 				}
 				catch (Exception e) 
 				{
-					Debug.Print(e.ToString());
 					AppLogger.Log(e);
 					return false;
 				}

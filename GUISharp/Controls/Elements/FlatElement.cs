@@ -18,7 +18,6 @@
 
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Security;
 
 namespace GUISharp.Controls.Elements

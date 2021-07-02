@@ -22,6 +22,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FontStashSharp;
 using TextCopy;
+using GUISharp.Logging;
 using GUISharp.WotoProvider.Enums;
 using GUISharp.WotoProvider.EventHandlers;
 using GUISharp.Security;
@@ -616,7 +617,8 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region event Method's Region
-		public void InputEvent(object sender, TextInputEventArgs e)
+		public virtual void InputEvent(object sender,
+											 TextInputEventArgs e)
 		{
 			if (this.Font == null)
 			{
@@ -648,7 +650,6 @@ namespace GUISharp.Controls.Elements
 			}
 			this.ChangeText(this.Text.Append(e.Character, true));
 		}
-		
 		/// <summary>
 		/// event that should be called from BigFather (MainClient)
 		/// which tells us a shortcut key on user's keyboard
@@ -668,7 +669,8 @@ namespace GUISharp.Controls.Elements
 		/// <param name="ctrl">
 		/// it's `true` if user holds control key on it's keyboard.
 		/// </param>
-		public void ShortcutEvent(object sender, InputKeyEventArgs e, bool ctrl)
+		public virtual void ShortcutEvent(object sender, 
+			InputKeyEventArgs e, bool ctrl)
 		{
 			if (ctrl)
 			{
@@ -682,7 +684,7 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
-		private void PasteEvent(InputKeyEventArgs e)
+		protected internal virtual void PasteEvent(InputKeyEventArgs e)
 		{
 			if (this.Font == null)
 			{
@@ -691,6 +693,7 @@ namespace GUISharp.Controls.Elements
 			try
 			{
 				StrongString text = null;
+				// TODO: when it's multiline...
 				if (!this.IsMultiLine)
 				{
 					text = ClipboardService.GetText();
@@ -717,7 +720,8 @@ namespace GUISharp.Controls.Elements
 				Console.WriteLine(ex.Message);
 			}
 		}
-		private void _flat_MouseLeave(object sender, EventArgs e)
+		protected internal virtual void _flat_MouseLeave(object sender,
+												   EventArgs e)
 		{
 			if (this.InMouseEnterEffect)
 			{
@@ -726,16 +730,18 @@ namespace GUISharp.Controls.Elements
 					TheMouseInput.Mouse.SetCursor(TheMouseInput.MouseCursor.Arrow);
 					this.InMouseEnterEffect = false;
 				} 
-				catch 
+				catch(Exception ex)
 				{
 					// can't do anything here,
 					// it's really weird to reach here after all.
 					// since it's not a necessary feature to change the
 					// cursor, we don't need to throw the exception anyway.
+					AppLogger.Log(ex);
 				}
 			}
 		}
-		private void _flat_MouseEnter(object sender, EventArgs e)
+		protected internal virtual void _flat_MouseEnter(object sender,
+												   EventArgs e)
 		{
 			if (this.UseMouseEnterEffect && !this.InMouseEnterEffect)
 			{
@@ -744,12 +750,13 @@ namespace GUISharp.Controls.Elements
 					TheMouseInput.Mouse.SetCursor(TheMouseInput.MouseCursor.IBeam);
 					this.InMouseEnterEffect = true;
 				} 
-				catch 
+				catch(Exception ex)
 				{
 					// can't do anything here,
 					// it's really weird to reach here after all.
 					// since it's not a necessary feature to change the
 					// cursor, we don't need to throw the exception anyway.
+					AppLogger.Log(ex);
 				}
 			}
 		}
