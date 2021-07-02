@@ -278,6 +278,10 @@ namespace GUISharp.Client
 			{
 				this._g.GraphicsDM.PreferredBackBufferHeight = h;
 			}
+			if (this.IsFullScreen)
+			{
+				this.ToggleFullScreen();
+			}
 			if (!this.IsStarted)
 			{
 				if (!bw)

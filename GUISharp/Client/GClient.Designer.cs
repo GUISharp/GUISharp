@@ -440,7 +440,7 @@ namespace GUISharp.Client
 				return;
 			}
 			//this.MySprite.Begin();
-			this.MySprite.Draw(this.BackGroundTexture, this.GameUniverse.XRectangle, 
+			this.MySprite.Draw(this.BackGroundTexture, this.Window.ClientBounds, 
 				this.BackGroundTexture.Bounds, 
 				Color.White);
 			//this.MySprite.End();

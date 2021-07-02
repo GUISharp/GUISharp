@@ -84,7 +84,6 @@ namespace GUISharp.Client
 		public StrongString ConfigDir { get; private set; }
 		public StrongString LastCommand { get; private set; }
 		public ClientSizeMode StartMode { get; }
-		public XRectangle XRectangle { get; }
 		public Point DefaultPoint { get; set; }
 		public int DefaultWidth { get; set; }
 		public int DefaultHeight { get; set; }
@@ -205,18 +204,16 @@ namespace GUISharp.Client
 		{
 			var w = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 			var h = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-			var ww = Client.GraphicsDM.PreferredBackBufferWidth;
-			var wh = Client.GraphicsDM.PreferredBackBufferHeight;
 			int x, y;
-			DefaultWidth = ww;
-			DefaultHeight = wh;
+			DefaultWidth = Width;
+			DefaultHeight = Height;
 			switch (StartMode)
 			{
 					case ClientSizeMode.MinimumMiddle:
 					case ClientSizeMode.HalfMiddle:
 					{
-						x = (w / 2) - (ww / 2);
-						y = (h / 2) - (wh / 2);
+						x = (w / 2) - (DefaultWidth / 2);
+						y = (h / 2) - (DefaultHeight / 2);
 						break;
 					}
 					case ClientSizeMode.FullScreen:

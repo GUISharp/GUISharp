@@ -534,7 +534,7 @@ namespace GUISharp.Controls.Elements
 				this.Focused = false;
 			}
 		}
-		internal void EnableMouseEnterEffect()
+		public void EnableMouseEnterEffect()
 		{
 			this.UseMouseEnterEffect = true;
 		}

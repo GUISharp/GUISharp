@@ -14,8 +14,10 @@ namespace Tests
 	{
 		protected override void InitializeComponents()
 		{
+			//this.ToggleFullScreen();
 			this.ChangeSize(700, 700);
 			this.ChangeLocation(10, 10);
+			this.ChangeBackground(Texture2D.FromFile(this.GetDevice(), "/home/mrwoto/Ali/Programming/Projects/LTW/LTW-client/LTW-client/LTW/Resources/screens/first_loadoing_screen/BackEntry0.bin"));
 
 			FlatElement test = new FlatElement(this);
 			ButtonElement b = new ButtonElement(this);
@@ -26,7 +28,7 @@ namespace Tests
 			testInput.ChangeSize();
 			b.ChangeSize();
 			test.ChangeLocation(10, 10);
-			testInput.ChangeLocation(90, 90);
+			testInput.ChangeLocation(190, 90);
 			fImage.ChangeLocation(400, 400);
 			b.ChangeLocation(270, 270);
 			test.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 0x40));
@@ -56,6 +58,7 @@ namespace Tests
 			fImage.ChangeMovements(ElementMovements.VerticalHorizontalMovements);
 			//test.EnableOwnerMover();
 			b.EnableMouseEnterEffect();
+			testInput.EnableMouseEnterEffect();
 			
 
 
@@ -65,6 +68,8 @@ namespace Tests
 			g.Save();
 			MemoryStream m = new MemoryStream();
 			image.Save(m, System.Drawing.Imaging.ImageFormat.Png);
+
+
 
 			test.Enable();
 			test.Apply();

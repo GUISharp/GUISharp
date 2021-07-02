@@ -218,6 +218,10 @@ namespace GUISharp.Client
 				IsMouseVisible = true;
 				GameUniverse = new Universe(Window.Handle, this, mode);
 				Content.RootDirectory = ThereIsGConstants.Path.Content;
+				if (mode == ClientSizeMode.FullScreen)
+				{
+					GraphicsDM.ToggleFullScreen();
+				}
 			}
 			catch (NoSuitableGraphicsDeviceException ex)
 			{
