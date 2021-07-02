@@ -45,10 +45,15 @@ namespace GUISharp.Client
 		/// </summary>
 		private void InitializeMyComponent(ClientSizeMode mode)
 		{
+			AppLogger.Log("before setting up univese");
 			Universe.SetUpUniverse();
+			AppLogger.Log("univese done");
+
 			// check if the game is the single one process or not.
 			if (Actions.IsSingleOne() || !this.RunSingleInstance)
 			{
+				AppLogger.Log("GUISharp-step1");
+
 				//AppSettings.DECoder = new DECoder();
 				// check if we can manage to create a single-one
 				// provider peeker or not.
@@ -56,15 +61,20 @@ namespace GUISharp.Client
 				// which will be visible to another instances.
 				if (Actions.CreateSingleOne() || !this.RunSingleInstance)
 				{
+					AppLogger.Log("GUISharp-step2");
+
 					// it means the game is the single-instance,
 					// so you can now run the game.
 					// so, create a new instance of the game client.
 					// set the verified property to true,
 					// to show the single-instance has been verified.
 					this._g = new(true, this, mode);
+					AppLogger.Log("GUISharp-step3");
+
 				}
 				else
 				{
+					AppLogger.Log("GUISharp-step5");
 					return;
 				}
 			}
@@ -77,6 +87,7 @@ namespace GUISharp.Client
 					// send a request to another universe and tell them:
 					// make your ass up and active your planet :/
 					Universe.Universe_Request();
+					AppLogger.Log("GUISharp-step6");
 				}
 				catch (Exception ex)
 				{
@@ -136,15 +147,20 @@ namespace GUISharp.Client
 		/// </summary>
 		public virtual void Start()
 		{
-			if (this._g.Verified)
+			if (!this._g.Verified)
 			{
 				AppLogger.Log("Cannot start the app");
 				AppLogger.Log("There is a problem in proccess.");
+				AppLogger.Log("The GClient didn't verify that it" +
+					" has been started successfully.");
+				return;
 			}
 			this.IsStarted = true;
 			try
 			{
+				AppLogger.Log("Calling run...");
 				this._g?.Run();
+				AppLogger.Log("Called run...");
 			}
 			catch (Exception ex)
 			{

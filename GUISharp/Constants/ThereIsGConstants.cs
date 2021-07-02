@@ -23,6 +23,7 @@ using System.Runtime.InteropServices;
 using System.IO.MemoryMappedFiles;
 using System.Globalization;
 using GUISharp.WotoProvider;
+using GUISharp.Logging;
 using GUISharp.WotoProvider.Interfaces;
 using GUISharp.Client;
 using GUISharp.Controls;
@@ -69,13 +70,13 @@ namespace GUISharp.Constants
 							FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 						return true;
 					}
-					catch (Exception _e)
+					catch (Exception e)
 					{
-						if (_e is IOException _io)
+						if (e is IOException _io)
 						{
 							return false;
 						}
-						//Console.WriteLine(_e.Message);
+						AppLogger.Log("e3245: ", e);
 						throw;
 					}
 				}
@@ -101,11 +102,12 @@ namespace GUISharp.Constants
 				}
 				catch (FileNotFoundException)
 				{
+					AppLogger.Log("GUISharp-inner: okay");
 					return true;
 				}
 				catch(Exception e)
 				{
-					Console.WriteLine(e);
+					AppLogger.Log(e);
 					return false;
 				}
 			}
@@ -140,10 +142,10 @@ namespace GUISharp.Constants
 					}
 					return true;
 				}
-				catch (Exception _e) 
+				catch (Exception e) 
 				{
-					Debug.Print(_e.ToString());
-					Console.WriteLine(_e.Message);
+					Debug.Print(e.ToString());
+					AppLogger.Log(e);
 					return false;
 				}
 			}
@@ -160,8 +162,9 @@ namespace GUISharp.Constants
 					s.Dispose();
 					return true;
 				}
-				catch
+				catch (Exception ex)
 				{
+					AppLogger.Log(ex);
 					return false;
 				}
 			}
