@@ -617,7 +617,7 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region event Method's Region
-		protected internal virtual void InputEvent(object sender,
+		public virtual void InputEvent(object sender,
 											 TextInputEventArgs e)
 		{
 			if (this.Font == null)
@@ -669,7 +669,7 @@ namespace GUISharp.Controls.Elements
 		/// <param name="ctrl">
 		/// it's `true` if user holds control key on it's keyboard.
 		/// </param>
-		protected internal virtual void ShortcutEvent(object sender, 
+		public virtual void ShortcutEvent(object sender, 
 			InputKeyEventArgs e, bool ctrl)
 		{
 			if (ctrl)
