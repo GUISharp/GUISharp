@@ -18,6 +18,7 @@
 
 using System;
 using Microsoft.Xna.Framework;
+using FontStashSharp;
 using GUISharp.Security;
 using GUISharp.WotoProvider.Enums;
 
@@ -127,6 +128,21 @@ namespace GUISharp.Controls.Elements
 			protected set
 			{
 				; // do nothing here.
+			}
+		}
+		public override SpriteFontBase Font
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Font;
+				}
+				return null;
+			}
+			protected set
+			{
+				ChangeFont(value);
 			}
 		}
 		public override Rectangle Rectangle
