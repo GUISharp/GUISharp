@@ -97,7 +97,7 @@ namespace GUISharp.Client
 		internal Point? PreviousRightDownPoint { get; private set; }
 		public GUIClient GUIClient { get; }
 	#nullable disable
-		//public SoundPlayer SoundPlayer { get; set; }
+		public Color BackColor { get; set; } = Color.Black;
 		public int Width
 		{
 			get

@@ -284,34 +284,7 @@ namespace GUISharp.Client
 			var text2 = readStream.ReadToEnd();
 			#endif
 		}
-		/// <summary>
-		/// Load the Main Form Background of the game.
-		/// </summary>
-		/// <param name="_loading"></param>
-		private void LoadMFBackGround(bool _loading = true)
-		{
-			if (_loading)
-			{
-				this.BackGroundTexture?.Dispose();
-				var _num = DateTime.Now.Second % EntryCount;
-				var _name = "EntryPicNameInRes" + _num.ToString();
-				var _b = (byte[]) this.MyRes.GetObject(_name);
-				using (var m = new MemoryStream(_b))
-				{
-					this.BackGroundTexture = Texture2D.FromStream(GraphicsDevice, m);
-				}
-			}
-			else
-			{
-				// Not Completed
-				this.BackGroundTexture?.Dispose();
-				using (var m = this.MyRes.GetStream("AincradNameInRes"))
-				{
-					this.BackGroundTexture = Texture2D.FromStream(GraphicsDevice, m);
-				}
-			}
-			
-		}
+		
 		#endregion
 		//-------------------------------------------------
 
@@ -427,7 +400,7 @@ namespace GUISharp.Client
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
-			this.GraphicsDevice.Clear(Color.Black);
+			this.GraphicsDevice.Clear(BackColor);
 			this.MySprite.Start();
 			this.DrawBackGround();
 			this.ElementManager?.Draw(gameTime, this.MySprite);
@@ -437,6 +410,26 @@ namespace GUISharp.Client
 		#endregion
 		//-------------------------------------------------
 		#region Background Method's Region
+		public void DisposeBackground()
+		{
+			this.BackGroundTexture?.Dispose();
+			this.BackGroundTexture = null;
+		}
+		public void UnloadBackground()
+		{
+			this.BackGroundTexture = null;
+		}
+		public void ChangeBackground(Texture2D t)
+		{
+			if (t != null && !t.IsDisposed)
+			{
+				this.BackGroundTexture = t;
+			}
+		}
+		public void ChangeBackColor(Color color)
+		{
+			this.BackColor = color;
+		}
 		/// <summary>
 		/// allow the <see cref="GClient"/> to draw its background.
 		/// </summary>
@@ -524,7 +517,7 @@ namespace GUISharp.Client
 		{
 			if (this.InputElement != null)
 			{
-				this.InputElement?.UnFocus();
+				this.InputElement.UnFocus();
 				this.InputElement = null;
 			}
 		}

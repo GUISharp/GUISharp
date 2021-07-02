@@ -77,6 +77,28 @@ namespace GUISharp.Controls.Elements
 			this.BeyondHighElements?.DisableAll();  // 7
 			this.TopMostElements?.DisableAll();	 // 8
 		}
+		public void HideAll()
+		{
+			this.VeryLowElements?.HideAll();	 // 1
+			this.LowElements?.HideAll();		 // 2
+			this.NormalElements?.HideAll();	  // 3
+			this.HighElements?.HideAll();		// 4
+			this.VeryHighElements?.HideAll();	// 5
+			this.SuperHighElements?.HideAll();   // 6
+			this.BeyondHighElements?.HideAll();  // 7
+			this.TopMostElements?.HideAll();	 // 8
+		}
+		public void ShowAll()
+		{
+			this.VeryLowElements?.ShowAll();	 // 1
+			this.LowElements?.ShowAll();		 // 2
+			this.NormalElements?.ShowAll();	  // 3
+			this.HighElements?.ShowAll();		// 4
+			this.VeryHighElements?.ShowAll();	// 5
+			this.SuperHighElements?.ShowAll();   // 6
+			this.BeyondHighElements?.ShowAll();  // 7
+			this.TopMostElements?.ShowAll();	 // 8
+		}
 		/// <summary>
 		/// use this when an ErrorSandBox is added to the manager.
 		/// this method will disable the all of SandBoxes.
@@ -445,21 +467,21 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// Adds an object to the end of the <see cref="ElementManager"/>.
 		/// </summary>
-		/// <param name="_e">
+		/// <param name="e">
 		/// The object to be added to the end of the <see cref="ElementManager"/>. The
 		/// value can be null for reference types.
 		/// </param>
-		public void Add(GraphicElement _e)
+		public void Add(GraphicElement e)
 		{
 			// check if the passed-by graphic element already exists or not.
-			if (this.Exists(_e))
+			if (this.Exists(e))
 			{
 				// it means the passed-by graphic element, already exists in this
 				// element manager, so you cannot add it again.
 				return;
 			}
 			// check if the passed-by graphic element is a sandbox or not.
-			if (_e is SandBoxBase _s)
+			if (e is SandBoxBase _s)
 			{
 				// check if the passed-by sandbox is an error sandbox or not.
 				if (_s.IsErrorSandBox() && _s is ErrorSandBox _err)
@@ -555,8 +577,8 @@ namespace GUISharp.Controls.Elements
 			}
 			// get the list of the elements using element's pririty property,
 			// and add it to that list.
-			var _l = GetList(_e.Priority);
-			_l?.Add(_e);
+			var _l = GetList(e.Priority);
+			_l?.Add(e);
 		}
 		/// <summary>
 		/// clear the whole element manager elements.
@@ -578,22 +600,63 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// Adds the elements of the specified collection to the end of the <see cref="ElementManager"/>.
 		/// </summary>
-		/// <param name="_e">
+		/// <param name="e">
 		/// the params elements.
 		/// </param>
-		public void AddRange(params GraphicElement[] _e)
+		public void AddRange(params GraphicElement[] e)
 		{
-			for (int i = 0; i < _e.Length; i++)
+			for (int i = 0; i < e.Length; i++)
 			{
-				Add(_e[i]);
+				Add(e[i]);
 			}
 		}
-		public void Remove(GraphicElement _e)
+		public void Remove(GraphicElement e, bool dispose = true)
 		{
-			if (Exists(_e))
+			if (Exists(e))
 			{
-				_e.Dispose();
+				if (dispose)
+				{
+					e.Dispose();
+				}
+				if (e is SandBoxElement s)
+				{
+
+				}
+				else
+				{
+					this.VeryLowElements?.Remove(e);
+					this.LowElements?.Remove(e);
+					this.NormalElements?.Remove(e);
+					this.HighElements?.Remove(e);
+					this.VeryHighElements?.Remove(e);
+					this.SuperHighElements?.Remove(e);
+					this.BeyondHighElements?.Remove(e);
+					this.TopMostElements?.Remove(e);
+				}
+				
+				
 			}
+		}
+		public void RemoveSandbox(SandBoxElement s, bool dispose = true)
+		{
+			if (dispose)
+			{
+				if (Exists(s))
+				{
+					s.Dispose();
+				}
+				else
+				{
+					return;
+				}
+			}
+			if (s == this.LowErrorSandBox)
+			{
+				this.LowErrorSandBox = null;
+				return;
+			}
+			this.LowSandBoxes?.Remove(s);
+			this.TopMostSandBoxes?.Remove(s);
 		}
 		/// <summary>
 		/// Dispose All Elements.

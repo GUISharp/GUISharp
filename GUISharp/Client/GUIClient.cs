@@ -18,6 +18,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using GUISharp.Screens;
 using GUISharp.Controls;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
@@ -243,6 +244,7 @@ namespace GUISharp.Client
 		/// Last edit: Jun 27 11:13;
 		/// -->
 		/// </summary>
+		public virtual Screen CurrentScreen { get; protected set; }
 		public virtual int Height
 		{
 			get

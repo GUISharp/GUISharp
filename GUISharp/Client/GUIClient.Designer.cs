@@ -18,9 +18,9 @@
 
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
+using GUISharp.Screens;
 using GUISharp.Logging;
 using static GUISharp.Constants.ThereIsGConstants;
 
@@ -361,6 +361,10 @@ namespace GUISharp.Client
 		{
 			this.ChangeLocation(new Point(x, y));
 		}
+		public virtual void ChangeLocation(float x, float y)
+		{
+			this.ChangeLocation((int)x, (int)y);
+		}
 		/// <summary>
 		/// Change the location of this client to the specified coordinates
 		/// on the user's screen. This method will immediately effect
@@ -405,6 +409,18 @@ namespace GUISharp.Client
 					}
 				}
 			}
+		}
+		public virtual void ChangeBackground(Texture2D t)
+		{
+			this._g?.ChangeBackground(t);
+		}
+		public virtual void ChangeBackColor(Color color)
+		{
+			this._g?.ChangeBackColor(color);
+		}
+		public virtual void ChangeScreen(Screen screen)
+		{
+			this.CurrentScreen = screen;
 		}
 		public virtual void PlaySong(Song song)
 		{
