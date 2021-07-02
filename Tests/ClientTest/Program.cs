@@ -1,5 +1,6 @@
 
 using System;
+using GUISharp.Logging;
 
 namespace Tests
 {
@@ -8,9 +9,12 @@ namespace Tests
 		[STAThread]
 		public static void Main()
 		{
-			
+			AppLogger.Enabled = true;
+			AppLogger.Log("Step1");
 			MainClient test = new MainClient();
+			AppLogger.Log("Step2");
 			test.Start();
+			AppLogger.Log("Step3");
 		}
 	}
 }

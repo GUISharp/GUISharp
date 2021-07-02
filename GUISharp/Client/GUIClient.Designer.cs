@@ -136,6 +136,11 @@ namespace GUISharp.Client
 		/// </summary>
 		public virtual void Start()
 		{
+			if (this._g.Verified)
+			{
+				AppLogger.Log("Cannot start the app");
+				AppLogger.Log("There is a problem in proccess.");
+			}
 			this.IsStarted = true;
 			try
 			{
