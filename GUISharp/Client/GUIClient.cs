@@ -132,6 +132,29 @@ namespace GUISharp.Client
 				;
 			}
 		}
+		public virtual string Title
+		{
+			get
+			{
+				if (_g != null)
+				{
+					return _g.Title;
+				}
+				return string.Empty;
+			}
+			set
+			{
+				if (_g != null)
+				{
+					_g.Title = value;
+				}
+			}
+		}
+		/// <summary>
+		/// The current active screen in the application.
+		/// It is null by default.
+		/// </summary>
+		public virtual Screen CurrentScreen { get; protected set; }
 		/// <summary>
 		/// Get the content manager (if it exists)
 		/// </summary>
@@ -246,7 +269,6 @@ namespace GUISharp.Client
 		/// Last edit: Jun 27 11:13;
 		/// -->
 		/// </summary>
-		public virtual Screen CurrentScreen { get; protected set; }
 		public virtual int Height
 		{
 			get
@@ -445,9 +467,9 @@ namespace GUISharp.Client
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public GUIClient()
+		public GUIClient(ClientSizeMode mode = ClientSizeMode.HalfMiddle)
 		{
-			InitializeMyComponent();
+			InitializeMyComponent(mode);
 		}
 			// some members here
 		#endregion

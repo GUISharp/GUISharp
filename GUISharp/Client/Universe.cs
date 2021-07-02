@@ -83,6 +83,7 @@ namespace GUISharp.Client
 		public StrongString ConfigPath { get; private set; }
 		public StrongString ConfigDir { get; private set; }
 		public StrongString LastCommand { get; private set; }
+		public ClientSizeMode StartMode { get; }
 		public XRectangle XRectangle { get; }
 		public Point DefaultPoint { get; set; }
 		public int DefaultWidth { get; set; }
@@ -174,10 +175,15 @@ namespace GUISharp.Client
 		/// <param name="_client_">
 		/// the client.
 		/// </param>
-		internal Universe(IntPtr _handle_, GClient _client_)
+		/// <param name="mode">
+		/// the start mode of application.
+		/// </param>
+		internal Universe(IntPtr _handle_, GClient _client_, 
+			ClientSizeMode mode)
 		{
 			Handle = _handle_;
 			Client = _client_;
+			StartMode = mode;
 			WotoPlanet = _client_.Window;
 			SetLocation();
 			SetWatcher();
@@ -201,9 +207,26 @@ namespace GUISharp.Client
 			var h = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 			var ww = Client.GraphicsDM.PreferredBackBufferWidth;
 			var wh = Client.GraphicsDM.PreferredBackBufferHeight;
+			int x, y;
 			DefaultWidth = ww;
 			DefaultHeight = wh;
-			DefaultPoint = new((w / 2) - (ww / 2), (h / 2) - (wh / 2));
+			switch (StartMode)
+			{
+					case ClientSizeMode.MinimumMiddle:
+					case ClientSizeMode.HalfMiddle:
+					{
+						x = (w / 2) - (ww / 2);
+						y = (h / 2) - (wh / 2);
+						break;
+					}
+					case ClientSizeMode.FullScreen:
+					default:
+					{
+						x = y = default;
+						break;
+					}
+				}
+			DefaultPoint = new(x, y);
 			WotoPlanet.Position = DefaultPoint;
 		}
 		/// <summary>

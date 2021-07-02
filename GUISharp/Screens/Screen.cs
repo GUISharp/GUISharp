@@ -23,6 +23,24 @@ namespace GUISharp.Screens
 		#region Properties Region
 		public virtual WotoRes MyRes { get; set; }
 		public virtual GUIClient Client { get; }
+		public virtual string Title
+		{
+			get
+			{
+				if (Client != null)
+				{
+					return Client.Title;
+				}
+				return string.Empty;
+			}
+			set
+			{
+				if (Client != null)
+				{
+					Client.Title = value;
+				}
+			}
+		}
 		public virtual ElementManager ElementManager
 		{
 			get
@@ -56,6 +74,17 @@ namespace GUISharp.Screens
 				return null;
 			}
 		}
+		public virtual Point Location
+		{
+			get
+			{
+				if (Client != null)
+				{
+					return Client.Location;
+				}
+				return default;
+			}
+		}
 		public virtual int Width
 		{
 			get
@@ -74,17 +103,6 @@ namespace GUISharp.Screens
 				if (Client != null)
 				{
 					return Client.Height;
-				}
-				return default;
-			}
-		}
-		public virtual Point Location
-		{
-			get
-			{
-				if (Client != null)
-				{
-					return Client.Location;
 				}
 				return default;
 			}

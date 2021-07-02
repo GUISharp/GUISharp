@@ -43,7 +43,7 @@ namespace GUISharp.Client
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		private void InitializeMyComponent()
+		private void InitializeMyComponent(ClientSizeMode mode)
 		{
 			Universe.SetUpUniverse();
 			// check if the game is the single one process or not.
@@ -61,7 +61,7 @@ namespace GUISharp.Client
 					// so, create a new instance of the game client.
 					// set the verified property to true,
 					// to show the single-instance has been verified.
-					this._g = new(true, this);
+					this._g = new(true, this, mode);
 				}
 				else
 				{

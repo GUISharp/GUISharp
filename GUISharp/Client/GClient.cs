@@ -98,6 +98,24 @@ namespace GUISharp.Client
 		public GUIClient GUIClient { get; }
 	#nullable disable
 		public Color BackColor { get; set; } = Color.Black;
+		public string Title
+		{
+			get
+			{
+				if (Window != null)
+				{
+					return Window.Title;
+				}
+				return string.Empty;
+			}
+			set
+			{
+				if (Window != null)
+				{
+					Window.Title = value;
+				}
+			}
+		}
 		public int Width
 		{
 			get
@@ -160,7 +178,8 @@ namespace GUISharp.Client
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region
-		public GClient(bool verify, GUIClient gUIClient)
+		public GClient(bool verify, GUIClient gUIClient, 
+			ClientSizeMode mode = ClientSizeMode.HalfMiddle)
 		{
 			if (!verify)
 			{
@@ -172,13 +191,32 @@ namespace GUISharp.Client
 				
 				var w = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 				var h = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+				switch (mode)
+				{
+					case ClientSizeMode.MinimumMiddle:
+					{
+						w = GUIClient.MIN_WIDTH;
+						h = GUIClient.MIN_HEIGHT;
+						break;
+					}
+					case ClientSizeMode.HalfMiddle:
+					{
+						w = w / 2;
+						h = h / 2;
+						break;
+					}
+					case ClientSizeMode.FullScreen:
+					{
+						break;
+					}
+				}
 				GraphicsDM = new GraphicsDeviceManager(this)
 				{
-					PreferredBackBufferWidth = w / 2,
-					PreferredBackBufferHeight = h / 2,
+					PreferredBackBufferWidth = w,
+					PreferredBackBufferHeight = h,
 				};
 				IsMouseVisible = true;
-				GameUniverse = new Universe(Window.Handle, this);
+				GameUniverse = new Universe(Window.Handle, this, mode);
 				Content.RootDirectory = ThereIsGConstants.Path.Content;
 			}
 			catch (NoSuitableGraphicsDeviceException ex)
