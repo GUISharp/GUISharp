@@ -146,14 +146,6 @@ namespace GUISharp.Client
 				AppLogger.Log(ex);
 			}
 		}
-		public virtual GraphicsDevice GetDevice()
-		{
-			if (this._g != null)
-			{
-				return this._g.GraphicsDevice;
-			}
-			return null;
-		}
 		/// <summary>
 		/// Make this application a single runner so if the user
 		/// open up this application twice, it won't start the client
@@ -176,6 +168,17 @@ namespace GUISharp.Client
 			if (!this.IsStarted)
 			{
 				this.RunSingleInstance = true;
+			}
+		}
+		public virtual void ToggleFullScreen()
+		{
+			try
+			{
+				this._g?.ToggleFullScreen();
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
 			}
 		}
 		/// <summary>
@@ -204,7 +207,22 @@ namespace GUISharp.Client
 		#endregion
 		//-------------------------------------------------
 		#region Get Method's Region
-		// some methods here
+		public virtual GraphicsDevice GetDevice()
+		{
+			if (this._g != null)
+			{
+				return this._g.GraphicsDevice;
+			}
+			return null;
+		}
+		public virtual GraphicsDeviceManager GetDeviceManager()
+		{
+			if (this._g != null)
+			{
+				return this._g.GraphicsDM;
+			}
+			return null;
+		}
 		#endregion
 		//-------------------------------------------------
 		#region Set Method's Region

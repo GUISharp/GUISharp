@@ -1,10 +1,10 @@
 using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using GUISharp.Client;
 using GUISharp.Controls;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
-using GUISharp.GUIObjects.Graphics;
 using GUISharp.GUIObjects.Resources;
 
 namespace GUISharp.Screens
@@ -54,6 +54,53 @@ namespace GUISharp.Screens
 					return Client.ContentManager;
 				}
 				return null;
+			}
+		}
+		public virtual int Width
+		{
+			get
+			{
+				if (Client != null)
+				{
+					return Client.Width;
+				}
+				return default;
+			}
+		}
+		public virtual int Height
+		{
+			get
+			{
+				if (Client != null)
+				{
+					return Client.Height;
+				}
+				return default;
+			}
+		}
+		public virtual Point Location
+		{
+			get
+			{
+				if (Client != null)
+				{
+					return Client.Location;
+				}
+				return default;
+			}
+		}
+		public virtual int X
+		{
+			get
+			{
+				return Location.X;
+			}
+		}
+		public virtual int Y
+		{
+			get
+			{
+				return Location.Y;
 			}
 		}
 		#endregion

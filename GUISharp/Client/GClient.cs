@@ -122,6 +122,17 @@ namespace GUISharp.Client
 		}
 		public bool Verified { get; set; }
 		public bool IsCtrlDown { get; private set; }
+		public bool IsFullScreen
+		{
+			get
+			{
+				if (GraphicsDM != null)
+				{
+					return GraphicsDM.IsFullScreen;
+				}
+				return default;
+			}
+		}
 		public bool IsDisposed
 		{
 			get

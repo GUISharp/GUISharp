@@ -448,6 +448,10 @@ namespace GUISharp.Client
 		#endregion
 		//-------------------------------------------------
 		#region Odrinary Method's Region
+		public void ToggleFullScreen()
+		{
+			this.GraphicsDM?.ToggleFullScreen();
+		}
 		private void CheckRequests()
 		{
 			// chec if there is a request from the universe or not.

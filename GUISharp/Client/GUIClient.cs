@@ -16,8 +16,10 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using GUISharp.Logging;
 using GUISharp.Screens;
 using GUISharp.Controls;
 using GUISharp.GUIObjects.Texts;
@@ -292,6 +294,17 @@ namespace GUISharp.Client
 		/// -->
 		/// </summary>
 		public virtual bool RunSingleInstance { get; protected set; }
+		public virtual bool IsFullScreen
+		{
+			get
+			{
+				if (_g != null)
+				{
+					return _g.IsFullScreen;
+				}
+				return default;
+			}
+		}
 		/// <summary>
 		/// Determines whether the border of the window is 
 		/// visible or not.
@@ -318,8 +331,9 @@ namespace GUISharp.Client
 						{
 							return _g.Window.IsBorderless;
 						}
-						catch
+						catch (Exception ex)
 						{
+							AppLogger.Log(ex);
 							return false;
 						}
 					}
@@ -338,9 +352,9 @@ namespace GUISharp.Client
 							{
 								_g.Window.IsBorderless = value;
 							}
-							catch
+							catch (Exception ex)
 							{
-								;
+								AppLogger.Log(ex);
 							}
 						}
 					}
