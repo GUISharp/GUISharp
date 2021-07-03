@@ -62,8 +62,9 @@ namespace GUISharp.Client
 		public const int DEFAULT_B_BASE		   = 0b10;
 		/// <summary>
 		/// The internal of worker which is for linux only.
+		/// it's 500ms.
 		/// </summary>
-		internal const int WORKER_INTERVAL = 0b111110100;
+		internal const int WORKER_INTERVAL = 0b101110111000;
 		#endregion
 		//-------------------------------------------------
 		#region Properties Region
@@ -83,7 +84,7 @@ namespace GUISharp.Client
 		public StrongString ConfigPath { get; private set; }
 		public StrongString ConfigDir { get; private set; }
 		public StrongString LastCommand { get; private set; }
-		public ClientSizeMode StartMode { get; }
+		internal ClientSizeMode StartMode { get; }
 		public Point DefaultPoint { get; set; }
 		public int DefaultWidth { get; set; }
 		public int DefaultHeight { get; set; }
@@ -224,7 +225,10 @@ namespace GUISharp.Client
 					}
 				}
 			DefaultPoint = new(x, y);
-			WotoPlanet.Position = DefaultPoint;
+			if (StartMode != ClientSizeMode.FullScreen)
+			{
+				WotoPlanet.Position = DefaultPoint;
+			}
 		}
 		/// <summary>
 		/// Set the watcher so they will start watching.

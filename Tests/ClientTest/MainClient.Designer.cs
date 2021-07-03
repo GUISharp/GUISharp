@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using GUISharp.Logging;
 using GUISharp.Controls.Elements;
+using GUISharp.SandBox;
+using GUISharp.SandBox.ErrorSandBoxes;
 using Color = Microsoft.Xna.Framework.Color;
 
 // sudo apt install libgdiplus
@@ -15,11 +17,13 @@ namespace Tests
 		protected override void InitializeComponents()
 		{
 			//this.ToggleFullScreen();
-			this.ChangeSize(700, 700);
-			this.ChangeLocation(10, 10);
+			//this.ChangeSize(700, 700);
+			//this.ChangeLocation(10, 10);
 			this.ChangeBackground(Texture2D.FromFile(this.GetDevice(), "/home/mrwoto/Ali/Programming/Projects/LTW/LTW-client/LTW-client/LTW/Resources/screens/first_loadoing_screen/BackEntry0.bin"));
 
 			FlatElement test = new FlatElement(this);
+			//LoginProfileSandBox l = new();
+			ConnectionClosedSandBox l = new();
 			ButtonElement b = new ButtonElement(this);
 			FlatElement fImage = new FlatElement(this);
 			InputElement testInput = new(this);
@@ -74,6 +78,9 @@ namespace Tests
 			test.Enable();
 			test.Apply();
 			test.Show();
+			l.Enable();
+			l.Apply();
+			l.Show();
 			fImage.Enable();
 			fImage.Apply();
 			fImage.Show();
@@ -93,9 +100,13 @@ namespace Tests
 			b.Apply();
 			b.Click += Button1_Click;
 			AppLogger.Enabled = true;
-			b.RightDown += (object sender, EventArgs e) =>
+			l.RightDown += (object sender, EventArgs e) =>
 			{
 				AppLogger.Log("RightDown");
+			};
+			l.MouseMove += (object sender, EventArgs e) =>
+			{
+				AppLogger.Log("Moved");
 			};
 			b.RightClick += (object sender, EventArgs e) =>
 			{
@@ -106,7 +117,7 @@ namespace Tests
 				AppLogger.Log("LeftClick");
 			};
 			
-			this.ElementManager.AddRange(b, test, fImage, testInput);
+			this.ElementManager.AddRange(l);
 			b.ClickAsync += (object sender, EventArgs e) =>
 			{
 				var s = Microsoft.Xna.Framework.Media.Song.FromUri("test", new("Egoist - Departures.mp3", UriKind.Relative));

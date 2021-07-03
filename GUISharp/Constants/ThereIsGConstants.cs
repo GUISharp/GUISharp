@@ -265,6 +265,7 @@ namespace GUISharp.Constants
 					AppSettings.GClient = value;
 				}
 			}
+			public static GUIClient GUIClient { get; set; }
 		}
 		public struct AppSettings
 		{

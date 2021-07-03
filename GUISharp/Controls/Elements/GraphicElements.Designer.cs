@@ -350,6 +350,7 @@ namespace GUISharp.Controls.Elements
 			if (this.IsMouseLocked)
 			{
 				this.IsMouseLocked = false;
+
 				// do NOT set LockedElement to null here.
 				// LockedElement = null;
 			}
@@ -411,18 +412,29 @@ namespace GUISharp.Controls.Elements
 					case ElementMovements.NoMovements:
 						return;
 					case ElementMovements.VerticalMovements:
-						this.ChangeLocation(pos.X, pos.Y + divergeY);
+						real().ChangeLocation(pos.X, pos.Y + divergeY);
 						break;
 					case ElementMovements.HorizontalMovements:
-						this.ChangeLocation(pos.X + divergeX, pos.Y);
+						real().ChangeLocation(pos.X + divergeX, pos.Y);
 						break;
 					case ElementMovements.VerticalHorizontalMovements:
-						this.ChangeLocation(pos.X + divergeX, pos.Y + divergeY);
+						real().ChangeLocation(pos.X + divergeX, pos.Y + divergeY);
 						break;
 					default:
 						break;
 				}
 				this.LastPoint = M_Manager.Point.ToVector2();
+			}
+			GraphicElement real()
+			{
+				if (this is FlatElement f)
+				{
+					if (f.Representor != null)
+					{
+						return f.Representor;
+					}
+				}
+				return this;
 			}
 		}
 		/// <summary>
@@ -473,12 +485,13 @@ namespace GUISharp.Controls.Elements
 			}
 			else
 			{
+				var locked = this.CheckMouseLocked();
 				// check if the mouse currently is in the region or not.
-				if (this.MouseIn() || this.IsMouseLocked)
+				if (this.MouseIn() || locked)
 				{
 					// check if mouse was in the region in previous update
 					// or not.
-					if (this.IsMouseIn || this.IsMouseLocked)
+					if (this.IsMouseIn || locked)
 					{
 						// it means in the previous update, the mouse pointer
 						// was in the region, and now it's also in the region.
@@ -553,14 +566,14 @@ namespace GUISharp.Controls.Elements
 		protected internal virtual void OnLeftClick()
 		{
 			var sender = GetSender();
-			this.LeftClick?.Invoke(sender, null);
-			this.Click?.Invoke(sender, null);
+			this.LeftClick?.Invoke(sender, EventArgs.Empty);
+			this.Click?.Invoke(sender, EventArgs.Empty);
 			if (this.LeftClickAsync != null)
 			{
 				Task.Run(() =>
 				{
 					// raise the event in another thread.
-					this.LeftClickAsync.Invoke(sender, null);
+					this.LeftClickAsync.Invoke(sender, EventArgs.Empty);
 				});
 			}
 			if (this.ClickAsync != null)
@@ -568,7 +581,7 @@ namespace GUISharp.Controls.Elements
 				Task.Run(() =>
 				{
 					// raise the event in another thread.
-					this.ClickAsync.Invoke(sender, null);
+					this.ClickAsync.Invoke(sender, EventArgs.Empty);
 				});
 			}
 		}
@@ -585,14 +598,14 @@ namespace GUISharp.Controls.Elements
 		protected internal virtual void OnRightClick()
 		{
 			var sender = GetSender();
-			this.RightClick?.Invoke(sender, null);
-			this.Click?.Invoke(sender, null);
+			this.RightClick?.Invoke(sender, EventArgs.Empty);
+			this.Click?.Invoke(sender, EventArgs.Empty);
 			if (this.RightClickAsync != null)
 			{
 				Task.Run(() =>
 				{
 					// raise the event in another thread.
-					this.RightClickAsync.Invoke(sender, null);
+					this.RightClickAsync.Invoke(sender, EventArgs.Empty);
 				});
 			}
 			if (this.ClickAsync != null)
@@ -600,7 +613,7 @@ namespace GUISharp.Controls.Elements
 				Task.Run(() =>
 				{
 					// raise the event in another thread.
-					this.ClickAsync.Invoke(sender, null);
+					this.ClickAsync.Invoke(sender, EventArgs.Empty);
 				});
 			}
 		}
@@ -617,13 +630,13 @@ namespace GUISharp.Controls.Elements
 		protected internal virtual void OnMouseEnter()
 		{
 			var sender = GetSender();
-			this.MouseEnter?.Invoke(sender, null);
+			this.MouseEnter?.Invoke(sender, EventArgs.Empty);
 			if (this.MouseEnterAsync != null)
 			{
 				Task.Run((() =>
 				{
 					// raise the event in another thread.
-					this.MouseEnterAsync.Invoke(sender, null);
+					this.MouseEnterAsync.Invoke(sender, EventArgs.Empty);
 				}));
 			}
 		}
@@ -640,13 +653,13 @@ namespace GUISharp.Controls.Elements
 		protected internal virtual void OnMouseLeave()
 		{
 			var sender = GetSender();
-			this.MouseLeave?.Invoke(sender, null);
+			this.MouseLeave?.Invoke(sender, EventArgs.Empty);
 			if (this.MouseLeaveAsync != null)
 			{
 				Task.Run((() =>
 				{
 					// raise the event in another thread.
-					this.MouseLeaveAsync.Invoke(sender, null);
+					this.MouseLeaveAsync.Invoke(sender, EventArgs.Empty);
 				}));
 			}
 		}
@@ -684,13 +697,13 @@ namespace GUISharp.Controls.Elements
 			// thread.
 			this.Shocker();
 			var sender = GetSender();
-			this.LeftDown?.Invoke(sender, null);
+			this.LeftDown?.Invoke(sender, EventArgs.Empty);
 			if (this.LeftDownAsync != null)
 			{
 				Task.Run((() =>
 				{
 					// raise the event in another thread.
-					this.LeftDownAsync.Invoke(sender, null);
+					this.LeftDownAsync.Invoke(sender, EventArgs.Empty);
 				}));
 			}
 		}
@@ -715,13 +728,13 @@ namespace GUISharp.Controls.Elements
 			// discharge the element in another thread.
 			this.Discharge();
 			var sender = GetSender();
-			this.LeftUp?.Invoke(sender, null);
+			this.LeftUp?.Invoke(sender, EventArgs.Empty);
 			if (this.LeftUpAsync != null)
 			{
 				Task.Run((() =>
 				{
 					// raise the event in another thread.
-					this.LeftUpAsync.Invoke(sender, null);
+					this.LeftUpAsync.Invoke(sender, EventArgs.Empty);
 				}));
 			}
 		}
@@ -751,13 +764,13 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 			var sender = GetSender();
-			this.RightDown?.Invoke(sender, null);
+			this.RightDown?.Invoke(sender, EventArgs.Empty);
 			if (this.RightDownAsync != null)
 			{
 				Task.Run((() =>
 				{
 					// raise the event in another thread.
-					this.RightDownAsync.Invoke(sender, null);
+					this.RightDownAsync.Invoke(sender, EventArgs.Empty);
 				}));
 			}
 		}
@@ -774,16 +787,40 @@ namespace GUISharp.Controls.Elements
 		protected internal virtual void OnRightUp()
 		{
 			var sender = GetSender();
-			this.RightUp?.Invoke(sender, null);
+			this.RightUp?.Invoke(sender, EventArgs.Empty);
 			if (this.RightUpAsync != null)
 			{
 				Task.Run((() =>
 				{
 					// raise the event in another thread.
-					this.RightUpAsync.Invoke(sender, null);
+					this.RightUpAsync.Invoke(sender, EventArgs.Empty);
 				}));
 			}
 		}
+		/// <summary>
+		/// Raises the <see cref="MouseMove"/> event.
+		/// </summary>
+		/// <!--
+		/// WARNING:
+		///		Do NOT use Task.Run for this method!
+		///		I've already used it for rasing the event handler in
+		///		the method, so you should NOT use it for call this method!
+		/// -->
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		protected internal virtual void OnMouseMove()
+		{
+			var sender = GetSender();
+			this.MouseMove?.Invoke(sender, EventArgs.Empty);
+			if (this.MouseMoveAsync != null)
+			{
+				Task.Run((() =>
+				{
+					// raise the event in another thread.
+					this.MouseMoveAsync.Invoke(sender, EventArgs.Empty);
+				}));
+			}
+		}
+		
 		private GraphicElement GetSender()
 		{
 			if (this is FlatElement f)
@@ -804,16 +841,7 @@ namespace GUISharp.Controls.Elements
 			var p2 = BigFather.LastMouseState.Position;
 			if (p1 != p2)
 			{
-				var sender = GetSender();
-				this.MouseMove?.Invoke(sender, null);
-				if (this.MouseMoveAsync != null)
-				{
-					Task.Run(() =>
-					{
-						// raise the event in another thread.
-						this.MouseMoveAsync?.Invoke(sender, null);
-					});
-				}
+				this.OnMouseMove();
 			}
 		}
 		/// <summary>
@@ -975,6 +1003,19 @@ namespace GUISharp.Controls.Elements
 			}
 			me = this.Rectangle.Contains(BigFather.CurrentState.Position);
 			return inChild || me;
+		}
+		public virtual bool CheckMouseLocked()
+		{
+			bool b = false;
+			if (this is FlatElement f)
+			{
+				b = LockedElement == f || LockedElement == f.Representor;
+			}
+			else
+			{
+				b = LockedElement == this;
+			}
+			return IsMouseLocked && b;
 		}
 		public virtual bool WasMouseIn()
 		{
@@ -1538,7 +1579,7 @@ namespace GUISharp.Controls.Elements
 		/// not in itself. Take note that we will add this suffix to it 
 		/// in this method).
 		/// </param>
-		internal virtual void ChangeImageDefault(StrongString name)
+		protected internal virtual void ChangeImageDefault(StrongString name)
 		{
 			this.ChangeImage(DefaultRes, name, false);
 		}
@@ -1567,7 +1608,7 @@ namespace GUISharp.Controls.Elements
 		{
 			// just check if the texture is not disposed,
 			// you don't have to check if the texture is null or not!
-			if (!texture.IsDisposed)
+			if (texture != null && !texture.IsDisposed)
 			{
 				// check if the current image is the same as the 
 				// passed texture or not

@@ -130,12 +130,23 @@ namespace GUISharp.Controls.Moving
         {
             return this.Elements.GetEnumerator();
         }
-        #endregion
+        protected virtual bool IsCorrectSender(object sender)
+		{
+			if (this.Activated is FlatElement f)
+			{
+				if (f.Representor == sender)
+				{
+					return true;
+				}
+			}
+			return this.Activated == sender;
+		}
+		#endregion
         //-------------------------------------------------
         #region Event Method's Region
         private void Activated_MouseMove(object sender, EventArgs e)
         {
-			if (this.Activated == null || sender != this.Activated)
+			if (this.Activated == null || !IsCorrectSender(sender))
 			{
 				return;
 			}
@@ -152,6 +163,13 @@ namespace GUISharp.Controls.Moving
                         return;
                     }
                 }
+				if (GraphicElement.LockedElement != null)
+				{
+					if (GraphicElement.LockedElement != this.Activated)
+					{
+						return;
+					}
+				}
                 this.MoveUs();
             }
         }

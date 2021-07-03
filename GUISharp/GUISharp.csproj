@@ -26,8 +26,8 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<TargetFramework>net5.0</TargetFramework>
 		<PackageId>GUISharp</PackageId>
-		<Version>1.0.20</Version>
-		<Authors>ALiwoto</Authors>
+		<Version>1.0.24</Version>
+		<Authors>GUISharp Authors</Authors>
     	<PackageProjectUrl>https://github.com/GUISharp/GUISharp</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GUISharp/GUISharp</RepositoryUrl>
 		<PackageIconUrl>https://github.com/GUISharp/GUISharp/raw/master/GUISharp/Icon.ico</PackageIconUrl>

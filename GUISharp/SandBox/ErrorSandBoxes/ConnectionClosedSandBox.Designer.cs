@@ -51,9 +51,9 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             this.BodyElement.SetStatus(1);
             this.ExitButton.SetStatus(1);
             //fontAndTextAligns:
-            this.TitleElement.ChangeFont(FontManager.GetSprite(GUISharp_Fonts.GUISharp_tt_regular, 18));
-            this.BodyElement.ChangeFont(FontManager.GetSprite(GUISharp_Fonts.GUISharp_tt_regular, 16));
-            this.ExitButton.ChangeFont(FontManager.GetSprite(GUISharp_Fonts.GUISharp_tt_regular, 15));
+            this.TitleElement.ChangeFont(FontManager.GetSprite(GUISharp_Fonts.GUISharp_tt_regular, 28));
+            this.BodyElement.ChangeFont(FontManager.GetSprite(GUISharp_Fonts.GUISharp_tt_regular, 26));
+            this.ExitButton.ChangeFont(FontManager.GetSprite(GUISharp_Fonts.GUISharp_tt_regular, 25));
             this.TitleElement.ChangeAlignmation(StringAlignmation.MiddleCenter);
             this.BodyElement.ChangeAlignmation(StringAlignmation.MiddleCenter);
             this.ExitButton.ChangeAlignmation(StringAlignmation.MiddleCenter);
@@ -76,7 +76,8 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             //locations:
             this.CenterToScreen();
             this.TitleElement.ChangeLocation(from_the_edge / 2, 0);
-            this.BodyElement.ChangeLocation(TitleElement.RealPosition.X, TitleElement.RealPosition.Y +
+            this.BodyElement.ChangeLocation(TitleElement.RealPosition.X, 
+				TitleElement.RealPosition.Y +
                 TitleElement.Height + SeparatorLine_Height);
             this.ExitButton.ChangeLocation((this.Width / 2) -
                 (this.ExitButton.Width / 2),
@@ -92,8 +93,11 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             this.BodyElement.ChangeForeColor(Color.White);
             this.ExitButton.ChangeBorder(ButtonColors.SpecialRed);
             //enableds:
+			this.TitleElement.Enable();
             this.TitleElement.EnableOwnerMover();
+			this.BodyElement.Enable();
             this.BodyElement.EnableOwnerMover();
+			this.ExitButton.Enable();
             this.ExitButton.EnableMouseEnterEffect();
             //texts:
             this.TitleElement.SetLabelText();
@@ -112,9 +116,9 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             //events:
             //---------------------------------------------
             //addRanges:
-
             //---------------------------------------------
             //finalBlow:
+			
             //---------------------------------------------
         }
         #endregion
@@ -149,7 +153,7 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             {
                 spriteBatch.Draw(this.RightTexture, this.RightTextureRectangle, this.Tint);
             }
-            spriteBatch.Finish();
+            //spriteBatch.Finish();
             // draw the manager
             this.Manager?.Draw(gameTime, spriteBatch);
         }
@@ -201,10 +205,12 @@ namespace GUISharp.SandBox.ErrorSandBoxes
             if (first)
             {
                 const int start_point = from_the_edge * 2;
-                const int off_set = (2 * from_the_edge / 5) + (4 * from_the_edge);
+                const int off_set = (2 * from_the_edge / 5) + 
+					(4 * from_the_edge);
                 int x, y, w, h;
                 int c_y = (int)(Height / 4) - (SeparatorLine_Height / 2);
-                int max1 = MathHelper.Max(this.LeftTexture.Height, this.RightTexture.Height);
+                int max1 = MathHelper.Max(this.LeftTexture.Height, 
+					this.RightTexture.Height);
                 max1 = MathHelper.Max(max1, this.LineTexture.Height);
                 int find_c = c_y + (max1 / 2);
                 //---------------------------------------------

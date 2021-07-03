@@ -215,13 +215,18 @@ namespace GUISharp.Client
 					PreferredBackBufferWidth = w,
 					PreferredBackBufferHeight = h,
 				};
+				if (mode == ClientSizeMode.FullScreen)
+				{
+					if (!GraphicsDM.IsFullScreen)
+					{
+						GraphicsDM.ToggleFullScreen();
+						GraphicsDM.ApplyChanges();
+					}
+					Window.IsBorderless = true;
+				}
 				IsMouseVisible = true;
 				GameUniverse = new Universe(Window.Handle, this, mode);
 				Content.RootDirectory = ThereIsGConstants.Path.Content;
-				if (mode == ClientSizeMode.FullScreen)
-				{
-					GraphicsDM.ToggleFullScreen();
-				}
 			}
 			catch (NoSuitableGraphicsDeviceException ex)
 			{

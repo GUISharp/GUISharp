@@ -88,7 +88,7 @@ namespace GUISharp.SandBox.ErrorSandBoxes
         #endregion
         //-------------------------------------------------
         #region Constructor's Region
-        internal ConnectionClosedSandBox() : base()
+        public ConnectionClosedSandBox() : base()
         {
             InitializeComponent();
         }

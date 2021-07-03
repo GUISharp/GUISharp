@@ -328,19 +328,35 @@ namespace GUISharp.Client
 			this.BackgroundRectangle = 
 				new(default, this.Window.ClientBounds.Size);
 			this.InitializeMainEvents();
-			
-			GraphicsDM.PreferredBackBufferWidth = GameUniverse.DefaultWidth;
-			GraphicsDM.PreferredBackBufferHeight = GameUniverse.DefaultHeight;
-			base.Initialize();
-			// check if the game window position is zero or not.
-			if (Window.Position != GameUniverse.DefaultPoint)
+			if (GameUniverse.StartMode != ClientSizeMode.FullScreen)
 			{
-				// set the game window position to the default
-				// value that we set before starting.
-				Window.Position = GameUniverse.DefaultPoint;
+				GraphicsDM.PreferredBackBufferWidth = GameUniverse.DefaultWidth;
+				GraphicsDM.PreferredBackBufferHeight = GameUniverse.DefaultHeight;
+				this.BackgroundRectangle = new(default, 
+					new(GameUniverse.DefaultWidth, GameUniverse.DefaultHeight));
 			}
-			GraphicsDM.ApplyChanges();
+			base.Initialize();
 
+			if (GameUniverse.StartMode != ClientSizeMode.FullScreen)
+			{
+				// check if the game window position is zero or not.
+				if (Window.Position != GameUniverse.DefaultPoint)
+				{
+					// set the game window position to the default
+					// value that we set before starting.
+					Window.Position = GameUniverse.DefaultPoint;
+				}
+				GraphicsDM.ApplyChanges();
+			}
+			else
+			{
+				if (!GraphicsDM.IsFullScreen)
+				{
+					this.GraphicsDM.ToggleFullScreen();
+					GraphicsDM.ApplyChanges();
+				}
+			}
+			
 			if (Universe.IsUnix && this.GUIClient.RunSingleInstance)
 			{
 				// check if game universe have to check the 

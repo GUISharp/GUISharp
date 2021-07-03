@@ -50,6 +50,7 @@ namespace GUISharp.SandBox
 			//colors:
 			this._flat.ChangeBackColor(new Color(Color.Black, 0.7f));
 			//enableds:
+			this._flat.Enable();
 			//texts:
 			//images:
 			//applyAndShow:
@@ -147,6 +148,7 @@ namespace GUISharp.SandBox
 		public override void ChangeLocation(float x, float y)
 		{
 			this._flat?.ChangeLocation(x, y);
+			base.ChangeLocation(x, y);
 		}
 		/// <summary>
 		/// change the location of this sandbox.
@@ -160,6 +162,7 @@ namespace GUISharp.SandBox
 		public override void ChangeLocation(int x, int y)
 		{
 			this._flat?.ChangeLocation(x, y);
+			base.ChangeLocation(x, y);
 		}
 		/// <summary>
 		/// change the location of this sandbox.
@@ -170,6 +173,7 @@ namespace GUISharp.SandBox
 		public override void ChangeLocation(Vector2 location)
 		{
 			this._flat?.ChangeLocation(location);
+			base.ChangeLocation(location);
 		}
 		/// <summary>
 		/// change the default font of this sandbox.
@@ -209,19 +213,82 @@ namespace GUISharp.SandBox
 		}
 		public override void ChangeMovements(ElementMovements movements)
 		{
-			if (this.MoveManager != null)
-			{
-				base.ChangeMovements(movements);
-			}
-			else
-			{
-				base.ChangeMovements(movements, new MoveManager(this));
-			}
+			this._flat?.ChangeMovements(movements);
 		}
-		public override void ChangeMovements(ElementMovements movements, IMoveManager manager)
+		public override void ChangeMovements(ElementMovements movements, 
+			IMoveManager manager)
 		{
-			base.ChangeMovements(movements, manager);
+			this._flat?.ChangeMovements(movements, manager);
 		}
+		public override void Shocker()
+		{
+			this._flat?.Shocker();
+		}
+		public override void Shocker(GraphicElement child)
+		{
+			this._flat?.Shocker(child);
+		}
+		public override void Discharge()
+		{
+			this._flat?.Discharge();
+		}
+		public override void LockMouse()
+		{
+			this._flat?.LockMouse();
+		}
+		public override bool CheckMouseLocked()
+		{
+			if (_flat != null)
+			{
+				return _flat.CheckMouseLocked();
+			}
+			return base.CheckMouseLocked();
+		}
+		public override void MoveMe(float divergeX, float divergeY)
+		{
+			this._flat?.MoveMe(divergeX, divergeY);
+		}
+		public override void MoveMe()
+		{
+			this._flat?.MoveMe();
+		}
+		protected internal override void OnLeftClick()
+		{
+			this._flat?.OnLeftClick();
+		}
+		protected internal override void OnRightClick()
+		{
+			this._flat?.OnRightClick();
+		}
+		protected internal override void OnMouseEnter()
+		{
+			this._flat?.OnMouseEnter();
+		}
+		protected internal override void OnMouseLeave()
+		{
+			this._flat?.OnMouseLeave();
+		}
+		protected internal override void OnMouseMove()
+		{
+			this._flat?.OnMouseMove();
+		}
+		protected internal override void OnLeftDown()
+		{
+			this._flat?.OnLeftDown();
+		}
+		protected internal override void OnLeftUp()
+		{
+			this._flat?.OnLeftUp();
+		}
+		protected internal override void OnRightDown()
+		{
+			this._flat?.OnRightDown();
+		}
+		protected internal override void OnRightUp()
+		{
+			this._flat?.OnRightUp();
+		}
+
 		#endregion
 		//-------------------------------------------------
 		#region ordinary Method's Region

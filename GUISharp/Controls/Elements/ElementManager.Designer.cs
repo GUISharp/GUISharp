@@ -421,7 +421,7 @@ namespace GUISharp.Controls.Elements
 			{
 				if (this.TopMostErrorSandBox.WasMouseIn())
 				{
-					this.TopMostErrorSandBox?.MouseChange();
+					this.TopMostErrorSandBox.MouseChange();
 					return;
 				}
 			}
@@ -429,7 +429,7 @@ namespace GUISharp.Controls.Elements
 			{
 				if (this.LowErrorSandBox.WasMouseIn())
 				{
-					this.LowErrorSandBox?.MouseChange();
+					this.LowErrorSandBox.MouseChange();
 					return;
 				}
 			}
@@ -437,7 +437,7 @@ namespace GUISharp.Controls.Elements
 			{
 				if (this.TopMostSandBoxes.WasMouseIn())
 				{
-					this.TopMostSandBoxes?.MouseChange();
+					this.TopMostSandBoxes.MouseChange();
 					return;
 				}
 			}
@@ -445,7 +445,7 @@ namespace GUISharp.Controls.Elements
 			{
 				if (this.LowSandBoxes.WasMouseIn())
 				{
-					this.TopMostSandBoxes?.MouseChange();
+					this.LowSandBoxes.MouseChange();
 					return;
 				}
 			}
@@ -457,7 +457,7 @@ namespace GUISharp.Controls.Elements
 					{
 						if (this.Elements[i].WasMouseIn())
 						{
-							this.Elements[i]?.MouseChange();
+							this.Elements[i].MouseChange();
 							return;
 						}
 					}
@@ -570,8 +570,8 @@ namespace GUISharp.Controls.Elements
 				{
 					// get the list of the sandboxes using passed-by 
 					// sandbox's SandBoxPriority property and add it to that list.
-					var _ls = GetList(_s.SandBoxPriority);
-					_ls?.Add(_s);
+					var ls = GetList(_s.SandBoxPriority);
+					ls?.Add(_s);
 					return;
 				}
 			}

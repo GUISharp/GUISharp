@@ -74,13 +74,13 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
-		public virtual bool ContainsChild(T _item)
+		public virtual bool ContainsChild(T item)
 		{
 			for (int i = 0; i < Length; i++)
 			{
 				if (this[i] != null)
 				{
-					if (this[i].ContainsChild(_item))
+					if (this[i].ContainsChild(item))
 					{
 						return true;
 					}
@@ -91,27 +91,6 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Ordinary Method's Region
-		public void MouseMove()
-		{
-			for (int i = Length - 1; i >= 0; i--)
-			{
-				// check if the MouseIn property of this element
-				// is true or not.
-				// it helps us find out if the mouse was in the
-				// region of the element or not.
-				if (this[i].IsMouseIn)
-				{
-
-				}
-				else
-				{
-					if (this[i].MouseIn())
-					{
-
-					}
-				}
-			}
-		}
 		/// <summary>
 		/// dispose all the elements in the list.
 		/// </summary>
