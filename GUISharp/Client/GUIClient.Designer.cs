@@ -191,6 +191,17 @@ namespace GUISharp.Client
 				AppLogger.Log(ex);
 			}
 		}
+		public virtual void FullScreen()
+		{
+			try
+			{
+				this._g?.FullScreen();
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+			}
+		}
 		/// <summary>
 		/// Apply the changes we have made to Graphical objects
 		/// and structures like Size, Location, etc...

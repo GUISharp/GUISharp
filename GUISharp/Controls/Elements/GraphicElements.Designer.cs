@@ -485,7 +485,7 @@ namespace GUISharp.Controls.Elements
 			}
 			else
 			{
-				var locked = this.CheckMouseLocked();
+				var locked = this.IsMouseLocked;
 				// check if the mouse currently is in the region or not.
 				if (this.MouseIn() || locked)
 				{
@@ -1003,19 +1003,6 @@ namespace GUISharp.Controls.Elements
 			}
 			me = this.Rectangle.Contains(BigFather.CurrentState.Position);
 			return inChild || me;
-		}
-		public virtual bool CheckMouseLocked()
-		{
-			bool b = false;
-			if (this is FlatElement f)
-			{
-				b = LockedElement == f || LockedElement == f.Representor;
-			}
-			else
-			{
-				b = LockedElement == this;
-			}
-			return IsMouseLocked && b;
 		}
 		public virtual bool WasMouseIn()
 		{

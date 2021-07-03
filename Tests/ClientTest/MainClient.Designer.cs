@@ -117,7 +117,11 @@ namespace Tests
 				AppLogger.Log("LeftClick");
 			};
 			
-			this.ElementManager.AddRange(l);
+			System.Threading.Tasks.Task.Run(() =>
+			{
+				System.Threading.Thread.Sleep(5000);
+				this.ElementManager.AddRange(l);
+			});
 			b.ClickAsync += (object sender, EventArgs e) =>
 			{
 				var s = Microsoft.Xna.Framework.Media.Song.FromUri("test", new("Egoist - Departures.mp3", UriKind.Relative));

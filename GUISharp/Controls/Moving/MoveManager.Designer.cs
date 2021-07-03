@@ -163,13 +163,6 @@ namespace GUISharp.Controls.Moving
                         return;
                     }
                 }
-				if (GraphicElement.LockedElement != null)
-				{
-					if (GraphicElement.LockedElement != this.Activated)
-					{
-						return;
-					}
-				}
                 this.MoveUs();
             }
         }

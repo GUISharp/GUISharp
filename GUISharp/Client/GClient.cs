@@ -217,11 +217,7 @@ namespace GUISharp.Client
 				};
 				if (mode == ClientSizeMode.FullScreen)
 				{
-					if (!GraphicsDM.IsFullScreen)
-					{
-						GraphicsDM.ToggleFullScreen();
-						GraphicsDM.ApplyChanges();
-					}
+					FullScreen();
 					Window.IsBorderless = true;
 				}
 				IsMouseVisible = true;

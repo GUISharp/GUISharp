@@ -236,14 +236,6 @@ namespace GUISharp.SandBox
 		{
 			this._flat?.LockMouse();
 		}
-		public override bool CheckMouseLocked()
-		{
-			if (_flat != null)
-			{
-				return _flat.CheckMouseLocked();
-			}
-			return base.CheckMouseLocked();
-		}
 		public override void MoveMe(float divergeX, float divergeY)
 		{
 			this._flat?.MoveMe(divergeX, divergeY);

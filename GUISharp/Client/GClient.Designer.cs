@@ -350,11 +350,7 @@ namespace GUISharp.Client
 			}
 			else
 			{
-				if (!GraphicsDM.IsFullScreen)
-				{
-					this.GraphicsDM.ToggleFullScreen();
-					GraphicsDM.ApplyChanges();
-				}
+				this.FullScreen();
 			}
 			
 			if (Universe.IsUnix && this.GUIClient.RunSingleInstance)
@@ -470,7 +466,21 @@ namespace GUISharp.Client
 		#region Odrinary Method's Region
 		public void ToggleFullScreen()
 		{
-			this.GraphicsDM?.ToggleFullScreen();
+			if (Universe.IsUnix)
+			{
+				this.GraphicsDM?.ToggleFullScreen();
+				this.GraphicsDM?.ApplyChanges();
+			}
+		}
+		public void FullScreen()
+		{
+			if (this.GraphicsDM != null && Universe.IsUnix)
+			{
+				if (!this.GraphicsDM.IsFullScreen)
+				{
+					ToggleFullScreen();
+				}
+			}
 		}
 		private void CheckRequests()
 		{
@@ -491,7 +501,7 @@ namespace GUISharp.Client
 							// this.GameUniverse.WotoPlanet?.BringToFront();
 							// this.GameUniverse.WotoPlanet?.Activate();
 							// this.GameUniverse.WotoPlanet?.Focus();
-							this.GraphicsDM.ToggleFullScreen();
+							this.FullScreen();
 						}
 						catch
 						{
