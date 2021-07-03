@@ -259,11 +259,13 @@ namespace GUISharp.Client
 			this.Window.KeyDown				-= Window_KeyDown;
 			this.Window.KeyUp				-= Window_KeyUp;
 			this.Window.TextInput			-= Window_TextInput;
+			this.Window.ClientSizeChanged	-= Window_ClientSizeChanged;
 			this.GameUniverse.MouseDown		+= WotoPlanet_MouseDown;
 			this.GameUniverse.MouseUp		+= WotoPlanet_MouseUp;
 			this.Window.KeyDown				+= Window_KeyDown;
 			this.Window.KeyUp				+= Window_KeyUp;
 			this.Window.TextInput			+= Window_TextInput;
+			this.Window.ClientSizeChanged	+= Window_ClientSizeChanged;
 			//---------------------------------------------
 			#if SETVER_TEST
 			System.Net.Http.HttpClient test = new System.Net.Http.HttpClient();
@@ -323,6 +325,8 @@ namespace GUISharp.Client
 #if __WINDOWS__
 			this.MusicManager = MusicManager.GetMusicManager();
 #endif //__WINDOWS__
+			this.BackgroundRectangle = 
+				new(default, this.Window.ClientBounds.Size);
 			this.InitializeMainEvents();
 			
 			GraphicsDM.PreferredBackBufferWidth = GameUniverse.DefaultWidth;
@@ -440,8 +444,8 @@ namespace GUISharp.Client
 				return;
 			}
 			//this.MySprite.Begin();
-			this.MySprite.Draw(this.BackGroundTexture, this.Window.ClientBounds, 
-				this.BackGroundTexture.Bounds, 
+			this.MySprite.Draw(this.BackGroundTexture, this.BackgroundRectangle, 
+				null, 
 				Color.White);
 			//this.MySprite.End();
 		}
@@ -569,7 +573,10 @@ namespace GUISharp.Client
 				}
 			}
 		}
-
+		private void Window_ClientSizeChanged(object sender, EventArgs e)
+		{
+			this.BackgroundRectangle = new(default, this.Window.ClientBounds.Size);
+		}
 		private void Window_TextInput(object sender, TextInputEventArgs e)
 		{
 			this.InputElement?.InputEvent(sender, e);

@@ -68,6 +68,7 @@ namespace GUISharp.Client
 		/// Sprite Batch of the GUISharp GClient.
 		/// </summary>
 		public SpriteWoto MySprite { get; private set; }
+		public GUIClient GUIClient { get; }
 		/// <summary>
 		/// The Universe of the GUISharp client.
 		/// </summary>
@@ -95,9 +96,9 @@ namespace GUISharp.Client
 		internal Point? PreviousLeftDownPoint { get; private set; }
 		internal Point? RightDownPoint { get; private set; }
 		internal Point? PreviousRightDownPoint { get; private set; }
-		public GUIClient GUIClient { get; }
 	#nullable disable
 		public Color BackColor { get; set; } = Color.Black;
+		public Rectangle BackgroundRectangle { get; set; }
 		public string Title
 		{
 			get
@@ -166,7 +167,6 @@ namespace GUISharp.Client
 		public bool IsLeftDown { get; private set; }
 		public bool IsRightDown { get; private set; }
 		public bool Universe_Request { get; set; }
-		public StrongString ReleasingDate { get; set; } = null;
 		#endregion
 		//-------------------------------------------------
 		#region events Region
