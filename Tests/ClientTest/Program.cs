@@ -1,5 +1,6 @@
 
 using System;
+using System.IO;
 using GUISharp.Logging;
 
 namespace Tests
@@ -10,6 +11,14 @@ namespace Tests
 		public static void Main()
 		{
 			AppLogger.Enabled = true;
+			if (File.Exists(AppContext.BaseDirectory + "xsel"))
+			{
+				AppLogger.Log("Yes");
+			}
+			else
+			{
+				AppLogger.Log(AppContext.BaseDirectory + "/xsel");
+			}
 			MainClient test = new MainClient();
 			test.Start();
 		}

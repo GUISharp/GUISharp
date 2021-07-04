@@ -101,21 +101,25 @@ namespace Tests
 			b.Apply();
 			b.Click += Button1_Click;
 			AppLogger.Enabled = true;
+			testInput.MouseEnter += (object sender, EventArgs e) =>
+			{
+				AppLogger.Log("Enter!");
+			};
 			l.RightDown += (object sender, EventArgs e) =>
 			{
 				AppLogger.Log("RightDown");
 			};
-			l.MouseMove += (object sender, EventArgs e) =>
-			{
-				AppLogger.Log("Moved");
-			};
+			//l.MouseMove += (object sender, EventArgs e) =>
+			//{
+			//	AppLogger.Log("Moved");
+			//};
 			b.RightClick += (object sender, EventArgs e) =>
 			{
 				AppLogger.Log("RightClick");
 			};
-			b.LeftClick += (object sender, EventArgs e) =>
+			l.LeftUp += (object sender, EventArgs e) =>
 			{
-				AppLogger.Log("LeftClick");
+				AppLogger.Log("LeftUp");
 			};
 			
 			this.ElementManager.AddRange(testInput, l);

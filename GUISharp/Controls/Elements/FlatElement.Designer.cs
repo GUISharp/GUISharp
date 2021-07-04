@@ -405,6 +405,20 @@ namespace GUISharp.Controls.Elements
 			var fl = this.FixedText.MeasureString(this.Font);
 			return new(l.X + fl.X, l.Y);
 		}
+		/// <summary>
+		/// Checks if this <see cref="FlatElement"/> contains
+		/// and unallowed Representor or not.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if the <see cref="Representor"/> of this element
+		/// is a <see cref="ButtonElement"/> or an <see cref="InputElement"/>.
+		/// These two elements are unallowed because they should not be moved.
+		/// </returns>
+		protected internal bool HasUnallowedRepresentor()
+		{
+			return this.Representor is ButtonElement || 
+				this.Representor is InputElement;
+		}
 		#endregion
 		//-------------------------------------------------
 	}

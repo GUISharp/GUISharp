@@ -544,6 +544,24 @@ namespace GUISharp.Client
 		{
 			this.LastMouseState = this.CurrentState;
 			this.CurrentState = Mouse.GetState();
+			var l = GraphicElement.LockedElement;
+			if (l != null)
+			{
+				if (l is FlatElement f && f.Representor != null && 
+					!f.HasUnallowedRepresentor())
+				{
+					if (f.WasMouseIn() || f.Representor.WasMouseIn())
+					{
+						f.MouseChange();
+						return;
+					}
+				}
+				else if (l.WasMouseIn())
+				{
+					l.MouseChange();
+					return;
+				}
+			}
 			if (this.ElementManager != null)
 			{
 				if (this.ElementManager.MouseContains())
