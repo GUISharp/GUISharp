@@ -339,6 +339,10 @@ namespace GUISharp.Controls.Elements
 			{
 				return;
 			}
+			if (this is FlatElement f && f.HasUnallowedRepresentor())
+			{
+				return;
+			}
 			if (!this.IsMouseLocked)
 			{
 				this.IsMouseLocked = true;

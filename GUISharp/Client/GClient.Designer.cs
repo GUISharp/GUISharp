@@ -547,7 +547,8 @@ namespace GUISharp.Client
 			var l = GraphicElement.LockedElement;
 			if (l != null)
 			{
-				if (l is FlatElement f && f.Representor != null)
+				if (l is FlatElement f && f.Representor != null && 
+					!f.HasUnallowedRepresentor())
 				{
 					if (f.WasMouseIn() || f.Representor.WasMouseIn())
 					{

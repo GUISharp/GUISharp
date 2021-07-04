@@ -202,7 +202,22 @@ namespace GUISharp.Controls.Elements
 		{
 			this._flat?.ChangeSize(w, h);
 		}
-
+		/// <summary>
+		/// Locking the mouse on a button element is now allowed,
+		/// so even if you call it directly, it will just ignore you.
+		/// </summary>
+		public sealed override void LockMouse()
+		{
+			return;
+		}
+		/// <summary>
+		/// Locking the mouse on a button element is now allowed,
+		/// so even if you call it directly, it will just ignore you.
+		/// </summary>
+		public sealed override void UnLockMouse()
+		{
+			return;
+		}
 		public override void ChangeLocation(float x, float y)
 		{
 			this.RealPosition = new(x, y);

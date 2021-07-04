@@ -72,6 +72,7 @@ namespace GUISharp.Controls.Elements
 			//colors:
 			this.ChangeBorderF(InputBorders.NoBorder);
 			//enableds:
+			this._flat.Enable();
 			//texts:
 			//images:
 			//applyAndShow:
@@ -106,7 +107,10 @@ namespace GUISharp.Controls.Elements
 			this._flat?.Draw(gameTime, spriteBatch);
 			if (this.Focused && _linerTexture != null)
 			{
-				if (_showLiner)
+				// we should check if it's enabled or not.
+				// also if we add a topmost error sandbox,
+				// another sandboxes should become disabled.
+				if (_showLiner && this.Enabled)
 				{
 					//spriteBatch.Start();
 					spriteBatch.Draw(_linerTexture, _linerRect, Color.White);
