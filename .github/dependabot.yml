@@ -25,7 +25,7 @@ updates:
     time: "15:00"
     timezone: "UTC"
   open-pull-requests-limit: 25
-  labels: ["Dependency_man", ]
+  labels: ["Dependency_man"]
   milestone: "DependencyImprovements"
   pull-request-branch-name: 
     separator: "-"
