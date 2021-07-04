@@ -317,6 +317,16 @@ namespace GUISharp.Controls.Elements
 		{
 			this.ChangeLocation(this.RealPosition);
 		}
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeFont(SpriteFontBase font)
 		{
 			this._flat?.ChangeFont(font);

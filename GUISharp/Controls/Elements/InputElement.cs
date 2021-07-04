@@ -25,6 +25,17 @@ using GUISharp.WotoProvider.Enums;
 
 namespace GUISharp.Controls.Elements
 {
+	/// <summary>
+	/// The Input element. Something like <c>TextBox</c>
+	/// or a <c>InputBox</c>.
+	/// <!--
+	/// Since: GUISharp 1.0.29;
+	/// By: ALiwoto;
+	/// Last edit: 26 July 05:57;
+	/// Sign: ALiwoto;
+	/// Verified: Yes;
+	/// -->
+	/// </summary>
 	public partial class InputElement : GraphicElement, IInputable
 	{
 		//-------------------------------------------------

@@ -113,9 +113,9 @@ namespace Tests
 			{
 				AppLogger.Log("RightClick");
 			};
-			b.LeftClick += (object sender, EventArgs e) =>
+			l.LeftUp += (object sender, EventArgs e) =>
 			{
-				AppLogger.Log("LeftClick");
+				AppLogger.Log("LeftUp");
 			};
 			
 			this.ElementManager.AddRange(testInput, l);

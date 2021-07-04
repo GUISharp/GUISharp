@@ -38,6 +38,16 @@ namespace GUISharp.Controls.Elements
 	{
 		//-------------------------------------------------
 		#region Designing Region
+		/// <summary>
+		/// Initialize the components of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private void InitializeComponent()
 		{
 			//----------------------------------
@@ -350,9 +360,7 @@ namespace GUISharp.Controls.Elements
 			if (this.IsMouseLocked)
 			{
 				this.IsMouseLocked = false;
-
-				// do NOT set LockedElement to null here.
-				// LockedElement = null;
+				LockedElement = null;
 			}
 		}
 
@@ -1006,7 +1014,8 @@ namespace GUISharp.Controls.Elements
 		}
 		public virtual bool WasMouseIn()
 		{
-			if (!this.Visible || !this.Enabled || !this.IsApplied)
+			if (!this.Visible || !this.Enabled || !this.IsApplied || 
+				this.IsDisposed)
 			{
 				return false;
 			}
@@ -1047,21 +1056,35 @@ namespace GUISharp.Controls.Elements
 		#region Set Method's Region
 		/// <summary>
 		/// set the status of the element.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
-		/// <param name="_status">
+		/// <param name="status">
 		/// the status of the element.
 		/// this value is unsigned.
 		/// </param>
-		public virtual void SetStatus(uint _status)
+		public virtual void SetStatus(uint status)
 		{
-			if (this.CurrentStatus != _status)
+			if (this.CurrentStatus != status)
 			{
-				this.CurrentStatus = _status;
+				this.CurrentStatus = status;
 			}
 		}
 		/// <summary>
 		/// Set the Label.Name Property with the Constant Parameter writed
 		/// in ThereIsGConstants.ResourcesNames.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="constParam">
 		/// The Constant Parameter setted in <code> ThereIsGConstants.ResourcesNames </code> 
@@ -1077,6 +1100,13 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// This Method will set the Label.Text Property with the algorithm
 		/// from MainForm.MyRes.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		public virtual void SetLabelText()
 		{
@@ -1183,23 +1213,95 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		/// Change the size of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="size"> 
+		/// The size value that should be set,
+		/// which is in Point.
+		/// </param>
 		public virtual void ChangeSize(Point size)
 		{
 			this.Rectangle = new Rectangle(this.Rectangle.Location, size);
 		}
-
+		/// <summary>
+		/// Change the size of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.13;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="size"> 
+		/// The size value that should be set,
+		/// which is in Vector2.
+		/// </param>
 		public virtual void ChangeSize(Vector2 size)
 		{
 			this.ChangeSize(size.ToPoint());
 		}
+		/// <summary>
+		/// Change the size of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="w"> 
+		/// The width.
+		/// </param>
+		/// <param name="h"> 
+		/// The height.
+		/// </param>
 		public virtual void ChangeSize(int w, int h)
 		{
 			this.ChangeSize(new Point(w, h));
 		}
+		/// <summary>
+		/// Change the size of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="w"> 
+		/// The width.
+		/// </param>
+		/// <param name="h"> 
+		/// The height.
+		/// </param>
 		public virtual void ChangeSize(float w, float h)
 		{
 			this.ChangeSize((int)w, (int)h);
 		}
+		/// <summary>
+		/// Change the location (position) of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="location"> 
+		/// The location which is in Vector2.
+		/// </param>
 		public virtual void ChangeLocation(Vector2 location)
 		{
 			if (this.HasOwner)
@@ -1214,6 +1316,19 @@ namespace GUISharp.Controls.Elements
 			this.ChangeRectangle();
 			this.Manager?.UpdateLocations();
 		}
+		/// <summary>
+		/// Change the location (position) of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="location"> 
+		/// The location which is in Point.
+		/// </param>
 		public virtual void ChangeLocation(Point location)
 		{
 			this.ChangeLocation(location.ToVector2());
@@ -1262,10 +1377,40 @@ namespace GUISharp.Controls.Elements
 			// In: 28 Jun 2021; 16:35 UTC;
 			//this.ChangeLocation(new Vector2(X, y));
 		}
+		/// <summary>
+		/// Change the location (position) of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="x"> 
+		/// The new x-coordinate which is an int.
+		/// </param>
+		/// <param name="y"> 
+		/// The new y-coordinate which is an int.
+		/// </param>
 		public virtual void ChangeLocation(int x, int y)
 		{
 			this.ChangeLocation(new Vector2(x, y));
 		}
+		/// <summary>
+		/// Call this method when the owner of this element has changed
+		/// its position (location).
+		/// Usage of this method is mostly internal, but I made it public
+		/// just-in-case. Please don't call it if you don't know what
+		/// is going on.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual void OwnerLocationUpdate()
 		{
 			if (this.HasOwner && this.Owner != null)
@@ -1415,7 +1560,36 @@ namespace GUISharp.Controls.Elements
 			}
 			this.ChangeMovements(movements, this.MoveManager);
 		}
+		/// <summary>
+		/// Change the font of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="font"> 
+		/// The new font which has to be set. 
+		/// It should be a <see cref="SpriteFontBase"/>.
+		/// </param>
 		public abstract void ChangeFont(SpriteFontBase font);
+		/// <summary>
+		/// Change the fore color of this element.
+		/// This element will use the new color to draw
+		/// texts.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new color.
+		/// </param>
 		public virtual void ChangeForeColor(Color color)
 		{
 			if (this.ForeColor != color)
@@ -1423,6 +1597,19 @@ namespace GUISharp.Controls.Elements
 				this.ForeColor = color;
 			}
 		}
+		/// <summary>
+		/// Change the background color of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
 		public virtual void ChangeBackColor(Color color)
 		{
 			if (this.BackGroundColor != color)
@@ -1431,6 +1618,21 @@ namespace GUISharp.Controls.Elements
 			}
 			this.BackGroundImage = this.GetBackGroundTexture(color);
 		}
+		/// <summary>
+		/// Change the image of this element.
+		/// This method will use <c>this.MyRes</c> if and
+		/// only if it's not null, otherwise it will use default
+		/// resources manager of this library.
+		/// You don't have direct access to default resources manager,
+		/// because it is internal.
+		/// <!--
+		/// Since: GUISharp 1.0.14;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual void ChangeImage()
 		{
 			this.ChangeImage(this.MyRes == null ? DefaultRes : this.MyRes);
@@ -1615,8 +1817,17 @@ namespace GUISharp.Controls.Elements
 		}
 		/// <summary>
 		/// Change the image size mode of this graphic element.
-		///
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
+		/// <param name="mode">
+		/// The new iamge size mode of this element.
+		/// </param>
 		public virtual void ChangeImageSizeMode(ImageSizeMode mode)
 		{
 			if (this.ImageSizeMode != mode)
@@ -1625,11 +1836,42 @@ namespace GUISharp.Controls.Elements
 				this.ImageSizeModeRender();
 			}
 		}
+		/// <summary>
+		/// Change the rectangle of this element.
+		/// You can either use this method or use one of
+		/// <code><see cref="ChangeLocation(int, int)"/></code>
+		/// or
+		/// <code><see cref="ChangeSize(int, int)"/></code>
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="rect">
+		/// The new iamge size mode of this element.
+		/// </param>
 		public virtual void ChangeRectangle(Rectangle rect)
 		{
 			this.ChangeLocation(rect.Location.ToVector2());
 			this.ChangeSize(rect.Size.X, rect.Size.Y);
 		}
+		/// <summary>
+		/// Change (update) the rectangle of this element.
+		/// You can either use this method or use one of
+		/// <code><see cref="ChangeLocation(int, int)"/></code>
+		/// or
+		/// <code><see cref="ChangeSize(int, int)"/></code>
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected virtual void ChangeRectangle()
 		{
 			var location = new Point((int)this.Position.X, (int)this.Position.Y);
