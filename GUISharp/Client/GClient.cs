@@ -181,6 +181,7 @@ namespace GUISharp.Client
 		public GClient(bool verify, GUIClient gUIClient, 
 			ClientSizeMode mode = ClientSizeMode.HalfMiddle)
 		{
+			Universe.SetUpUniverse();
 			if (!verify)
 			{
 				return;
@@ -188,7 +189,6 @@ namespace GUISharp.Client
 			GUIClient = gUIClient;
 			try
 			{
-				
 				var w = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
 				var h = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 				switch (mode)
@@ -227,7 +227,7 @@ namespace GUISharp.Client
 			catch (NoSuitableGraphicsDeviceException ex)
 			{
 				Verified = false;
-				AppLogger.Fatal("It seems you can't run this application", ex);
+				AppLogger.Log("It seems you can't run this application", ex);
 				return;
 			}
 			catch (Exception ex)

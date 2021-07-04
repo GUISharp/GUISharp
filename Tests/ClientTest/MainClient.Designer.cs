@@ -32,12 +32,12 @@ namespace Tests
 			testInput.ChangeSize();
 			b.ChangeSize();
 			test.ChangeLocation(10, 10);
-			testInput.ChangeLocation(190, 90);
+			testInput.ChangeLocation(10, 20);
 			fImage.ChangeLocation(400, 400);
 			b.ChangeLocation(270, 270);
 			test.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 0x40));
 			fImage.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 0x40));
-			testInput.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 0x40));
+			testInput.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.old_story_bold, 24));
 			b.ChangeFont(this.FontManager.GetSprite(GUISharp.GUIObjects.Texts.GUISharp_Fonts.noto_sans_JP, 45));
 			test.ChangeText("hello!");
 			fImage.ChangeText("hello!");
@@ -53,6 +53,7 @@ namespace Tests
 			fImage.ChangeBackColor(Microsoft.Xna.Framework.Color.LightGoldenrodYellow);
 			test.ChangeAlignmation(GUISharp.Controls.StringAlignmation.TopRight);
 			fImage.ChangeAlignmation(GUISharp.Controls.StringAlignmation.TopRight);
+			testInput.ChangeAlignmation(GUISharp.Controls.StringAlignmation.MiddleCenter);
 			b.ChangeAlignmation(GUISharp.Controls.StringAlignmation.MiddleCenter);
 			test.ChangePriority(ElementPriority.VeryLow);
 			testInput.ChangePriority(ElementPriority.SuperHigh);
@@ -117,11 +118,7 @@ namespace Tests
 				AppLogger.Log("LeftClick");
 			};
 			
-			System.Threading.Tasks.Task.Run(() =>
-			{
-				System.Threading.Thread.Sleep(5000);
-				this.ElementManager.AddRange(l);
-			});
+			this.ElementManager.AddRange(testInput, l);
 			b.ClickAsync += (object sender, EventArgs e) =>
 			{
 				var s = Microsoft.Xna.Framework.Media.Song.FromUri("test", new("Egoist - Departures.mp3", UriKind.Relative));

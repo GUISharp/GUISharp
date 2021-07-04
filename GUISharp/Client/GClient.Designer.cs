@@ -335,6 +335,16 @@ namespace GUISharp.Client
 				this.BackgroundRectangle = new(default, 
 					new(GameUniverse.DefaultWidth, GameUniverse.DefaultHeight));
 			}
+			else
+			{
+				if (Universe.IsWindows)
+				{
+					GraphicsDM.PreferredBackBufferWidth = 
+						GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+					GraphicsDM.PreferredBackBufferHeight = 
+						GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+				}
+			}
 			base.Initialize();
 
 			if (GameUniverse.StartMode != ClientSizeMode.FullScreen)
@@ -350,7 +360,17 @@ namespace GUISharp.Client
 			}
 			else
 			{
-				this.FullScreen();
+				if (!this.GraphicsDM.IsFullScreen)
+				{
+					if (Universe.IsWindows)
+					{
+						this.GraphicsDM.ToggleFullScreen();
+					}
+					else
+					{
+						this.FullScreen();
+					}
+				}
 			}
 			
 			if (Universe.IsUnix && this.GUIClient.RunSingleInstance)

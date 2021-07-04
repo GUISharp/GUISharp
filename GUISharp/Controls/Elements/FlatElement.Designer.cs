@@ -106,9 +106,9 @@ namespace GUISharp.Controls.Elements
 				{
 					// draw the fixed-text using spriteBatch tool
 					// and specified location.
-					spriteBatch.DrawString(this.Font, 
-							this.FixedText.GetValue(), 
-							this.TextLocation, 
+					spriteBatch.DrawString(this.Font,
+							this.FixedText.GetValue(),
+							this.TextLocation,
 							this.ForeColor);
 				}
 			}

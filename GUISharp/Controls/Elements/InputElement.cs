@@ -16,11 +16,11 @@
  * If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using FontStashSharp;
 using GUISharp.Security;
-using System;
 using GUISharp.WotoProvider.Enums;
 
 namespace GUISharp.Controls.Elements
@@ -29,18 +29,148 @@ namespace GUISharp.Controls.Elements
 	{
 		//-------------------------------------------------
 		#region Constant's Region
-		public const string DarkGreen_Border_FileName	= "f_210620210257";
-		public const string Gold_Border_FileName		= "f_210620210258";
-		public const string Goldenrod_Border_FileName	= "f_210620210259";
-		public const string Gray_Border_FileName		= "f_210620210260";
-		public const string Green_Border_FileName		= "f_210620210261";
-		public const string Nothing_Border_FileName		= "f_210620210262";
-		public const string Red_Border_FileName			= "f_210620210263";
-		public const string SkyBlue_Border_FileName		= "f_210620210264";
-		public const string Line_Violet_FileName		= "f_210620210265";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string DarkGreen_Border_FileName	= "f_210620210257";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string Gold_Border_FileName		= "f_210620210258";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string Goldenrod_Border_FileName	= "f_210620210259";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string Gray_Border_FileName		= "f_210620210260";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string Green_Border_FileName		= "f_210620210261";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string Nothing_Border_FileName	= "f_210620210262";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string Red_Border_FileName		= "f_210620210263";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string SkyBlue_Border_FileName	= "f_210620210264";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		internal const string Line_Violet_FileName		= "f_210620210265";
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public const int DEFAULT_WIDTH					= 190;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public const int DEFAULT_HEIGHT					= 50;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public const int LINER_INTERVAL					= 650;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public const int LINER_EDGE 					= 7;
 		#endregion
 		//-------------------------------------------------
@@ -50,6 +180,13 @@ namespace GUISharp.Controls.Elements
 		/// you should not add any graphic elements to an input element!
 		/// if you try to get the value of this property, you will get null,
 		/// so be carefull about it!
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		public override ElementManager Manager
 		{
@@ -74,6 +211,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override StrongString RealName
 		{
 			get
@@ -89,6 +236,16 @@ namespace GUISharp.Controls.Elements
 				; // do nothing here.
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override StrongString Name
 		{
 			get
@@ -104,6 +261,16 @@ namespace GUISharp.Controls.Elements
 				; // do nothing here.
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override Rectangle Rectangle
 		{
 			get
@@ -122,6 +289,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override Vector2 Position
 		{
 			get
@@ -140,7 +317,27 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override Vector2 RealPosition { get; protected set; }
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override StrongString Text
 		{
 			get
@@ -156,6 +353,16 @@ namespace GUISharp.Controls.Elements
 				this._flat?.ChangeText(value);
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override SpriteFontBase Font
 		{
 			get
@@ -171,6 +378,16 @@ namespace GUISharp.Controls.Elements
 				this._flat?.ChangeFont(value);
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override Color BackGroundColor
 		{
 			get
@@ -182,11 +399,71 @@ namespace GUISharp.Controls.Elements
 				return Color.Transparent;
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual InputBorders BorderColor { get; protected set; }
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual int MaxLength { get; protected set; }
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual bool UseMouseEnterEffect { get; protected set; }
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual bool InMouseEnterEffect { get; protected set; }
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual bool IsMultiLine { get; protected set; } // TODO
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual bool Focused { get; protected set; }
 		#endregion
 		//-------------------------------------------------
@@ -199,16 +476,85 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region static field's Region
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private static Texture2D _linerTexture;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private static Trigger _lineTrigger;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private static Vector2 _linerPosition;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private static Vector2 _linerSize;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private static Rectangle _linerRect;
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private static bool _showLiner;
-
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override event EventHandler LeftClick
 		{
 			add
@@ -226,6 +572,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override event EventHandler LeftUp
 		{
 			add
@@ -243,6 +599,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override event EventHandler RightDown
 		{
 			add
@@ -260,6 +626,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override event EventHandler RightUp
 		{
 			add
@@ -277,6 +653,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override event EventHandler MouseEnter 
 		{
 			add
@@ -294,6 +680,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override event EventHandler MouseLeave
 		{
 			add
@@ -311,6 +707,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override event EventHandler MouseMove
 		{
 			add
@@ -331,6 +737,16 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public InputElement(IRes myRes) : base(myRes, true)
 		{
 			InitializeComponent();
@@ -338,6 +754,16 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Destructor's Region
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		~InputElement()
 		{
 			if (_flat != null)
