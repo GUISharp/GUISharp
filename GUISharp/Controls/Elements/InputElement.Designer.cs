@@ -38,6 +38,13 @@ namespace GUISharp.Controls.Elements
 		#region Initialize Region
 		/// <summary>
 		/// Initializer of this <see cref="ButtonElement"/>.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		private void InitializeComponent()
 		{
@@ -110,6 +117,16 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region overrided Method's Region
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected override Texture2D GetBackGroundTexture(Color color)
 		{
 #if BUTTON_BACKGROUND
@@ -138,10 +155,30 @@ namespace GUISharp.Controls.Elements
 #endif
 			return null;
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected override void UpdateGraphics()
 		{
 			;
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void Update(GameTime gameTime)
 		{
 			// do nothing here (just for now!)
@@ -152,11 +189,31 @@ namespace GUISharp.Controls.Elements
 		{
 			this._flat?.SetLabelName(constParam);
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void SetLabelText()
 		{
 			this._flat?.SetLabelText();
 			this.ChangeLinerPos();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void SetLabelText(StrongString customValue)
 		{
 			this._flat?.SetLabelText(customValue);
@@ -167,11 +224,31 @@ namespace GUISharp.Controls.Elements
 			this._flat?.ChangeSize(w, h);
 			this.ChangeLinerSize();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeSize(int w, int h)
 		{
 			this._flat?.ChangeSize(w, h);
 			this.ChangeLinerSize();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeLocation(float x, float y)
 		{
 			this.RealPosition = new(x, y);
@@ -187,6 +264,16 @@ namespace GUISharp.Controls.Elements
 			}
 			this.ChangeLinerPos();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeLocation(int x, int y)
 		{
 			this.RealPosition = new(x, y);
@@ -216,6 +303,16 @@ namespace GUISharp.Controls.Elements
 			}
 			this.ChangeLinerPos();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void OwnerLocationUpdate()
 		{
 			this.ChangeLocation(this.RealPosition);
@@ -224,10 +321,30 @@ namespace GUISharp.Controls.Elements
 		{
 			this._flat?.ChangeFont(font);
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeForeColor(Color color)
 		{
 			this._flat.ChangeForeColor(color);
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeText(StrongString text)
 		{
 			this._flat?.ChangeText(text);
@@ -264,39 +381,129 @@ namespace GUISharp.Controls.Elements
 			// I won't let this happens!
 			// You shall NOT pass!
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnLeftClick()
 		{
 			BigFather?.ActivateInputable(this);
 			this._flat?.OnLeftClick();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnRightClick()
 		{
 			this._flat?.OnRightClick();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnMouseEnter()
 		{
 			this._flat?.OnMouseEnter();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnMouseLeave()
 		{
 			this._flat?.OnMouseLeave();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnMouseMove()
 		{
 			this._flat?.OnMouseMove();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnLeftDown()
 		{
 			this._flat?.OnLeftDown();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnLeftUp()
 		{
 			this._flat?.OnLeftUp();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnRightDown()
 		{
 			this._flat?.OnRightDown();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal override void OnRightUp()
 		{
 			this._flat?.OnRightUp();
@@ -305,6 +512,16 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Get Method's Region
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual bool IsShortcutKey(InputKeyEventArgs e)
 		{
 			switch (e.Key)
@@ -326,14 +543,61 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region Set Method's Region
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="alignmation">
+		///
+		/// </param>
 		public void ChangeAlignmation(StringAlignmation alignmation)
 		{
-			_flat?.ChangeAlignmation(alignmation);
+			if (this._flat == null || this._flat.Alignmation == alignmation)
+			{
+				return;
+			}
+			this._flat.ChangeAlignmation(alignmation);
+			this.ChangeLinerPos();
 		}
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color">
+		///
+		/// </param>
+		/// <param name="w">
+		///
+		/// </param>
 		public void ChangeForeColor(Color color, float w)
 		{
 			this._flat?.ChangeForeColor(color, w);
 		}
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="border">
+		///
+		/// </param>
 		public void ChangeBorder(InputBorders border)
 		{
 			if (this.BorderColor != border)
@@ -345,6 +609,13 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// change the size of this input element to the default 
 		/// values of height and width (they are non-zero constants).
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		public void ChangeSize()
 		{
@@ -352,6 +623,13 @@ namespace GUISharp.Controls.Elements
 		}
 		/// <summary>
 		/// multiple the current width and height of this input element.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="multiple">
 		/// the float multiple number.
@@ -374,11 +652,34 @@ namespace GUISharp.Controls.Elements
 			// so there is no need to do it again.
 			// this.ChangeLinerSize();
 		}
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="border">
+		///
+		/// </param>
 		private void ChangeBorderF(InputBorders border)
 		{
 			this.BorderColor = border;
 			this.ChangeBorder();
 		}
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private void ChangeBorder()
 		{
 			if (this._flat == null || this._flat.IsDisposed)
@@ -416,6 +717,16 @@ namespace GUISharp.Controls.Elements
 					break;
 			}
 		}
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private StrongString GetContentBorderName()
 		{
 			switch (this.BorderColor)
@@ -440,6 +751,16 @@ namespace GUISharp.Controls.Elements
 					return null;
 			}
 		}
+		/// <summary>
+		/// 
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public StringAlignmation GetAlignmation()
 		{
 			if (this._flat == null)
@@ -454,6 +775,13 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// focus on this input element so it get input
 		/// from the user.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		public virtual void Focus()
 		{
@@ -474,6 +802,13 @@ namespace GUISharp.Controls.Elements
 		/// this method is useful specially when you want to
 		/// force this input element to be activated before 
 		/// user click on it.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		/// <param name="force">
 		/// set this to true if you want to force this input
@@ -504,6 +839,13 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// focus on this input element so it won't get any inputs
 		/// from the user.
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
 		/// </summary>
 		public virtual void UnFocus()
 		{
@@ -512,10 +854,30 @@ namespace GUISharp.Controls.Elements
 				this.Focused = false;
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public void EnableMouseEnterEffect()
 		{
 			this.UseMouseEnterEffect = true;
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private void checkLinerTexture()
 		{
 			if (Content == null)
@@ -537,11 +899,31 @@ namespace GUISharp.Controls.Elements
 			_linerPosition = default;
 			ChangeLinerRect();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private void ChangeLinerSize()
 		{
 			_linerSize = new(_linerTexture.Width, 3 * (this.Height / 5));
 			ChangeLinerRect();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private void ChangeLinerPos()
 		{
 			if (_linerTexture == null || this._flat == null)
@@ -555,26 +937,46 @@ namespace GUISharp.Controls.Elements
 				return;
 			}
 			var l = this._flat.GetFinalTextLocation();
-			var y = this.RealPosition.Y + 
+			var y = this.Position.Y + 
 				((this.Height / 2) - (h / 2));
 			float x;
 			if (this.GetAlignmation() == StringAlignmation.MiddleCenter
 				&& l.X == default)
 			{
-				x = this.RealPosition.X + (this.Width / 2);
+				x = this.Position.X + (this.Width / 2);
 			}
 			else
 			{
 				x = l.X == default ? 
-				this.RealPosition.X + LINER_EDGE : l.X;
+				this.Position.X + LINER_EDGE : l.X;
 			}
 			_linerPosition = new(x, y);
 			ChangeLinerRect();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private void ChangeLinerRect()
 		{
 			_linerRect = new(_linerPosition.ToPoint(), _linerSize.ToPoint());
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		private void Liner_Tick(Trigger sender, TickHandlerEventArgs<Trigger> handler)
 		{
 			if (sender.Tag is InputElement me)
@@ -595,6 +997,16 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region event Method's Region
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public virtual void InputEvent(object sender,
 											 TextInputEventArgs e)
 		{
@@ -662,6 +1074,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal virtual void PasteEvent(InputKeyEventArgs e)
 		{
 			if (this.Font == null)
@@ -698,6 +1120,16 @@ namespace GUISharp.Controls.Elements
 				Console.WriteLine(ex.Message);
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal virtual void _flat_MouseLeave(object sender,
 												   EventArgs e)
 		{
@@ -718,6 +1150,16 @@ namespace GUISharp.Controls.Elements
 				}
 			}
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		protected internal virtual void _flat_MouseEnter(object sender,
 												   EventArgs e)
 		{

@@ -45,12 +45,9 @@ namespace GUISharp.Client
 		/// </summary>
 		private void InitializeMyComponent(ClientSizeMode mode)
 		{
-			Universe.SetUpUniverse();
-
 			// check if the game is the single one process or not.
 			if (Actions.IsSingleOne() || !this.RunSingleInstance)
 			{
-
 				//AppSettings.DECoder = new DECoder();
 				// check if we can manage to create a single-one
 				// provider peeker or not.

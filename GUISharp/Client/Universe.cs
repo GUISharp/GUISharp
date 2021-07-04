@@ -218,6 +218,12 @@ namespace GUISharp.Client
 						break;
 					}
 					case ClientSizeMode.FullScreen:
+					{
+						DefaultWidth = w;
+						DefaultHeight = h;
+						x = y = default;
+						break;
+					}
 					default:
 					{
 						x = y = default;

@@ -23,7 +23,7 @@
 		<owners>ALiwoto</owners>
 		<id>GUISharp</id>
 		<title>GUISharp</title>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
 		<description>A GUI library for windows and linux</description>
 		<language>en-US</language>
 		<icon>Icon.png</icon>
