@@ -26,7 +26,7 @@ updates:
     timezone: "UTC"
   open-pull-requests-limit: 25
   labels: ["Dependency_man"]
-  milestone: "DependencyImprovements"
+  milestone: 1
   pull-request-branch-name: 
     separator: "-"
   reviewers: ["ALiwoto"]
