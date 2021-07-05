@@ -139,6 +139,7 @@ namespace GUISharp.Controls.Elements
 		/// -->
 		/// </summary>
 		internal const string Line_Violet_FileName		= "f_210620210265";
+		public const char DEFAULT_PASS_CHAR				= '*';
 		/// <summary>
 		///
 		/// <!--
@@ -432,6 +433,7 @@ namespace GUISharp.Controls.Elements
 		/// -->
 		/// </summary>
 		public virtual int MaxLength { get; protected set; }
+		public virtual char PasswordChar { get; protected set; } = DEFAULT_PASS_CHAR;
 		/// <summary>
 		///
 		/// <!--
@@ -476,6 +478,7 @@ namespace GUISharp.Controls.Elements
 		/// -->
 		/// </summary>
 		public virtual bool Focused { get; protected set; }
+		public virtual bool IsPasswordMode { get; protected set; }
 		#endregion
 		//-------------------------------------------------
 		#region field's Region

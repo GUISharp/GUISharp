@@ -24,6 +24,7 @@ using GUISharp.Constants;
 using GUISharp.GUIObjects.WMath;
 using GUISharp.GUIObjects.Texts;
 using static GUISharp.Client.Universe;
+using AppS = GUISharp.Constants.ThereIsGConstants.AppSettings;
 
 namespace GUISharp.Security
 {
@@ -51,6 +52,7 @@ namespace GUISharp.Security
 		//-------------------------------------------------
 		#region fields Region
 		private byte[] _myValue;
+		private string _real;
 		private bool _isDisposed;
 		private static StrongString _empty;
 		#endregion
@@ -90,6 +92,7 @@ namespace GUISharp.Security
 		#region Properties Region
 		public int Length { get => GetValue().Length; }
 		public bool IsDisposed { get => _isDisposed; }
+		public bool Encode { get; } = false;
 		#endregion
 		//-------------------------------------------------
 		#region this Region
@@ -133,14 +136,28 @@ namespace GUISharp.Security
 		//-------------------------------------------------
 		#region Constructors Region
 		/// <summary>
-		/// convert an ordinary string to the byte.
+		/// convert an ordinary string to a <see cref="StrongString"/>.
 		/// please don't use encrypted string.
 		/// </summary>
-		/// <param name="theValue"></param>
-		public StrongString(string theValue)
+		/// <param name="theValue">
+		/// the real value which is string.
+		/// </param>
+		/// <param name="encode">
+		/// set this to <c>true</c> if you want more security.
+		/// if you pass <c>true</c> for this argument, the string will
+		/// be saved as byte array.
+		/// </param>
+		public StrongString(string theValue, bool encode = false)
 		{
-			_myValue =
-				ThereIsGConstants.AppSettings.DECoder.TheEncoderValue.GetBytes(theValue);
+			Encode = encode;
+			if (Encode)
+			{
+				_myValue = AppS.DECoder.TheEncoderValue.GetBytes(theValue);
+			}
+			else
+			{
+				_real = theValue;
+			}
 		}
 		/// <summary>
 		/// create a new instance of a strong string by passing the 
@@ -154,28 +171,37 @@ namespace GUISharp.Security
 		public StrongString(byte[] theValue)
 		{
 			_myValue = theValue;
+			Encode = true;
 		}
 		~StrongString()
 		{
 			_myValue = null; 
+			_real = null;
 			// nothing is here for-now.
 		}
 		#endregion
 		//-------------------------------------------------
 		#region Ordinary Methods Region
-		public void ChangeValue(string anotherValue)
+		public void Dispose()
 		{
-			if (DECoder != null)
+			if (IsDisposed)
 			{
-				if (DECoder.TheEncoderValue != null)
-				{
-					_myValue = DECoder.TheEncoderValue.GetBytes(anotherValue);
-				}
+				return;
 			}
+			_myValue = null;
+			_real = null;
+			_isDisposed = true;
 		}
+		#endregion
+		//-------------------------------------------------
+		#region Get Methods Region
 		public string GetValue()
 		{
-			if (DECoder != null)
+			if (!Encode)
+			{
+				return _real;
+			}
+			else if (DECoder != null)
 			{
 				if (DECoder.TheEncoderValue != null)
 				{
@@ -187,15 +213,6 @@ namespace GUISharp.Security
 				}
 			}
 			return string.Empty;
-		}
-		public void Dispose()
-		{
-			if (IsDisposed)
-			{
-				return;
-			}
-			_myValue = null;
-			_isDisposed = true;
 		}
 		public StrongString[] Split(params string[] separator)
 		{
@@ -223,7 +240,11 @@ namespace GUISharp.Security
 		}
 		public byte[] GetByteData()
 		{
-			return _myValue;
+			if (Encode)
+			{
+				return _myValue;
+			}
+			return AppS.DECoder.TheEncoderValue.GetBytes(_real);
 		}
 		public StrongString GetStrong() => this;
 		public int IndexOf(string value)
@@ -358,9 +379,9 @@ namespace GUISharp.Security
 		{
 			return this + value;
 		}
-		public StrongString Append(char value, bool _check)
+		public StrongString Append(char value, bool check)
 		{
-			if (_check)
+			if (check)
 			{
 				if (!_isVerified(value))
 				{
@@ -411,23 +432,23 @@ namespace GUISharp.Security
 			return GetValue() + myString;
 		}
 
-		public StrongString Append(string value, int count, bool _check)
+		public StrongString Append(string value, int count, bool check)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
 				return this;
 			}
-			if (_check)
+			if (check)
 			{
 				var myString = Empty;
-				var _s = value.ToStrong();
-				if (_s.HasSpecial())
+				var s = value.ToStrong();
+				if (s.HasSpecial())
 				{
-					_s = _s.RemoveSpecial();
+					s = s.RemoveSpecial();
 				}
 				for (int i = 0; i < count; i++)
 				{
-					myString += _s;
+					myString += s;
 				}
 			}
 			return Append(value, count);
@@ -446,10 +467,10 @@ namespace GUISharp.Security
 			return GetValue() + myString;
 		}
 
-		public StrongString Append(bool _check, params string[] values)
+		public StrongString Append(bool check, params string[] values)
 		{
 
-			if (_check)
+			if (check)
 			{
 				var myString = Empty;
 				StrongString _s;
@@ -480,13 +501,13 @@ namespace GUISharp.Security
 			return this + value;
 		}
 		
-		public StrongString Append(StrongString value, bool _check)
+		public StrongString Append(StrongString value, bool check)
 		{
 			if (IsNullOrEmpty(value))
 			{
 				return this;
 			}
-			if (_check)
+			if (check)
 			{
 				if (value.HasSpecial())
 				{
@@ -516,25 +537,25 @@ namespace GUISharp.Security
 		}
 		
 		public StrongString Append(StrongString value, int count, 
-									bool _check)
+									bool check)
 		{
 			if (IsNullOrEmpty(value))
 			{
 				return this;
 			}
-			if (_check)
+			if (check)
 			{
 				if (value.HasSpecial())
 				{
-					var _s = value.RemoveSpecial();
+					var s = value.RemoveSpecial();
 					var myString = Empty;
-					if (IsNullOrEmpty(_s))
+					if (IsNullOrEmpty(s))
 					{
 						return this;
 					}
 					for (int i = 0; i < count; i++)
 					{
-						myString += _s;
+						myString += s;
 					}
 				}
 			}
@@ -555,9 +576,9 @@ namespace GUISharp.Security
 			return GetValue() + myString;
 		}
 		
-		public StrongString Append(bool _check, params StrongString[] values)
+		public StrongString Append(bool check, params StrongString[] values)
 		{
-			if (_check)
+			if (check)
 			{
 				var myString = Empty;
 				StrongString _str;
@@ -585,9 +606,9 @@ namespace GUISharp.Security
 			return Append(value.ToString(), count);
 		}
 		
-		public StrongString Append(char value, int count, bool _check)
+		public StrongString Append(char value, int count, bool check)
 		{
-			return Append(value.ToString(), count, _check);
+			return Append(value.ToString(), count, check);
 		}
 
 		public StrongString ToLower()
@@ -906,13 +927,13 @@ namespace GUISharp.Security
 			}
 			return false;
 		}
-		public bool IsSignedChar(int _index)
+		public bool IsSignedChar(int index)
 		{
 			if (!IsHealthy())
 			{
 				return false;
 			}
-			return IsSignedChar(this[_index]);
+			return IsSignedChar(this[index]);
 		}
 		public Vector2 MeasureString(SpriteFontBase f)
 		{
@@ -933,6 +954,40 @@ namespace GUISharp.Security
 				return true;
 			}
 			return Manager.Contains(c) || IsSignedChar(c, true);
+		}
+		
+		#endregion
+		//-------------------------------------------------
+		#region Set Methods Region
+		public void ChangeValue(string anotherValue)
+		{
+			if (!Encode)
+			{
+				_real = anotherValue;
+			}
+			else if (DECoder != null)
+			{
+				if (DECoder.TheEncoderValue != null)
+				{
+					_myValue = DECoder.TheEncoderValue.GetBytes(anotherValue);
+				}
+			}
+		}
+		public void ToPass(char passChar)
+		{
+			if (passChar == default || _isDisposed)
+			{
+				return;
+			}
+			var s = new string(passChar, Length);
+			ChangeValue(s);
+		}
+		public void PassChecker(char passChar, bool isPass)
+		{
+			if (isPass)
+			{
+				ToPass(passChar);
+			}
 		}
 		#endregion
 		//-------------------------------------------------
