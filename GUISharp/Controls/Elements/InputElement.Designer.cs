@@ -32,7 +32,7 @@ using TheMouseInput = Microsoft.Xna.Framework.Input;
 
 namespace GUISharp.Controls.Elements
 {
-	partial class InputElement : GraphicElement
+	partial class InputElement
 	{
 		//-------------------------------------------------
 		#region Initialize Region

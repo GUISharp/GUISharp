@@ -253,8 +253,6 @@ namespace GUISharp.Controls.Elements
 			}
 			return null;
 		}
-
-
 		protected override void UpdateGraphics()
 		{
 			;
@@ -305,7 +303,6 @@ namespace GUISharp.Controls.Elements
 		{
 			base.ChangeForeColor(color);
 		}
-
 		private void ChangeTextLocation()
 		{
 			if (this.Font == null || this.Text == null)
