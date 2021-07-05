@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using GUISharp.Logging;
 
-namespace Tests
+namespace ClientTest
 {
 	public class ClientTest1
 	{

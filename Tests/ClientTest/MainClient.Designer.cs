@@ -10,7 +10,7 @@ using Color = Microsoft.Xna.Framework.Color;
 
 // sudo apt install libgdiplus
 
-namespace Tests
+namespace ClientTest
 {
 	partial class MainClient
 	{
@@ -23,7 +23,8 @@ namespace Tests
 
 			FlatElement test = new FlatElement(this);
 			//LoginProfileSandBox l = new();
-			ConnectionClosedSandBox l = new();
+			//ConnectionClosedSandBox l = new();
+			SandBoxes.LoginProfileSandBox l = new();
 			ButtonElement b = new ButtonElement(this);
 			FlatElement fImage = new FlatElement(this);
 			InputElement testInput = new(this);
@@ -117,17 +118,17 @@ namespace Tests
 			{
 				AppLogger.Log("RightClick");
 			};
-			l.LeftUp += (object sender, EventArgs e) =>
-			{
-				AppLogger.Log("LeftUp");
-			};
+			//l.LeftUp += (object sender, EventArgs e) =>
+			//{
+			//	AppLogger.Log("LeftUp");
+			//};
 			
-			this.ElementManager.AddRange(testInput, l);
-			b.ClickAsync += (object sender, EventArgs e) =>
-			{
-				var s = Microsoft.Xna.Framework.Media.Song.FromUri("test", new("Egoist - Departures.mp3", UriKind.Relative));
-				Microsoft.Xna.Framework.Media.MediaPlayer.Play(s);
-			};
+			this.ElementManager.AddRange(l);
+			//b.ClickAsync += (object sender, EventArgs e) =>
+			//{
+			//	var s = Microsoft.Xna.Framework.Media.Song.FromUri("test", new("Egoist - Departures.mp3", UriKind.Relative));
+			//	Microsoft.Xna.Framework.Media.MediaPlayer.Play(s);
+			//};
 			
 		}
 

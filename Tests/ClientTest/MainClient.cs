@@ -1,12 +1,12 @@
 using GUISharp.Client;
 
-namespace Tests
+namespace ClientTest
 {
 	public sealed partial class MainClient : GUIClient
 	{
 		public MainClient() : base(ClientSizeMode.FullScreen)
 		{
-			; //
+			SandBoxes.LoginProfileSandBox.GameClient = this;
 		}
 	}
 }

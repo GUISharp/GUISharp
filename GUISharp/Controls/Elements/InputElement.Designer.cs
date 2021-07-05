@@ -223,6 +223,16 @@ namespace GUISharp.Controls.Elements
 			this._flat?.SetLabelText(customValue);
 			this.ChangeLinerPos();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeSize(float w, float h)
 		{
 			this._flat?.ChangeSize(w, h);
@@ -293,6 +303,16 @@ namespace GUISharp.Controls.Elements
 			}
 			this.ChangeLinerPos();
 		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.29;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
 		public override void ChangeLocation(Vector2 location)
 		{
 			this.RealPosition = location;
@@ -809,6 +829,7 @@ namespace GUISharp.Controls.Elements
 			{
 				this.Focused = true;
 			}
+			this.ChangeLinerPos();
 		}
 		/// <summary>
 		/// focus on this input element so it get input
@@ -849,6 +870,7 @@ namespace GUISharp.Controls.Elements
 			{
 				BigFather?.ActivateInputable(this, false);
 			}
+			this.ChangeLinerPos();
 		}
 		/// <summary>
 		/// focus on this input element so it won't get any inputs
@@ -878,9 +900,78 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public void EnableMouseEnterEffect()
+		public virtual void EnableMouseEnterEffect()
 		{
 			this.UseMouseEnterEffect = true;
+		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.30;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DisableMouseEnterEffect()
+		{
+			this.UseMouseEnterEffect = false;
+		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.30;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void EnablePasswordMode()
+		{
+			if (!this.IsPasswordMode)
+			{
+				this.IsPasswordMode = true;
+				if (!StrongString.IsNullOrEmpty(this.Text))
+				{
+					this.ChangeText(this.Text);
+				}
+			}
+			
+		}
+		/// <summary>
+		///
+		/// <!--
+		/// Since: GUISharp 1.0.30;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DisablePasswordMode()
+		{
+			this.IsPasswordMode = false;
+		}
+		/// <summary>
+		/// Changes the password char of this input element.
+		/// <!--
+		/// Since: GUISharp 1.0.30;
+		/// By: ALiwoto;
+		/// Last edit: 26 July 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ChangePasswordChar(char ch)
+		{
+			if (ch == default)
+			{
+				this.DisablePasswordMode();
+				return;
+			}
+			this.PasswordChar = ch;
 		}
 		/// <summary>
 		///

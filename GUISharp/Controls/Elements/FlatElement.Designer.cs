@@ -313,6 +313,10 @@ namespace GUISharp.Controls.Elements
 				return;
 			}
 			this.FixedText = this.Text.FixMe(this.Font, this.Rectangle.Width);
+			if (this.Representor is InputElement i)
+			{
+				this.FixedText?.PassChecker(i.PasswordChar, i.IsPasswordMode);
+			}
 			if (this.FixedText == null)
 			{
 				return;
