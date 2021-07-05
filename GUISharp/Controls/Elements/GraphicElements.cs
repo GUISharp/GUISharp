@@ -29,7 +29,6 @@ using GUISharp.Constants;
 using GUISharp.Controls.Moving;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.GUIObjects.Resources;
-using XRectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace GUISharp.Controls.Elements
 {
@@ -108,6 +107,25 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region static Properties Region
+		/// <summary>
+		/// The BigClient of the application.
+		/// Equal to <see cref="ThereIsGConstants.Forming.GUIClient"/>.
+		/// In another words, this is your main form.
+		/// <!--
+		/// Since: GUISharp 1.0.32;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 15:15;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static GUIClient BigClient
+		{
+			get
+			{
+				return ThereIsGConstants.Forming.GUIClient;
+			}
+		}
 		/// <summary>
 		/// The Content Manager of the GUISharp!
 		/// <!--
@@ -322,7 +340,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		protected virtual Texture2D BackGroundImage { get; set; }
+		protected internal virtual Texture2D BackGroundImage { get; protected set; }
 		/// <summary>
 		/// ForeColor of this graphic element.
 		/// <!--
@@ -333,7 +351,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual Color ForeColor { get; set; }
+		public virtual Color ForeColor { get; protected set; }
 		/// <summary>
 		/// The background color of this graphic element.
 		/// <!--
@@ -356,7 +374,19 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual Color Tint { get; set; } = Color.White;
+		public virtual Color Tint { get; protected set; } = Color.White;
+		/// <summary>
+		/// The tint color of the background image of this graphic element.
+		/// It's <see cref="Color.White"/> by default.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual Color BackTint { get; protected set; } = Color.White;
 		/// <summary>
 		/// The last point of this graphic element.
 		/// Mostly used for movements operations.
@@ -415,7 +445,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual XRectangle Rectangle { get; set; }
+		public virtual Rectangle Rectangle { get; set; }
 		/// <summary>
 		/// The image rectangle of this element (on big father).
 		/// Used to draw the image of this element (if it exists).
@@ -427,7 +457,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual XRectangle ImageRectangle { get; protected set; }
+		public virtual Rectangle ImageRectangle { get; protected set; }
 		/// <summary>
 		/// The move manager of this element.
 		/// <!--

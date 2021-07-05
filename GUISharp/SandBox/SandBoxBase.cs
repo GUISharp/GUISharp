@@ -18,9 +18,13 @@
 
 using System;
 using Microsoft.Xna.Framework;
-using GUISharp.Constants;
+using Microsoft.Xna.Framework.Graphics;
+using FontStashSharp;
 using GUISharp.Client;
+using GUISharp.Security;
+using GUISharp.Constants;
 using GUISharp.Controls.Elements;
+using GUISharp.WotoProvider.Enums;
 
 namespace GUISharp.SandBox
 {
@@ -33,10 +37,6 @@ namespace GUISharp.SandBox
 		#endregion
 		//-------------------------------------------------
 		#region static Property Region
-		public static GUIClient Client
-		{
-			get => ThereIsGConstants.Forming.GUIClient;
-		}
 		/// <summary>
 		/// in the previos version of the GUISharp,
 		/// we had something with this syntax: 
@@ -144,6 +144,369 @@ namespace GUISharp.SandBox
 			}
 		}
 		/// <summary>
+		/// The name of this element.
+		/// Please use
+		/// <code><see cref="SetLabelName(StrongString)"/></code>
+		/// if you want to set this property.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override StrongString Name
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Name;
+				}
+				return StrongString.Empty;
+			}
+			protected set
+			{
+				; // do NOT allow setting the name.
+				// use ChangeName instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The real name of this sandbox.
+		/// Please use
+		/// <code><see cref="SetLabelName(StrongString)"/></code>
+		/// if you want to set this property.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override StrongString RealName
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.RealName;
+				}
+				return StrongString.Empty;
+			}
+			protected set
+			{
+				; // do NOT allow setting the name.
+				// use ChangeName instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The text of this element.
+		/// Please use
+		/// <code><see cref="SetLabelText(StrongString)"/></code>
+		/// if you want to set this property.
+		/// <!--
+		/// Since: GUISharp 1.0.32;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override StrongString Text 
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Text;
+				}
+				return StrongString.Empty;
+			}
+			protected set
+			{
+				;; // do NOT allow setting the text.
+				// use ChangeText instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The Font of this sandbox.
+		/// This property may be null.
+		/// <!--
+		/// Since: GUISharp 1.0.32;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override SpriteFontBase Font
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Font;
+				}
+				return null; //TODO: return default font.
+			}
+			protected set
+			{
+				;; // do NOT allow setting the font.
+				// use ChangeFont instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// the texture which should be draw on the background of the element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override Texture2D Image
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Image;
+				}
+				return null;
+			}
+			protected set
+			{
+				; // do NOT allow setting the image.
+				// use ChangeImage instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// if the back color is transparent, this texture should be 
+		/// null.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		protected internal override Texture2D BackGroundImage
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.BackGroundImage;
+				}
+				return null;
+			}
+			protected set
+			{
+				; // do NOT allow setting the image.
+				// use ChangeImage instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// ForeColor of this graphic element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override Color ForeColor
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.ForeColor;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do NOT allow setting the image.
+				// use ChangeImage instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The tint color of this graphic element.
+		/// It's <see cref="Color.White"/> by default.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override Color Tint
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Tint;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do NOT allow setting the tint color directly.
+				// use ChangeTint instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The background tint color of this sandbox.
+		/// It's <see cref="Color.White"/> by default.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override Color BackTint
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Tint;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do NOT allow setting the background tint color directly.
+				// use ChangeTint instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The last point of this graphic element.
+		/// Mostly used for movements operations.
+		/// Do NOT make this private or protected, as another
+		/// classes like MoveManager or
+		/// MoveList may need this property.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override Vector2 LastPoint
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.LastPoint;
+				}
+				return default;
+			}
+			set
+			{
+				if (_flat != null)
+				{
+
+					_flat.LastPoint = value;
+				}
+			}
+		}
+		/// <summary>
+		/// The real location of this element on its owner.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override Point ImageRealLocation
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.ImageRealLocation;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do NOT allow setting the image location.
+				// use ChangeImage instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The image rectangle of this element (on big father).
+		/// Used to draw the image of this element (if it exists).
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override Rectangle ImageRectangle
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.ImageRectangle;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do NOT allow setting the image rectangle.
+				// use ChangeImage instead (which is overrided.)
+			}
+		}
+		/// <summary>
+		/// The image size mode of this element.
+		/// Use 
+		/// <code><see cref="ChangeImageSizeMode(ImageSizeMode)"/> </code>
+		/// if you wanna change it.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override ImageSizeMode ImageSizeMode
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.ImageSizeMode;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do NOT allow setting the image rectangle.
+				// use ChangeImage instead (which is overrided.)
+			}
+		}
+
+		/// <summary>
 		/// the priority of this very sandbox.
 		/// </summary>
 		public virtual SandBoxPriority SandBoxPriority { get; protected set; }
@@ -172,7 +535,7 @@ namespace GUISharp.SandBox
 		#endregion
 		//-------------------------------------------------
 		#region field's Region
-		protected FlatElement _flat;
+		private FlatElement _flat;
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region

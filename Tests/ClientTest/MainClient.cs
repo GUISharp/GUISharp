@@ -6,7 +6,7 @@ namespace ClientTest
 	{
 		public MainClient() : base(ClientSizeMode.FullScreen)
 		{
-			SandBoxes.LoginProfileSandBox.GameClient = this;
+			;
 		}
 	}
 }

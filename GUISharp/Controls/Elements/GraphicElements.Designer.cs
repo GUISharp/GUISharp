@@ -1623,6 +1623,40 @@ namespace GUISharp.Controls.Elements
 			this.BackGroundImage = this.GetBackGroundTexture(color);
 		}
 		/// <summary>
+		/// Change the tint color of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
+		public virtual void ChangeTint(Color color)
+		{
+			this.Tint = color;
+		}
+		/// <summary>
+		/// Change the background tint color of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
+		public virtual void ChangeBackTint(Color color)
+		{
+			this.BackTint = color;
+		}
+		/// <summary>
 		/// Change the image of this element.
 		/// This method will use <c>this.MyRes</c> if and
 		/// only if it's not null, otherwise it will use default
@@ -1706,8 +1740,8 @@ namespace GUISharp.Controls.Elements
 			{
 				if (parse)
 				{
-					this.ChangeImage(myRes.GetAsTexture2D(myRes.GetString(
-						myRes.GetString(name) + PIC_RES)));
+					this.ChangeImage(myRes.GetAsTexture2D(
+						myRes.GetString(name) + PIC_RES));
 				}
 				else
 				{
@@ -1745,6 +1779,36 @@ namespace GUISharp.Controls.Elements
 		{
 			this.ChangeImage(this.MyRes == null ? DefaultRes :
 				this.MyRes, name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="MyRes"/> property of this
+		/// graphic element.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="PIC_RES"/> suffix to the name.
+		/// </param>
+		public virtual void ChangeImage(StrongString name, bool parse)
+		{
+			this.ChangeImage(this.MyRes == null ? DefaultRes :
+				this.MyRes, name, parse);
 		}
 		/// <summary>
 		/// Change the image of this graphic element, with using a name
