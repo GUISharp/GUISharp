@@ -1753,7 +1753,63 @@ namespace GUISharp.Controls.Elements
 				AppLogger.Log(ex);
 			}
 		}
-		
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the specified name in it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it.
+		/// </param>
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="PIC_RES"/> suffix to the name.
+		/// </param>
+		public virtual void ChangeImageContent(WotoRes myRes, StrongString name,
+			bool parse = true)
+		{
+			if (myRes == null || StrongString.IsNullOrEmpty(name) || 
+				Content == null)
+			{
+				return;
+			}
+			try
+			{
+				if (parse)
+				{
+					var cname = (myRes.GetString(name) + PIC_RES);
+					if (cname == null)
+					{
+						return;
+					}
+					this.ChangeImage(Content.Load<Texture2D>(cname.GetValue()));
+				}
+				else
+				{
+					this.ChangeImage(Content.Load<Texture2D>(name.GetValue()));
+				}
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+			}
+		}
 		/// <summary>
 		/// Change the image of this graphic element, with using a name
 		/// which already exists in the <see cref="MyRes"/> property of this
@@ -1778,6 +1834,32 @@ namespace GUISharp.Controls.Elements
 		public virtual void ChangeImage(StrongString name)
 		{
 			this.ChangeImage(this.MyRes == null ? DefaultRes :
+				this.MyRes, name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="Content"/> property of this
+		/// graphic element.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		public virtual void ChangeImageContent(StrongString name)
+		{
+			this.ChangeImageContent(this.MyRes == null ? DefaultRes :
 				this.MyRes, name);
 		}
 		/// <summary>
@@ -1865,7 +1947,7 @@ namespace GUISharp.Controls.Elements
 		{
 			// just check if the texture is not disposed,
 			// you don't have to check if the texture is null or not!
-			if (texture != null && !texture.IsDisposed)
+			if (!texture.IsDisposed)
 			{
 				// check if the current image is the same as the 
 				// passed texture or not

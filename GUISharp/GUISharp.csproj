@@ -26,7 +26,7 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<TargetFramework>net5.0</TargetFramework>
 		<PackageId>GUISharp</PackageId>
-		<Version>1.0.33</Version>
+		<Version>1.0.34</Version>
 		<Authors>GUISharp Authors</Authors>
     	<PackageProjectUrl>https://github.com/GUISharp/GUISharp</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GUISharp/GUISharp</RepositoryUrl>
