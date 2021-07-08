@@ -117,8 +117,15 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, LTW.SandBoxes.LoginProfileSandBox, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="BackGName" type="System.Resources.ResXFileRef, LTW.SandBoxes.LoginProfileSandBox">
-		<value>..\Resources\sandboxes\f_191020200758.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	<!--f_191020200758-->
+	<data name="BackGName_Name" xml:space="preserve">
+		<value>SandBoxBackground</value>
+	</data>
+	<data name="BackGName_Pic" xml:space="preserve">
+		<value>f_\m_\f_270220212252</value>
+	</data>
+	<data name="Label1_In_SandBox_Pic" xml:space="preserve">
+		<value>f_\m_\f_270220212252</value>
 	</data>
 	<data name="Button1_In_SandBox_E1" xml:space="preserve">
 		<value>Exit</value>

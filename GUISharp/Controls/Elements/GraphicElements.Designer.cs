@@ -1676,6 +1676,25 @@ namespace GUISharp.Controls.Elements
 			this.ChangeImage(this.MyRes == null ? DefaultRes : this.MyRes);
 		}
 		/// <summary>
+		/// Change the image of this element.
+		/// This method will use <c>Content</c> if and
+		/// only if it's not null, otherwise it will use default
+		/// resources manager of this library.
+		/// You don't have direct access to default resources manager,
+		/// because it is internal.
+		/// <!--
+		/// Since: GUISharp 1.0.14;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ChangeImageContent()
+		{
+			this.ChangeImageContent(this.MyRes == null ? DefaultRes : this.MyRes);
+		}
+		/// <summary>
 		/// Change the image of this graphic element, with using 
 		/// the <see cref="Name"/> property of this graphic element,
 		/// which already exists in the specified Woto Resources Manager.
@@ -1700,6 +1719,32 @@ namespace GUISharp.Controls.Elements
 		public virtual void ChangeImage(WotoRes myRes)
 		{
 			this.ChangeImage(myRes, this.Name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using 
+		/// the <see cref="Name"/> property of this graphic element,
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the <see cref="Name"/> 
+		/// property of this graphic element, it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		public virtual void ChangeImageContent(WotoRes myRes)
+		{
+			this.ChangeImageContent(myRes, this.Name);
 		}
 		/// <summary>
 		/// Change the image of this graphic element, with using a name
@@ -1740,6 +1785,8 @@ namespace GUISharp.Controls.Elements
 			{
 				if (parse)
 				{
+					// be careful!
+					// this.Name is Label1_Name
 					this.ChangeImage(myRes.GetAsTexture2D(
 						myRes.GetString(name) + PIC_RES));
 				}
@@ -1791,19 +1838,24 @@ namespace GUISharp.Controls.Elements
 			}
 			try
 			{
+				StrongString cname;
 				if (parse)
 				{
-					var cname = (myRes.GetString(name) + PIC_RES);
+					cname = myRes.GetString(myRes.GetString(name) + PIC_RES);
 					if (cname == null)
 					{
 						return;
 					}
-					this.ChangeImage(Content.Load<Texture2D>(cname.GetValue()));
 				}
 				else
 				{
-					this.ChangeImage(Content.Load<Texture2D>(name.GetValue()));
+					cname = myRes.GetString(name + PIC_RES);
+					if (cname == null)
+					{
+						return;
+					}
 				}
+				this.ChangeImage(Content.Load<Texture2D>(cname.GetValue()));
 			}
 			catch (Exception ex)
 			{
@@ -1861,6 +1913,36 @@ namespace GUISharp.Controls.Elements
 		{
 			this.ChangeImageContent(this.MyRes == null ? DefaultRes :
 				this.MyRes, name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="Content"/> property of this
+		/// graphic element.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="PIC_RES"/> suffix to the name.
+		/// </param>
+		public virtual void ChangeImageContent(StrongString name, bool parse)
+		{
+			this.ChangeImageContent(this.MyRes == null ? DefaultRes :
+				this.MyRes, name, parse);
 		}
 		/// <summary>
 		/// Change the image of this graphic element, with using a name

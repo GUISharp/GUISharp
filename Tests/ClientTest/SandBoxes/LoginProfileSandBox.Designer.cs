@@ -170,8 +170,10 @@ namespace ClientTest.SandBoxes
 			this.ExitButton.SetLabelText();
 			this.LoginButton.SetLabelText();
 			//images:
-			this.ChangeImage(SandBoxBackGNameInRes, false);
-			this.ChangeImageSizeMode(ImageSizeMode.Center);
+			Content.RootDirectory = "GameData";
+			this.ChangeImageContent(SandBoxBackGNameInRes, false);
+			this.ChangeImageSizeMode(ImageSizeMode.Center); // break point
+			this.TitleElement.ChangeImageContent();
 			//applyAndShow:
 			this.TitleElement.Apply();
 			this.TitleElement.Show();
