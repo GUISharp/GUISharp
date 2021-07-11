@@ -620,7 +620,7 @@ namespace GUISharp.Controls.Elements
 				}
 				if (e is SandBoxElement s)
 				{
-
+					this.RemoveSandbox(s);
 				}
 				else
 				{
@@ -637,6 +637,18 @@ namespace GUISharp.Controls.Elements
 				
 			}
 		}
+		public void RemoveAll(bool dispose = true)
+		{
+			this.VeryLowElements?.RemoveAll(dispose);
+			this.LowElements?.RemoveAll(dispose);
+			this.NormalElements?.RemoveAll(dispose);
+			this.HighElements?.RemoveAll(dispose);
+			this.VeryHighElements?.RemoveAll(dispose);
+			this.SuperHighElements?.RemoveAll(dispose);
+			this.BeyondHighElements?.RemoveAll(dispose);
+			this.TopMostElements?.RemoveAll(dispose);
+		}
+		
 		public void RemoveSandbox(SandBoxElement s, bool dispose = true)
 		{
 			if (dispose)
@@ -658,6 +670,7 @@ namespace GUISharp.Controls.Elements
 			this.LowSandBoxes?.Remove(s);
 			this.TopMostSandBoxes?.Remove(s);
 		}
+		
 		/// <summary>
 		/// Dispose All Elements.
 		/// </summary>

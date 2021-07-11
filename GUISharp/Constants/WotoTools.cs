@@ -83,6 +83,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Security;
 using Image = System.Drawing.Image;
+using Bitmap = System.Drawing.Bitmap;
+using DPoint = System.Drawing.Point;
+using DPointF = System.Drawing.PointF;
+using DColor = System.Drawing.Color;
+using DRectangle = System.Drawing.Rectangle;
+using DRectangleF = System.Drawing.RectangleF;
 
 namespace GUISharp.Constants
 {
@@ -166,6 +172,31 @@ namespace GUISharp.Constants
 			}
 		}
 		/// <summary>
+		/// Converts the specified <see cref="Image"/> object
+		/// to a <see cref="Texture2D"/> value using the default
+		/// <see cref="GraphicsDevice"/> of the game.
+		/// do NOT use this extension before creating an instance of
+		/// <see cref="Client.GUIClient"/>, otherwise it will return
+		/// <c>null</c>.
+		/// <!--
+		/// Since: GUISharp 1.0.12;
+		/// By: ALiwoto;
+		/// Last edit: Jun 30 11:30;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static Texture2D ToTexture2D(this Image i)
+		{
+			var c = ThereIsGConstants.Forming.GClient;
+			if (c != null)
+			{
+				return i.ToTexture2D(c.GraphicsDevice);
+			}
+			return null;
+		}
+		
+		/// <summary>
 		/// Converts the specified <see cref="Texture2D"/> object
 		/// to a <see cref="Image"/> value using the specified
 		/// the original image width and height.
@@ -180,6 +211,48 @@ namespace GUISharp.Constants
 		public static Image ToImage(this Texture2D texture)
 		{
 			return texture.ToImage(texture.Width, texture.Height);
+		}
+		/// <summary>
+		/// Converts the specified <see cref="Texture2D"/> object
+		/// to a <see cref="Image"/> value using the specified
+		/// the original image width and height.
+		/// <!--
+		/// Since: GUISharp 1.0.12;
+		/// By: ALiwoto;
+		/// Last edit: 30 Jun 11:30;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static Bitmap ToBitmap(this Texture2D texture)
+		{
+			return texture.ToBitmap(texture.Width, texture.Height);
+		}
+		
+		/// <summary>
+		/// Converts the specified <see cref="Texture2D"/> object
+		/// to a <see cref="Image"/> value using the specified
+		/// the specified width and height.
+		/// <!--
+		/// Since: GUISharp 1.0.12;
+		/// By: ALiwoto;
+		/// Last edit: 30 Jun 11:30;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static Bitmap ToBitmap(this Texture2D texture, int w, int h)
+		{
+			using (var m = new MemoryStream())
+			{
+				texture.SaveAsPng(m, w, h);
+				var i = Image.FromStream(m);
+				if (i is Bitmap b)
+				{
+					return b;
+				}
+				return new(i);
+			}
 		}
 		/// <summary>
 		/// Converts the specified <see cref="Texture2D"/> object
@@ -201,6 +274,107 @@ namespace GUISharp.Constants
 				return Image.FromStream(m);
 			}
 		}
-	}
+		/// <summary>
+		/// Converts the <see cref="Point"/> to <see cref="DPoint"/>.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static DPoint ToDPoint(this Point point)
+		{
+			return new(point.X, point.Y);
+		}
+		/// <summary>
+		/// Converts the <see cref="Color"/> to <see cref="DColor"/>.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static DColor ToDColor(this Color c)
+		{
+			return DColor.FromArgb(c.A, c.R, c.G, c.B);
+		}
+		/// <summary>
+		/// Converts the <see cref="Color"/> to <see cref="DColor"/>.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static DRectangle ToDRectangle(this Rectangle r)
+		{
+			return new(r.X, r.Y, r.Width, r.Height);
+		}
+		/// <summary>
+		/// Converts the <see cref="Color"/> to <see cref="DColor"/>.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static DRectangleF ToDRectangleF(this Vector4 v)
+		{
+			return new(v.X, v.Y, v.Z, v.W);
+		}
 
+		/// <summary>
+		/// Converts the <see cref="Color"/> to <see cref="DColor"/>.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static DPointF ToDPointF(this Vector2 v)
+		{
+			return new(v.X, v.Y);
+		}
+
+		public static DPoint[] ToDPoints(this Point[] points)
+		{
+			if (points == null)
+			{
+				return null;
+			}
+			var array = new DPoint[points.Length];
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i] = points[i].ToDPoint();
+			}
+			return array;
+		}
+
+		public static DPointF[] ToDPoints(this Vector2[] points)
+		{
+			if (points == null)
+			{
+				return null;
+			}
+			var array = new DPointF[points.Length];
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i] = points[i].ToDPointF();
+			}
+			return array;
+		}
+
+
+	
+	}
 }

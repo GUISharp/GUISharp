@@ -102,6 +102,17 @@ namespace GUISharp.Controls.Elements
 			}
 		}
 		/// <summary>
+		/// Remove all the elements in the list.
+		/// </summary>
+		public void RemoveAll(bool dispose = true)
+		{
+			if (dispose)
+			{
+				this.DisposeAll();
+			}
+			this.Clear();
+		}
+		/// <summary>
 		/// apply all the elements in the list.
 		/// </summary>
 		public void ApplyAll()

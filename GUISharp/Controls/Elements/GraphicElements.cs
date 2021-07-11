@@ -839,6 +839,22 @@ namespace GUISharp.Controls.Elements
 		/// </value>
 		public virtual bool IsBarren { get; protected set; }
 		/// <summary>
+		/// Gets a value indicating whether the element is stable or not.
+		/// if the element is not stable, it will disable itself after
+		/// <c>Click</c> event (only left button of mouse).
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 9 July 2021, 11:22 AM;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <value>
+		/// true if the element is stable; otherwise, false.
+		/// </value>
+		public virtual bool IsStable { get; protected set; }
+		/// <summary>
 		/// Gets a value indicating whether the element should
 		/// move its owner or not. If it should move its owner,
 		/// it will ignore <see cref="Movements"/> property.

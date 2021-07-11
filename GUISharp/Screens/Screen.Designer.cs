@@ -40,7 +40,10 @@ namespace GUISharp.Screens
 		{
 			this.ElementManager?.Remove(element, dispose);
 		}
-
+		public virtual void RemoveElements(bool dispose = true)
+		{
+			this.ElementManager?.RemoveAll(dispose);
+		}
 		public virtual void ClearElements()
 		{
 			this.ElementManager?.Clear();

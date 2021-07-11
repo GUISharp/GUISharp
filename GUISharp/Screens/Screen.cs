@@ -136,7 +136,7 @@ namespace GUISharp.Screens
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region
-		// some members here
+		public event EventHandler Done;
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region

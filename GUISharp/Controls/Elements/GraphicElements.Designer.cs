@@ -130,6 +130,32 @@ namespace GUISharp.Controls.Elements
 			this.Manager?.EnableAll();
 		}
 		/// <summary>
+		/// Unstable the element,
+		/// this method will set the <see cref="IsStable"/> property 
+		/// to <c>false</c>.
+		/// if you want to make the element stable,
+		/// use <see cref="Stable()"/> method.
+		/// </summary>
+		public virtual void Unstable()
+		{
+			if (this.IsStable)
+			{
+				this.IsStable = false;
+			}
+		}
+		/// <summary>
+		/// Make the element a stable element.
+		/// </summary>
+		public virtual void Stable()
+		{
+			if (this.IsStable || this.IsDisposed)
+			{
+				return;
+			}
+			this.IsStable = true;
+		}
+		
+		/// <summary>
 		/// Enable the element.
 		/// If the element is already enabled, this method
 		/// won't ignore `Manager.EnableAll()`.
@@ -595,6 +621,10 @@ namespace GUISharp.Controls.Elements
 					// raise the event in another thread.
 					this.ClickAsync.Invoke(sender, EventArgs.Empty);
 				});
+			}
+			if (!this.IsStable)
+			{
+				this.Disable();
 			}
 		}
 		/// <summary>
