@@ -1758,6 +1758,46 @@ namespace GUISharp.GUIObjects.Graphics
 			this.SaveChanges();
 		}
 
+	
+
+		public virtual void DrawImage(Image image, int x, int y, 
+			Rectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, x, y, srcRect.ToDRectangle(), srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, int x, int y, 
+			Rectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, x, y, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, int x, int y, 
+			DRectangle srcRect, GraphicsUnit srcUnit)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, x, y, srcRect, srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, int x, int y, 
+			DRectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, x, y, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1767,9 +1807,13 @@ namespace GUISharp.GUIObjects.Graphics
 		
 		
 		
+
+
+
+
 		
 		/// <summary>
-		///
+		/// test
 		/// <!--
 		/// Since: GUISharp 1.0.36;
 		/// By: ALiwoto;
@@ -1836,7 +1880,6 @@ namespace GUISharp.GUIObjects.Graphics
 			this._bit_map?.Dispose();
 			this._texture?.Dispose();
 		}
-
 		/// <summary>
 		/// Async the Texture component of this <see cref="Illusion"/>
 		/// if and only if <c>_changed</c> value of it is true.
