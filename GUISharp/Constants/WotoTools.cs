@@ -375,6 +375,36 @@ namespace GUISharp.Constants
 		}
 
 
+		public static DRectangleF[] ToDRectanglesF(this Vector4[] rects)
+		{
+			if (rects == null)
+			{
+				return null;
+			}
+			var array = new DRectangleF[rects.Length];
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i] = rects[i].ToDRectangleF();
+			}
+			return array;
+		}
+
+	
+
+		public static DRectangle[] ToDRectangles(this Rectangle[] rects)
+		{
+			if (rects == null)
+			{
+				return null;
+			}
+			var array = new DRectangle[rects.Length];
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i] = rects[i].ToDRectangle();
+			}
+			return array;
+		}
+
 	
 	}
 }

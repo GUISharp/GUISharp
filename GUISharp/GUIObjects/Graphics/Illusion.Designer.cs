@@ -36,6 +36,9 @@ using DRectangle	= System.Drawing.Rectangle;
 using DRectangleF 	= System.Drawing.RectangleF;
 using GraphicsUnit	= System.Drawing.GraphicsUnit;
 using DFillMode 	= System.Drawing.Drawing2D.FillMode;
+using DrawImageAbort = System.Drawing.Graphics.DrawImageAbort;
+using GraphicsPath = System.Drawing.Drawing2D.GraphicsPath;
+using Brush = System.Drawing.Brush;
 
 
 namespace GUISharp.GUIObjects.Graphics
@@ -1791,42 +1794,909 @@ namespace GUISharp.GUIObjects.Graphics
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-		
-		
-
-
-
-
-		
-		/// <summary>
-		/// test
-		/// <!--
-		/// Since: GUISharp 1.0.36;
-		/// By: ALiwoto;
-		/// Last edit: 11 July 13:37;
-		/// Sign: ALiwoto;
-		/// Verified: Yes;
-		/// -->
-		/// </summary>
-		public virtual void DrawLineAndSave(Pen pen, Point pt1, Point pt2)
+		public virtual void DrawImage(Image image, int x, int y)
 		{
-			this.DrawLine(pen, pt1, pt2);
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, x, y);
+		}
+		public virtual void DrawImageAndSave(Image image, int x, int y)
+		{
+			this.DrawImage(image, x, y);
 			this.SaveChanges();
 		}
+
+	
+
+
+
+		public virtual void DrawImage(Image image, 
+			Vector4 destRect, Vector4 srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect.ToDRectangleF(), 
+				srcRect.ToDRectangleF(), srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, 
+			Vector4 destRect, Vector4 srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, 
+			DRectangleF destRect, DRectangleF srcRect, GraphicsUnit srcUnit)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect, srcRect, srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, 
+			DRectangleF destRect, DRectangleF srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImage(Image image, Vector4 rect)
+		{
+			this.DrawImage(image, rect.ToDRectangleF());
+		}
+		public virtual void DrawImageAndSave(Image image, Vector4 rect)
+		{
+			this.DrawImage(image, rect);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangleF rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, rect);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangleF rect)
+		{
+			this.DrawImage(image, rect);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect, 
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(), 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, callback, callbackData);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			this.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, callback, callbackData);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect, 
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, callback, callbackData);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect, 
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			this.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, callback, callbackData);
+			this.SaveChanges();
+		}
+		
+
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(),
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback);
+			this.SaveChanges();
+		}
+		
+
+		public virtual void DrawImage(Image image, Rectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(),
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttrs);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttrs);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttrs);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			float srcX, float srcY, float srcWidth, float srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttrs);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect, 
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(), 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect, 
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect, 
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect, 
+			float srcX, float srcY, float srcWidth, float srcHeight, 
+			GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit);
+			this.SaveChanges();
+		}
+		
+
+
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(),
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback, callbackData);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback, callbackData);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback, callbackData);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttrs, 
+			DrawImageAbort callback, IntPtr callbackData)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttrs, 
+				callback, callbackData);
+			this.SaveChanges();
+		}
+		
+
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttr, 
+			DrawImageAbort callback)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(),
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttr, 
+				callback);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttr, 
+			DrawImageAbort callback)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttr, 
+				callback);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttr, 
+			DrawImageAbort callback)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttr, 
+				callback);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight, 
+			GraphicsUnit srcUnit, ImageAttributes imageAttr, 
+			DrawImageAbort callback)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight, 
+				srcUnit, imageAttr, 
+				callback);
+			this.SaveChanges();
+		}
+		
+
+
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(),
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttr);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttr);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttr)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttr);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit, ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destRect,
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit, imageAttr);
+			this.SaveChanges();
+		}
+		
+
+
+
+
+
+
+
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(),
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect, 
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect, 
+			int srcX, int srcY, int srcWidth, int srcHeight,
+			GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, 
+				srcX, srcY, srcWidth, srcHeight,
+				srcUnit);
+			this.SaveChanges();
+		}
+		
+
+
+
+		public virtual void DrawImage(Image image, Rectangle destRect,
+			Rectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect.ToDRectangle(), 
+				srcRect.ToDRectangle(), srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
+			Rectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle destRect,
+			DRectangle srcRect, GraphicsUnit srcUnit)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destRect, srcRect, srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
+			DRectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destRect, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		
+
+		public virtual void DrawImage(Image image, Rectangle rect)
+		{
+			this.DrawImage(image, rect.ToDRectangle());
+		}
+		public virtual void DrawImageAndSave(Image image, Rectangle rect)
+		{
+			this.DrawImage(image, rect);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DRectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, rect);
+		}
+		public virtual void DrawImageAndSave(Image image, DRectangle rect)
+		{
+			this.DrawImage(image, rect);
+			this.SaveChanges();
+		}
+		
+
+
+
+
+
+
+
+
+
+
+
+
+		public virtual void DrawImage(Image image, Point[] destPoints,
+			Rectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr, DrawImageAbort callback,
+			int callbackData)
+		{
+			this.DrawImage(image, destPoints.ToDPoints(), 
+			srcRect.ToDRectangle(), srcUnit,
+			imageAttr, callback, callbackData);
+		}
+		public virtual void DrawImageAndSave(Image image, Point[] destPoints,
+			Rectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr, DrawImageAbort callback,
+			int callbackData)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+			imageAttr, callback, callbackData);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPoint[] destPoints,
+			DRectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr, DrawImageAbort callback,
+			int callbackData)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+			imageAttr, callback, callbackData);
+		}
+		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints,
+			DRectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr, DrawImageAbort callback,
+			int callbackData)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+			imageAttr, callback, callbackData);
+			this.SaveChanges();
+		}
+		
+
+
+
+		public virtual void DrawImage(Image image, Point[] destPoints,
+			Rectangle srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			this.DrawImage(image, destPoints.ToDPoints(), 
+				srcRect.ToDRectangle(), srcUnit,
+				imageAttr, callback);
+		}
+		public virtual void DrawImageAndSave(Image image, Point[] destPoints,
+			Rectangle srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr, callback);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPoint[] destPoints,
+			DRectangle srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr, callback);
+		}
+		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints,
+			DRectangle srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr, callback);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImage(Image image, Point[] destPoints, 
+			Rectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destPoints.ToDPoints(),
+				srcRect.ToDRectangle(), srcUnit,
+				imageAttr);
+		}
+		public virtual void DrawImageAndSave(Image image, Point[] destPoints, 
+			Rectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPoint[] destPoints, 
+			DRectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr);
+		}
+		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints, 
+			DRectangle srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr);
+			this.SaveChanges();
+		}
+		
+
+		public virtual void DrawImage(Image image, Vector2[] destPoints, 
+			Vector4 srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			this.DrawImage(image, destPoints.ToDPoints(), 
+				srcRect.ToDRectangleF(), srcUnit,
+				imageAttr, callback);
+		}
+		public virtual void DrawImageAndSave(Image image, Vector2[] destPoints, 
+			Vector4 srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr, callback);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPointF[] destPoints, 
+			DRectangleF srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr, callback);
+		}
+		public virtual void DrawImageAndSave(Image image, DPointF[] destPoints, 
+			DRectangleF srcRect, GraphicsUnit srcUnit, 
+			ImageAttributes imageAttr, DrawImageAbort callback)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr, callback);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImage(Image image, Vector2[] destPoints,
+			Vector4 srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destPoints.ToDPoints(), 
+				srcRect.ToDRectangleF(), srcUnit, imageAttr);
+		}
+		public virtual void DrawImageAndSave(Image image, Vector2[] destPoints,
+			Vector4 srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPointF[] destPoints,
+			DRectangleF srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr);
+		}
+		public virtual void DrawImageAndSave(Image image, DPointF[] destPoints,
+			DRectangleF srcRect, GraphicsUnit srcUnit,
+			ImageAttributes imageAttr)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit,
+				imageAttr);
+			this.SaveChanges();
+		}
+		
+
+
+
+		public virtual void DrawImage(Image image, Vector2[] destPoints, 
+			Vector4 srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destPoints.ToDPoints(),
+				srcRect.ToDRectangleF(), srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, Vector2[] destPoints, 
+			Vector4 srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPointF[] destPoints, 
+			DRectangleF srcRect, GraphicsUnit srcUnit)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints, srcRect, srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, DPointF[] destPoints, 
+			DRectangleF srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImage(Image image, Point[] destPoints)
+		{
+			this.DrawImage(image, destPoints.ToDPoints());
+		}
+		public virtual void DrawImageAndSave(Image image, Point[] destPoints)
+		{
+			this.DrawImage(image, destPoints);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPoint[] destPoints)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints);
+		}
+		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints)
+		{
+			this.DrawImage(image, destPoints);
+			this.SaveChanges();
+		}
+		
+
+
+
+
+		public virtual void DrawImage(Image image, Point[] destPoints, 
+			Rectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destPoints.ToDPoints(), 
+				srcRect.ToDRectangle(), srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, Point[] destPoints, 
+			Rectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		public virtual void DrawImage(Image image, DPoint[] destPoints, 
+			DRectangle srcRect, GraphicsUnit srcUnit)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImage(image, destPoints, srcRect, srcUnit);
+		}
+		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints, 
+			DRectangle srcRect, GraphicsUnit srcUnit)
+		{
+			this.DrawImage(image, destPoints, srcRect, srcUnit);
+			this.SaveChanges();
+		}
+		
+
+
+
+
+
+		public virtual void DrawImageUnscaled(Image image, Point point)
+		{
+			this.DrawImageUnscaled(image, point.ToDPoint());
+		}
+		public virtual void DrawImageUnscaledAndSave(Image image, Point point)
+		{
+			this.DrawImageUnscaled(image, point);
+			this.SaveChanges();
+		}
+		public virtual void DrawImageUnscaled(Image image, DPoint point)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImageUnscaled(image, point);
+		}
+		public virtual void DrawImageUnscaledAndSave(Image image, DPoint point)
+		{
+			this.DrawImageUnscaled(image, point);
+			this.SaveChanges();
+		}
+		
+
+
+
+		public virtual void DrawImageUnscaled(Image image, Rectangle rect)
+		{
+			this.DrawImageUnscaled(image, rect.ToDRectangle());
+		}
+		public virtual void DrawImageUnscaledAndSave(Image image, Rectangle rect)
+		{
+			this.DrawImageUnscaled(image, rect);
+			this.SaveChanges();
+		}
+		public virtual void DrawImageUnscaled(Image image, DRectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImageUnscaled(image, rect);
+		}
+		public virtual void DrawImageUnscaledAndSave(Image image, DRectangle rect)
+		{
+			this.DrawImageUnscaled(image, rect);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImageUnscaled(Image image, int x, int y)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImageUnscaled(image, x, y);
+		}
+		public virtual void DrawImageUnscaledAndSave(Image image, int x, int y)
+		{
+			this.DrawImageUnscaled(image, x, y);
+			this.SaveChanges();
+		}
+		
+
+
+		public virtual void DrawImageUnscaled(Image image, int x, int y, int width, int height)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImageUnscaled(image, x, y, width, height);
+		}
+		public virtual void DrawImageUnscaledAndSave(Image image, int x, int y, int width, int height)
+		{
+			this.DrawImageUnscaled(image, x, y, width, height);
+			this.SaveChanges();
+		}
+		
+
+		public virtual void DrawImageUnscaledAndClipped(Image image,
+			Rectangle rect)
+		{
+			this.DrawImageUnscaledAndClipped(image, rect.ToDRectangle());
+		}
+		public virtual void DrawImageUnscaledAndClippedAndSave(Image image,
+			Rectangle rect)
+		{
+			this.DrawImageUnscaledAndClipped(image, rect);
+			this.SaveChanges();
+		}
+		public virtual void DrawImageUnscaledAndClipped(Image image,
+			DRectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawImageUnscaledAndClipped(image, rect);
+		}
+		public virtual void DrawImageUnscaledAndClippedAndSave(Image image,
+			DRectangle rect)
+		{
+			this.DrawImageUnscaledAndClipped(image, rect);
+			this.SaveChanges();
+		}
+		
+
+
+
+
 		/// <summary>
 		///  Draws a line connecting two <see cref="Point"/> structures.
 		/// This method is good when you want to use a lot of
@@ -1842,12 +2712,1913 @@ namespace GUISharp.GUIObjects.Graphics
 		/// </summary>
 		public virtual void DrawLine(Pen pen, Point pt1, Point pt2)
 		{
+			this.DrawLine(pen, pt1.ToDPoint(), pt2.ToDPoint());
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLineAndSave(Pen pen, Point pt1, Point pt2)
+		{
+			this.DrawLine(pen, pt1, pt2);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLine(Pen pen, DPoint pt1, DPoint pt2)
+		{
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawLine(pen, pt1.ToDPoint(), pt1.ToDPoint());
+			this._g.DrawLine(pen, pt1, pt1);
 		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLineAndSave(Pen pen, DPoint pt1, DPoint pt2)
+		{
+			this.DrawLine(pen, pt1, pt2);
+			this.SaveChanges();
+		}
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLine(Pen pen, Vector2 pt1, Vector2 pt2)
+		{
+			this.DrawLine(pen, pt1.ToDPointF(), pt2.ToDPointF());
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLineAndSave(Pen pen, Vector2 pt1, Vector2 pt2)
+		{
+			this.DrawLine(pen, pt1, pt2);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLine(Pen pen, DPointF pt1, DPointF pt2)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawLine(pen, pt1, pt1);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLineAndSave(Pen pen, DPointF pt1, DPointF pt2)
+		{
+			this.DrawLine(pen, pt1, pt2);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLine(Pen pen, int x1, int y1, 
+			int x2, int y2)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawLine(pen, x1, y1, x2, y2);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLineAndSave(Pen pen, int x1, int y1,
+			int x2, int y2)
+		{
+			this.DrawLine(pen, x1, y1, x2, y2);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLine(Pen pen, float x1, float y1,
+			float x2, float y2)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawLine(pen, x1, y1, x2, y2);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLineAndSave(Pen pen, float x1, float y1, 
+			float x2, float y2)
+		{
+			this.DrawLine(pen, x1, y1, x2, y2);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLines(Pen pen, Vector2[] points)
+		{
+			this.DrawLines(pen, points.ToDPoints());
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLinesAndSave(Pen pen, Vector2[] points)
+		{
+			this.DrawLines(pen, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLines(Pen pen, DPointF[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawLines(pen, points);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLinesAndSave(Pen pen, DPointF[] points)
+		{
+			this.DrawLines(pen, points);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLines(Pen pen, Point[] points)
+		{
+			this.DrawLines(pen, points.ToDPoints());
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLinesAndSave(Pen pen, Point[] points)
+		{
+			this.DrawLines(pen, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLines(Pen pen, DPoint[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawLines(pen, points);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawLinesAndSave(Pen pen, DPoint[] points)
+		{
+			this.DrawLines(pen, points);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPath(Pen pen, GraphicsPath path)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawPath(pen, path);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPathAndSave(Pen pen, GraphicsPath path)
+		{
+			this.DrawPath(pen, path);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPie(Pen pen, Rectangle rect, 
+			float startAngle, float sweepAngle)
+		{
+			this.DrawPie(pen, rect.ToDRectangle(), startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPieAndSave(Pen pen, Rectangle rect,
+			float startAngle, float sweepAngle)
+		{
+			this.DrawPie(pen, rect, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPie(Pen pen, DRectangle rect, 
+			float startAngle, float sweepAngle)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawPie(pen, rect, startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPieAndSave(Pen pen, DRectangle rect, 
+		float startAngle, float sweepAngle)
+		{
+			this.DrawPie(pen, rect, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPie(Pen pen, Vector4 rect, 
+			float startAngle, float sweepAngle)
+		{
+			this.DrawPie(pen, rect.ToDRectangleF(), startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPieAndSave(Pen pen, Vector4 rect, 
+			float startAngle, float sweepAngle)
+		{
+			this.DrawPie(pen, rect, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPie(Pen pen, DRectangleF rect, 
+			float startAngle, float sweepAngle)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawPie(pen, rect, startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPieAndSave(Pen pen, DRectangleF rect, 
+			float startAngle, float sweepAngle)
+		{
+			this.DrawPie(pen, rect, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPie(Pen pen, int x, int y, 
+			int width, int height, int startAngle, int sweepAngle)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPieAndSave(Pen pen, int x, int y, 
+			int width, int height, int startAngle, int sweepAngle)
+		{
+			this.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPie(Pen pen, float x, float y, 
+			float width, float height, float startAngle, float sweepAngle)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPieAndSave(Pen pen, float x, float y, 
+			float width, float height, float startAngle, float sweepAngle)
+		{
+			this.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygon(Pen pen, Vector2[] points)
+		{
+			this.DrawPolygon(pen, points.ToDPoints());
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygonAndSave(Pen pen, Vector2[] points)
+		{
+			this.DrawPolygon(pen, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		///  Draws a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// drawing operations (like drawing multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygon(Pen pen, DPointF[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawPolygon(pen, points);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygonAndSave(Pen pen, DPointF[] points)
+		{
+			this.DrawPolygon(pen, points);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygon(Pen pen, Point[] points)
+		{
+			this.DrawPolygon(pen, points.ToDPoints());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygonAndSave(Pen pen, Point[] points)
+		{
+			this.DrawPolygon(pen, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygon(Pen pen, DPoint[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawPolygon(pen, points);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawPolygonAndSave(Pen pen, DPoint[] points)
+		{
+			this.DrawLines(pen, points);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangle(Pen pen, Rectangle rect)
+		{
+			this.DrawRectangle(pen, rect.ToDRectangle());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangleAndSave(Pen pen, Rectangle rect)
+		{
+			this.DrawRectangle(pen, rect);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangle(Pen pen, DRectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawRectangle(pen, rect);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangleAndSave(Pen pen, DRectangle rect)
+		{
+			this.DrawRectangle(pen, rect);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangle(Pen pen, int x, int y, 
+			int width, int height)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawRectangle(pen, x, y, width, height);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangleAndSave(Pen pen, int x, int y,
+			int width, int height)
+		{
+			this.DrawRectangle(pen, x, y, width, height);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangle(Pen pen, float x, float y, 
+			float width, float height)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawRectangle(pen, x, y, width, height);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangleAndSave(Pen pen, float x, float y,
+			float width, float height)
+		{
+			this.DrawRectangle(pen, x, y, width, height);
+			this.SaveChanges();
+		}
+
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangles(Pen pen, Vector4[] rects)
+		{
+			this.DrawRectangles(pen, rects.ToDRectanglesF());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectanglesAndSave(Pen pen, Vector4[] rects)
+		{
+			this.DrawRectangles(pen, rects);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangles(Pen pen, DRectangleF[] rects)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawRectangles(pen, rects);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectanglesAndSave(Pen pen, DRectangleF[] rects)
+		{
+			this.DrawRectangles(pen, rects);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangles(Pen pen, Rectangle[] rects)
+		{
+			this.DrawRectangles(pen, rects.ToDRectangles());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectanglesAndSave(Pen pen, Rectangle[] rects)
+		{
+			this.DrawRectangles(pen, rects);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectangles(Pen pen, DRectangle[] rects)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.DrawRectangles(pen, rects);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void DrawRectanglesAndSave(Pen pen, DRectangle[] rects)
+		{
+			this.DrawRectangles(pen, rects);
+			this.SaveChanges();
+		}
+
+
+
+
+		//=================================================
+		//=================================================
+		// #TODO
+		// DrawString methods are not included yet.
+		// We have to do it in the next versions.
+		//=================================================
+		//=================================================
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ExcludeClip(Rectangle rect)
+		{
+			this.ExcludeClip(rect.ToDRectangle());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ExcludeClipAndSave(Rectangle rect)
+		{
+			this.ExcludeClip(rect);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ExcludeClip(DRectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.ExcludeClip(rect);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ExcludeClipAndSave(DRectangle rect)
+		{
+			this.ExcludeClip(rect);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, Vector2[] points)
+		{
+			this.FillClosedCurve(brush, points.ToDPoints());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			Vector2[] points)
+		{
+			this.FillClosedCurve(brush, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, DPointF[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillClosedCurve(brush, points);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			DPointF[] points)
+		{
+			this.FillClosedCurve(brush, points);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, Vector2[] points,
+			DFillMode fillmode)
+		{
+			this.FillClosedCurve(brush, points.ToDPoints(), fillmode);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			Vector2[] points, DFillMode fillmode)
+		{
+			this.FillClosedCurve(brush, points, fillmode);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, DPointF[] points,
+			DFillMode fillmode)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillClosedCurve(brush, points, fillmode);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			DPointF[] points, DFillMode fillmode)
+		{
+			this.FillClosedCurve(brush, points, fillmode);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, Vector2[] points,
+			DFillMode fillmode, float tension)
+		{
+			this.FillClosedCurve(brush, points.ToDPoints(), fillmode, tension);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			Vector2[] points, DFillMode fillmode, float tension)
+		{
+			this.FillClosedCurve(brush, points, fillmode, tension);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, DPointF[] points,
+			DFillMode fillmode, float tension)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillClosedCurve(brush, points, fillmode, tension);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			DPointF[] points, DFillMode fillmode, float tension)
+		{
+			this.FillClosedCurve(brush, points, fillmode, tension);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, Point[] points)
+		{
+			this.FillClosedCurve(brush, points.ToDPoints());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			Point[] points)
+		{
+			this.FillClosedCurve(brush, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurve(Brush brush, DPoint[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillClosedCurve(brush, points);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillClosedCurveAndSave(Brush brush, 
+			DPoint[] points)
+		{
+			this.FillClosedCurve(brush, points);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipse(Brush brush, int x, int y, 
+			int width, int height)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillEllipse(brush, x, y, width, height);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipseAndSave(Brush brush, int x, int y,
+			int width, int height)
+		{
+			this.FillEllipse(brush, x, y, width, height);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipse(Brush brush, Vector4 rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this.FillEllipse(brush, rect.ToDRectangleF());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipseAndSave(Brush brush, Vector4 rect)
+		{
+			this.FillEllipse(brush, rect);
+			this.SaveChanges();
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipse(Brush brush, DRectangleF rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillEllipse(brush, rect);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipseAndSave(Brush brush, DRectangleF rect)
+		{
+			this.FillEllipse(brush, rect);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipse(Brush brush, Rectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this.FillEllipse(brush, rect.ToDRectangle());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipseAndSave(Brush brush, Rectangle rect)
+		{
+			this.FillEllipse(brush, rect);
+			this.SaveChanges();
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipse(Brush brush, DRectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillEllipse(brush, rect);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipseAndSave(Brush brush, DRectangle rect)
+		{
+			this.FillEllipse(brush, rect);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipse(Brush brush, float x, float y, 
+			float width, float height)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillEllipse(brush, x, y, width, height);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillEllipseAndSave(Brush brush, float x, float y,
+			float width, float height)
+		{
+			this.FillEllipse(brush, x, y, width, height);
+			this.SaveChanges();
+		}
+
+
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPath(Brush brush, GraphicsPath path)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillPath(brush, path);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPathAndSave(Brush brush, GraphicsPath path)
+		{
+			this.FillPath(brush, path);
+			this.SaveChanges();
+		}
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPie(Brush brush, int x, int y, 
+			int width, int height, int startAngle, int sweepAngle)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillPie(brush, x, y, width, height, startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPieAndSave(Brush brush, int x, int y, 
+			int width, int height, int startAngle, int sweepAngle)
+		{
+			this.FillPie(brush, x, y, width, height, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPie(Brush brush, float x, float y, 
+			float width, float height, float startAngle, float sweepAngle)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillPie(brush, x, y, width, height, startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPieAndSave(Brush brush, float x, float y, 
+			float width, float height, float startAngle, float sweepAngle)
+		{
+			this.FillPie(brush, x, y, width, height, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPie(Brush brush, Rectangle rect, 
+			float startAngle, float sweepAngle)
+		{
+			this.FillPie(brush, rect.ToDRectangle(), startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPieAndSave(Brush brush, Rectangle rect,
+			float startAngle, float sweepAngle)
+		{
+			this.FillPie(brush, rect, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		///  Fills a line connecting two <see cref="Point"/> structures.
+		/// This method is good when you want to use a lot of
+		/// Filling operations (like Filling multiple lines, 
+		/// rectangles, etc...), and at the end you have to save them all.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPie(Brush brush, DRectangle rect, 
+			float startAngle, float sweepAngle)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillPie(brush, rect, startAngle, sweepAngle);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPieAndSave(Brush brush, DRectangle rect, 
+		float startAngle, float sweepAngle)
+		{
+			this.FillPie(brush, rect, startAngle, sweepAngle);
+			this.SaveChanges();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, Vector2[] points, 
+			DFillMode fillMode)
+		{
+			this.FillPolygon(brush, points.ToDPoints(), fillMode);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, Vector2[] points, 
+			DFillMode fillMode)
+		{
+			this.FillPolygon(brush, points, fillMode);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, DPointF[] points, 
+			DFillMode fillMode)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			this._g.FillPolygon(brush, points, fillMode);
+		}
+		/// <summary>
+		/// test
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, DPointF[] points, 
+			DFillMode fillMode)
+		{
+			this.FillPolygon(brush, points, fillMode);
+			this.SaveChanges();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
 		/// <summary>
 		/// Saves the changes applied to the graphical component of
 		/// this <see cref="Illusion"/>.
