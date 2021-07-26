@@ -1007,13 +1007,13 @@ namespace GUISharp.Security
 					return false;
 			}
 		}
-		public static bool IsNullOrEmpty(StrongString _s)
+		public static bool IsNullOrEmpty(StrongString s)
 		{
-			if (_s is null)
+			if (s is null)
 			{
 				return true;
 			}
-			return !_s.IsHealthy();
+			return !s.IsHealthy();
 		}
 		#endregion
 		//-------------------------------------------------

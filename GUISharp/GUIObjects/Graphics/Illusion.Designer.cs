@@ -21,8 +21,10 @@ using System.IO;
 using System.Drawing.Imaging;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GUISharp.Logging;
 using GUISharp.Security;
 using GUISharp.Constants;
+using System.Drawing;
 using static GUISharp.Client.Universe;
 using Pen			= System.Drawing.Pen;
 using Bitmap		= System.Drawing.Bitmap;
@@ -30,9 +32,12 @@ using Image			= System.Drawing.Image;
 using Icon			= System.Drawing.Icon;
 using Graphic		= System.Drawing.Graphics;
 using DPoint		= System.Drawing.Point;
+using Point			= Microsoft.Xna.Framework.Point;
 using DPointF		= System.Drawing.PointF;
 using DColor		= System.Drawing.Color;
+using Color			= Microsoft.Xna.Framework.Color;
 using DRectangle	= System.Drawing.Rectangle;
+using Rectangle		= Microsoft.Xna.Framework.Rectangle;
 using DRectangleF 	= System.Drawing.RectangleF;
 using GraphicsUnit	= System.Drawing.GraphicsUnit;
 using DFillMode 	= System.Drawing.Drawing2D.FillMode;
@@ -94,7 +99,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.Clear(color);
+			try
+			{
+				this._g.Clear(color);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		
 		/// <summary>
@@ -246,7 +262,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawArc(pen, rect, startAngle, sweepAngle);
+			try
+			{
+				this._g.DrawArc(pen, rect, startAngle, sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		
 		/// <summary>
@@ -387,6 +414,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawArc(pen, rect, startAngle, sweepAngle);
 		}
 		
@@ -469,7 +508,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawArc(pen, x, y, w, h, startAngle, sweepAngle);
+			try
+			{
+				this._g.DrawArc(pen, x, y, w, h, startAngle, sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		
 		/// <summary>
@@ -561,7 +611,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawArc(pen, x, y, w, h, startAngle, sweepAngle);
+			try
+			{
+				this._g.DrawArc(pen, x, y, w, h, startAngle, sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		
 		/// <summary>
@@ -720,6 +781,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawBezier(pen, pt1, pt2, pt3, pt4);
 		}
 
@@ -812,7 +885,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawBezier(pen, x1, y1, x2, y2, x3, y3, x4, y4);
+			try
+			{
+				this._g.DrawBezier(pen, x1, y1, x2, y2, x3, y3, x4, y4);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		/// <summary>
@@ -976,6 +1060,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawBezier(pen, pt1, pt2, pt3, pt4);
 		}
 
@@ -1022,7 +1118,7 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawBeziers(pen, points.ToDPoints());
+			this.DrawBeziers(pen, points.ToDPoints());
 		}
 
 		public virtual void DrawBeziersAndSave(Pen pen, Point[] points)
@@ -1037,7 +1133,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawBeziers(pen, points);
+			try
+			{
+				this._g.DrawBeziers(pen, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawBeziersAndSave(Pen pen, DPoint[] points)
@@ -1048,11 +1155,7 @@ namespace GUISharp.GUIObjects.Graphics
 
 		public virtual void DrawBeziers(Pen pen, Vector2[] points)
 		{
-			if (this._g == null)
-			{
-				this.AllocateGraphics();
-			}
-			this._g.DrawBeziers(pen, points.ToDPoints());
+			this.DrawBeziers(pen, points.ToDPoints());
 		}
 
 		public virtual void DrawBeziersAndSave(Pen pen, Vector2[] points)
@@ -1067,7 +1170,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawBeziers(pen, points);
+			try
+			{
+				this._g.DrawBeziers(pen, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawBeziersAndSave(Pen pen, DPointF[] points)
@@ -1094,7 +1208,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawClosedCurve(pen, points);
+			try
+			{
+				this._g.DrawClosedCurve(pen, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawClosedCurveAndSave(Pen pen, DPointF[] points)
@@ -1124,7 +1249,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawClosedCurve(pen, points, tension, fillmode);
+			try
+			{
+				this._g.DrawClosedCurve(pen, points, tension, fillmode);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawClosedCurveAndSave(Pen pen, DPointF[] points,
@@ -1152,7 +1288,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawClosedCurve(pen, points);
+			try
+			{
+				this._g.DrawClosedCurve(pen, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawClosedCurveAndSave(Pen pen, DPoint[] points)
@@ -1182,6 +1329,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawClosedCurve(pen, points, tension, fillmode);
 		}
@@ -1217,7 +1376,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawCurve(pen, points, offset, numberOfSegments, tension);
+			try
+			{
+				this._g.DrawCurve(pen, points, offset, numberOfSegments, 
+					tension);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawCurveAndSave(Pen pen, DPointF[] points,
@@ -1244,6 +1415,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawCurve(pen, points);
 		}
@@ -1276,7 +1459,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawCurve(pen, points, offset, numberOfSegments);
+			try
+			{
+				this._g.DrawCurve(pen, points, offset, numberOfSegments);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawCurveAndSave(Pen pen, DPointF[] points,
@@ -1304,6 +1498,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawCurve(pen, points, tension);
 		}
@@ -1337,7 +1543,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawCurve(pen, points, offset, numberOfSegments, tension);
+			try
+			{
+				this._g.DrawCurve(pen, points, offset, numberOfSegments, 
+					tension);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawCurveAndSave(Pen pen, DPoint[] points,
@@ -1367,6 +1585,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawCurve(pen, points, tension);
 		}
 
@@ -1395,7 +1625,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawCurve(pen, points);
+			try
+			{
+				this._g.DrawCurve(pen, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawCurveAndSave(Pen pen, DPoint[] points)
@@ -1413,7 +1654,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawEllipse(pen, x, y, width, height);
+			try
+			{
+				this._g.DrawEllipse(pen, x, y, width, height);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawEllipseAndSave(Pen pen, int x, int y,
 			int width, int height)
@@ -1429,6 +1681,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawEllipse(pen, x, y, width, height);
 		}
 		public virtual void DrawEllipseAndSave(Pen pen, float x, float y,
@@ -1442,11 +1706,7 @@ namespace GUISharp.GUIObjects.Graphics
 
 		public virtual void DrawEllipse(Pen pen, Vector4 rect)
 		{
-			if (this._g == null)
-			{
-				this.AllocateGraphics();
-			}
-			this._g.DrawEllipse(pen, rect.ToDRectangleF());
+			this.DrawEllipse(pen, rect.ToDRectangleF());
 		}
 		public virtual void DrawEllipseAndSave(Pen pen, Vector4 rect)
 		{
@@ -1459,7 +1719,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawEllipse(pen, rect);
+			try
+			{
+				this._g.DrawEllipse(pen, rect);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawEllipseAndSave(Pen pen, DRectangleF rect)
 		{
@@ -1471,11 +1742,7 @@ namespace GUISharp.GUIObjects.Graphics
 
 		public virtual void DrawEllipse(Pen pen, Rectangle rect)
 		{
-			if (this._g == null)
-			{
-				this.AllocateGraphics();
-			}
-			this._g.DrawEllipse(pen, rect.ToDRectangle());
+			this.DrawEllipse(pen, rect.ToDRectangle());
 		}
 
 		public virtual void DrawEllipseAndSave(Pen pen, Rectangle rect)
@@ -1505,7 +1772,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawIcon(icon, x, y);
+			try
+			{
+				this._g.DrawIcon(icon, x, y);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawIconAndSave(Icon icon, int x, int y)
 		{
@@ -1529,6 +1807,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawIcon(icon, rect);
 		}
@@ -1558,7 +1848,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawIconUnstretched(icon, rect);
+			try
+			{
+				this._g.DrawIconUnstretched(icon, rect);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawIconUnstretchedAndSave(Icon icon, 
 			DRectangle rect)
@@ -1573,6 +1874,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImage(image, x, y, width, height);
 		}
@@ -1605,7 +1918,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, x, y, srcRect, srcUnit);
+			try
+			{
+				this._g.DrawImage(image, x, y, srcRect, srcUnit);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 
 		public virtual void DrawImageAndSave(Image image, float x, float y, 
@@ -1622,6 +1946,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImage(image, x, y, width, height);
 		}
@@ -1648,7 +1984,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, point);
+			try
+			{
+				this._g.DrawImage(image, point);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPointF point)
 		{
@@ -1671,6 +2018,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImage(image, destPoints);
 		}
@@ -1696,7 +2055,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, point);
+			try
+			{
+				this._g.DrawImage(image, point);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPoint point)
 		{
@@ -1733,6 +2103,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawImage(image, destPoints, 
 				srcRect, srcUnit, imageAttr, callback, callbackData);
 		}
@@ -1753,7 +2135,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, x, y);
+			try
+			{
+				this._g.DrawImage(image, x, y);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, float x, float y)
 		{
@@ -1781,6 +2174,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawImage(image, x, y, srcRect, srcUnit);
 		}
 		public virtual void DrawImageAndSave(Image image, int x, int y, 
@@ -1800,7 +2205,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, x, y);
+			try
+			{
+				this._g.DrawImage(image, x, y);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, int x, int y)
 		{
@@ -1831,6 +2247,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawImage(image, destRect, srcRect, srcUnit);
 		}
 		public virtual void DrawImageAndSave(Image image, 
@@ -1857,7 +2285,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, rect);
+			try
+			{
+				this._g.DrawImage(image, rect);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DRectangleF rect)
 		{
@@ -1894,6 +2333,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImage(image, destRect, 
 				srcX, srcY, srcWidth, srcHeight, 
@@ -1943,10 +2394,21 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect,
-				srcX, srcY, srcWidth, srcHeight, 
-				srcUnit, imageAttrs, 
-				callback);
+			try
+			{
+				this._g.DrawImage(image, destRect,
+					srcX, srcY, srcWidth, srcHeight, 
+					srcUnit, imageAttrs, 
+					callback);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
 			float srcX, float srcY, float srcWidth, float srcHeight, 
@@ -1986,9 +2448,20 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect,
-				srcX, srcY, srcWidth, srcHeight,
-				srcUnit, imageAttrs);
+			try
+			{
+				this._g.DrawImage(image, destRect,
+					srcX, srcY, srcWidth, srcHeight,
+					srcUnit, imageAttrs);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, Rectangle destRect,
 			float srcX, float srcY, float srcWidth, float srcHeight,
@@ -2027,9 +2500,20 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect, 
-				srcX, srcY, srcWidth, srcHeight, 
-				srcUnit);
+			try
+			{
+				this._g.DrawImage(image, destRect, 
+					srcX, srcY, srcWidth, srcHeight, 
+					srcUnit);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DRectangle destRect, 
 			float srcX, float srcY, float srcWidth, float srcHeight, 
@@ -2075,10 +2559,21 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect, 
-				srcX, srcY, srcWidth, srcHeight, 
-				srcUnit, imageAttrs, 
-				callback, callbackData);
+			try
+			{
+				this._g.DrawImage(image, destRect, 
+					srcX, srcY, srcWidth, srcHeight, 
+					srcUnit, imageAttrs, 
+					callback, callbackData);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
 			int srcX, int srcY, int srcWidth, int srcHeight, 
@@ -2125,10 +2620,21 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect,
-				srcX, srcY, srcWidth, srcHeight, 
-				srcUnit, imageAttr, 
-				callback);
+			try
+			{
+				this._g.DrawImage(image, destRect,
+					srcX, srcY, srcWidth, srcHeight, 
+					srcUnit, imageAttr, 
+					callback);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
 			int srcX, int srcY, int srcWidth, int srcHeight, 
@@ -2171,9 +2677,20 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect,
-				srcX, srcY, srcWidth, srcHeight,
-				srcUnit, imageAttr);
+			try
+			{
+				this._g.DrawImage(image, destRect,
+					srcX, srcY, srcWidth, srcHeight,
+					srcUnit, imageAttr);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
 			int srcX, int srcY, int srcWidth, int srcHeight,
@@ -2219,9 +2736,20 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect, 
-				srcX, srcY, srcWidth, srcHeight,
-				srcUnit);
+			try
+			{
+				this._g.DrawImage(image, destRect, 
+					srcX, srcY, srcWidth, srcHeight,
+					srcUnit);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DRectangle destRect, 
 			int srcX, int srcY, int srcWidth, int srcHeight,
@@ -2255,7 +2783,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destRect, srcRect, srcUnit);
+			try
+			{
+				this._g.DrawImage(image, destRect, srcRect, srcUnit);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DRectangle destRect,
 			DRectangle srcRect, GraphicsUnit srcUnit)
@@ -2279,6 +2818,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImage(image, rect);
 		}
@@ -2327,8 +2878,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
-			imageAttr, callback, callbackData);
+			try
+			{
+				this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+					imageAttr, callback, callbackData);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints,
 			DRectangle srcRect, GraphicsUnit srcUnit,
@@ -2367,8 +2929,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
-				imageAttr, callback);
+			try
+			{
+				this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+					imageAttr, callback);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints,
 			DRectangle srcRect, GraphicsUnit srcUnit, 
@@ -2405,8 +2978,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
-				imageAttr);
+			try
+			{
+				this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+					imageAttr);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints, 
 			DRectangle srcRect, GraphicsUnit srcUnit,
@@ -2442,8 +3026,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
-				imageAttr, callback);
+			try
+			{
+				this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+					imageAttr, callback);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPointF[] destPoints, 
 			DRectangleF srcRect, GraphicsUnit srcUnit, 
@@ -2479,8 +3074,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destPoints, srcRect, srcUnit,
-				imageAttr);
+			try
+			{
+				this._g.DrawImage(image, destPoints, srcRect, srcUnit,
+					imageAttr);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPointF[] destPoints,
 			DRectangleF srcRect, GraphicsUnit srcUnit,
@@ -2513,7 +3119,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destPoints, srcRect, srcUnit);
+			try
+			{
+				this._g.DrawImage(image, destPoints, srcRect, srcUnit);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPointF[] destPoints, 
 			DRectangleF srcRect, GraphicsUnit srcUnit)
@@ -2538,6 +3155,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImage(image, destPoints);
 		}
@@ -2570,7 +3199,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImage(image, destPoints, srcRect, srcUnit);
+			try
+			{
+				this._g.DrawImage(image, destPoints, srcRect, srcUnit);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageAndSave(Image image, DPoint[] destPoints, 
 			DRectangle srcRect, GraphicsUnit srcUnit)
@@ -2599,6 +3239,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawImageUnscaled(image, point);
 		}
 		public virtual void DrawImageUnscaledAndSave(Image image, DPoint point)
@@ -2625,7 +3277,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImageUnscaled(image, rect);
+			try
+			{
+				this._g.DrawImageUnscaled(image, rect);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageUnscaledAndSave(Image image, DRectangle rect)
 		{
@@ -2640,6 +3303,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImageUnscaled(image, x, y);
 		}
@@ -2657,7 +3332,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawImageUnscaled(image, x, y, width, height);
+			try
+			{
+				this._g.DrawImageUnscaled(image, x, y, width, height);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		public virtual void DrawImageUnscaledAndSave(Image image, int x, int y, int width, int height)
 		{
@@ -2683,6 +3369,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawImageUnscaledAndClipped(image, rect);
 		}
@@ -2743,13 +3441,22 @@ namespace GUISharp.GUIObjects.Graphics
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual void DrawLine(Pen pen, DPoint pt1, DPoint pt2)
+		public virtual void DrawLine(System.Drawing.Pen pen, System.Drawing.Point pt1, System.Drawing.Point pt2)
 		{
+			Image b = new System.Drawing.Bitmap(100, 100);
+			var m = Graphic.FromImage(b);
+			m.DrawLine(pen, pt1, pt1);
+			m.Save();
+			b.Save("/home/mrwoto/test7-end.png");
+
+			//=================
+
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
 			}
 			this._g.DrawLine(pen, pt1, pt1);
+			this._changed = true;
 		}
 		/// <summary>
 		/// test
@@ -2820,6 +3527,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawLine(pen, pt1, pt1);
 		}
 		/// <summary>
@@ -2860,7 +3579,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawLine(pen, x1, y1, x2, y2);
+			try
+			{
+				this._g.DrawLine(pen, x1, y1, x2, y2);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// test
@@ -2901,6 +3631,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawLine(pen, x1, y1, x2, y2);
 		}
@@ -2977,7 +3719,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawLines(pen, points);
+			try
+			{
+				this._g.DrawLines(pen, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// test
@@ -3049,6 +3802,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawLines(pen, points);
 		}
 		/// <summary>
@@ -3090,7 +3855,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawPath(pen, path);
+			try
+			{
+				this._g.DrawPath(pen, path);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// test
@@ -3167,6 +3943,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawPie(pen, rect, startAngle, sweepAngle);
 		}
 		/// <summary>
@@ -3238,7 +4026,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawPie(pen, rect, startAngle, sweepAngle);
+			try
+			{
+				this._g.DrawPie(pen, rect, startAngle, sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -3276,6 +4075,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
 		}
@@ -3316,7 +4127,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);
+			try
+			{
+				this._g.DrawPie(pen, x, y, width, height, startAngle,
+					sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -3388,6 +4211,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawPolygon(pen, points);
 		}
 		/// <summary>
@@ -3456,7 +4291,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawPolygon(pen, points);
+			try
+			{
+				this._g.DrawPolygon(pen, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -3470,7 +4316,7 @@ namespace GUISharp.GUIObjects.Graphics
 		/// </summary>
 		public virtual void DrawPolygonAndSave(Pen pen, DPoint[] points)
 		{
-			this.DrawLines(pen, points);
+			this.DrawPolygon(pen, points);
 			this.SaveChanges();
 		}
 
@@ -3524,6 +4370,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.DrawRectangle(pen, rect);
 		}
 		/// <summary>
@@ -3561,7 +4419,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawRectangle(pen, x, y, width, height);
+			try
+			{
+				this._g.DrawRectangle(pen, x, y, width, height);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -3598,6 +4467,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawRectangle(pen, x, y, width, height);
 		}
@@ -3669,7 +4550,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawRectangles(pen, rects);
+			try
+			{
+				this._g.DrawRectangles(pen, rects);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -3735,6 +4627,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.DrawRectangles(pen, rects);
 		}
@@ -3815,7 +4719,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.ExcludeClip(rect);
+			try
+			{
+				this._g.ExcludeClip(rect);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -3881,6 +4796,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.FillClosedCurve(brush, points);
 		}
@@ -3954,7 +4881,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.FillClosedCurve(brush, points, fillmode);
+			try
+			{
+				this._g.FillClosedCurve(brush, points, fillmode);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -4025,6 +4963,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.FillClosedCurve(brush, points, fillmode, tension);
 		}
 		/// <summary>
@@ -4093,7 +5043,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.FillClosedCurve(brush, points);
+			try
+			{
+				this._g.FillClosedCurve(brush, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -4131,6 +5092,18 @@ namespace GUISharp.GUIObjects.Graphics
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
 			}
 			this._g.FillEllipse(brush, x, y, width, height);
 		}
@@ -4203,7 +5176,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.FillEllipse(brush, rect);
+			try
+			{
+				this._g.FillEllipse(brush, rect);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -4274,6 +5258,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.FillEllipse(brush, rect);
 		}
 		/// <summary>
@@ -4311,7 +5307,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.FillEllipse(brush, x, y, width, height);
+			try
+			{
+				this._g.FillEllipse(brush, x, y, width, height);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -4352,6 +5359,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.FillPath(brush, path);
 		}
 		/// <summary>
@@ -4388,7 +5407,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.FillPie(brush, x, y, width, height, startAngle, sweepAngle);
+			try
+			{
+				this._g.FillPie(brush, x, y, width, height, startAngle, 
+					sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -4426,7 +5457,19 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.FillPie(brush, x, y, width, height, startAngle, sweepAngle);
+			try
+			{
+				this._g.FillPie(brush, x, y, width, height, startAngle, 
+					sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// incomplete.
@@ -4499,7 +5542,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
-			this._g.FillPie(brush, rect, startAngle, sweepAngle);
+			try
+			{
+				this._g.FillPie(brush, rect, startAngle, sweepAngle);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// test
@@ -4517,15 +5571,6 @@ namespace GUISharp.GUIObjects.Graphics
 			this.FillPie(brush, rect, startAngle, sweepAngle);
 			this.SaveChanges();
 		}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4578,6 +5623,18 @@ namespace GUISharp.GUIObjects.Graphics
 			{
 				this.AllocateGraphics();
 			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 			this._g.FillPolygon(brush, points, fillMode);
 		}
 		/// <summary>
@@ -4596,6 +5653,680 @@ namespace GUISharp.GUIObjects.Graphics
 			this.FillPolygon(brush, points, fillMode);
 			this.SaveChanges();
 		}
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, Point[] points)
+		{
+			this.FillPolygon(brush, points.ToDPoints());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, Point[] points)
+		{
+			this.FillPolygon(brush, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, DPoint[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				this._g.FillPolygon(brush, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, DPoint[] points)
+		{
+			this.FillPolygon(brush, points);
+			this.SaveChanges();
+		}
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, Point[] points,
+			DFillMode fillMode)
+		{
+			this.FillPolygon(brush, points.ToDPoints(), fillMode);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, Point[] points,
+			DFillMode fillMode)
+		{
+			this.FillPolygon(brush, points, fillMode);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, DPoint[] points,
+			DFillMode fillMode)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+			this._g.FillPolygon(brush, points, fillMode);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, DPoint[] points,
+			DFillMode fillMode)
+		{
+			this.FillPolygon(brush, points, fillMode);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, Vector2[] points)
+		{
+			this.FillPolygon(brush, points.ToDPoints());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, Vector2[] points)
+		{
+			this.FillPolygon(brush, points);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygon(Brush brush, DPointF[] points)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				this._g.FillPolygon(brush, points);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillPolygonAndSave(Brush brush, DPointF[] points)
+		{
+			this.FillPolygon(brush, points);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangle(Brush brush, int x, int y, 
+			int width, int height)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+			this._g.FillRectangle(brush, x, y, width, height);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangleAndSave(Brush brush, int x, int y,
+			int width, int height)
+		{
+			this.FillRectangle(brush, x, y, width, height);
+			this.SaveChanges();
+		}
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangle(Brush brush, float x, float y, 
+			float width, float height)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				this._g.FillRectangle(brush, x, y, width, height);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangleAndSave(Brush brush, int x, int y,
+			float width, float height)
+		{
+			this.FillRectangle(brush, x, y, width, height);
+			this.SaveChanges();
+		}
+
+
+
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangle(Brush brush, Vector4 rect)
+		{
+			this.FillRectangle(brush, rect.ToDRectangleF());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangleAndSave(Brush brush, Vector4 rect)
+		{
+			this.FillRectangle(brush, rect);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangle(Brush brush, DRectangleF rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+			this._g.FillRectangle(brush, rect);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangleAndSave(Brush brush, DRectangleF rect)
+		{
+			this.FillRectangle(brush, rect);
+			this.SaveChanges();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangle(Brush brush, Rectangle rect)
+		{
+			this.FillRectangle(brush, rect.ToDRectangle());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangleAndSave(Brush brush, Rectangle rect)
+		{
+			this.FillRectangle(brush, rect);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangle(Brush brush, DRectangle rect)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				this._g.FillRectangle(brush, rect);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangleAndSave(Brush brush, DRectangle rect)
+		{
+			this.FillRectangle(brush, rect);
+			this.SaveChanges();
+		}
+
+
+
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangles(Brush brush, Vector4[] rects)
+		{
+			this.FillRectangles(brush, rects.ToDRectanglesF());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectanglesAndSave(Brush brush, Vector4[] rects)
+		{
+			this.FillRectangles(brush, rects);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangles(Brush brush, DRectangleF[] rects)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+			this._g.FillRectangles(brush, rects);
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectanglesAndSave(Brush brush, DRectangleF[] rects)
+		{
+			this.FillRectangles(brush, rects);
+			this.SaveChanges();
+		}
+
+
+
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangles(Brush brush, Rectangle[] rects)
+		{
+			this.FillRectangles(brush, rects.ToDRectangles());
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectanglesAndSave(Brush brush, Rectangle[] rects)
+		{
+			this.FillRectangles(brush, rects);
+			this.SaveChanges();
+		}
+
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectangles(Brush brush, DRectangle[] rects)
+		{
+			if (this._g == null)
+			{
+				this.AllocateGraphics();
+			}
+			try
+			{
+				this._g.FillRectangles(brush, rects);
+			}
+			catch(Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
+		}
+		/// <summary>
+		/// incomplete.
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 11 July 13:37;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void FillRectanglesAndSave(Brush brush, DRectangle[] rects)
+		{
+			this.FillRectangles(brush, rects);
+			this.SaveChanges();
+		}
+
+
+
+
 
 
 
@@ -4662,17 +6393,17 @@ namespace GUISharp.GUIObjects.Graphics
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		protected internal virtual void AsyncComponent(bool force = false)
+		protected internal virtual void AsyncComponents(bool force = false)
 		{
-			if (_changed || force && (_bit_map != null || _texture != null))
+			if ((_changed || force) && (_bit_map != null || _texture != null))
 			{
 				if (_texture == null)
 				{
-					_bit_map = _texture.ToBitmap();
+					_texture = _bit_map.ToTexture2D();
 				}
 				else
 				{
-					_texture = _bit_map.ToTexture2D();
+					_bit_map = _texture.ToBitmap();
 				}
 			}
 			_changed = false;
@@ -4755,7 +6486,16 @@ namespace GUISharp.GUIObjects.Graphics
 		#endregion
 		//-------------------------------------------------
 		#region Get Method's Region
-		// some methods here
+		public Image GetAsImage()
+		{
+			this.AsyncNormal();
+			return _bit_map;
+		}
+		public Texture2D GetAsTexture2D()
+		{
+			this.AsyncNormal();
+			return _texture;
+		}
 		#endregion
 		//-------------------------------------------------
 		#region Set Method's Region
@@ -4763,101 +6503,119 @@ namespace GUISharp.GUIObjects.Graphics
 		#endregion
 		//-------------------------------------------------
 		#region static Method's Region
+		public static Illusion GetEmpty()
+		{
+			return new(new Bitmap(DEFAULT_A_BASE, DEFAULT_A_BASE));
+		}
+		public static Illusion GetEmpty(int w, int h)
+		{
+			return new(new Bitmap(w, h));
+		}
 		/// <summary>
 		/// Get an illusion by passed-by texture parameter
 		/// as its component.
 		/// </summary>
-		/// <param name="_texture"> 
+		/// <param name="texture"> 
 		/// the texture component.
 		/// </param>
-		public static Illusion GetIllusion(Texture2D _texture)
+		public static Illusion GetIllusion(Texture2D texture)
 		{
-			if (_texture != null && !_texture.IsDisposed)
+			if (texture != null && !texture.IsDisposed)
 			{
-				return new(_texture);
+				return new(texture);
 			}
-			return null;
+			return GetEmpty();
+		}
+		/// <summary>
+		/// Get an empty illusion with the specified width and 
+		/// height.
+		/// </summary>
+		/// <param name="w"> 
+		/// the width.
+		/// </param>
+		/// <param name="h"> 
+		/// the height.
+		/// </param>
+		public static Illusion GetIllusion(int w, int h)
+		{
+			return GetEmpty(w, h);
+		}
+		
+		public static Illusion GetIllusion(Image image)
+		{
+			return image != null ? new(image) : GetEmpty();
 		}
 		
 		/// <summary>
 		/// Get an illusion by passed-by texture parameter
 		/// as its component with specified with and height.
 		/// </summary>
-		/// <param name="_texture"> 
+		/// <param name="texture"> 
 		/// the texture component.
 		/// </param>
-		/// <param name="_w"> 
+		/// <param name="w"> 
 		/// the with.
 		/// </param>
-		/// <param name="_h"> 
+		/// <param name="h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(Texture2D _texture, 
-											int _w, int _h)
+		public static Illusion GetIllusion(Texture2D texture, 
+											int w, int h)
 		{
-			if (_texture != null && _texture.IsDisposed)
+			if (texture != null && texture.IsDisposed)
 			{
-				var _rect = 
-					new Rectangle(DEFAULT_Z_BASE, DEFAULT_Z_BASE, _w, _h);
-				if (_texture.Bounds.Contains(_rect))
-				{
-					return GetIllusion(_texture, _rect);
-				}	
+				var i = texture.ToImage();
+				return GetIllusion(new Bitmap(i, w, h));
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
 		/// Get an illusion by passed-by texture parameter
 		/// as its component with specified region.
 		/// </summary>
-		/// <param name="_texture"> 
+		/// <param name="texture"> 
 		/// the texture component.
 		/// </param>
-		/// <param name="_rect"> 
+		/// <param name="rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(Texture2D _texture, 
-											in Rectangle _rect)
+		public static Illusion GetIllusion(Texture2D texture, 
+											in Rectangle rect)
 		{
-			if (_texture != null && !_texture.IsDisposed)
+			if (rect.IsEmpty)
+			{
+				return GetEmpty();
+			}
+			if (texture != null && !texture.IsDisposed)
 			{
 				var client = ThereIsGConstants.Forming.GClient;
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					if (!_texture.Bounds.Contains(_rect))
+					if (rect.Left == default)
 					{
-						return null;
+						return GetIllusion(texture, rect.Width, rect.Height);
 					}
-					var _t = new Texture2D(g, _rect.Width, _rect.Height);
-					var _data = new Color[_rect.Width * _rect.Height];
-					_texture.GetData(_data, DEFAULT_Z_BASE, _data.Length);
-					_t.SetData(_data, DEFAULT_Z_BASE, _data.Length);
-					return GetIllusion(_t);
+					var i = texture.ToImage().CropImage(rect);
+					return GetIllusion(i);
 				}
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
 		/// Get an illusion by passed-by path to texture parameter
 		/// as its component.
 		/// </summary>
-		/// <param name="_full_path"> 
+		/// <param name="full_path"> 
 		/// the texture full path in the local storage.
 		/// </param>
-		public static Illusion GetIllusion(StrongString _full_path)
+		public static Illusion GetIllusion(StrongString full_path)
 		{
-			if (_full_path == null)
+			if (PathChecker(full_path))
 			{
-				return null;
-			}
-			var _b1 = !_full_path.IsHealthy();
-			var _b2 = !File.Exists(_full_path.GetValue());
-			if (_b1 || _b2)
-			{
-				return null;
+				return GetEmpty();
 			}
 			var client = ThereIsGConstants.Forming.GClient;
 			if (client != null && client.Verified)
@@ -4865,18 +6623,18 @@ namespace GUISharp.GUIObjects.Graphics
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					var _t = Texture2D.FromFile(g, _full_path.GetValue());
-					return GetIllusion(_t);
+					var t = Texture2D.FromFile(g, full_path.GetValue());
+					return GetIllusion(t);
 				}
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
 		/// Get an illusion by passed-by path to texture parameter
 		/// as its component with specified with and height.
 		/// </summary>
-		/// <param name="_full_path"> 
+		/// <param name="full_path"> 
 		/// the texture full path in the local storage.
 		/// </param>
 		/// <param name="w"> 
@@ -4885,18 +6643,12 @@ namespace GUISharp.GUIObjects.Graphics
 		/// <param name="h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(StrongString _full_path, 
+		public static Illusion GetIllusion(StrongString full_path, 
 											int w, int h)
 		{
-			if (_full_path == null)
+			if (PathChecker(full_path))
 			{
-				return null;
-			}
-			var _b1 = !_full_path.IsHealthy();
-			var _b2 = !File.Exists(_full_path.GetValue());
-			if (_b1 || _b2)
-			{
-				return null;
+				return GetEmpty();
 			}
 			var client = ThereIsGConstants.Forming.GClient;
 			if (client != null && client.Verified)
@@ -4904,35 +6656,29 @@ namespace GUISharp.GUIObjects.Graphics
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					var t1 = Texture2D.FromFile(g, _full_path.GetValue());
+					var t1 = Texture2D.FromFile(g, full_path.GetValue());
 					return GetIllusion(t1, w, h);
 				}
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
 		/// Get an illusion by passed-by path to texture parameter
 		/// as its component with specified region.
 		/// </summary>
-		/// <param name="_full_path"> 
+		/// <param name="full_path"> 
 		/// the texture full path in the local storage.
 		/// </param>
-		/// <param name="_rect"> 
+		/// <param name="rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(StrongString _full_path, 
-											in Rectangle _rect)
+		public static Illusion GetIllusion(StrongString full_path, 
+											in Rectangle rect)
 		{
-			if (_full_path == null)
+			if (PathChecker(full_path))
 			{
-				return null;
-			}
-			var _b1 = !_full_path.IsHealthy();
-			var _b2 = !File.Exists(_full_path.GetValue());
-			if (_b1 || _b2)
-			{
-				return null;
+				return GetEmpty();
 			}
 			var client = ThereIsGConstants.Forming.GClient;
 			if (client != null && client.Verified)
@@ -4940,25 +6686,25 @@ namespace GUISharp.GUIObjects.Graphics
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					var _t = Texture2D.FromFile(g, _full_path.GetValue());
-					return GetIllusion(_t, _rect);
+					var t = Texture2D.FromFile(g, full_path.GetValue());
+					return GetIllusion(t, rect);
 				}
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
 		/// Get an illusion by passed-by stream.
 		/// notice that the stream should be readable.
 		/// </summary>
-		/// <param name="_stream"> 
+		/// <param name="stream"> 
 		/// the stream which contains the data for the texture component.
 		/// </param>
-		public static Illusion GetIllusion(Stream _stream)
+		public static Illusion GetIllusion(Stream stream)
 		{
-			if (_stream == null || !_stream.CanRead)
+			if (stream == null || !stream.CanRead)
 			{
-				return null;
+				return GetEmpty();
 			}
 			var client = ThereIsGConstants.Forming.GClient;
 			if (client != null && client.Verified)
@@ -4966,11 +6712,11 @@ namespace GUISharp.GUIObjects.Graphics
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					var _t = Texture2D.FromStream(g, _stream);
-					return GetIllusion(_t);
+					var t = Texture2D.FromStream(g, stream);
+					return GetIllusion(t);
 				}
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
@@ -4978,7 +6724,7 @@ namespace GUISharp.GUIObjects.Graphics
 		/// and height.
 		/// notice that the stream should be readable.
 		/// </summary>
-		/// <param name="_stream"> 
+		/// <param name="stream"> 
 		/// the stream which contains the data for the texture component.
 		/// </param>
 		/// <param name="w"> 
@@ -4987,7 +6733,7 @@ namespace GUISharp.GUIObjects.Graphics
 		/// <param name="h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(Stream _stream, 
+		public static Illusion GetIllusion(Stream stream, 
 											int w, int h)
 		{
 			var client = ThereIsGConstants.Forming.GClient;
@@ -4996,25 +6742,25 @@ namespace GUISharp.GUIObjects.Graphics
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					var _t = Texture2D.FromStream(g, _stream);
-					return GetIllusion(_t, w, h);
+					var t = Texture2D.FromStream(g, stream);
+					return GetIllusion(t, w, h);
 				}
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
 		/// Get an illusion by passed-by stream with the specified region.
 		/// notice that the stream should be readable.
 		/// </summary>
-		/// <param name="_stream"> 
+		/// <param name="stream"> 
 		/// the stream which contains the data for the texture component.
 		/// </param>
-		/// <param name="_rect"> 
+		/// <param name="rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(Stream _stream, 
-											in Rectangle _rect)
+		public static Illusion GetIllusion(Stream stream, 
+											in Rectangle rect)
 		{
 			var client = ThereIsGConstants.Forming.GClient;
 			if (client != null && client.Verified)
@@ -5022,11 +6768,11 @@ namespace GUISharp.GUIObjects.Graphics
 				var g = client.GraphicsDevice;
 				if (g != null && !g.IsDisposed)
 				{
-					var _t = Texture2D.FromStream(g, _stream);
-					return GetIllusion(_t, _rect);
+					var t = Texture2D.FromStream(g, stream);
+					return GetIllusion(t, rect);
 				}
 			}
-			return null;
+			return GetEmpty();
 		}
 		
 		/// <summary>
@@ -5034,17 +6780,21 @@ namespace GUISharp.GUIObjects.Graphics
 		/// notice that the byte data is not the texture's data,
 		/// it's the file data.
 		/// </summary>
-		/// <param name="_file_data"> 
+		/// <param name="file_data"> 
 		/// the byte data.
 		/// </param>
-		public static Illusion GetIllusion(byte[] _file_data)
+		public static Illusion GetIllusion(byte[] file_data)
 		{
-			Stream m = new MemoryStream(_file_data);
-			if (_file_data != null && m.CanRead)
+			if (file_data == null || file_data.Length == default)
+			{
+				return GetEmpty();
+			}
+			Stream m = new MemoryStream(file_data);
+			if (m.CanRead)
 			{
 				return GetIllusion(m);
 			}
-			return null;
+			return GetEmpty();
 		}
 
 		/// <summary>
@@ -5053,24 +6803,28 @@ namespace GUISharp.GUIObjects.Graphics
 		/// notice that the byte data is not the texture's data,
 		/// it's the file data.
 		/// </summary>
-		/// <param name="_file_data"> 
+		/// <param name="file_data"> 
 		/// the byte data.
 		/// </param>
-		/// <param name="_w"> 
+		/// <param name="w"> 
 		/// the width.
 		/// </param>
-		/// <param name="_h"> 
+		/// <param name="h"> 
 		/// the height.
 		/// </param>
-		public static Illusion GetIllusion(byte[] _file_data, 
-											int _w, int _h)
+		public static Illusion GetIllusion(byte[] file_data, 
+											int w, int h)
 		{
-			var m = new MemoryStream(_file_data);
-			if (m != null && m.CanRead)
+			if (file_data == null || file_data.Length == default)
 			{
-				return GetIllusion(m, _w, _h);
+				return GetEmpty();
 			}
-			return null;
+			var m = new MemoryStream(file_data);
+			if (m.CanRead)
+			{
+				return GetIllusion(m, w, h);
+			}
+			return GetEmpty();
 		}
 
 		/// <summary>
@@ -5078,23 +6832,39 @@ namespace GUISharp.GUIObjects.Graphics
 		/// notice that the byte data is not the texture's data,
 		/// it's the file data.
 		/// </summary>
-		/// <param name="_file_data"> 
+		/// <param name="file_data"> 
 		/// the byte data.
 		/// </param>
-		/// <param name="_rect"> 
+		/// <param name="rect"> 
 		/// the region.
 		/// </param>
-		public static Illusion GetIllusion(byte[] _file_data, 
-											in Rectangle _rect)
+		public static Illusion GetIllusion(byte[] file_data, 
+											in Rectangle rect)
 		{
-			var m = new MemoryStream(_file_data);
-			if (m != null && m.CanRead)
+			if (file_data == null || file_data.Length == default ||
+				rect.IsEmpty)
 			{
-				return GetIllusion(m, _rect);
+				return GetEmpty();
 			}
-			return null;
+			var m = new MemoryStream(file_data);
+			if (m.CanRead)
+			{
+				return GetIllusion(m, rect);
+			}
+			return GetEmpty();
 		}
-		
+		/// <summary>
+		/// This method checks if the full path has a problem or not.
+		/// If it has problems, it will return `true`.
+		/// </summary>
+		/// <param name="full_path"> 
+		/// the byte data.
+		/// </param>
+		private static bool PathChecker(StrongString full_path)
+		{
+			return StrongString.IsNullOrEmpty(full_path) || 
+				!File.Exists(full_path.GetValue());
+		}
 		#endregion
 		//-------------------------------------------------
 	}

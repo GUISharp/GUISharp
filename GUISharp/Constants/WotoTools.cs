@@ -28,50 +28,50 @@ The code will be like
 
 static unsafe void Main(string[] args)
 {
-    using (var input = File.OpenRead(@"C:\Pictures\somersault.gif"))
-    {
-        var context = new StbImage.stbi__context(input);
+	using (var input = File.OpenRead(@"C:\Pictures\somersault.gif"))
+	{
+		var context = new StbImage.stbi__context(input);
 
-        if (StbImage.stbi__gif_test(context) == 0)
-        {
-            throw new Exception("Input stream is not GIF file.");
-        }
+		if (StbImage.stbi__gif_test(context) == 0)
+		{
+			throw new Exception("Input stream is not GIF file.");
+		}
 
-        var g = new StbImage.stbi__gif();
+		var g = new StbImage.stbi__gif();
 
-        byte[] data = null;
-        var frameCount = 1;
+		byte[] data = null;
+		var frameCount = 1;
 
-        do
-        {
-            // Read next frame
-            int ccomp;
-            byte two_back;
-            var result = StbImage.stbi__gif_load_next(context, g, &ccomp, (int)StbImageSharp.ColorComponents.RedGreenBlueAlpha, &two_back);
-            if (result == null)
-            {
-                break;
-            }
+		do
+		{
+			// Read next frame
+			int ccomp;
+			byte two_back;
+			var result = StbImage.stbi__gif_load_next(context, g, &ccomp, (int)StbImageSharp.ColorComponents.RedGreenBlueAlpha, &two_back);
+			if (result == null)
+			{
+				break;
+			}
 
-            // Convert result to byte[]
-            if (data == null)
-            {
-                data = new byte[g.w * g.h * 4];
-            }
-            Marshal.Copy(new IntPtr(result), data, 0, data.Length);
+			// Convert result to byte[]
+			if (data == null)
+			{
+				data = new byte[g.w * g.h * 4];
+			}
+			Marshal.Copy(new IntPtr(result), data, 0, data.Length);
 
-            // Save the frame to image
-            using (Stream output = File.OpenWrite(@"c:\Pictures\output\frame" + frameCount + ".png"))
-            {
-                ImageWriter writer = new ImageWriter();
-                writer.WritePng(data, g.w, g.h, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, output);
-            }
+			// Save the frame to image
+			using (Stream output = File.OpenWrite(@"c:\Pictures\output\frame" + frameCount + ".png"))
+			{
+				ImageWriter writer = new ImageWriter();
+				writer.WritePng(data, g.w, g.h, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, output);
+			}
 
-            ++frameCount;
-        } while (true);
+			++frameCount;
+		} while (true);
 
-        Marshal.FreeHGlobal(new IntPtr(g._out_));
-    }
+		Marshal.FreeHGlobal(new IntPtr(g._out_));
+	}
 }
 
 */
@@ -89,6 +89,8 @@ using DPointF = System.Drawing.PointF;
 using DColor = System.Drawing.Color;
 using DRectangle = System.Drawing.Rectangle;
 using DRectangleF = System.Drawing.RectangleF;
+using Graphics = System.Drawing.Graphics;
+using GraphicsUnit = System.Drawing.GraphicsUnit;
 
 namespace GUISharp.Constants
 {
@@ -406,5 +408,98 @@ namespace GUISharp.Constants
 		}
 
 	
+
+
+
+
+
+
+
+
+
+		public static Bitmap RotateImage(this Bitmap bmp, float angle)
+		{
+			Bitmap rotatedImage = new Bitmap(bmp.Width, bmp.Height);
+			rotatedImage.SetResolution(bmp.HorizontalResolution, bmp.VerticalResolution);
+
+			using (Graphics g = Graphics.FromImage(rotatedImage))
+			{
+				// Set the rotation point to the center in the matrix
+				g.TranslateTransform(bmp.Width / 2, bmp.Height / 2);
+				// Rotate
+				g.RotateTransform(angle);
+				// Restore rotation point in the matrix
+				g.TranslateTransform(-bmp.Width / 2, -bmp.Height / 2);
+				// Draw the image on the bitmap
+				g.DrawImage(bmp, new DPoint(0, 0));
+			}
+
+			return rotatedImage;
+		}
+		public static Bitmap RotateImage(this Image image, float angle)
+		{
+			Bitmap rotatedImage = new Bitmap(image.Width, image.Height);
+			rotatedImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+			using (Graphics g = Graphics.FromImage(rotatedImage))
+			{
+				// Set the rotation point to the center in the matrix
+				g.TranslateTransform(image.Width / 2, image.Height / 2);
+				// Rotate
+				g.RotateTransform(angle);
+				// Restore rotation point in the matrix
+				g.TranslateTransform(-image.Width / 2, -image.Height / 2);
+				// Draw the image on the bitmap
+				g.DrawImage(image, new DPoint(0, 0));
+			}
+			return rotatedImage;
+		}
+		public static Image CropImage(this Bitmap myBit, DRectangleF section)
+		{
+			int w = Convert.ToInt32(section.Width),
+				h = Convert.ToInt32(section.Height);
+			if (w == 0)
+			{
+				w = 1;
+			}
+			if (h == 0)
+			{
+				h = 1;
+			}
+			Bitmap bmp = new Bitmap(w, h);
+			using (Graphics g = Graphics.FromImage(bmp))
+			{
+				
+				g.DrawImage(myBit, 0, 0, section, GraphicsUnit.Pixel);
+			}
+			return bmp;
+		}
+		public static Image CropImage(this Image image, DRectangleF section)
+		{
+			int w = Convert.ToInt32(section.Width), 
+				h = Convert.ToInt32(section.Height);
+			if (w == 0)
+			{
+				w = 1;
+			}
+			if (h == 0)
+			{
+				h = 1;
+			}
+			Bitmap bmp = new Bitmap(w, h);
+			using (Graphics g = Graphics.FromImage(bmp))
+			{
+				g.DrawImage(image, 0, 0, section, GraphicsUnit.Pixel);
+			}
+			return bmp;
+		}
+
+		public static Image CropImage(this Image image, Rectangle section)
+		{
+			return image.CropImage(section.ToDRectangle());
+		}
+
+
+
+
 	}
 }

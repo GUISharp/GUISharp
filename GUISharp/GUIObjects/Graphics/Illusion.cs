@@ -23,7 +23,7 @@ using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Security;
 using GUISharp.Constants;
 using static GUISharp.Client.Universe;
-using Bitmap = System.Drawing.Bitmap;
+using Image = System.Drawing.Image;
 using Graphic = System.Drawing.Graphics;
 
 namespace GUISharp.GUIObjects.Graphics
@@ -44,19 +44,19 @@ namespace GUISharp.GUIObjects.Graphics
 		/// NOTICE: our normal way of doing stuff
 		/// here is: 
 		/// <c> Bitmap -> Texture2D </c>
-		/// in <see cref="AsyncComponent(bool)"/>, we always
+		/// in <see cref="AsyncComponents(bool)"/>, we always
 		/// async them like this.
 		/// The reason is really clear:
 		/// we can do stuff on a <c>Bitmap</c>,
 		/// so the real core is our bitmap.
 		/// but we <bold>NEED</bold> a <see cref="Texture2D"/>
 		/// output, that's why we have to do things like this.
-		/// Now, if user give us a <see cref="Bitmap"/>, we
+		/// Now, if user give us a <see cref="Image"/>, we
 		/// won't convert it to a <see cref="Texture2D"/>
 		/// <bold>UNLESS</bold> we need to give it an output.
 		/// Now lets see another situations:
 		/// user gives us a <see cref="Texture2D"/> input,
-		/// we won't allocate memory to create a <see cref="Bitmap"/>
+		/// we won't allocate memory to create a <see cref="Image"/>
 		/// from it, <bold>UNLESS</bold> we need to do a graphical
 		/// operations, such as Drawing.
 		/// This way, we don't need to allocate memory for every fucking
@@ -67,7 +67,7 @@ namespace GUISharp.GUIObjects.Graphics
 		/// not acceptable at all.
 	    /// </summary>
 		private Texture2D _texture;
-		private Bitmap _bit_map;
+		private Image _bit_map;
 		private Graphic _g;
 		private bool _changed;
 		#endregion
@@ -79,10 +79,14 @@ namespace GUISharp.GUIObjects.Graphics
 		private Illusion(Texture2D t)
 		{
 			_texture = t;
+			// async all components by force
+			this.AsyncComponents(true);
 		}
-		private Illusion(Bitmap b)
+		private Illusion(Image image)
 		{
-			_bit_map = b;
+			_bit_map = image;
+			// async all components by force
+			this.AsyncComponents(true);
 		}
 		#endregion
 		//-------------------------------------------------
@@ -90,21 +94,5 @@ namespace GUISharp.GUIObjects.Graphics
 
 		#endregion
 		//-------------------------------------------------
-		#region ordinary Method's Region
-
-		#endregion
-		//-------------------------------------------------
-		#region Get Method's Region
-		public Texture2D GetTexture2D()
-		{
-			return _texture;
-		}
-		
-		#endregion
-		//-------------------------------------------------
-		#region Set Method's Region
-
-		#endregion
-		
 	}
 }

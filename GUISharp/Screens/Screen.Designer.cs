@@ -56,6 +56,10 @@ namespace GUISharp.Screens
 		{
 			this.ElementManager?.DisposeAll();
 		}
+		protected virtual void OnDone()
+		{
+			this.Done?.Invoke(this, EventArgs.Empty);
+		}
 		public abstract void Dispose();
 		#endregion
 		//-------------------------------------------------
