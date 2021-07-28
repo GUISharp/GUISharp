@@ -454,6 +454,11 @@ namespace GUISharp.Client
 		{
 			this._g?.ChangeBackground(t);
 		}
+		public virtual void RemoveBackground(bool dispose = false)
+		{
+			this._g?.RemoveBackground(dispose);
+		}
+		
 		public virtual void ChangeBackColor(Color color)
 		{
 			this._g?.ChangeBackColor(color);

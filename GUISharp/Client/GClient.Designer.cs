@@ -462,6 +462,18 @@ namespace GUISharp.Client
 				this.BackGroundTexture = t;
 			}
 		}
+		public void RemoveBackground(bool dispose = false)
+		{
+			if (this.BackGroundTexture == null)
+			{
+				return;
+			}
+			if (dispose)
+			{
+				this.BackGroundTexture.Dispose();
+			}
+			this.BackGroundTexture = null;
+		}
 		public void ChangeBackColor(Color color)
 		{
 			this.BackColor = color;

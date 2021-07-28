@@ -3441,22 +3441,24 @@ namespace GUISharp.GUIObjects.Graphics
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual void DrawLine(System.Drawing.Pen pen, System.Drawing.Point pt1, System.Drawing.Point pt2)
+		public virtual void DrawLine(Pen pen, DPoint pt1, DPoint pt2)
 		{
-			Image b = new System.Drawing.Bitmap(100, 100);
-			var m = Graphic.FromImage(b);
-			m.DrawLine(pen, pt1, pt1);
-			m.Save();
-			b.Save("/home/mrwoto/test7-end.png");
-
-			//=================
-
 			if (this._g == null)
 			{
 				this.AllocateGraphics();
 			}
-			this._g.DrawLine(pen, pt1, pt1);
-			this._changed = true;
+			try
+			{
+				this._g.DrawLine(pen, pt1, pt1);
+			}
+			catch (Exception e)
+			{
+				AppLogger.Log(e);
+			}
+			finally
+			{
+				this._changed = true;
+			}
 		}
 		/// <summary>
 		/// test
