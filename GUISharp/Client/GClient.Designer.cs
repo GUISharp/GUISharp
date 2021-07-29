@@ -462,6 +462,18 @@ namespace GUISharp.Client
 				this.BackGroundTexture = t;
 			}
 		}
+		public virtual void ChangeBackground(Texture2D t, bool dispose_current)
+		{
+			if (t != null && !t.IsDisposed)
+			{
+				var c = this.BackGroundTexture;
+				this.BackGroundTexture = t;
+				if (dispose_current && c != null && !c.IsDisposed)
+				{
+					c.Dispose();
+				}
+			}
+		}
 		public void RemoveBackground(bool dispose = false)
 		{
 			if (this.BackGroundTexture == null)

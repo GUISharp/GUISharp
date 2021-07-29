@@ -1,7 +1,4 @@
-﻿// WotoProvider (for GUISharp)
-// Copyright (C) 2019 - 2021 ALiwoto
-// This file is subject to the terms and conditions defined in
-/*
+﻿/*
  * This file is part of GUISharp Project (https://github.com/GUISharp/GUISharp).
  * Copyright (c) 2021 GUISharp Authors.
  *
@@ -437,5 +434,10 @@ namespace GUISharp.WotoProvider.Enums
 		NormalDarkGrayGreen = 31,
 		#endregion
 		//-------------------------------------------------
+		#region Customazation Region
+		Custom = 64,
+		#endregion
+		//-------------------------------------------------
+
 	}
 }

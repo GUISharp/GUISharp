@@ -19,6 +19,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Logging;
 using GUISharp.Screens;
 using GUISharp.Controls;
@@ -131,6 +132,17 @@ namespace GUISharp.Client
 			set
 			{
 				;
+			}
+		}
+		public virtual Texture2D Background
+		{
+			get
+			{
+				if (_g != null)
+				{
+					return _g.BackGroundTexture;
+				}
+				return null;
 			}
 		}
 		public virtual string Title

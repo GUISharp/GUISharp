@@ -410,13 +410,6 @@ namespace GUISharp.Constants
 	
 
 
-
-
-
-
-
-
-
 		public static Bitmap RotateImage(this Bitmap bmp, float angle)
 		{
 			Bitmap rotatedImage = new Bitmap(bmp.Width, bmp.Height);

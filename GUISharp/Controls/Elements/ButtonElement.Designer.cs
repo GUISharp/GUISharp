@@ -319,7 +319,8 @@ namespace GUISharp.Controls.Elements
 		}
 		public void ChangeBorder(ButtonColors color)
 		{
-			if (this.BorderColor != color)
+			if (this.BorderColor != color && 
+				this.BorderColor != ButtonColors.Custom)
 			{
 				this.BorderColor = color;
 				this.ChangeBorder();
@@ -359,7 +360,8 @@ namespace GUISharp.Controls.Elements
 		}
 		private void ChangeBorder()
 		{
-			if (this._flat == null || this._flat.IsDisposed)
+			if (this._flat == null || this._flat.IsDisposed || 
+				this.BorderColor == ButtonColors.Custom)
 			{
 				return;
 			}
