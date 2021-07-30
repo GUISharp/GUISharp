@@ -256,6 +256,21 @@ namespace GUISharp.Controls.Elements
 				; // do nothing here
 			}
 		}
+		public override bool NoClick
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.NoClick;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do nothing here
+			}
+		}
 		#endregion
 		//-------------------------------------------------
 		#region field's Region
@@ -265,9 +280,6 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		private FlatElement _flat;
 		private Rectangle _real_rect;
-#nullable enable
-		private Rectangle? _eff_rect;
-#nullable disable
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region

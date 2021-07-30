@@ -112,6 +112,7 @@ namespace ClientTest
 
 
 			b.Enable();
+			b.Unstable();
 			b.Show();
 			b.Apply();
 			b.Click += Button1_Click;
@@ -137,7 +138,7 @@ namespace ClientTest
 			//	AppLogger.Log("LeftUp");
 			//};
 			
-			this.ElementManager.AddRange(l);
+			this.ElementManager.AddRange(l, b);
 			//b.ClickAsync += (object sender, EventArgs e) =>
 			//{
 			//	var s = Microsoft.Xna.Framework.Media.Song.FromUri("test", new("Egoist - Departures.mp3", UriKind.Relative));

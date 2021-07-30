@@ -853,7 +853,7 @@ namespace GUISharp.Controls.Elements
 		/// <value>
 		/// true if the element is stable; otherwise, false.
 		/// </value>
-		public virtual bool IsStable { get; protected set; }
+		public virtual bool IsStable { get; protected set; } = true;
 		/// <summary>
 		/// Gets a value indicating whether the element should
 		/// move its owner or not. If it should move its owner,
@@ -885,6 +885,7 @@ namespace GUISharp.Controls.Elements
 		/// true if the mouse is locked on this element; otherwise, false.
 		/// </value>
 		public virtual bool IsMouseLocked { get; protected set; }
+		public virtual bool NoClick { get; protected set; }
 		#endregion
 		//-------------------------------------------------
 		#region static field's Region

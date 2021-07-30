@@ -220,6 +220,20 @@ namespace GUISharp.Controls.Elements
 			}
 		}
 		/// <summary>
+		/// Stop accepting click events.
+		/// </summary>
+		public virtual void StopClicking()
+		{
+			this.NoClick = true;
+		}
+		/// <summary>
+		/// accept all incoming click events.
+		/// </summary>
+		public virtual void AcceptClicking()
+		{
+			this.NoClick = false;
+		}
+		/// <summary>
 		/// Show the element.
 		/// If this element is disposed, this method
 		/// will do nothing.
@@ -603,6 +617,10 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnLeftClick()
 		{
+			if (this.NoClick)
+			{
+				return;
+			}
 			var sender = GetSender();
 			this.LeftClick?.Invoke(sender, EventArgs.Empty);
 			this.Click?.Invoke(sender, EventArgs.Empty);
@@ -624,7 +642,7 @@ namespace GUISharp.Controls.Elements
 			}
 			if (!this.IsStable)
 			{
-				this.Disable();
+				this.StopClicking();
 			}
 		}
 		/// <summary>
@@ -639,6 +657,10 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnRightClick()
 		{
+			if (this.NoClick)
+			{
+				return;
+			}
 			var sender = GetSender();
 			this.RightClick?.Invoke(sender, EventArgs.Empty);
 			this.Click?.Invoke(sender, EventArgs.Empty);
@@ -657,6 +679,10 @@ namespace GUISharp.Controls.Elements
 					// raise the event in another thread.
 					this.ClickAsync.Invoke(sender, EventArgs.Empty);
 				});
+			}
+			if (!this.IsStable)
+			{
+				this.StopClicking();
 			}
 		}
 		/// <summary>
@@ -1338,10 +1364,11 @@ namespace GUISharp.Controls.Elements
 		/// </param>
 		public virtual void ChangeLocation(Vector2 location)
 		{
-			if (this.HasOwner)
+			var real = GetSender();
+			if (real.HasOwner && real.Owner != null)
 			{
 				this.RealPosition = location;
-				this.Position = this.RealPosition + this.Owner.Position;
+				this.Position = real.RealPosition + real.Owner.Position;
 			}
 			else
 			{
@@ -1382,10 +1409,11 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		public virtual void ChangeLocation(float x, float y)
 		{
-			if (this.HasOwner)
+			var real = this.GetSender();
+			if (real.HasOwner && real.Owner != null)
 			{
 				this.RealPosition = new(x, y);
-				this.Position = this.RealPosition + this.Owner.Position;
+				this.Position = real.RealPosition + real.Owner.Position;
 			}
 			else
 			{
@@ -1447,9 +1475,10 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		public virtual void OwnerLocationUpdate()
 		{
-			if (this.HasOwner && this.Owner != null)
+			var real = this.GetSender();
+			if (real.HasOwner && real.Owner != null)
 			{
-				this.Position = this.Owner.Position + this.RealPosition;
+				this.Position = real.Owner.Position + real.RealPosition;
 				this.ChangeRectangle();
 			}
 		}

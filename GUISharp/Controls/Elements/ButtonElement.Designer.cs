@@ -145,7 +145,34 @@ namespace GUISharp.Controls.Elements
 		{
 			this._flat?.Stable();
 		}
-		
+		/// <summary>
+		/// Accept incoming click events.
+		/// <!--
+		/// Since: GUISharp 1.0.41;
+		/// By: ALiwoto;
+		/// Last edit: Jul 30 17:35;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override void AcceptClicking()
+		{
+			this._flat?.AcceptClicking();
+		}
+		/// <summary>
+		/// Stop accepting all incoming click events.
+		/// <!--
+		/// Since: GUISharp 1.0.41;
+		/// By: ALiwoto;
+		/// Last edit: Jul 30 17:35;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override void StopClicking()
+		{
+			this._flat?.StopClicking();
+		}
 		protected override Texture2D GetBackGroundTexture(Color color)
 		{
 #if BUTTON_BACKGROUND
@@ -758,7 +785,8 @@ namespace GUISharp.Controls.Elements
 		/// </param>
 		public override void ChangeRectangle(Rectangle rect)
 		{
-			this._flat?.ChangeRectangle(rect);
+			this.ChangeLocation(rect.Location.ToVector2());
+			this.ChangeSize(rect.Size.X, rect.Size.Y);
 		}
 		/// <summary>
 		/// Change (update) the rectangle of this element.
@@ -954,36 +982,36 @@ namespace GUISharp.Controls.Elements
 		{
 			if (this.UseMouseEnterEffect && !this.InMouseEnterEffect)
 			{
-				var pos = this.RealPosition.ToPoint();
-				var size = this.Rectangle.Size;
-				this._real_rect = new(pos, size);
-				if (this._eff_rect.HasValue && !this.HasOwner)
+				this.InMouseEnterEffect = true;
+				Point pos;
+				if (this.HasOwner && this.Owner != null)
 				{
-					this.ChangeRectangle(this._eff_rect.Value);
-					this.InMouseEnterEffect = true;
+					pos = this.RealPosition.ToPoint();
 				}
 				else
 				{
-					var offSet_x = ME_EFFECT_OFFSET * this.Width;
-					var offSet_y = ME_EFFECT_OFFSET * this.Height;
-					this.ChangeSize(offSet_x, offSet_y);
-					var offShort_x = ME_EFFECT_OFFSHORT * this.Width;
-					var offShort_y = ME_EFFECT_OFFSHORT * this.Height;
-					float pos_x, pos_y;
-					if (this.HasOwner && this.Owner != null)
-					{
-						pos_x = this.RealPosition.X - offShort_x;
-						pos_y = this.RealPosition.Y - offShort_y;
-					}
-					else
-					{
-						pos_x = this.Position.X - offShort_x;
-						pos_y = this.Position.Y - offShort_y;
-					}
-					this.ChangeLocation(pos_x, pos_y);
-					this._eff_rect = this._flat.Rectangle;
-					this.InMouseEnterEffect = true;
+					pos = this.Position.ToPoint();
 				}
+				var size = this.Rectangle.Size;
+				this._real_rect = new(pos, size);
+
+				var offSet_x = ME_EFFECT_OFFSET * this.Width;
+				var offSet_y = ME_EFFECT_OFFSET * this.Height;
+				this.ChangeSize(offSet_x, offSet_y);
+				var offShort_x = ME_EFFECT_OFFSHORT * this.Width;
+				var offShort_y = ME_EFFECT_OFFSHORT * this.Height;
+				float pos_x, pos_y;
+				if (this.HasOwner && this.Owner != null)
+				{
+					pos_x = this.RealPosition.X - offShort_x;
+					pos_y = this.RealPosition.Y - offShort_y;
+				}
+				else
+				{
+					pos_x = this.Position.X - offShort_x;
+					pos_y = this.Position.Y - offShort_y;
+				}
+				this.ChangeLocation(pos_x, pos_y);
 			}
 		}
 		#endregion
