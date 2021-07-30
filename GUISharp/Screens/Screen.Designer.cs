@@ -57,6 +57,14 @@ namespace GUISharp.Screens
 		{
 			this.ElementManager?.DisposeAll();
 		}
+		public virtual void Exit()
+		{
+			this.Client?.Exit();
+		}
+		public virtual void TerminateProcess(int exitCode = default)
+		{
+			Environment.Exit(exitCode);
+		}
 		protected virtual void OnDone()
 		{
 			this.Done?.Invoke(this, EventArgs.Empty);

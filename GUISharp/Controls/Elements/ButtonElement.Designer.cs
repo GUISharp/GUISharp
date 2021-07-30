@@ -87,6 +87,65 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region overrided Method's Region
+		/// <summary>
+		/// Apply the element, so the element draw itself.
+		/// you should call this method only once and only at the start.
+		/// </summary>
+		public override void Apply()
+		{
+			this._flat?.Apply();
+		}
+		/// <summary>
+		/// Dispose the elements,
+		/// this method will release all the resources used
+		/// by the element, so use it carefully!
+		/// </summary>
+		public override void Dispose()
+		{
+			this._flat?.Dispose();
+		}
+		/// <summary>
+		/// Disable the element,
+		/// this method will set the <see cref="Enabled"/> property 
+		/// to <c>false</c>.
+		/// if you want to enable the element, use <see cref="Enable()"/> method.
+		/// </summary>
+		public override void Disable()
+		{
+			this._flat?.Disable();
+		}
+		/// <summary>
+		/// Enable the element.
+		/// If the element is already enabled, this method
+		/// won't ignore `Manager.EnableAll()`.
+		/// It will call `Manager.EnableAll()` even if this
+		/// element is already enabled.
+		/// But if the element is disposed, this method won't
+		/// do anything. It won't call `Manager.EnableAll()` at all.
+		/// </summary>
+		public override void Enable()
+		{
+			this._flat?.Enable();
+		}
+		/// <summary>
+		/// Unstable the element,
+		/// this method will set the <see cref="IsStable"/> property 
+		/// to <c>false</c>.
+		/// if you want to make the element stable,
+		/// use <see cref="Stable()"/> method.
+		/// </summary>
+		public override void Unstable()
+		{
+			this._flat?.Unstable();
+		}
+		/// <summary>
+		/// Make the element a stable element.
+		/// </summary>
+		public override void Stable()
+		{
+			this._flat?.Stable();
+		}
+		
 		protected override Texture2D GetBackGroundTexture(Color color)
 		{
 #if BUTTON_BACKGROUND

@@ -501,6 +501,14 @@ namespace GUISharp.Client
 				AppLogger.Log(ex);
 			}
 		}
+		public virtual void Exit()
+		{
+			this._g?.Exit();
+		}
+		public virtual void TerminateProcess(int exitCode = default)
+		{
+			Environment.Exit(exitCode);
+		}
 		#endregion
 		//-------------------------------------------------
 	}
