@@ -72,7 +72,7 @@ namespace GUISharp.Controls.Elements
 			{
 				// it means this elements does not have anything to draw,
 				// so it should not being the BigFather's sprite batch.
-				Manager?.Draw(gameTime, spriteBatch);
+				this.Manager?.Draw(gameTime, spriteBatch);
 				return;
 			}
 			
@@ -88,7 +88,7 @@ namespace GUISharp.Controls.Elements
 					// it means the current background color of this flat element
 					// is not transparent, so you should draw the background color 
 					// of this flat element.
-					spriteBatch.Draw(this.BackGroundImage, this.Rectangle, this.Tint);
+					spriteBatch.Draw(this.BackGroundImage, this.Rectangle, this.BackTint);
 				}
 			}
 			// check if the Image property of this flat element is null or disposed
@@ -96,7 +96,7 @@ namespace GUISharp.Controls.Elements
 			if (this.Image != null && !this.Image.IsDisposed)
 			{
 				// draw the Image
-				spriteBatch.Draw(this.Image, this.ImageRectangle, this.Image.Bounds, this.Tint);
+				spriteBatch.Draw(this.Image, this.ImageRectangle, null, this.Tint);
 			}
 			// check if the fixed text is null or healthy.
 			if (!StrongString.IsNullOrEmpty(this.FixedText))

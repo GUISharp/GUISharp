@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Design;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,7 +41,10 @@ namespace GUISharp.Screens
 		{
 			this.ElementManager?.Remove(element, dispose);
 		}
-
+		public virtual void RemoveElements(bool dispose = true)
+		{
+			this.ElementManager?.RemoveAll(dispose);
+		}
 		public virtual void ClearElements()
 		{
 			this.ElementManager?.Clear();
@@ -52,6 +56,26 @@ namespace GUISharp.Screens
 		public virtual void DisposeElements()
 		{
 			this.ElementManager?.DisposeAll();
+		}
+		public virtual void Exit()
+		{
+			this.Client?.Exit();
+		}
+		public virtual void TerminateProcess(int exitCode = default)
+		{
+			Environment.Exit(exitCode);
+		}
+		protected virtual void OnDone()
+		{
+			this.Done?.Invoke(this, EventArgs.Empty);
+		}
+		protected virtual void RunTask(Action action)
+		{
+			Task.Run(action);
+		}
+		protected virtual async void RunTaskAsync(Action action)
+		{
+			await Task.Run(action);
 		}
 		public abstract void Dispose();
 		#endregion
@@ -95,6 +119,10 @@ namespace GUISharp.Screens
 		public virtual void ChangeBackground(Texture2D t)
 		{
 			this.Client?.ChangeBackground(t);
+		}
+		public virtual void RemoveBackground(bool dispose = false)
+		{
+			this.Client?.RemoveBackground(dispose);
 		}
 		public virtual void ChangeBackgroundContent(string contentName)
 		{

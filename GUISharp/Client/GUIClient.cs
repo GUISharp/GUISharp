@@ -19,9 +19,11 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Logging;
 using GUISharp.Screens;
 using GUISharp.Controls;
+using GUISharp.Constants;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.Controls.Elements;
 using GUISharp.GUIObjects.Resources;
@@ -132,6 +134,17 @@ namespace GUISharp.Client
 				;
 			}
 		}
+		public virtual Texture2D Background
+		{
+			get
+			{
+				if (_g != null)
+				{
+					return _g.BackGroundTexture;
+				}
+				return null;
+			}
+		}
 		public virtual string Title
 		{
 			get
@@ -208,6 +221,7 @@ namespace GUISharp.Client
 		/// <see cref="GUIClient.ChangeLocation(int, int)"/> method or
 		/// setting this property directly to a <see cref="Point"/>
 		/// value.
+		/// <!--
 		/// Since: GUISharp 1.0.10;
 		/// By: ALiwoto;
 		/// Last edit: Jun 27 06:57;
@@ -236,6 +250,7 @@ namespace GUISharp.Client
 		/// <see cref="GUIClient.ChangeLocation(int, int)"/> method or
 		/// setting this property directly to an <see cref="System.Int32"/>
 		/// value.
+		/// <!--
 		/// Since: GUISharp 1.0.10;
 		/// By: ALiwoto;
 		/// Last edit: Jun 27 11:13;
@@ -264,6 +279,7 @@ namespace GUISharp.Client
 		/// <see cref="GUIClient.ChangeLocation(int, int)"/> method or
 		/// setting this property directly to an <see cref="System.Int32"/>
 		/// value.
+		/// <!--
 		/// Since: GUISharp 1.0.10;
 		/// By: ALiwoto;
 		/// Last edit: Jun 27 11:13;
@@ -284,6 +300,26 @@ namespace GUISharp.Client
 				ChangeSize(Width, value);
 			}
 		}
+		/// <summary>
+		/// The prefered Width of the application. up to you to set it.
+		/// by default it will be zero.
+		/// <!--
+		/// Since: GUISharp 1.0.32;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 15:07;
+		/// -->
+		/// </summary>
+		public virtual int PWidth { get; set; }
+		/// <summary>
+		/// The prefered Height of the application. up to you to set it.
+		/// by default it will be zero.
+		/// <!--
+		/// Since: GUISharp 1.0.32;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 15:07;
+		/// -->
+		/// </summary>
+		public virtual int PHeight { get; set;}
 		/// <summary>
 		/// It's true if the application has already been
 		/// started, otherwise it will be false.
@@ -469,6 +505,7 @@ namespace GUISharp.Client
 		/// </summary>
 		public GUIClient(ClientSizeMode mode = ClientSizeMode.HalfMiddle)
 		{
+			ThereIsGConstants.Forming.GUIClient = this;
 			InitializeMyComponent(mode);
 		}
 			// some members here

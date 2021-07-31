@@ -21,10 +21,29 @@ namespace GUISharp.GUIObjects.Texts
 {
     public enum GUISharp_Fonts
     {
-        GUISharp_tt_bold				= 0,
-        GUISharp_tt_regular			= 1,
+		//-------------------------------------------------
+		#region etc Region
+        GUISharp_tt_bold		= 0,
+        GUISharp_tt_regular		= 1,
         old_story_bold			= 2,
         old_story_bold_italic	= 3,
 		noto_sans_JP			= 4,
+		#endregion
+		//-------------------------------------------------
+		#region Roboto Region
+		roboto_black			= 5,
+		roboto_black_italic		= 6,
+		roboto_bold				= 7,
+		roboto_bold_italic		= 8,
+		roboto_italic			= 9,
+		roboto_light			= 10,
+		roboto_light_italic		= 11,
+		roboto_medium			= 12,
+		roboto_medium_italic	= 13,
+		roboto_regular			= 14,
+		roboto_thin				= 15,
+		roboto_thin_italic		= 16,
+		#endregion
+		//-------------------------------------------------
     }
 }

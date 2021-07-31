@@ -26,7 +26,7 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<TargetFramework>net5.0</TargetFramework>
 		<PackageId>GUISharp</PackageId>
-    <Version>1.0.31</Version>
+		<Version>1.0.42</Version>
 		<Authors>GUISharp Authors</Authors>
     	<PackageProjectUrl>https://github.com/GUISharp/GUISharp</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/GUISharp/GUISharp</RepositoryUrl>
@@ -79,7 +79,7 @@
 		<PackageReference Include="SharpDX.XAudio2" Version="4.2.0" Condition="'$(OS)' == 'Windows_NT'" />
 		<PackageReference Include="TextCopy" Version="4.3.1" />
 		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
-		<PackageReference Include="FontStashSharp.MonoGame" Version="0.9.4" />
+		<PackageReference Include="FontStashSharp.MonoGame" Version="0.9.5" />
 		<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
 	</ItemGroup>
 	<!--===================================================-->

@@ -29,7 +29,6 @@ using GUISharp.Constants;
 using GUISharp.Controls.Moving;
 using GUISharp.GUIObjects.Texts;
 using GUISharp.GUIObjects.Resources;
-using XRectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace GUISharp.Controls.Elements
 {
@@ -108,6 +107,25 @@ namespace GUISharp.Controls.Elements
 		#endregion
 		//-------------------------------------------------
 		#region static Properties Region
+		/// <summary>
+		/// The BigClient of the application.
+		/// Equal to <see cref="ThereIsGConstants.Forming.GUIClient"/>.
+		/// In another words, this is your main form.
+		/// <!--
+		/// Since: GUISharp 1.0.32;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 15:15;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public static GUIClient BigClient
+		{
+			get
+			{
+				return ThereIsGConstants.Forming.GUIClient;
+			}
+		}
 		/// <summary>
 		/// The Content Manager of the GUISharp!
 		/// <!--
@@ -322,7 +340,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		protected virtual Texture2D BackGroundImage { get; set; }
+		protected internal virtual Texture2D BackGroundImage { get; protected set; }
 		/// <summary>
 		/// ForeColor of this graphic element.
 		/// <!--
@@ -333,7 +351,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual Color ForeColor { get; set; }
+		public virtual Color ForeColor { get; protected set; }
 		/// <summary>
 		/// The background color of this graphic element.
 		/// <!--
@@ -356,7 +374,19 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual Color Tint { get; set; } = Color.White;
+		public virtual Color Tint { get; protected set; } = Color.White;
+		/// <summary>
+		/// The tint color of the background image of this graphic element.
+		/// It's <see cref="Color.White"/> by default.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual Color BackTint { get; protected set; } = Color.White;
 		/// <summary>
 		/// The last point of this graphic element.
 		/// Mostly used for movements operations.
@@ -415,7 +445,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual XRectangle Rectangle { get; set; }
+		public virtual Rectangle Rectangle { get; set; }
 		/// <summary>
 		/// The image rectangle of this element (on big father).
 		/// Used to draw the image of this element (if it exists).
@@ -427,7 +457,7 @@ namespace GUISharp.Controls.Elements
 		/// Verified: Yes;
 		/// -->
 		/// </summary>
-		public virtual XRectangle ImageRectangle { get; protected set; }
+		public virtual Rectangle ImageRectangle { get; protected set; }
 		/// <summary>
 		/// The move manager of this element.
 		/// <!--
@@ -809,6 +839,22 @@ namespace GUISharp.Controls.Elements
 		/// </value>
 		public virtual bool IsBarren { get; protected set; }
 		/// <summary>
+		/// Gets a value indicating whether the element is stable or not.
+		/// if the element is not stable, it will disable itself after
+		/// <c>Click</c> event (only left button of mouse).
+		/// <!--
+		/// Since: GUISharp 1.0.36;
+		/// By: ALiwoto;
+		/// Last edit: 9 July 2021, 11:22 AM;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <value>
+		/// true if the element is stable; otherwise, false.
+		/// </value>
+		public virtual bool IsStable { get; protected set; } = true;
+		/// <summary>
 		/// Gets a value indicating whether the element should
 		/// move its owner or not. If it should move its owner,
 		/// it will ignore <see cref="Movements"/> property.
@@ -839,6 +885,7 @@ namespace GUISharp.Controls.Elements
 		/// true if the mouse is locked on this element; otherwise, false.
 		/// </value>
 		public virtual bool IsMouseLocked { get; protected set; }
+		public virtual bool NoClick { get; protected set; }
 		#endregion
 		//-------------------------------------------------
 		#region static field's Region
@@ -857,7 +904,7 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// The currently locked element.
 		/// <!--
-		/// Since: GUISharp 1.0.2;
+		/// Since: GUISharp 1.0.20;
 		/// By: ALiwoto;
 		/// Last edit: Jun 28 05:57;
 		/// Sign: ALiwoto;
@@ -865,6 +912,17 @@ namespace GUISharp.Controls.Elements
 		/// -->
 		/// </summary>
 		protected internal static GraphicElement LockedElement { get; internal set; }
+		/// <summary>
+		/// The currently mouse in element (it can be button or anything else).
+		/// <!--
+		/// Since: GUISharp 1.0.41;
+		/// By: ALiwoto;
+		/// Last edit: Jul 31 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		protected internal static GraphicElement MouseInElement { get; internal set; }
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region

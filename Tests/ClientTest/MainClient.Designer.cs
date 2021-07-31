@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using GUISharp.Logging;
 using GUISharp.Controls.Elements;
+using GUISharp.GUIObjects.Graphics;
 using GUISharp.SandBox;
 using GUISharp.SandBox.ErrorSandBoxes;
 using Color = Microsoft.Xna.Framework.Color;
@@ -68,12 +69,25 @@ namespace ClientTest
 			
 
 
+
+
+
 			Image image = new Bitmap(100, 100);
 			Graphics g = Graphics.FromImage(image);
 			g.DrawLine(new Pen(System.Drawing.Color.Aqua), new(1, 1), new(10, 10));
+			
 			g.Save();
 			MemoryStream m = new MemoryStream();
 			image.Save(m, System.Drawing.Imaging.ImageFormat.Png);
+
+
+
+
+			var i1 = Illusion.GetIllusion(100, 100);
+			i1.DrawLine(new Pen(System.Drawing.Color.Aqua), new Point(1, 1), new(10, 10));
+			i1.SaveChanges();
+			i1.GetAsImage().Save("/home/mrwoto/test5.png");
+
 
 
 
@@ -98,6 +112,7 @@ namespace ClientTest
 
 
 			b.Enable();
+			b.Unstable();
 			b.Show();
 			b.Apply();
 			b.Click += Button1_Click;
@@ -123,7 +138,7 @@ namespace ClientTest
 			//	AppLogger.Log("LeftUp");
 			//};
 			
-			this.ElementManager.AddRange(l);
+			this.ElementManager.AddRange(l, b);
 			//b.ClickAsync += (object sender, EventArgs e) =>
 			//{
 			//	var s = Microsoft.Xna.Framework.Media.Song.FromUri("test", new("Egoist - Departures.mp3", UriKind.Relative));

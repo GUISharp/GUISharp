@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using GUISharp.Client;
 using GUISharp.Controls;
 using GUISharp.GUIObjects.Texts;
@@ -85,6 +86,17 @@ namespace GUISharp.Screens
 				return default;
 			}
 		}
+		public virtual Texture2D Background
+		{
+			get
+			{
+				if (Client != null)
+				{
+					return Client.Background;
+				}
+				return null;
+			}
+		}
 		public virtual int Width
 		{
 			get
@@ -136,7 +148,7 @@ namespace GUISharp.Screens
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region
-		// some members here
+		public event EventHandler Done;
 		#endregion
 		//-------------------------------------------------
 		#region Constructor's Region

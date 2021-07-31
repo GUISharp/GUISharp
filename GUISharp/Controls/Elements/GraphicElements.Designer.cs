@@ -130,6 +130,32 @@ namespace GUISharp.Controls.Elements
 			this.Manager?.EnableAll();
 		}
 		/// <summary>
+		/// Unstable the element,
+		/// this method will set the <see cref="IsStable"/> property 
+		/// to <c>false</c>.
+		/// if you want to make the element stable,
+		/// use <see cref="Stable()"/> method.
+		/// </summary>
+		public virtual void Unstable()
+		{
+			if (this.IsStable)
+			{
+				this.IsStable = false;
+			}
+		}
+		/// <summary>
+		/// Make the element a stable element.
+		/// </summary>
+		public virtual void Stable()
+		{
+			if (this.IsStable || this.IsDisposed)
+			{
+				return;
+			}
+			this.IsStable = true;
+		}
+		
+		/// <summary>
 		/// Enable the element.
 		/// If the element is already enabled, this method
 		/// won't ignore `Manager.EnableAll()`.
@@ -192,6 +218,20 @@ namespace GUISharp.Controls.Elements
 			{
 				this.OwnerMover = false;
 			}
+		}
+		/// <summary>
+		/// Stop accepting click events.
+		/// </summary>
+		public virtual void StopClicking()
+		{
+			this.NoClick = true;
+		}
+		/// <summary>
+		/// accept all incoming click events.
+		/// </summary>
+		public virtual void AcceptClicking()
+		{
+			this.NoClick = false;
 		}
 		/// <summary>
 		/// Show the element.
@@ -577,6 +617,10 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnLeftClick()
 		{
+			if (this.NoClick)
+			{
+				return;
+			}
 			var sender = GetSender();
 			this.LeftClick?.Invoke(sender, EventArgs.Empty);
 			this.Click?.Invoke(sender, EventArgs.Empty);
@@ -596,6 +640,10 @@ namespace GUISharp.Controls.Elements
 					this.ClickAsync.Invoke(sender, EventArgs.Empty);
 				});
 			}
+			if (!this.IsStable)
+			{
+				this.StopClicking();
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="RightClick"/> event.
@@ -609,6 +657,10 @@ namespace GUISharp.Controls.Elements
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		protected internal virtual void OnRightClick()
 		{
+			if (this.NoClick)
+			{
+				return;
+			}
 			var sender = GetSender();
 			this.RightClick?.Invoke(sender, EventArgs.Empty);
 			this.Click?.Invoke(sender, EventArgs.Empty);
@@ -628,6 +680,10 @@ namespace GUISharp.Controls.Elements
 					this.ClickAsync.Invoke(sender, EventArgs.Empty);
 				});
 			}
+			if (!this.IsStable)
+			{
+				this.StopClicking();
+			}
 		}
 		/// <summary>
 		/// Raises the <see cref="MouseEnter"/> event.
@@ -642,6 +698,18 @@ namespace GUISharp.Controls.Elements
 		protected internal virtual void OnMouseEnter()
 		{
 			var sender = GetSender();
+			if (MouseInElement != null)
+			{
+				if (MouseInElement != sender && MouseInElement != this)
+				{
+					var pre = MouseInElement.GetSender();
+					pre.IsMouseIn = false;
+					pre.OnMouseLeave();
+					// invalid the current status.
+					pre.invalidOnce();
+				}
+			}
+			MouseInElement = sender;
 			this.MouseEnter?.Invoke(sender, EventArgs.Empty);
 			if (this.MouseEnterAsync != null)
 			{
@@ -1308,10 +1376,11 @@ namespace GUISharp.Controls.Elements
 		/// </param>
 		public virtual void ChangeLocation(Vector2 location)
 		{
-			if (this.HasOwner)
+			var real = GetSender();
+			if (real.HasOwner && real.Owner != null)
 			{
 				this.RealPosition = location;
-				this.Position = this.RealPosition + this.Owner.Position;
+				this.Position = real.RealPosition + real.Owner.Position;
 			}
 			else
 			{
@@ -1352,10 +1421,11 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		public virtual void ChangeLocation(float x, float y)
 		{
-			if (this.HasOwner)
+			var real = this.GetSender();
+			if (real.HasOwner && real.Owner != null)
 			{
 				this.RealPosition = new(x, y);
-				this.Position = this.RealPosition + this.Owner.Position;
+				this.Position = real.RealPosition + real.Owner.Position;
 			}
 			else
 			{
@@ -1417,9 +1487,10 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		public virtual void OwnerLocationUpdate()
 		{
-			if (this.HasOwner && this.Owner != null)
+			var real = this.GetSender();
+			if (real.HasOwner && real.Owner != null)
 			{
-				this.Position = this.Owner.Position + this.RealPosition;
+				this.Position = real.Owner.Position + real.RealPosition;
 				this.ChangeRectangle();
 			}
 		}
@@ -1623,6 +1694,40 @@ namespace GUISharp.Controls.Elements
 			this.BackGroundImage = this.GetBackGroundTexture(color);
 		}
 		/// <summary>
+		/// Change the tint color of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
+		public virtual void ChangeTint(Color color)
+		{
+			this.Tint = color;
+		}
+		/// <summary>
+		/// Change the background tint color of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
+		public virtual void ChangeBackTint(Color color)
+		{
+			this.BackTint = color;
+		}
+		/// <summary>
 		/// Change the image of this element.
 		/// This method will use <c>this.MyRes</c> if and
 		/// only if it's not null, otherwise it will use default
@@ -1640,6 +1745,25 @@ namespace GUISharp.Controls.Elements
 		public virtual void ChangeImage()
 		{
 			this.ChangeImage(this.MyRes == null ? DefaultRes : this.MyRes);
+		}
+		/// <summary>
+		/// Change the image of this element.
+		/// This method will use <c>Content</c> if and
+		/// only if it's not null, otherwise it will use default
+		/// resources manager of this library.
+		/// You don't have direct access to default resources manager,
+		/// because it is internal.
+		/// <!--
+		/// Since: GUISharp 1.0.14;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public virtual void ChangeImageContent()
+		{
+			this.ChangeImageContent(this.MyRes == null ? DefaultRes : this.MyRes);
 		}
 		/// <summary>
 		/// Change the image of this graphic element, with using 
@@ -1666,6 +1790,32 @@ namespace GUISharp.Controls.Elements
 		public virtual void ChangeImage(WotoRes myRes)
 		{
 			this.ChangeImage(myRes, this.Name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using 
+		/// the <see cref="Name"/> property of this graphic element,
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the <see cref="Name"/> 
+		/// property of this graphic element, it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		public virtual void ChangeImageContent(WotoRes myRes)
+		{
+			this.ChangeImageContent(myRes, this.Name);
 		}
 		/// <summary>
 		/// Change the image of this graphic element, with using a name
@@ -1706,8 +1856,10 @@ namespace GUISharp.Controls.Elements
 			{
 				if (parse)
 				{
-					this.ChangeImage(myRes.GetAsTexture2D(myRes.GetString(
-						myRes.GetString(name) + PIC_RES)));
+					// be careful!
+					// this.Name is Label1_Name
+					this.ChangeImage(myRes.GetAsTexture2D(
+						myRes.GetString(name) + PIC_RES));
 				}
 				else
 				{
@@ -1719,7 +1871,68 @@ namespace GUISharp.Controls.Elements
 				AppLogger.Log(ex);
 			}
 		}
-		
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the specified name in it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it.
+		/// </param>
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="PIC_RES"/> suffix to the name.
+		/// </param>
+		public virtual void ChangeImageContent(WotoRes myRes, StrongString name,
+			bool parse = true)
+		{
+			if (myRes == null || StrongString.IsNullOrEmpty(name) || 
+				Content == null)
+			{
+				return;
+			}
+			try
+			{
+				StrongString cname;
+				if (parse)
+				{
+					cname = myRes.GetString(myRes.GetString(name) + PIC_RES);
+					if (cname == null)
+					{
+						return;
+					}
+				}
+				else
+				{
+					cname = myRes.GetString(name + PIC_RES);
+					if (cname == null)
+					{
+						return;
+					}
+				}
+				this.ChangeImage(Content.Load<Texture2D>(cname.GetValue()));
+			}
+			catch (Exception ex)
+			{
+				AppLogger.Log(ex);
+			}
+		}
 		/// <summary>
 		/// Change the image of this graphic element, with using a name
 		/// which already exists in the <see cref="MyRes"/> property of this
@@ -1745,6 +1958,92 @@ namespace GUISharp.Controls.Elements
 		{
 			this.ChangeImage(this.MyRes == null ? DefaultRes :
 				this.MyRes, name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="Content"/> property of this
+		/// graphic element.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		public virtual void ChangeImageContent(StrongString name)
+		{
+			this.ChangeImageContent(this.MyRes == null ? DefaultRes :
+				this.MyRes, name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="Content"/> property of this
+		/// graphic element.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="PIC_RES"/> suffix to the name.
+		/// </param>
+		public virtual void ChangeImageContent(StrongString name, bool parse)
+		{
+			this.ChangeImageContent(this.MyRes == null ? DefaultRes :
+				this.MyRes, name, parse);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="MyRes"/> property of this
+		/// graphic element.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="PIC_RES"/> suffix to the name.
+		/// </param>
+		public virtual void ChangeImage(StrongString name, bool parse)
+		{
+			this.ChangeImage(this.MyRes == null ? DefaultRes :
+				this.MyRes, name, parse);
 		}
 		/// <summary>
 		/// Change the image of this graphic element, with using a name
@@ -1801,7 +2100,7 @@ namespace GUISharp.Controls.Elements
 		{
 			// just check if the texture is not disposed,
 			// you don't have to check if the texture is null or not!
-			if (texture != null && !texture.IsDisposed)
+			if (!texture.IsDisposed)
 			{
 				// check if the current image is the same as the 
 				// passed texture or not

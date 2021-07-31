@@ -23,7 +23,9 @@ using FontStashSharp;
 using GUISharp.Security;
 using GUISharp.Controls.Moving;
 using GUISharp.Controls.Elements;
+using GUISharp.WotoProvider.Enums;
 using GUISharp.GUIObjects.Graphics;
+using GUISharp.GUIObjects.Resources;
 
 namespace GUISharp.SandBox
 {
@@ -148,7 +150,8 @@ namespace GUISharp.SandBox
 		public override void ChangeLocation(float x, float y)
 		{
 			this._flat?.ChangeLocation(x, y);
-			base.ChangeLocation(x, y);
+			//base.ChangeLocation(x, y);
+			this.Manager?.UpdateLocations();
 		}
 		/// <summary>
 		/// change the location of this sandbox.
@@ -162,7 +165,8 @@ namespace GUISharp.SandBox
 		public override void ChangeLocation(int x, int y)
 		{
 			this._flat?.ChangeLocation(x, y);
-			base.ChangeLocation(x, y);
+			//base.ChangeLocation(x, y);
+			this.Manager?.UpdateLocations();
 		}
 		/// <summary>
 		/// change the location of this sandbox.
@@ -173,7 +177,8 @@ namespace GUISharp.SandBox
 		public override void ChangeLocation(Vector2 location)
 		{
 			this._flat?.ChangeLocation(location);
-			base.ChangeLocation(location);
+			//base.ChangeLocation(location);
+			this.Manager?.UpdateLocations();
 		}
 		/// <summary>
 		/// change the default font of this sandbox.
@@ -197,6 +202,220 @@ namespace GUISharp.SandBox
 		{
 			this._flat?.ChangeForeColor(color);
 		}
+		/// <summary>
+		/// Change the background color of this element.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
+		public override void ChangeBackColor(Color color)
+		{
+			this._flat?.ChangeBackColor(color);
+		}
+		/// <summary>
+		/// Change the tint color of this sandbox.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
+		public override void ChangeTint(Color color)
+		{
+			this._flat?.ChangeTint(color);
+		}
+		/// <summary>
+		/// Change the background tint color of this sandbox.
+		/// <!--
+		/// Since: GUISharp 1.0.31;
+		/// By: ALiwoto;
+		/// Last edit: 5 July 14:41;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="color"> 
+		/// The new background color of this element.
+		/// </param>
+		public override void ChangeBackTint(Color color)
+		{
+			this._flat?.ChangeBackTint(color);
+		}
+		
+		/// <summary>
+		/// Change the image of this element.
+		/// This method will use <c>this.MyRes</c> if and
+		/// only if it's not null, otherwise it will use default
+		/// resources manager of this library.
+		/// You don't have direct access to default resources manager,
+		/// because it is internal.
+		/// <!--
+		/// Since: GUISharp 1.0.14;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		public override void ChangeImage()
+		{
+			this._flat?.ChangeImage();
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using 
+		/// the <see cref="Name"/> property of this graphic element,
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the <see cref="Name"/> 
+		/// property of this graphic element, it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		public override void ChangeImage(WotoRes myRes)
+		{
+			this._flat?.ChangeImage(myRes);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the specified Woto Resources Manager.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="myRes"> 
+		/// The Woto Resources Manager which should not be null and 
+		/// should contains an image with the specified name in it.
+		/// if not, this method won't do anything (it won't throw any
+		/// exception.)
+		/// </param>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="GraphicElement.PIC_RES"/>
+		/// suffix to it.
+		/// </param>
+		/// <param name="parse">
+		/// pass false for this argument if you don't want this method to appened
+		/// <see cref="GraphicElement.PIC_RES"/> suffix to the name.
+		/// </param>
+		public override void ChangeImage(WotoRes myRes, StrongString name,
+			bool parse = true)
+		{
+			this._flat?.ChangeImage(myRes, name, parse);
+		}
+		
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the <see cref="GraphicElement.MyRes"/> property of this
+		/// graphic element.
+		/// The parse mode will be enabled in this method.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have <see cref="GraphicElement.PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		public override void ChangeImage(StrongString name)
+		{
+			this._flat?.ChangeImage(name);
+		}
+		/// <summary>
+		/// Change the image of this graphic element, with using a name
+		/// which already exists in the DefaultRes property of this
+		/// graphic element.
+		/// This method is supposed to be internal and it should remains
+		/// internal, because users may have no idea what's going on here and
+		/// so we have to keep it internal.
+		/// The only problem that remains is that how the fuck am I
+		/// supposed to accomplish some tasks in LTW-client.
+		/// If you would like to change the image of this graphic element
+		/// using a custom image from somewhere else, then please
+		/// use <see cref="ChangeImage(Texture2D)"/>  instead of this method.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="name">
+		/// The name of the Image which should have 
+		/// <see cref="GraphicElement.PIC_RES"/>
+		/// suffix to it (it should have this suffix in the resources manager,
+		/// not in itself. Take note that we will add this suffix to it 
+		/// in this method).
+		/// </param>
+		protected internal override void ChangeImageDefault(StrongString name)
+		{
+			this.ChangeImage(DefaultRes, name, false);
+		}
+		/// <summary>
+		/// Change the image of this element using a texture.
+		/// You can pass a null image to this method, but please 
+		/// take note that this graphic element will show nothing as
+		/// it's image after that.
+		/// You can NOT pass a disposed image to this method, if you
+		/// do so, this method will ignore it and won't do anything.
+		/// So please check the <see cref="Texture2D"/> is disposed 
+		/// or not.
+		/// <!--
+		/// Since: GUISharp 1.0.11;
+		/// By: ALiwoto;
+		/// Last edit: Jun 28 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		/// <param name="texture">
+		/// the image texture. this value can be passed as a null value.
+		/// that way, the element won't show any image.
+		/// </param>
+		public override void ChangeImage(Texture2D texture)
+		{
+			this._flat?.ChangeImage(texture);
+		}
+		
 		/// <summary>
 		/// change the default text of this sandbox :|
 		/// dunna what will this fucking method do.
@@ -244,6 +463,11 @@ namespace GUISharp.SandBox
 		{
 			this._flat?.MoveMe();
 		}
+		public override void ChangeImageSizeMode(ImageSizeMode mode)
+		{
+			this._flat?.ChangeImageSizeMode(mode);
+		}
+
 		protected internal override void OnLeftClick()
 		{
 			this._flat?.OnLeftClick();

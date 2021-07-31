@@ -454,6 +454,14 @@ namespace GUISharp.Client
 		{
 			this._g?.ChangeBackground(t);
 		}
+		public virtual void ChangeBackground(Texture2D t, bool dispose_current)
+		{
+			this._g?.ChangeBackground(t, dispose_current);
+		}
+		public virtual void RemoveBackground(bool dispose = false)
+		{
+			this._g?.RemoveBackground(dispose);
+		}
 		public virtual void ChangeBackColor(Color color)
 		{
 			this._g?.ChangeBackColor(color);
@@ -492,6 +500,14 @@ namespace GUISharp.Client
 			{
 				AppLogger.Log(ex);
 			}
+		}
+		public virtual void Exit()
+		{
+			this._g?.Exit();
+		}
+		public virtual void TerminateProcess(int exitCode = default)
+		{
+			Environment.Exit(exitCode);
 		}
 		#endregion
 		//-------------------------------------------------

@@ -415,18 +415,21 @@ namespace GUISharp.Client
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
-			// Allows the game to exit
-			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+			if (this.Universe_Request)
 			{
-				this.Exit();
+				// check the requests came from outside of the envinment of the Game. 
+				this.CheckRequests();
 			}
-			
-			// update the game universe, so it can handle its own events.
-			this.GameUniverse?.UpdateUniverse();
-			// check the requests came from outside of the envinment of the Game. 
-			this.CheckRequests();
-			// check mouse actions of the elements.
-			this.MouseActions();
+			if (this.IsActive)
+			{
+				// update the game universe, so it can handle its own events.
+				this.GameUniverse?.UpdateUniverse();
+				if (this.IsMouseVisible)
+				{
+					// check mouse actions of the elements.
+					this.MouseActions();
+				}
+			}
 			base.Update(gameTime);
 		}
 
@@ -461,6 +464,30 @@ namespace GUISharp.Client
 			{
 				this.BackGroundTexture = t;
 			}
+		}
+		public virtual void ChangeBackground(Texture2D t, bool dispose_current)
+		{
+			if (t != null && !t.IsDisposed)
+			{
+				var c = this.BackGroundTexture;
+				this.BackGroundTexture = t;
+				if (dispose_current && c != null && !c.IsDisposed)
+				{
+					c.Dispose();
+				}
+			}
+		}
+		public void RemoveBackground(bool dispose = false)
+		{
+			if (this.BackGroundTexture == null)
+			{
+				return;
+			}
+			if (dispose)
+			{
+				this.BackGroundTexture.Dispose();
+			}
+			this.BackGroundTexture = null;
 		}
 		public void ChangeBackColor(Color color)
 		{

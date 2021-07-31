@@ -88,8 +88,8 @@ namespace ClientTest.SandBoxes
 			this.ExitButton.ChangePriority(ElementPriority.High);
 			this.LoginButton.ChangePriority(ElementPriority.High);
 			//sizes:
-			this.ChangeSize(Woto_WRate * (2f * (GameClient.Width / 5)), 
-				Woto_HRate * (3f * (GameClient.Height / 5)));
+			this.ChangeSize(Woto_WRate * (2f * (BigClient.Width / 5)), 
+				Woto_HRate * (3f * (BigClient.Height / 5)));
 			this.TitleElement.ChangeSize(Width - from_the_edge,
 				Woto_HRate * ((Height / 4) - (SeparatorLine_Height / 2)));
 			this.UnameElement.ChangeSize(Woto_WRate * (Width - 
@@ -143,6 +143,7 @@ namespace ClientTest.SandBoxes
 			this.UnameElement.ChangeMovements(ElementMovements.NoMovements);
 			this.PassElement.ChangeMovements(ElementMovements.NoMovements);
 			//colors:
+			//this.ChangeTint(Color.Transparent);
 			this.TitleElement.ChangeForeColor(Color.White);
 			this.UnameElement.ChangeForeColor(Color.White);
 			this.PassElement.ChangeForeColor(Color.White);
@@ -161,6 +162,7 @@ namespace ClientTest.SandBoxes
 			this.ExitButton.EnableMouseEnterEffect();
 			this.LoginButton.EnableMouseEnterEffect();
 			this.PassInputElement.EnablePasswordMode();
+			
 			//texts:
 			this.TitleElement.SetLabelText();
 			this.UnameElement.SetLabelText();
@@ -168,8 +170,10 @@ namespace ClientTest.SandBoxes
 			this.ExitButton.SetLabelText();
 			this.LoginButton.SetLabelText();
 			//images:
-			this._flat.ChangeImageSizeMode(ImageSizeMode.Center);
-			this._flat.ChangeImage(SandBoxBackGNameInRes);
+			Content.RootDirectory = "GameData";
+			this.ChangeImageContent(SandBoxBackGNameInRes, false);
+			this.ChangeImageSizeMode(ImageSizeMode.Center); // break point
+			this.TitleElement.ChangeImageContent();
 			//applyAndShow:
 			this.TitleElement.Apply();
 			this.TitleElement.Show();
@@ -211,7 +215,7 @@ namespace ClientTest.SandBoxes
 				return;
 			}
 			// draw the surface of the sandbox.
-			this._flat?.Draw(gameTime, spriteBatch);
+			base.Draw(gameTime, spriteBatch);
 			//spriteBatch.Start();
 			if (this.LeftTexture != null && !this.LeftTexture.IsDisposed)
 			{

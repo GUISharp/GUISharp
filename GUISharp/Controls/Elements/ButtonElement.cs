@@ -196,6 +196,81 @@ namespace GUISharp.Controls.Elements
 		public virtual ButtonColors BorderColor { get; protected set; }
 		public virtual bool UseMouseEnterEffect { get; protected set; }
 		public virtual bool InMouseEnterEffect { get; protected set; }
+		public override bool Enabled
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.Enabled;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do nothing here
+			}
+		}
+		public override bool IsApplied
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.IsApplied;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do nothing here
+			}
+		}
+		public override bool IsDisposed
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.IsDisposed;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do nothing here
+			}
+		}
+		public override bool IsStable
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.IsStable;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do nothing here
+			}
+		}
+		public override bool NoClick
+		{
+			get
+			{
+				if (_flat != null)
+				{
+					return _flat.NoClick;
+				}
+				return default;
+			}
+			protected set
+			{
+				; // do nothing here
+			}
+		}
 		#endregion
 		//-------------------------------------------------
 		#region field's Region
@@ -205,9 +280,6 @@ namespace GUISharp.Controls.Elements
 		/// </summary>
 		private FlatElement _flat;
 		private Rectangle _real_rect;
-#nullable enable
-		private Rectangle? _eff_rect;
-#nullable disable
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region

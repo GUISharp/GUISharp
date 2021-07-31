@@ -64,7 +64,6 @@ namespace ClientTest.SandBoxes
 		#endregion
 		//-------------------------------------------------
 		#region Properties Region
-		public static MainClient GameClient { get; set; }
 		/// <summary>
 		/// the title flat element of this sandbox.
 		/// </summary>
