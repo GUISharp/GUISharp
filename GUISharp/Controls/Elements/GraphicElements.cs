@@ -904,7 +904,7 @@ namespace GUISharp.Controls.Elements
 		/// <summary>
 		/// The currently locked element.
 		/// <!--
-		/// Since: GUISharp 1.0.2;
+		/// Since: GUISharp 1.0.20;
 		/// By: ALiwoto;
 		/// Last edit: Jun 28 05:57;
 		/// Sign: ALiwoto;
@@ -912,6 +912,17 @@ namespace GUISharp.Controls.Elements
 		/// -->
 		/// </summary>
 		protected internal static GraphicElement LockedElement { get; internal set; }
+		/// <summary>
+		/// The currently mouse in element (it can be button or anything else).
+		/// <!--
+		/// Since: GUISharp 1.0.41;
+		/// By: ALiwoto;
+		/// Last edit: Jul 31 05:57;
+		/// Sign: ALiwoto;
+		/// Verified: Yes;
+		/// -->
+		/// </summary>
+		protected internal static GraphicElement MouseInElement { get; internal set; }
 		#endregion
 		//-------------------------------------------------
 		#region event field's Region

@@ -81,34 +81,103 @@
 	  -->
 		<value>System.Resources.ResXResourceWriter</value>
   	</resheader>
-  	<data name="FirstFontFile_Name" xml:space="preserve">
-		<value>f_161020201253.bin</value>
-		<comment>GUISharp_Bold.ttf</comment>
-  	</data>
 	<!--
 		Commented in 21 / 04 / 2021 09:30 AM by ALi.w
 		not sure if it will cause an error or not.
 		<assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
 		<data name="Old Story Bold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+	
+		
+  	<data name="FirstFontFile_Name" xml:space="preserve">
+		<value>f_161020201253.bin</value>
+		<comment>GUISharp_Bold.ttf</comment>
+  	</data>
+	
 	-->
 	<data name="Old Story Bold" type="System.Resources.ResXFileRef">
-		<value>..\..\Resources\Old Story Bold.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>..\..\Resources\fonts\etc\Old Story Bold.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 		<comment>The Old Story Bold Font.</comment>
   	</data>
 	<data name="Old Story Bold Italic" type="System.Resources.ResXFileRef">
-		<value>..\..\Resources\Old Story Bold Italic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>..\..\Resources\fonts\etc\Old Story Bold Italic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 		<comment>THe Old Story Bold Italic Font.</comment>
 	</data>
 	<data name="GUISharpWelcomeTT-Bold" type="System.Resources.ResXFileRef">
-		<value>..\..\Resources\GUISharpWelcomeTT-Bold.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>..\..\Resources\fonts\etc\GUISharpWelcomeTT-Bold.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 		<comment>The GUISharp Bold Font.</comment>
 	</data>
 	<data name="GUISharpWelcomeTT-Regular" type="System.Resources.ResXFileRef">
-		<value>..\..\Resources\GUISharpWelcomeTT-Regular.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>..\..\Resources\fonts\etc\GUISharpWelcomeTT-Regular.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 		<comment>The GUISharp Regular Font.</comment>
 	</data>
 	<data name="NotoSansJP-Regular" type="System.Resources.ResXFileRef">
-		<value>..\..\Resources\NotoSansJP-Regular.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<value>..\..\Resources\fonts\etc\NotoSansJP-Regular.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 		<comment>The NotoSans Regular Font.</comment>
 	</data>
+	
+	<!--Robto region-->
+
+	<data name="Roboto-Black" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-Black.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Black Font.</comment>
+	</data>
+
+
+	<data name="Roboto-BlackItalic" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-BlackItalic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Black Italic Font.</comment>
+	</data>
+
+
+	<data name="Roboto-Bold" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-Bold.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Bold Font.</comment>
+	</data>
+	
+	<data name="Roboto-BoldItalic" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-BoldItalic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Bold Italic Font.</comment>
+	</data>
+	
+	<data name="Roboto-Italic" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-Italic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Italic Font.</comment>
+	</data>
+	
+	<data name="Roboto-Light" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-Light.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Light Font.</comment>
+	</data>
+	
+	<data name="Roboto-LightItalic" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-LightItalic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Light Italic Font.</comment>
+	</data>
+	
+	<data name="Roboto-Medium" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-Medium.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Medium Font.</comment>
+	</data>
+	
+	<data name="Roboto-MediumItalic" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-MediumItalic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Medium Italic Font.</comment>
+	</data>
+	
+	<data name="Roboto-Regular" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-Regular.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Regular Font.</comment>
+	</data>
+	
+	<data name="Roboto-Thin" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-Thin.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Thin Font.</comment>
+	</data>
+	
+	<data name="Roboto-ThinItalic" type="System.Resources.ResXFileRef">
+		<value>..\..\Resources\fonts\roboto\Roboto-ThinItalic.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+		<comment>The Roboto Thin Italic Font.</comment>
+	</data>
+
+	<!--End Robto region-->
 </root>

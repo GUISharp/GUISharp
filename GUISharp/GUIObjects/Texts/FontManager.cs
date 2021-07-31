@@ -35,27 +35,69 @@ namespace GUISharp.GUIObjects.Texts
 		/// <summary>
 		/// Old Story Bold File In Res.
 		/// </summary>
-		public const string OSBFileInRes		= "Old Story Bold";
+		internal const string OSBFileInRes
+			= "Old Story Bold";
 		/// <summary>
 		/// Old Story Bold Italic File In Res.
 		/// </summary>
-		public const string OSBIFileInRes		= "Old Story Bold Italic";
+		internal const string OSBIFileInRes
+			= "Old Story Bold Italic";
 		/// <summary>
 		/// GUISharpTT Bold File In Res.
 		/// </summary>
-		public const string GUISharpTTBoldFileInRes	= "GUISharpWelcomeTT-Bold";
+		internal const string GUISharpTTBoldFileInRes
+			= "GUISharpWelcomeTT-Bold";
 		/// <summary>
 		/// GUISharpTT Regular File In Res.
 		/// </summary>
-		public const string GUISharpTTRFileInRes		= "GUISharpWelcomeTT-Regular";
+		internal const string GUISharpTTRFileInRes
+			= "GUISharpWelcomeTT-Regular";
 		/// <summary>
 		/// Noto Sans Regular File In Res.
 		/// </summary>
-		public const string NSRFileInRes		= "NotoSansJP-Regular";
+		internal const string NSRFileInRes
+			= "NotoSansJP-Regular";
+
+		internal const string RobotoBlackFileInRes
+			= "Roboto-Black";
+		
+		internal const string RobotoBlackItalicFileInRes
+			= "Roboto-BlackItalic";
+		
+		internal const string RobotoBoldFileInRes
+			= "Roboto-Bold";
+
+		internal const string RobotoBoldItalicFileInRes
+			= "Roboto-BoldItalic";
+		
+		internal const string RobotoItalicFileInRes
+			= "Roboto-Italic";
+		
+		internal const string RobotoLightFileInRes
+			= "Roboto-Light";
+		
+		internal const string RobotoLightItalicFileInRes
+			= "Roboto-LightItalic";
+		
+		internal const string RobotoMediumFileInRes
+			= "Roboto-Medium";
+		
+		internal const string RobotoMediumItalicFileInRes
+			= "Roboto-MediumItalic";
+		
+		internal const string RobotoRegularFileInRes
+			= "Roboto-Regular";
+		
+		internal const string RobotoThinFileInRes
+			= "Roboto-Thin";
+		
+		internal const string RobotoThinItalicFileInRes
+			= "Roboto-ThinItalic";
+			
 		public const int FontBitmapWidth				= 1024;
 		public const int FontBitmapHeight			   	= 1024;
 		public const int OLDSTORY_INDEX				 	= 0;
-		public const int GUISharp_INDEX					  	= 1;
+		public const int GUISharp_INDEX					= 1;
 		public const int STROKE_AMOUNT					= 1;
 		#endregion
 		//-------------------------------------------------
@@ -76,6 +118,20 @@ namespace GUISharp.GUIObjects.Texts
 		private FontSystem _GUISharp_bold;
 		private FontSystem _GUISharp_regular;
 		private FontSystem _noto_sans_regular;
+		private FontSystem _roboto_black;
+		private FontSystem _roboto_black_italic;
+		private FontSystem _roboto_bold;
+		private FontSystem _roboto_bold_italic;
+		private FontSystem _roboto_italic;
+		private FontSystem _roboto_light;
+		private FontSystem _roboto_light_italic;
+		private FontSystem _roboto_medium;
+		private FontSystem _roboto_medium_italic;
+		private FontSystem _roboto_regular;
+		private FontSystem _roboto_thin;
+		private FontSystem _roboto_thin_italic;
+
+
 		private FontSystemSettings _settings;
 		#endregion
 		//-------------------------------------------------

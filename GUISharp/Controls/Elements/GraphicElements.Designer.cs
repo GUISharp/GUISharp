@@ -698,6 +698,18 @@ namespace GUISharp.Controls.Elements
 		protected internal virtual void OnMouseEnter()
 		{
 			var sender = GetSender();
+			if (MouseInElement != null)
+			{
+				if (MouseInElement != sender && MouseInElement != this)
+				{
+					var pre = MouseInElement.GetSender();
+					pre.IsMouseIn = false;
+					pre.OnMouseLeave();
+					// invalid the current status.
+					pre.invalidOnce();
+				}
+			}
+			MouseInElement = sender;
 			this.MouseEnter?.Invoke(sender, EventArgs.Empty);
 			if (this.MouseEnterAsync != null)
 			{
